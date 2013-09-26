@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.martin.kantidroid.WidgetContainer
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Noten"
+            android:id="@+id/wContainerNoten" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tvPromoviert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Promoviert"
+                    android:textColor="@color/holo_green_light" />
+
+                <TextView
+                    android:id="@+id/tvPlusP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Pluspunkte"
+                    android:textColor="@color/holo_green_light" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/vSeparator"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/holo_green_light" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tvGSchn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gesamtschnitt:" />
+
+                <TextView
+                    android:id="@+id/tvViewSchn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvGSchn"
+                    android:text="Default"
+                    android:textSize="25sp" />
+
+                <ImageButton
+                    android:id="@+id/ibNoten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/noten_ico" />
+            </RelativeLayout>
+        </com.martin.kantidroid.WidgetContainer>
+
+        <com.martin.kantidroid.WidgetContainer
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kontingent"
+            android:id="@+id/wContainerKontingent" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tvUsage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kontingent verbraucht" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/pbUsage"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="4dp"
+                android:progress="50" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tvGT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kontingentgebrauch:" />
+
+                <TextView
+                    android:id="@+id/tvViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvGT"
+                    android:text="null"
+                    android:textSize="25sp" />
+
+                <ImageButton
+                    android:id="@+id/ibKontingent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/kontingent_ico" />
+            </RelativeLayout>
+        </com.martin.kantidroid.WidgetContainer>
+
+        <com.martin.kantidroid.WidgetContainer
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KISS"
+            android:id="@+id/wContainerKISS" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Im KISS:" />
+
+                <TextView
+                    android:id="@+id/tvKISS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvTitle"
+                    android:text="-"
+                    android:textSize="25sp" />
+
+                <ImageButton
+                    android:id="@+id/ibKISS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="@null"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/kiss_ico"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+        </com.martin.kantidroid.WidgetContainer>
+    </LinearLayout>
+
+</ScrollView>

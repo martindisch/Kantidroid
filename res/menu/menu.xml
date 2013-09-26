@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/iAdd"
+        android:icon="@drawable/add"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:title="Fach hinzufügen"/>
+    <item
+        android:id="@+id/iRemove"
+        android:icon="@drawable/discard"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="Fach entfernen"/>
+    <item
+        android:id="@+id/iOverflow"
+        android:icon="@drawable/expand"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="Mehr">
+        <menu>
+            <item
+                android:id="@+id/iReset"
+                android:showAsAction="never"
+                android:title="Kontingent zurücksetzen"/>
+            <item 
+                android:id="@+id/kImport"
+                android:showAsAction="never"
+                android:title="Fächer importieren"/>
+            <item
+                android:id="@+id/iEdit"
+                android:showAsAction="never"
+                android:title="Fach bearbeiten"/>
+            <item
+                android:id="@+id/iSort"
+                android:showAsAction="never"
+                android:title="Sortierung ändern">
+            </item>
+            <item
+                android:id="@+id/iAbout"
+                android:showAsAction="never"
+                android:title="Über"/>
+        </menu>
+    </item>
+
+</menu>

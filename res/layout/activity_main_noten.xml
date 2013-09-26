@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Main" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/tvPromoviert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Promoviert"
+            android:textColor="@color/holo_green_light" />
+
+        <TextView
+            android:id="@+id/tvPlusP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Pluspunkte"
+            android:textColor="@color/holo_green_light" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/vSeparator"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/holo_green_light" />
+
+    <ListView
+        android:id="@+id/lvMain_noten"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </ListView>
+
+</LinearLayout>

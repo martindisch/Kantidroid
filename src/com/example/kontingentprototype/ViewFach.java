@@ -1,0 +1,198 @@
+package com.example.kontingentprototype;
+
+import java.util.Calendar;
+
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.app.DatePickerDialog;
+import org.holoeverywhere.app.DatePickerDialog.OnDateSetListener;
+import org.holoeverywhere.widget.DatePicker;
+import org.holoeverywhere.widget.NumberPicker;
+import org.holoeverywhere.widget.Toast;
+
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
+
+import com.actionbarsherlock.view.Menu;
+import com.martin.kantidroid.Check;
+import com.martin.kantidroid.R;
+import com.martin.kantidroid.WidgetProvider;
+
+public class ViewFach extends Activity implements OnClickListener,
+		android.content.DialogInterface.OnClickListener, OnDateSetListener {
+
+	TextView name, kontingent, dates;
+	NumberPicker picker;
+	int id, kont_us, picked_number;
+	String fname, fkont, date_new, date_old, addition;
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Intent rIntent = new Intent(this, WidgetProvider.class);
+		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
+		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(rIntent);
+	}
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.viewfach);
+		getData();
+		initialize();
+		Check check = new Check();
+		if (!check.getSeen(getClass().getName(), this)) {
+			AlertDialog.Builder dg = new AlertDialog.Builder(this);
+			dg.setTitle("Info");
+			dg.setNeutralButton("Schliessen", null);
+			dg.setMessage(R.string.kont_viewfach);
+			dg.show();
+			check.setSeen(getClass().getName(), this);
+		}
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+
+	private void getData() {
+		Bundle received = getIntent().getExtras();
+		DatabaseHandler db = new DatabaseHandler(this);
+
+		id = received.getInt("id");
+		Fach fach = db.getFach(id);
+
+		fname = fach.getName();
+		fkont = fach.getKont_us() + "/" + fach.getKont_av();
+		date_old = fach.getDates();
+
+		kont_us = Integer.parseInt(fach.getKont_us());
+	}
+
+	private void initialize() {
+		name = (TextView) findViewById(R.id.tvViewName);
+		kontingent = (TextView) findViewById(R.id.tvViewKontingent);
+		dates = (TextView) findViewById(R.id.tvViewDates);
+		updateText();
+	}
+
+	private void updateText() {
+		name.setText(fname);
+		kontingent.setText(fkont);
+		if (!date_old.contentEquals("empty")) {
+			dates.setText(date_old);
+		} else {
+			dates.setText("");
+		}
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		picked_number = picker.getValue();
+		Calendar c = Calendar.getInstance();
+		new DatePickerDialog(this, this, c.get(Calendar.YEAR),
+				c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+	}
+
+	private void setKont() {
+		if (date_old.contains(addition)) {
+			Toast t = Toast.makeText(ViewFach.this,
+					"Eintrag bereits vorhanden", Toast.LENGTH_SHORT);
+			t.show();
+		} else {
+			DatabaseHandler db = new DatabaseHandler(this);
+			Fach updated = db.getFach(id);
+			int new_value = kont_us + picked_number;
+			updated.setKont_us(Integer.toString(new_value));
+			updated.setDates(date_new);
+			db.updateFach(updated);
+			getData();
+			updateText();
+		}
+	}
+
+	@Override
+	public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+		String singularPlural = " Lektion";
+
+		if (picked_number > 1) {
+			singularPlural = " Lektionen";
+		}
+		addition = arg0.getDayOfMonth() + "." + (arg0.getMonth() + 1) + "."
+				+ arg0.getYear() + " - " + picked_number + singularPlural
+				+ "\n";
+
+		if (date_old.contentEquals("empty")) {
+			date_new = addition;
+		} else {
+			date_new = date_old + addition;
+		}
+		setKont();
+	}
+
+	@Override
+	protected void onPostResume() {
+		super.onPostResume();
+		getData();
+		updateText();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		com.actionbarsherlock.view.MenuInflater inflator = getSupportMenuInflater();
+		inflator.inflate(R.menu.menu_viewfach, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId,
+			com.actionbarsherlock.view.MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.iViewUse:
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Anzahl genommenes Kontingent");
+			View view = LayoutInflater.inflate(this, R.layout.numberpicker);
+			picker = (NumberPicker) view.findViewById(R.id.numberPicker);
+			picker.setMinValue(1);
+			picker.setMaxValue(4);
+			picker.setValue(1);
+			builder.setView(view);
+			builder.setNegativeButton("Abbrechen", null);
+			builder.setPositiveButton("OK", this);
+			builder.show();
+			break;
+		case R.id.iViewRemove:
+			if (!(kont_us == 0)) {
+				Bundle data = new Bundle();
+				data.putString("name", fname);
+				data.putString("dates", date_old);
+				data.putInt("id", id);
+				Intent i = new Intent(ViewFach.this, RemoveUsage.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				i.putExtras(data);
+				startActivity(i);
+			} else {
+				Toast t = Toast.makeText(this, "Kein Kontingent zu entfernen",
+						Toast.LENGTH_SHORT);
+				t.show();
+			}
+			break;
+		case android.R.id.home:
+			finish();
+			break;
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// Rien
+		
+	}
+}
