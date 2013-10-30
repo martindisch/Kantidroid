@@ -7,21 +7,13 @@
         android:icon="@drawable/add"
         android:orderInCategory="1"
         android:title="Fach hinzufügen"
-<<<<<<< HEAD
         app:showAsAction="always"/>
-=======
-        app:showAsAction="ifRoom"/>
->>>>>>> bc292345a608f976b5af730f48428eee7438370b
     <item
         android:id="@+id/iRemove"
         android:icon="@drawable/discard"
         android:orderInCategory="2"
         android:title="Fach entfernen"
-<<<<<<< HEAD
         app:showAsAction="always"/>
-=======
-        app:showAsAction="ifRoom"/>
->>>>>>> bc292345a608f976b5af730f48428eee7438370b
     <item
         android:id="@+id/iAbteilung"
         android:orderInCategory="3"
