@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/mViewAdd"
+        android:icon="@drawable/add"
+        android:orderInCategory="1"
+        android:title="Note hinzufügen"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/mViewDiscard"
+        android:icon="@drawable/discard"
+        android:orderInCategory="2"
+        android:title="Note entfernen"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/mViewInfo"
+        android:icon="@drawable/info"
+        android:orderInCategory="3"
+        android:title="Notenvorhersage"
+        app:showAsAction="ifRoom"/>
+
+</menu>

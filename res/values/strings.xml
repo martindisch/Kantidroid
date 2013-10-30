@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="changelog">Version 1.16\n============\n - Stundenplan lässt sich über das Menü oben rechts auf der Startseite abrufen\n\nVersion 1.15\n============\n - Promotionsbestimmungen HMS/FMS hinzugefügt (Experimentell)\n\nVersion 1.14\n============\n - Bugfixes für KISS\n\nVersion 1.13\n============\n - Auswahl, ob KISS im Browser oder aus Cache angezeigt werden soll\n\nVersion 1.12\n============\n - Ausfälle werden in der KISS Übersicht zuoberst angezeigt\n - Um Datenguthaben zu sparen, kann das letzte zwischengespeicherte KISS angezeigt werden</string>
+    <string name="app_name">Kantidroid</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string-array name="sorting_entries">
+        <item id="@+id/iSortName">Nach Namen sortieren</item>
+        <item id="@+id/iSortMarkDesc">Absteigend sortieren</item>
+        <item id="@+id/iSortMarkAsc">Aufsteigend sortieren</item>
+    </string-array>
+    <string-array name="abteilungen">
+        <item id="@+id/iAbtGym">Gymnasium</item>
+        <item id="@+id/iAbtHMS">Handelsmittelschule</item>
+        <item id="@+id/iAbtFMS">Fachmittelschule</item>
+    </string-array>
+    <string-array name="relevance_entries">
+        <item>Ganz (1x)</item>
+        <item>Halb (0.5x)</item>
+        <item>Doppelt (2x)</item>
+    </string-array>
+    <string-array name="semesters">
+        <item>1. Semester</item>
+        <item>2. Semester</item>
+    </string-array>
+
+    <string name="kiss_main">Füge Personen wie deine Lehrer oder dich selbst zur Überwachung mit dem \'+\' Symbol hinzu.Das KISS wird im Hintergrund auf diese Personen überprüft und du wirst benachrichtigt, falls sie vorhanden sind. Natürlich kannst du die Übersicht auch manuell aktualisieren.\n\nBerühre einen Namen in der Liste um ihn ändern zu können oder zu sehen, wie oft diese Person bereits im KISS zu sehen war.\n\nÜber das Dropdown-Menu rechts oben kannst du Personen entfernen, den Intervall ändern, in dem das KISS überprüft wird und die Ausfallzähler aller Personen zurücksetzen.</string>
+    <string name="kont_main">Füge Fächer mit dem \'+\' Symbol hinzu und entferne sie mit dem Abfallsymbol.\n\nBerühre ein Fach in der Liste um eine detaillierte Übersicht über deinen Kontingentgebrauch zu bekommen und Kontingent zu nehmen.\n\nÜber das Dropdown-Menu rechts oben kannst du am Ende des Schuljahres dein Kontingent zurücksetzen.\nDort kannst du auch noch fehlende Fächer importieren, falls du sie bei den Noten bereits eingegeben hast.\nEs gibt auch die Möglichkeit, Fächer zu bearbeiten, falls der Name oder die Anzahl verfügbares Kontingent nicht korrekt ist.</string>
+    <string name="kont_viewfach">Nimm Kontingent mit dem \'+\' Symbol oder mache eine Kontingentnutzung über das Abfallsymbol rückgängig.</string>
+    <string name="noten_main">Füge Fächer mit dem \'+\' Symbol hinzu oder entferne sie mit dem Abfallsymbol.\n\nBerühre ein Fach in der Liste um eine genaue Übersicht über deine Noten zu bekommen und Noten hinzuzufügen.\n\nÜber das Dropdown-Menu rechts oben kannst du am Ende des Schuljahres die Noten zurücksetzen.\nDort kannst du auch noch fehlende Fächer importieren, falls du sie bereits beim Kontingent eingegeben hast.\nEs gibt auch die Möglichkeit, Fächer zu bearbeiten, falls du dich beim Namen vertippt hast.\nDie Sortierung der Liste kannst du ebenfalls ändern, sowie deine Abteilung (Gymnasium, HMS/FMS)</string>
+    <string name="noten_viewfach">Füge eine Note mit dem \'+\' Symbol hinzu oder entferne sie mit dem Abfallsymbol. Achte darauf, dass du das Fach im Tab des richtigen Semesters berührt hast.\n\nÜber das Infosymbol kannst du herausfinden, welche Note du in der nächsten Prüfung benötigst, um einen bestimmten Schnitt zu erreichen.</string>
+    <string name="noten_viewfach_addmark">Gib eine Note ein und wähle entweder eine vorgegebene Gewichtung aus oder gib über den \'...\' Button eine eigene ein.</string>
+    <string name="license">\nCopyright (C) 2013 Sergey Shatunov\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+    <string name="kdroid_main">Willkommen bei Kantidroid!\n\nDies ist die Übersichtsseite. Von jeder Kategorie siehst du hier einige Daten. Berühre die Symbole, um zu den einzelnen Teilen der App zu gelangen.\n\nDu kannst auch direkte Verknüpfungen zu den einzelnen Teilen auf den Homescreen erstellen, indem du sie als Widgets hinzufügst. Es ist auch ein kleines Infowidget mit den wichtigsten Daten verfügbar.</string>
+
+    <string-array name="lehrer_list">
+        <item>Aeberhard Willi</item>
+        <item>Albin Iso</item>
+        <item>Bamert Caspar</item>
+        <item>Barfuss Thomas</item>
+        <item>Bargiglione Carla</item>
+        <item>Benguerel Philippe</item>
+        <item>Berger Hans Peter</item>
+        <item>Bernhard Paul</item>
+        <item>Bieler Martina</item>
+        <item>Bietenhader Daniel</item>
+        <item>Birchler Ursula</item>
+        <item>Bisculm Martina</item>
+        <item>Blumenthal Patrick</item>
+        <item>Bodyl Klaus-Dieter</item>
+        <item>Bonderer Sol</item>
+        <item>Braschler Karl</item>
+        <item>Brunner Erwin</item>
+        <item>Brunold Claudio</item>
+        <item>Brunschwiler Alexandra</item>
+        <item>Caglia Corsin</item>
+        <item>Caprez Jürg</item>
+        <item>Carigiet David</item>
+        <item>Carigiet Giusep</item>
+        <item>Carigiet Werner</item>
+        <item>Casanova Gion Andrea</item>
+        <item>Casty Pierino</item>
+        <item>Casutt Michael</item>
+        <item>Cathomas Alig Regula</item>
+        <item>Caviezel Roman</item>
+        <item>Cereghetti-Fröhlicher Maura</item>
+        <item>Ciorciaro Rocco</item>
+        <item>Clavadetscher Sarah (Stv. G. Tannò)</item>
+        <item>Compeer Michael</item>
+        <item>Cottiati Riccarda</item>
+        <item>Darms Andrea</item>
+        <item>Darms Rino</item>
+        <item>Decurtins Guido</item>
+        <item>Degunda Dorothea</item>
+        <item>Dewes Thomas</item>
+        <item>Diethelm Gabriela</item>
+        <item>Domenig Urs</item>
+        <item>Fannin Christopher</item>
+        <item>Federspiel Armin</item>
+        <item>Federspiel Hanspeter</item>
+        <item>Fontana Barbara</item>
+        <item>Frerick Simone</item>
+        <item>Fried Claudia (Stv. S. Steidle)</item>
+        <item>Fried-Sieber Gabriella</item>
+        <item>Fröhlich Peter</item>
+        <item>Früh Jonas</item>
+        <item>Fürtig Konrad</item>
+        <item>Gartmann Silva</item>
+        <item>Godenzi Federico</item>
+        <item>Götz Reto</item>
+        <item>Graf Michael</item>
+        <item>Grazioli Urs</item>
+        <item>Gredig-Enzler Clara</item>
+        <item>Gredig Seraina</item>
+        <item>Griethe Lothar</item>
+        <item>Grob Andreas</item>
+        <item>Gysin Bianca</item>
+        <item>Hahn-Morlok Claudia</item>
+        <item>Hasse Dieter</item>
+        <item>Häusermann-Käser Denise</item>
+        <item>Hebach Esther</item>
+        <item>Heim Vadis Isabel</item>
+        <item>Hillebrecht Maike</item>
+        <item>Holzheu Petra</item>
+        <item>Jaeger Franziska</item>
+        <item>Jakober Christoph</item>
+        <item>Janser Anna</item>
+        <item>Janz Ervin</item>
+        <item>Jehli Anita</item>
+        <item>Joos Bärbel</item>
+        <item>Joos Franco</item>
+        <item>Juon Luzius</item>
+        <item>Just Josias</item>
+        <item>Känel Pascal</item>
+        <item>Keller Monika</item>
+        <item>Klucker Christian</item>
+        <item>Kohli Hans-Rudolf</item>
+        <item>Künzli Christa</item>
+        <item>Kuratle Andrea</item>
+        <item>Läderach Peter</item>
+        <item>Lanfranchi-Klingler Edith</item>
+        <item>Laperre Jan</item>
+        <item>Lardi Otmaro</item>
+        <item>Lechmann Gion</item>
+        <item>Liechti Marcel</item>
+        <item>Maiello Francesco</item>
+        <item>Manser Fredy</item>
+        <item>Maraffio Alberto</item>
+        <item>Maranta Cristina</item>
+        <item>Marijanovic Jelena</item>
+        <item>Marugg Daniel</item>
+        <item>Meier Christina</item>
+        <item>Meier Daniel</item>
+        <item>Meyer Daniel</item>
+        <item>Mininni Nicola</item>
+        <item>Näf Ernst</item>
+        <item>Negretti Carlo</item>
+        <item>Nicolussi Günther</item>
+        <item>Nigg Swetlana</item>
+        <item>Oberli Meili Simone</item>
+        <item>Oswald Rolf</item>
+        <item>Palancon Pia</item>
+        <item>Peduzzi Stefano</item>
+        <item>Peper Flurina</item>
+        <item>Perren Geneviève</item>
+        <item>Pescia Ursula</item>
+        <item>Pflugfelder Christoph</item>
+        <item>Prevost Aldo</item>
+        <item>Pult Chasper</item>
+        <item>Puntschart Adrian</item>
+        <item>Reusser Stefan</item>
+        <item>Riedi Richard</item>
+        <item>Ritter - de Maria Sabrina</item>
+        <item>Roffler Rosmarie</item>
+        <item>Ryser Johanna</item>
+        <item>Sala Giancarlo</item>
+        <item>Salvator Manuel</item>
+        <item>Scherer Matthias</item>
+        <item>Schlösser Anton Peter</item>
+        <item>Schmid - Gadient Maria</item>
+        <item>Schnoz Andi</item>
+        <item>Sigron David</item>
+        <item>Simeon Lea</item>
+        <item>Sonder Anina</item>
+        <item>Spirig Urs</item>
+        <item>Stirnemann Stefan</item>
+        <item>Stoppa Andrea</item>
+        <item>Stoppa Miriam </item>
+        <item>Taisch Marcel</item>
+        <item>Trepp Alexandra</item>
+        <item>Ullrich Harry</item>
+        <item>Valsecchi Graziella</item>
+        <item>Vassella - Zanolari Tanja</item>
+        <item>Vincenz Claudio</item>
+        <item>Vinzens Aldo</item>
+        <item>Voser Urs</item>
+        <item>Walther Giacomo</item>
+        <item>Wildberger - Mani Katja</item>
+        <item>Wilhelm Lydia</item>
+        <item>Wind Alexandra</item>
+        <item>Wittmann Fopp Anita</item>
+        <item>Wittwer Beat</item>
+        <item>Wolf Silvia</item>
+        <item>Zacek Thomas</item>
+        <item>Züger Josef</item>
+    </string-array>
+    <string-array name="faecher_list">
+        <item>Deutsch</item>
+        <item>Romanisch</item>
+        <item>Italienisch</item>
+        <item>Französisch</item>
+        <item>Englisch</item>
+        <item>Mathematik</item>
+        <item>Naturlehre</item>
+        <item>Biologie</item>
+        <item>Chemie</item>
+        <item>Physik</item>
+        <item>Geografie</item>
+        <item>Geschichte</item>
+        <item>Wirtschaft und Recht</item>
+        <item>BG</item>
+        <item>Musik</item>
+        <item>Religion</item>
+        <item>Ethik</item>
+        <item>Handarbeit</item>
+        <item>Werken</item>
+        <item>Hauswirtschaft</item>
+        <item>Informatik</item>
+        <item>Tastaturschreiben</item>
+        <item>Turnen</item>
+        <item>Sport</item>
+        <item>Latein</item>
+        <item>Spanisch</item>
+        <item>Russisch</item>
+        <item>PAM</item>
+        <item>PPP</item>
+        <item>PP</item>
+        <item>Philosophie</item>
+    </string-array>
+    <string-array name="years">
+        <item>13-14</item>
+        <item>14-15</item>
+        <item>15-16</item>
+        <item>16-17</item>
+        <item>17-18</item>
+        <item>18-19</item>
+        <item>19-20</item>
+        <item>20-21</item>
+        <item>21-22</item>
+        <item>22-23</item>
+        <item>23-24</item>
+        <item>24-25</item>
+        <item>25-26</item>
+        <item>26-27</item>
+        <item>27-28</item>
+        <item>28-29</item>
+        <item>29-30</item>
+        <item>30-31</item>
+        <item>31-32</item>
+        <item>32-33</item>
+        <item>33-34</item>
+        <item>34-35</item>
+        <item>35-36</item>
+        <item>36-37</item>
+        <item>37-38</item>
+        <item>38-39</item>
+        <item>39-40</item>
+        <item>40-41</item>
+        <item>41-42</item>
+        <item>42-43</item>
+        <item>43-44</item>
+        <item>44-45</item>
+        <item>45-46</item>
+        <item>46-47</item>
+        <item>47-48</item>
+        <item>48-49</item>
+        <item>49-50</item>
+        <item>50-51</item>
+        <item>51-52</item>
+        <item>52-53</item>
+        <item>53-54</item>
+        <item>54-55</item>
+        <item>55-56</item>
+        <item>56-57</item>
+        <item>57-58</item>
+        <item>58-59</item>
+        <item>59-60</item>
+        <item>60-61</item>
+        <item>61-62</item>
+        <item>62-63</item>
+        <item>63-64</item>
+        <item>64-65</item>
+        <item>65-66</item>
+        <item>66-67</item>
+        <item>67-68</item>
+        <item>68-69</item>
+        <item>69-70</item>
+        <item>70-71</item>
+        <item>71-72</item>
+        <item>72-73</item>
+        <item>73-74</item>
+        <item>74-75</item>
+        <item>75-76</item>
+        <item>76-77</item>
+        <item>77-78</item>
+        <item>78-79</item>
+        <item>79-80</item>
+        <item>80-81</item>
+        <item>81-82</item>
+        <item>82-83</item>
+        <item>83-84</item>
+        <item>84-85</item>
+        <item>85-86</item>
+        <item>86-87</item>
+        <item>87-88</item>
+        <item>88-89</item>
+        <item>89-90</item>
+        <item>90-91</item>
+        <item>91-92</item>
+        <item>92-93</item>
+        <item>93-94</item>
+        <item>94-95</item>
+        <item>95-96</item>
+        <item>96-97</item>
+        <item>97-98</item>
+        <item>98-99</item>
+        <item>99-100</item>
+    </string-array>
+    <string-array name="uiyears">
+        <item>2013/2014</item>
+        <item>2014/2015</item>
+        <item>2015/2016</item>
+        <item>2016/2017</item>
+        <item>2017/2018</item>
+        <item>2018/2019</item>
+        <item>2019/2020</item>
+        <item>2020/2021</item>
+        <item>2021/2022</item>
+        <item>2022/2023</item>
+        <item>2023/2024</item>
+        <item>2024/2025</item>
+        <item>2025/2026</item>
+        <item>2026/2027</item>
+        <item>2027/2028</item>
+        <item>2028/2029</item>
+        <item>2029/2030</item>
+        <item>2030/2031</item>
+        <item>2031/2032</item>
+        <item>2032/2033</item>
+        <item>2033/2034</item>
+        <item>2034/2035</item>
+        <item>2035/2036</item>
+        <item>2036/2037</item>
+        <item>2037/2038</item>
+        <item>2038/2039</item>
+        <item>2039/2040</item>
+        <item>2040/2041</item>
+        <item>2041/2042</item>
+        <item>2042/2043</item>
+        <item>2043/2044</item>
+        <item>2044/2045</item>
+        <item>2045/2046</item>
+        <item>2046/2047</item>
+        <item>2047/2048</item>
+        <item>2048/2049</item>
+        <item>2049/2050</item>
+        <item>2050/2051</item>
+        <item>2051/2052</item>
+        <item>2052/2053</item>
+        <item>2053/2054</item>
+        <item>2054/2055</item>
+        <item>2055/2056</item>
+        <item>2056/2057</item>
+        <item>2057/2058</item>
+        <item>2058/2059</item>
+        <item>2059/2060</item>
+        <item>2060/2061</item>
+        <item>2061/2062</item>
+        <item>2062/2063</item>
+        <item>2063/2064</item>
+        <item>2064/2065</item>
+        <item>2065/2066</item>
+        <item>2066/2067</item>
+        <item>2067/2068</item>
+        <item>2068/2069</item>
+        <item>2069/2070</item>
+        <item>2070/2071</item>
+        <item>2071/2072</item>
+        <item>2072/2073</item>
+        <item>2073/2074</item>
+        <item>2074/2075</item>
+        <item>2075/2076</item>
+        <item>2076/2077</item>
+        <item>2077/2078</item>
+        <item>2078/2079</item>
+        <item>2079/2080</item>
+        <item>2080/2081</item>
+        <item>2081/2082</item>
+        <item>2082/2083</item>
+        <item>2083/2084</item>
+        <item>2084/2085</item>
+        <item>2085/2086</item>
+        <item>2086/2087</item>
+        <item>2087/2088</item>
+        <item>2088/2089</item>
+        <item>2089/2090</item>
+        <item>2090/2091</item>
+        <item>2091/2092</item>
+        <item>2092/2093</item>
+        <item>2093/2094</item>
+        <item>2094/2095</item>
+        <item>2095/2096</item>
+        <item>2096/2097</item>
+        <item>2097/2098</item>
+        <item>2098/2099</item>
+        <item>2099/2100</item>
+    </string-array>
+
+</resources>

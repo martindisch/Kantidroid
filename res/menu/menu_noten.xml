@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/iAdd"
+        android:icon="@drawable/add"
+        android:orderInCategory="1"
+        android:title="Fach hinzufügen"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/iRemove"
+        android:icon="@drawable/discard"
+        android:orderInCategory="2"
+        android:title="Fach entfernen"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/iAbteilung"
+        android:orderInCategory="3"
+        android:title="Abteilung ändern"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/iReset"
+        android:orderInCategory="4"
+        android:title="Jahr abschliessen"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nImport"
+        android:orderInCategory="5"
+        android:title="Fächer importieren"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/iEdit"
+        android:orderInCategory="6"
+        android:title="Fach bearbeiten"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/iSort"
+        android:orderInCategory="7"
+        android:title="Sortierung ändern"
+        app:showAsAction="never">
+    </item>
+    <item
+        android:id="@+id/iAbout"
+        android:orderInCategory="8"
+        android:title="Über"
+        app:showAsAction="never"/>
+
+</menu>
