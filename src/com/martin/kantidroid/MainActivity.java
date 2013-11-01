@@ -47,12 +47,12 @@ import com.martin.noten.PromoRes;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	LinearLayout cardKontingent, cardKISS, cardNoten, actioncardNoten, actioncardKontingent;
-	TextView tvSchn, promoviert, pluspunkte, tvUsage, tvUsage2, tvKISS;
+	LinearLayout cardKontingent, cardKISS, cardNoten, actioncardNoten,
+			actioncardKontingent;
+	TextView tvSchn, pluspunkte, tvUsage, tvUsage2, tvKISS;
 	double schn = 0;
 	Resources res;
 	Fach entry;
-	ProgressBar pb;
 
 	@Override
 	protected void onStop() {
@@ -85,9 +85,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		actioncardNoten.setOnClickListener(this);
 		actioncardKontingent.setOnClickListener(this);
 		tvSchn = (TextView) findViewById(R.id.tvViewSchn);
-		promoviert = (TextView) findViewById(R.id.tvPromoviert);
 		pluspunkte = (TextView) findViewById(R.id.tvPlusP);
-		pb = (ProgressBar) findViewById(R.id.pbUsage);
 		tvUsage = (TextView) findViewById(R.id.tvUsage);
 		tvUsage2 = (TextView) findViewById(R.id.tvViewText);
 		tvKISS = (TextView) findViewById(R.id.tvKISS);
@@ -147,8 +145,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else {
 			prResult = prCheck.getFMS(2);
 		}
-		promoviert.setText(prResult.sMessage);
-		promoviert.setTextColor(res.getColor(prResult.iColor));
 		pluspunkte.setText(prResult.sPP);
 		pluspunkte.setTextColor(res.getColor(prResult.iColor));
 		tvSchn.setText(prResult.sSchnitt);
@@ -164,8 +160,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		int iPercentage = 0;
 		double dPercentage = 0;
 
-		List<com.martin.kontingent.Fach> faecherK = dbK
-				.getAllFaecher(this);
+		List<com.martin.kontingent.Fach> faecherK = dbK.getAllFaecher(this);
 		com.martin.kontingent.Fach entry = null;
 
 		int überzogen = 0;
@@ -193,7 +188,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 		tvUsage.setText(dPercentage + "% des Kontingents benutzt");
 		if (überzogen == 0) {
-			tvUsage.setTextColor(res.getColor(R.color.holo_green_light));
+			tvUsage.setTextColor(res.getColor(R.color.holo_orange_light));
 		} else {
 			tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
 			String before = tvUsage.getText().toString();
@@ -203,8 +198,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			tvUsage.setText(before + "\nKontingent in " + überzogen + einzmehrz);
 		}
-		pb.setMax(100);
-		pb.setProgress(iPercentage);
 
 		tvUsage2.setText(used + "/" + totalK);
 
@@ -260,13 +253,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(i3);
 			break;
 		case R.id.llActioncardNoten:
-			Intent i4 = new Intent(MainActivity.this, com.martin.noten.AddSelect.class);
+			Intent i4 = new Intent(MainActivity.this,
+					com.martin.noten.AddSelect.class);
 			i4.putExtra("Internal_call", true);
 			i4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i4);
 			break;
 		case R.id.llActioncardKontingent:
-			Intent i5 = new Intent(MainActivity.this, com.martin.kontingent.AddSelect.class);
+			Intent i5 = new Intent(MainActivity.this,
+					com.martin.kontingent.AddSelect.class);
 			i5.putExtra("Internal_call", true);
 			i5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i5);
