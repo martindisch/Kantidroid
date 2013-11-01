@@ -2256,6 +2256,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int llCardKISS=0x7f0800a7;
         public static final int llCardKontingent=0x7f0800a1;
         public static final int llCardNoten=0x7f08009c;
+        public static final int llKontingentOverview=0x7f0800ae;
         public static final int lvMain=0x7f0800af;
         public static final int lvMain_noten=0x7f080064;
         public static final int mViewAdd=0x7f0800f7;
@@ -2276,7 +2277,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pager=0x7f0800d6;
         public static final int pager_title_strip=0x7f0800d7;
         public static final int parentPanel=0x7f08006d;
-        public static final int pbUsage=0x7f0800ae;
         public static final int pickers=0x7f080088;
         public static final int preference=0x7f080027;
         public static final int prefs=0x7f0800b9;
@@ -2293,6 +2293,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int rightSpacer=0x7f08002c;
         public static final int right_container=0x7f080051;
         public static final int right_icon=0x7f080052;
+        public static final int rlNoten=0x7f080061;
         public static final int sGuessingRelevance=0x7f080098;
         public static final int sRelevance=0x7f08006a;
         public static final int scrollView=0x7f080074;
@@ -2341,8 +2342,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tvKont=0x7f0800df;
         public static final int tvLeft=0x7f0800b0;
         public static final int tvPP=0x7f0800dd;
-        public static final int tvPlusP=0x7f080062;
-        public static final int tvPromoviert=0x7f080061;
+        public static final int tvPlusP=0x7f080063;
+        public static final int tvPromoviert=0x7f080062;
         public static final int tvRight=0x7f0800b1;
         public static final int tvTitle=0x7f0800a8;
         public static final int tvUsage=0x7f0800a2;
@@ -2363,7 +2364,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int typeface=0x7f08002d;
         public static final int up=0x7f08003e;
         public static final int useLogo=0x7f080003;
-        public static final int vSeparator=0x7f080063;
         public static final int wLayout=0x7f0800db;
         public static final int widget_frame=0x7f0800b3;
         public static final int withText=0x7f08000c;

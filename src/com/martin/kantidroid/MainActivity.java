@@ -146,7 +146,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			prResult = prCheck.getFMS(2);
 		}
 		pluspunkte.setText(prResult.sPP);
-		pluspunkte.setTextColor(res.getColor(prResult.iColor));
+		if (prResult.iColor == R.color.holo_green_light) {
+			pluspunkte.setTextColor(res.getColor(R.color.holo_orange_light));
+		}
+		else {
+			pluspunkte.setTextColor(res.getColor(prResult.iColor));
+		}
 		tvSchn.setText(prResult.sSchnitt);
 
 		// Kontingent

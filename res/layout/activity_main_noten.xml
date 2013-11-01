@@ -6,8 +6,10 @@
     tools:context=".Main" >
 
     <RelativeLayout
+        android:id="@+id/rlNoten"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/holo_green_light"
         android:orientation="horizontal"
         android:padding="10dp" >
 
@@ -16,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Promoviert"
-            android:textColor="@color/holo_green_light" />
+            android:textColor="@color/primary_text_holo_dark" />
 
         <TextView
             android:id="@+id/tvPlusP"
@@ -24,14 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="Pluspunkte"
-            android:textColor="@color/holo_green_light" />
+            android:textColor="@color/primary_text_holo_dark" />
     </RelativeLayout>
-
-    <View
-        android:id="@+id/vSeparator"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="@color/holo_green_light" />
 
     <ListView
         android:id="@+id/lvMain_noten"

@@ -8,9 +8,9 @@ import java.util.Map;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.NumberPicker;
-import org.holoeverywhere.widget.ProgressBar;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
@@ -40,16 +40,18 @@ public class Overview extends Activity implements OnClickListener,
 
 	int selected = 0;
 	ListView lv;
-	ProgressBar pb;
+	//ProgressBar pb;
 	TextView tvUsage;
 	Resources res;
 	Fach fSelected = null;
+	LinearLayout KOverview;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
 		lv = (ListView) findViewById(R.id.lvMain);
-		pb = (ProgressBar) findViewById(R.id.pbUsage);
+		//pb = (ProgressBar) findViewById(R.id.pbUsage);
+		KOverview = (LinearLayout) findViewById(R.id.llKontingentOverview);
 		tvUsage = (TextView) findViewById(R.id.tvUsage);
 		lv.setOnItemClickListener(this);
 		Check check = new Check();
@@ -175,9 +177,11 @@ public class Overview extends Activity implements OnClickListener,
 		tvUsage.setText(dPercentage + "% des Kontingents benutzt (" + used
 				+ "/" + total + ")");
 		if (überzogen == 0) {
-			tvUsage.setTextColor(res.getColor(R.color.holo_green_light));
+			KOverview.setBackgroundColor(res.getColor(R.color.holo_green_light));
+			//tvUsage.setTextColor(res.getColor(R.color.holo_green_light));
 		} else {
-			tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
+			//tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
+			KOverview.setBackgroundColor(res.getColor(R.color.holo_red_light));
 			String before = tvUsage.getText().toString();
 			String einzmehrz = " Fach überzogen";
 			if (überzogen > 1) {
@@ -185,8 +189,8 @@ public class Overview extends Activity implements OnClickListener,
 			}
 			tvUsage.setText(before + "\nKontingent in " + überzogen + einzmehrz);
 		}
-		pb.setMax(100);
-		pb.setProgress(iPercentage);
+		//pb.setMax(100);
+		//pb.setProgress(iPercentage);
 	}
 
 	private ArrayList<Map<String, String>> buildData() {

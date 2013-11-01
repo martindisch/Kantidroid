@@ -5,17 +5,14 @@ import java.util.List;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.Spinner;
-import org.holoeverywhere.widget.Toast;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -55,20 +52,21 @@ public class AddSelect extends ListActivity {
 		DatabaseHandler db = new DatabaseHandler(this);
 		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
 				this.MODE_PRIVATE);
-		
+
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
 				spNoten.getInt("selected_semester", 1));
-		
+
 		selected = db.getFach(faecher.get(position).getID());
 		int predictedsem = spNoten.getInt("selected_semester", 1);
 		if (predictedsem == 3) {
 			predictedsem = 1;
 		}
-		
+
 		AlertDialog.Builder inp = new AlertDialog.Builder(this);
 		inp.setTitle("Semester");
 		LayoutInflater inflator = this.getLayoutInflater();
-		LinearLayout ll = (LinearLayout) inflator.inflate(R.layout.semester_choice);
+		LinearLayout ll = (LinearLayout) inflator
+				.inflate(R.layout.semester_choice);
 		final Spinner sem = (Spinner) ll.findViewById(R.id.spSemester);
 		sem.setSelection(predictedsem - 1);
 		inp.setView(ll);

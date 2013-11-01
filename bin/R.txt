@@ -925,6 +925,7 @@ int id llActioncardNoten 0x7f08009f
 int id llCardKISS 0x7f0800a7
 int id llCardKontingent 0x7f0800a1
 int id llCardNoten 0x7f08009c
+int id llKontingentOverview 0x7f0800ae
 int id lvMain 0x7f0800af
 int id lvMain_noten 0x7f080064
 int id mViewAdd 0x7f0800f7
@@ -945,7 +946,6 @@ int id numberpicker_input 0x7f0800ac
 int id pager 0x7f0800d6
 int id pager_title_strip 0x7f0800d7
 int id parentPanel 0x7f08006d
-int id pbUsage 0x7f0800ae
 int id pickers 0x7f080088
 int id preference 0x7f080027
 int id prefs 0x7f0800b9
@@ -962,6 +962,7 @@ int id right 0x7f080020
 int id rightSpacer 0x7f08002c
 int id right_container 0x7f080051
 int id right_icon 0x7f080052
+int id rlNoten 0x7f080061
 int id sGuessingRelevance 0x7f080098
 int id sRelevance 0x7f08006a
 int id scrollView 0x7f080074
@@ -1010,8 +1011,8 @@ int id tvKISS_2 0x7f0800e2
 int id tvKont 0x7f0800df
 int id tvLeft 0x7f0800b0
 int id tvPP 0x7f0800dd
-int id tvPlusP 0x7f080062
-int id tvPromoviert 0x7f080061
+int id tvPlusP 0x7f080063
+int id tvPromoviert 0x7f080062
 int id tvRight 0x7f0800b1
 int id tvTitle 0x7f0800a8
 int id tvUsage 0x7f0800a2
@@ -1032,7 +1033,6 @@ int id tvtPP 0x7f0800dc
 int id typeface 0x7f08002d
 int id up 0x7f08003e
 int id useLogo 0x7f080003
-int id vSeparator 0x7f080063
 int id wLayout 0x7f0800db
 int id widget_frame 0x7f0800b3
 int id withText 0x7f08000c

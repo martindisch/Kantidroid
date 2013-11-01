@@ -8,22 +8,18 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/holo_green_light"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="10dp"
+        android:id="@+id/llKontingentOverview" >
 
         <TextView
             android:id="@+id/tvUsage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kontingent verbraucht" />
+            android:text="Kontingent verbraucht"
+            android:textColor="@color/primary_text_holo_dark" />
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/pbUsage"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:progress="50" />
 
     <ListView
         android:id="@+id/lvMain"

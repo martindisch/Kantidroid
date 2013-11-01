@@ -229,8 +229,7 @@ public class Main extends Activity implements OnClickListener {
 
 			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
 					this);
-			List<com.martin.kontingent.Fach> kFaecher = dbK
-					.getAllFaecher(this);
+			List<com.martin.kontingent.Fach> kFaecher = dbK.getAllFaecher(this);
 
 			com.martin.noten.Fach entryN = null;
 			com.martin.kontingent.Fach entryK = null;
@@ -258,7 +257,6 @@ public class Main extends Activity implements OnClickListener {
 					newFach.setName(entryK.getName());
 					newFach.setPromotionsrelevant("true");
 					dbN.addFach(newFach);
-					onResume();
 
 				}
 			}
@@ -273,6 +271,7 @@ public class Main extends Activity implements OnClickListener {
 				impinfo.setMessage("Alle Fächer wurden als Promotionsfächer übernommen. Sollte dies nicht korrekt sein, kannst du das über den Menüpunkt 'Fach bearbeiten' korrigieren.");
 				impinfo.setNeutralButton("Schliessen", null);
 				impinfo.show();
+				mViewPager.setAdapter(mSectionsPagerAdapter);
 			}
 			break;
 		case android.R.id.home:

@@ -24,7 +24,7 @@ public class PromoCheck {
 		int fcount = 0;
 
 		String sMessage = "Promoviert";
-		int iColor = R.color.holo_orange_light;
+		int iColor = R.color.holo_green_light;
 		String sPP = "0.0 Pluspunkte";
 		String sSchnitt = "5.0000";
 
@@ -86,15 +86,15 @@ public class PromoCheck {
 		if (!((minus * 2) > plus)) {
 			if (total_minus <= 3) {
 				sMessage = "Promoviert";
-				iColor = R.color.holo_orange_light;
+				iColor = R.color.holo_green_light;
 			}
 			if (total_minus == 4) {
 				sMessage = "Promoviert falls in OG\n4 ungenügende Noten";
-				iColor = R.color.holo_orange_light;
+				iColor = R.color.holo_green_light;
 			}
 			if (total_minus > 4) {
 				sMessage = "Mehr als 4 ungenügende Noten\nIm Endzeugnis darf dies nicht der Fall sein";
-				iColor = R.color.holo_orange_light;
+				iColor = R.color.holo_green_light;
 			}
 
 		} else {
@@ -125,7 +125,7 @@ public class PromoCheck {
 		int fcount = 0;
 
 		String sMessage = "Promoviert";
-		int iColor = R.color.holo_orange_light;
+		int iColor = R.color.holo_green_light;
 		String sPP = "0.0 Pluspunkte";
 		String sSchnitt = "5.0000";
 
@@ -187,7 +187,7 @@ public class PromoCheck {
 		if (!((total / fcount) < 4)) {
 			if (total_minus <= 3) {
 				sMessage = "Promoviert";
-				iColor = R.color.holo_orange_light;
+				iColor = R.color.holo_green_light;
 			} else {
 				sMessage = "Nicht promoviert\nMehr als 3 Ungenügende";
 				iColor = R.color.holo_red_light;
@@ -225,7 +225,7 @@ public class PromoCheck {
 		int fcount = 0;
 
 		String sMessage = "Promoviert";
-		int iColor = R.color.holo_orange_light;
+		int iColor = R.color.holo_green_light;
 		String sPP = "0.0 Pluspunkte";
 		String sSchnitt = "5.0000";
 
@@ -291,7 +291,7 @@ public class PromoCheck {
 		if (!(minus > 2.5)) {
 			if (!((total_real / fcount) < 4)) {
 				sMessage = "Promoviert";
-				iColor = R.color.holo_orange_light;
+				iColor = R.color.holo_green_light;
 			} else {
 				sMessage = "Nicht Promoviert\nPromotionsschnitt unter 4";
 				iColor = R.color.holo_red_light;

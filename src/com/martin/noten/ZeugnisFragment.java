@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 
 import com.martin.kantidroid.R;
@@ -35,7 +36,7 @@ public class ZeugnisFragment extends Fragment {
 	int selected, semester;
 	String result;
 	Fach entry;
-	View separator;
+	RelativeLayout indicator;
 	double schn = 0;
 	Resources res;
 	Fach fSelected = null;
@@ -114,7 +115,7 @@ public class ZeugnisFragment extends Fragment {
 		promoviert = (TextView) getView().findViewById(R.id.tvPromoviert);
 		pluspunkte = (TextView) getView().findViewById(R.id.tvPlusP);
 		lv = (ListView) getView().findViewById(R.id.lvMain_noten);
-		separator = getView().findViewById(R.id.vSeparator);
+		indicator = (RelativeLayout) getView().findViewById(R.id.rlNoten);
 		ArrayList<Map<String, String>> list = buildData();
 		String[] from = { "fach", "anzahl" };
 		int[] to = { R.id.tvLeft, R.id.tvRight };
@@ -147,10 +148,8 @@ public class ZeugnisFragment extends Fragment {
 			prResult = prCheck.getFMS(semester);
 		}
 		promoviert.setText(prResult.sMessage);
-		promoviert.setTextColor(res.getColor(prResult.iColor));
+		indicator.setBackgroundColor(res.getColor(prResult.iColor));
 		pluspunkte.setText(prResult.sPP);
-		pluspunkte.setTextColor(res.getColor(prResult.iColor));
-		separator.setBackgroundColor(res.getColor(prResult.iColor));
 	}
 
 	private ArrayList<Map<String, String>> buildData() {

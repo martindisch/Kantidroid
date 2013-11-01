@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 
 import com.martin.kantidroid.R;
@@ -37,10 +38,10 @@ public class Semester2Fragment extends Fragment implements OnItemClickListener {
 	int selected, semester;
 	String result;
 	Fach entry;
-	View separator;
 	double schn = 0;
 	Resources res;
 	Fach fSelected = null;
+	RelativeLayout indicator;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,7 +117,7 @@ public class Semester2Fragment extends Fragment implements OnItemClickListener {
 		promoviert = (TextView) getView().findViewById(R.id.tvPromoviert);
 		pluspunkte = (TextView) getView().findViewById(R.id.tvPlusP);
 		lv = (ListView) getView().findViewById(R.id.lvMain_noten);
-		separator = getView().findViewById(R.id.vSeparator);
+		indicator = (RelativeLayout) getView().findViewById(R.id.rlNoten);
 		ArrayList<Map<String, String>> list = buildData();
 		String[] from = { "fach", "anzahl" };
 		int[] to = { R.id.tvLeft, R.id.tvRight };
@@ -149,10 +150,8 @@ public class Semester2Fragment extends Fragment implements OnItemClickListener {
 			prResult = prCheck.getFMS(semester);
 		}
 		promoviert.setText(prResult.sMessage);
-		promoviert.setTextColor(res.getColor(prResult.iColor));
+		indicator.setBackgroundColor(res.getColor(prResult.iColor));
 		pluspunkte.setText(prResult.sPP);
-		pluspunkte.setTextColor(res.getColor(prResult.iColor));
-		separator.setBackgroundColor(res.getColor(prResult.iColor));
 	}
 
 	private ArrayList<Map<String, String>> buildData() {
