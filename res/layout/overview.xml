@@ -15,7 +15,7 @@
             android:id="@+id/tvUsage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kontingent verbraucht"/>
+            android:text="Kontingent verbraucht" />
     </LinearLayout>
 
     <ProgressBar

@@ -8,27 +8,38 @@
             <corners
                 android:bottomLeftRadius="2dp"
                 android:bottomRightRadius="2dp"
-                android:radius="0dp" />
+                android:topLeftRadius="0dp"
+                android:topRightRadius="0dp" />
+
+            <solid android:color="@color/holo_green_light" />
+
+            <padding
+                android:left="0dp"
+                android:right="0dp"
+                android:top="@dimen/color_height"
+                android:bottom="0dp" />
+        </shape>
+    </item>
+    <item>
+        <shape
+            android:dither="true"
+            android:shape="rectangle" >
+            <corners android:radius="2dp" />
 
             <solid android:color="#ccc" />
         </shape>
     </item>
-    <item android:bottom="2dp">
+    <item android:bottom="1dp">
         <shape
             android:dither="true"
             android:shape="rectangle" >
-            <corners
-                android:bottomLeftRadius="2dp"
-                android:bottomRightRadius="2dp"
-                android:radius="0dp" />
-
             <solid android:color="@android:color/white" />
 
             <padding
                 android:bottom="8dp"
                 android:left="8dp"
                 android:right="8dp"
-                android:top="8dp" />
+                android:top="4dp" />
         </shape>
     </item>
 

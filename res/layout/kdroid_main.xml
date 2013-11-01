@@ -15,11 +15,9 @@
             android:layout_marginLeft="@dimen/card_margin"
             android:layout_marginRight="@dimen/card_margin"
             android:layout_marginTop="@dimen/card_margin"
-            android:background="@drawable/selector_multi"
+            android:background="@drawable/selector_multi_red"
             android:clickable="true"
             android:orientation="vertical" >
-            
-            
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/card_margin"
             android:layout_marginRight="@dimen/card_margin"
-            android:background="@drawable/selector_multi"
+            android:background="@drawable/selector_multi_green"
             android:clickable="true"
             android:orientation="vertical" >
 
@@ -198,8 +196,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/ivAddKontingent"
-                    android:textColor="@color/holo_blue_light"
-                    android:text="Kontingent hinzufügen" />
+                    android:text="Kontingent hinzufügen"
+                    android:textColor="@color/holo_blue_light" />
             </RelativeLayout>
         </LinearLayout>
 

@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:minHeight="?listPreferredItemHeightSmall"
-	android:padding="11dp"
-	android:textAppearance="?textAppearanceListItemSmall" >
+    android:orientation="horizontal"
+    android:padding="11dp"
+    android:textAppearance="?textAppearanceListItemSmall" >
 
     <CheckedTextView
         android:id="@+id/tvLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?textAppearanceListItemSmall"
-        android:checked="false"/>
+        android:checked="false"
+        android:textAppearance="?textAppearanceListItemSmall" />
 
 </LinearLayout>

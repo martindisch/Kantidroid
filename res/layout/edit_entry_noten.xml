@@ -24,15 +24,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences" />
-            
-            <CheckBox 
+
+            <CheckBox
+                android:id="@+id/cbEditPromotionsfach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cbEditPromotionsfach"
                 android:checked="true"
-                android:text="Promotionsfach"/>
+                android:text="Promotionsfach" />
 
-            
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

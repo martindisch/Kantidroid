@@ -11,10 +11,10 @@
         android:text="Semester für Note wählen" />
 
     <Spinner
+        android:id="@+id/spSemester"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:entries="@array/semesters"
-        android:id="@+id/spSemester"
         android:minHeight="50dp" />
 
 </LinearLayout>

@@ -40,16 +40,16 @@
                     android:id="@+id/sGuessingRelevance"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="3"
                     android:entries="@array/relevance_entries"
-                    android:minHeight="50dp"
-                    android:layout_weight="3" />
-                
-                <Button 
+                    android:minHeight="50dp" />
+
+                <Button
+                    android:id="@+id/bGuessingOwnRelevance"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/bGuessingOwnRelevance"
-                    android:text="..."
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="..." />
             </LinearLayout>
 
             <LinearLayout
