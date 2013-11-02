@@ -25,7 +25,7 @@ public class PromoCheck {
 
 		String sMessage = "Promoviert";
 		int iColor = R.color.holo_green_light;
-		String sPP = "0.0 Pluspunkte";
+		String sPP = "0.0";
 		String sSchnitt = "5.0000";
 
 		DatabaseHandler db = new DatabaseHandler(context);
@@ -103,7 +103,7 @@ public class PromoCheck {
 		}
 
 		double PP_result = plus - (2 * minus);
-		sPP = PP_result + " Pluspunkte";
+		sPP = PP_result + "/" + (fcount * 2) + " Pluspunkte";
 
 		if (fcount > 0) {
 			sSchnitt = (String.format("%.4f", total / fcount));
@@ -126,7 +126,7 @@ public class PromoCheck {
 
 		String sMessage = "Promoviert";
 		int iColor = R.color.holo_green_light;
-		String sPP = "0.0 Pluspunkte";
+		String sPP = "0.0";
 		String sSchnitt = "5.0000";
 
 		DatabaseHandler db = new DatabaseHandler(context);
@@ -226,7 +226,7 @@ public class PromoCheck {
 
 		String sMessage = "Promoviert";
 		int iColor = R.color.holo_green_light;
-		String sPP = "0.0 Pluspunkte";
+		String sPP = "0.0";
 		String sSchnitt = "5.0000";
 
 		DatabaseHandler db = new DatabaseHandler(context);

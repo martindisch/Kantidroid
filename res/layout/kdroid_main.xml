@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/background_holo_light" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/background_holo_light" >
+        android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/llCardNoten"
@@ -120,8 +120,8 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:textColor="@color/holo_orange_light"
-                android:text="Kontingent verbraucht" />
+                android:text="Kontingent verbraucht"
+                android:textColor="@color/holo_orange_light" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -214,7 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvTitle"
-                    android:text="-"/>
+                    android:text="-" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
