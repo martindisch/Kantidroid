@@ -159,7 +159,7 @@ public class ViewFach extends Activity implements OnClickListener,
 		inflator.inflate(R.menu.menu_viewfach, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	public void invokedUse() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Anzahl genommenes Kontingent");

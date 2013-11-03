@@ -22,6 +22,7 @@ public class PromoCheck {
 		double schn = 0;
 		double total = 0;
 		int fcount = 0;
+		int mppcount = 0;
 
 		String sMessage = "Promoviert";
 		int iColor = R.color.holo_green_light;
@@ -81,6 +82,7 @@ public class PromoCheck {
 					total += Double.parseDouble(entry.getMathAverage2());
 					fcount++;
 				}
+				mppcount++;
 			}
 		}
 		if (!((minus * 2) > plus)) {
@@ -103,7 +105,7 @@ public class PromoCheck {
 		}
 
 		double PP_result = plus - (2 * minus);
-		sPP = PP_result + "/" + (fcount * 2) + " Pluspunkte";
+		sPP = PP_result + "/" + (mppcount * 2) + " Pluspunkte";
 
 		if (fcount > 0) {
 			sSchnitt = (String.format("%.4f", total / fcount));

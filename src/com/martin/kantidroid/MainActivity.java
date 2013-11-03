@@ -6,10 +6,8 @@ import java.util.List;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.drawable.ColorDrawable;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.ProgressBar;
 import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
@@ -36,9 +34,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
 
-import com.martin.kontingent.AddSelect;
 import com.martin.kontingent.Overview;
 import com.martin.noten.Fach;
 import com.martin.noten.Main;
@@ -148,8 +144,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		pluspunkte.setText(prResult.sPP);
 		if (prResult.iColor == R.color.holo_green_light) {
 			pluspunkte.setTextColor(res.getColor(R.color.holo_orange_light));
-		}
-		else {
+		} else {
 			pluspunkte.setTextColor(res.getColor(prResult.iColor));
 		}
 		tvSchn.setText(prResult.sSchnitt);

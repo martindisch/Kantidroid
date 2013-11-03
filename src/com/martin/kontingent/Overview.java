@@ -40,7 +40,7 @@ public class Overview extends Activity implements OnClickListener,
 
 	int selected = 0;
 	ListView lv;
-	//ProgressBar pb;
+	// ProgressBar pb;
 	TextView tvUsage;
 	Resources res;
 	Fach fSelected = null;
@@ -50,7 +50,7 @@ public class Overview extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
 		lv = (ListView) findViewById(R.id.lvMain);
-		//pb = (ProgressBar) findViewById(R.id.pbUsage);
+		// pb = (ProgressBar) findViewById(R.id.pbUsage);
 		KOverview = (LinearLayout) findViewById(R.id.llKontingentOverview);
 		tvUsage = (TextView) findViewById(R.id.tvUsage);
 		lv.setOnItemClickListener(this);
@@ -177,10 +177,11 @@ public class Overview extends Activity implements OnClickListener,
 		tvUsage.setText(dPercentage + "% des Kontingents benutzt (" + used
 				+ "/" + total + ")");
 		if (überzogen == 0) {
-			KOverview.setBackgroundColor(res.getColor(R.color.holo_green_light));
-			//tvUsage.setTextColor(res.getColor(R.color.holo_green_light));
+			KOverview
+					.setBackgroundColor(res.getColor(R.color.holo_green_light));
+			// tvUsage.setTextColor(res.getColor(R.color.holo_green_light));
 		} else {
-			//tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
+			// tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
 			KOverview.setBackgroundColor(res.getColor(R.color.holo_red_light));
 			String before = tvUsage.getText().toString();
 			String einzmehrz = " Fach überzogen";
@@ -189,8 +190,8 @@ public class Overview extends Activity implements OnClickListener,
 			}
 			tvUsage.setText(before + "\nKontingent in " + überzogen + einzmehrz);
 		}
-		//pb.setMax(100);
-		//pb.setProgress(iPercentage);
+		// pb.setMax(100);
+		// pb.setProgress(iPercentage);
 	}
 
 	private ArrayList<Map<String, String>> buildData() {
@@ -301,8 +302,7 @@ public class Overview extends Activity implements OnClickListener,
 
 			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
 					this);
-			List<com.martin.kontingent.Fach> kFaecher = dbK
-					.getAllFaecher(this);
+			List<com.martin.kontingent.Fach> kFaecher = dbK.getAllFaecher(this);
 
 			com.martin.noten.Fach entryN = null;
 			com.martin.kontingent.Fach entryK = null;

@@ -147,9 +147,9 @@ public class WidgetProvider extends AppWidgetProvider {
 			} else {
 				prResult = prCheck.getFMS(2);
 			}
-			
+
 			String displayPP = prResult.sPP.split("/")[0];
-			
+
 			views.setTextColor(R.id.tvPP, res.getColor(prResult.iColor));
 			views.setTextViewText(R.id.tvPP, displayPP);
 

@@ -169,8 +169,7 @@ public class MainActivity extends ListActivity {
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 			setSupportProgressBarIndeterminateVisibility(true);
-		}
-		else {
+		} else {
 			pd.show();
 		}
 
@@ -298,8 +297,7 @@ public class MainActivity extends ListActivity {
 						startList();
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 							setSupportProgressBarIndeterminateVisibility(false);
-						}
-						else {
+						} else {
 							pd.hide();
 						}
 					}
