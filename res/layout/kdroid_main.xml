@@ -120,8 +120,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="Kontingent verbraucht"
-                android:textColor="@color/holo_orange_light" />
+                android:text="Kontingent verbraucht" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

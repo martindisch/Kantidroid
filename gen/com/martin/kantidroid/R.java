@@ -2659,11 +2659,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0e012d;
+        public static final int AppBaseTheme=0x7f0e012e;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0e012e;
+        public static final int AppTheme=0x7f0e012f;
         public static final int Holo=0x7f0e004c;
         public static final int Holo_AlertDialog=0x7f0e003d;
         public static final int Holo_AlertDialog_Light=0x7f0e003e;
@@ -2716,39 +2716,40 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Holo_ImageButton_Light=0x7f0e006f;
         /** End of block PreferenceBase
          */
-        public static final int Holo_Internal_Preference=0x7f0e012b;
+        public static final int Holo_Internal_Preference=0x7f0e012c;
         /** End of block PreferenceBase
          */
-        public static final int Holo_Internal_Preference_Light=0x7f0e012c;
+        public static final int Holo_Internal_Preference_Light=0x7f0e012d;
         public static final int Holo_ListPopupWindow=0x7f0e0070;
         public static final int Holo_ListPopupWindow_Light=0x7f0e0071;
         public static final int Holo_ListView=0x7f0e0072;
+        public static final int Holo_ListView_Base=0x7f0e00f2;
         public static final int Holo_ListView_DropDown=0x7f0e0073;
         public static final int Holo_ListView_DropDown_Light=0x7f0e0074;
         public static final int Holo_ListView_Light=0x7f0e0075;
         public static final int Holo_NumberPicker=0x7f0e0076;
         public static final int Holo_PopupWindow=0x7f0e0077;
         public static final int Holo_PopupWindow_Light=0x7f0e0078;
-        public static final int Holo_Preference=0x7f0e0117;
-        public static final int Holo_PreferenceCategory=0x7f0e0118;
-        public static final int Holo_PreferenceCheckBox=0x7f0e0119;
-        public static final int Holo_PreferenceDate=0x7f0e011a;
-        public static final int Holo_PreferenceDialog=0x7f0e011b;
-        public static final int Holo_PreferenceDialog_EditTextPreference=0x7f0e011c;
-        public static final int Holo_PreferenceDialog_NumberPickerPreference=0x7f0e011d;
-        public static final int Holo_PreferenceDialog_SeekBarDialogPreference=0x7f0e011e;
-        public static final int Holo_PreferenceDialog_YesNoPreference=0x7f0e011f;
-        public static final int Holo_PreferenceFragment=0x7f0e0120;
-        public static final int Holo_PreferenceFrameLayout=0x7f0e0121;
-        public static final int Holo_PreferenceInformation=0x7f0e0122;
-        public static final int Holo_PreferencePanel=0x7f0e0123;
-        public static final int Holo_PreferenceRingtone=0x7f0e0124;
-        public static final int Holo_PreferenceScreen=0x7f0e0125;
-        public static final int Holo_PreferenceSeekBar=0x7f0e0126;
-        public static final int Holo_PreferenceSwitch=0x7f0e0127;
-        public static final int Holo_PreferenceSwitchScreen=0x7f0e0128;
-        public static final int Holo_PreferenceTime=0x7f0e0129;
-        public static final int Holo_PreferenceTwoState=0x7f0e012a;
+        public static final int Holo_Preference=0x7f0e0118;
+        public static final int Holo_PreferenceCategory=0x7f0e0119;
+        public static final int Holo_PreferenceCheckBox=0x7f0e011a;
+        public static final int Holo_PreferenceDate=0x7f0e011b;
+        public static final int Holo_PreferenceDialog=0x7f0e011c;
+        public static final int Holo_PreferenceDialog_EditTextPreference=0x7f0e011d;
+        public static final int Holo_PreferenceDialog_NumberPickerPreference=0x7f0e011e;
+        public static final int Holo_PreferenceDialog_SeekBarDialogPreference=0x7f0e011f;
+        public static final int Holo_PreferenceDialog_YesNoPreference=0x7f0e0120;
+        public static final int Holo_PreferenceFragment=0x7f0e0121;
+        public static final int Holo_PreferenceFrameLayout=0x7f0e0122;
+        public static final int Holo_PreferenceInformation=0x7f0e0123;
+        public static final int Holo_PreferencePanel=0x7f0e0124;
+        public static final int Holo_PreferenceRingtone=0x7f0e0125;
+        public static final int Holo_PreferenceScreen=0x7f0e0126;
+        public static final int Holo_PreferenceSeekBar=0x7f0e0127;
+        public static final int Holo_PreferenceSwitch=0x7f0e0128;
+        public static final int Holo_PreferenceSwitchScreen=0x7f0e0129;
+        public static final int Holo_PreferenceTime=0x7f0e012a;
+        public static final int Holo_PreferenceTwoState=0x7f0e012b;
         public static final int Holo_ProgressBar=0x7f0e0079;
         public static final int Holo_ProgressBar_Horizontal=0x7f0e007a;
         public static final int Holo_ProgressBar_Horizontal_Light=0x7f0e007b;
@@ -2835,7 +2836,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Holo_TextView_SpinnerItem_DropDown=0x7f0e0094;
         public static final int Holo_TextView_SpinnerItem_DropDown_Light=0x7f0e0095;
         public static final int Holo_TextView_SpinnerItem_Light=0x7f0e0096;
-        public static final int Holo_Theme=0x7f0e00f2;
+        public static final int Holo_Theme=0x7f0e00f3;
         public static final int Holo_Theme_Dialog=0x7f0e0044;
         public static final int Holo_Theme_Dialog_Alert=0x7f0e0045;
         public static final int Holo_Theme_Dialog_Alert_Light=0x7f0e0046;
@@ -2852,83 +2853,83 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** End of block NoFrame
          */
         public static final int Holo_Theme_Dialog_NoFrame=0x7f0e004b;
-        public static final int Holo_Theme_DialogWhenLarge=0x7f0e00f3;
-        public static final int Holo_Theme_DialogWhenLarge_Light=0x7f0e00f4;
-        public static final int Holo_Theme_DialogWhenLarge_Light_DarkActionBar=0x7f0e00f5;
+        public static final int Holo_Theme_DialogWhenLarge=0x7f0e00f4;
+        public static final int Holo_Theme_DialogWhenLarge_Light=0x7f0e00f5;
+        public static final int Holo_Theme_DialogWhenLarge_Light_DarkActionBar=0x7f0e00f6;
         /** End of block NoActionBar
          */
-        public static final int Holo_Theme_DialogWhenLarge_Light_DarkActionBar_NoActionBar=0x7f0e00f6;
+        public static final int Holo_Theme_DialogWhenLarge_Light_DarkActionBar_NoActionBar=0x7f0e00f7;
         /** End of block NoActionBar
          */
-        public static final int Holo_Theme_DialogWhenLarge_Light_NoActionBar=0x7f0e00f7;
+        public static final int Holo_Theme_DialogWhenLarge_Light_NoActionBar=0x7f0e00f8;
         /** End of block NoActionBar
          */
-        public static final int Holo_Theme_DialogWhenLarge_NoActionBar=0x7f0e00f8;
+        public static final int Holo_Theme_DialogWhenLarge_NoActionBar=0x7f0e00f9;
         /** End of block Fullscreen
          */
-        public static final int Holo_Theme_Fullscreen=0x7f0e00f9;
+        public static final int Holo_Theme_Fullscreen=0x7f0e00fa;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Fullscreen_Wallpaper=0x7f0e00fa;
-        public static final int Holo_Theme_Light=0x7f0e00fb;
-        public static final int Holo_Theme_Light_DarkActionBar=0x7f0e00fc;
+        public static final int Holo_Theme_Fullscreen_Wallpaper=0x7f0e00fb;
+        public static final int Holo_Theme_Light=0x7f0e00fc;
+        public static final int Holo_Theme_Light_DarkActionBar=0x7f0e00fd;
         /** End of block Fullscreen
          */
-        public static final int Holo_Theme_Light_DarkActionBar_Fullscreen=0x7f0e00fd;
+        public static final int Holo_Theme_Light_DarkActionBar_Fullscreen=0x7f0e00fe;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_DarkActionBar_Fullscreen_Wallpaper=0x7f0e00fe;
+        public static final int Holo_Theme_Light_DarkActionBar_Fullscreen_Wallpaper=0x7f0e00ff;
         /** End of block NoActionBar
          */
-        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar=0x7f0e00ff;
+        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar=0x7f0e0100;
         /** End of block Fullscreen
          */
-        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar_Fullscreen=0x7f0e0100;
+        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar_Fullscreen=0x7f0e0101;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar_Fullscreen_Wallpaper=0x7f0e0101;
+        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar_Fullscreen_Wallpaper=0x7f0e0102;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar_Wallpaper=0x7f0e0102;
+        public static final int Holo_Theme_Light_DarkActionBar_NoActionBar_Wallpaper=0x7f0e0103;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_DarkActionBar_Wallpaper=0x7f0e0103;
+        public static final int Holo_Theme_Light_DarkActionBar_Wallpaper=0x7f0e0104;
         /** End of block Fullscreen
          */
-        public static final int Holo_Theme_Light_Fullscreen=0x7f0e0104;
+        public static final int Holo_Theme_Light_Fullscreen=0x7f0e0105;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_Fullscreen_Wallpaper=0x7f0e0105;
+        public static final int Holo_Theme_Light_Fullscreen_Wallpaper=0x7f0e0106;
         /** End of block NoActionBar
          */
-        public static final int Holo_Theme_Light_NoActionBar=0x7f0e0106;
+        public static final int Holo_Theme_Light_NoActionBar=0x7f0e0107;
         /** End of block Fullscreen
          */
-        public static final int Holo_Theme_Light_NoActionBar_Fullscreen=0x7f0e0107;
+        public static final int Holo_Theme_Light_NoActionBar_Fullscreen=0x7f0e0108;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_NoActionBar_Fullscreen_Wallpaper=0x7f0e0108;
+        public static final int Holo_Theme_Light_NoActionBar_Fullscreen_Wallpaper=0x7f0e0109;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_NoActionBar_Wallpaper=0x7f0e0109;
+        public static final int Holo_Theme_Light_NoActionBar_Wallpaper=0x7f0e010a;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Light_Wallpaper=0x7f0e010a;
+        public static final int Holo_Theme_Light_Wallpaper=0x7f0e010b;
         /** End of block NoActionBar
          */
-        public static final int Holo_Theme_NoActionBar=0x7f0e010b;
+        public static final int Holo_Theme_NoActionBar=0x7f0e010c;
         /** End of block Fullscreen
          */
-        public static final int Holo_Theme_NoActionBar_Fullscreen=0x7f0e010c;
+        public static final int Holo_Theme_NoActionBar_Fullscreen=0x7f0e010d;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_NoActionBar_Fullscreen_Wallpaper=0x7f0e010d;
+        public static final int Holo_Theme_NoActionBar_Fullscreen_Wallpaper=0x7f0e010e;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_NoActionBar_Wallpaper=0x7f0e010e;
+        public static final int Holo_Theme_NoActionBar_Wallpaper=0x7f0e010f;
         /** End of block Wallpaper
          */
-        public static final int Holo_Theme_Wallpaper=0x7f0e010f;
+        public static final int Holo_Theme_Wallpaper=0x7f0e0110;
         public static final int Holo_TimePicker=0x7f0e0097;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
@@ -2993,8 +2994,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Theme_AppCompat=0x7f0e0038;
         /**  Menu/item attributes 
          */
-        public static final int Theme_AppCompat_Base_CompactMenu=0x7f0e0115;
-        public static final int Theme_AppCompat_Base_CompactMenu_Dialog=0x7f0e0116;
+        public static final int Theme_AppCompat_Base_CompactMenu=0x7f0e0116;
+        public static final int Theme_AppCompat_Base_CompactMenu_Dialog=0x7f0e0117;
         /**  Menu/item attributes 
          */
         public static final int Theme_AppCompat_CompactMenu=0x7f0e003b;
@@ -3007,22 +3008,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Theme_AppCompat_Light_DarkActionBar=0x7f0e003a;
         /**  Base platform-dependent theme  
          */
-        public static final int Theme_Base=0x7f0e0110;
+        public static final int Theme_Base=0x7f0e0111;
         /**  Base platform-dependent theme providing an action bar in a dark-themed activity. 
  Base platform-dependent theme providing an action bar in a dark-themed activity. 
          */
-        public static final int Theme_Base_AppCompat=0x7f0e0112;
+        public static final int Theme_Base_AppCompat=0x7f0e0113;
         /**  Base platform-dependent theme providing an action bar in a light-themed activity. 
  Base platform-dependent theme providing an action bar in a light-themed activity. 
          */
-        public static final int Theme_Base_AppCompat_Light=0x7f0e0113;
+        public static final int Theme_Base_AppCompat_Light=0x7f0e0114;
         /**  Base platform-dependent theme providing a dark action bar in a light-themed activity. 
  Base platform-dependent theme providing a dark action bar in a light-themed activity. 
          */
-        public static final int Theme_Base_AppCompat_Light_DarkActionBar=0x7f0e0114;
+        public static final int Theme_Base_AppCompat_Light_DarkActionBar=0x7f0e0115;
         /**  Base platform-dependent theme providing a light-themed activity. 
          */
-        public static final int Theme_Base_Light=0x7f0e0111;
+        public static final int Theme_Base_Light=0x7f0e0112;
         /**  Styles in here can be extended for customisation in your application. Each utilises
          one of the Base styles. If Holo themes are available on the current platform version
          they will be used instead of the compat styles. 

@@ -186,7 +186,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			dPercentage = (double) Math.round((double) used * 100 / totalK
 					* 100) / 100;
 		}
-		tvUsage.setText(dPercentage + "% des Kontingents benutzt");
+		tvUsage2.setText(dPercentage + "% des Kontingents benutzt");
+		tvUsage.setText(used + "/" + totalK);
 		if (überzogen == 0) {
 			tvUsage.setTextColor(res.getColor(R.color.holo_orange_light));
 		} else {
@@ -198,8 +199,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			tvUsage.setText(before + "\nKontingent in " + überzogen + einzmehrz);
 		}
-
-		tvUsage2.setText(used + "/" + totalK);
 
 		// KISS
 
