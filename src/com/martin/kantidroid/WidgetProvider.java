@@ -43,6 +43,7 @@ public class WidgetProvider extends AppWidgetProvider {
 			// set the intent for the click-event
 			views.setOnClickPendingIntent(R.id.wLayout, pendingIntent);
 
+			/*
 			// Noten
 
 			double plus = 0;
@@ -197,7 +198,7 @@ public class WidgetProvider extends AppWidgetProvider {
 						res.getColor(R.color.holo_red_light));
 			}
 
-			views.setTextViewText(R.id.tvKont, used + "/" + totalK);
+			views.setTextViewText(R.id.tvKont, used + "/" + totalK);*/
 
 			// KISS
 

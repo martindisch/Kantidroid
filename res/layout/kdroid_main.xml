@@ -182,7 +182,7 @@
             android:layout_marginBottom="@dimen/card_margin"
             android:layout_marginLeft="@dimen/card_margin"
             android:layout_marginRight="@dimen/card_margin"
-            android:background="@drawable/selector_single"
+            android:background="@drawable/selector_single_blue"
             android:clickable="true"
             android:orientation="vertical" >
 

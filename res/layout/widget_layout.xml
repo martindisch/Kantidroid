@@ -1,72 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/wLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/widget_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dim_foreground_inverse_holo_light"
     android:padding="@dimen/widget_margin" >
 
-    <TextView
-        android:id="@+id/tvtPP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pluspunkte:"
-        android:textColor="@color/primary_text_holo_light" />
+    <LinearLayout
+        android:id="@+id/llCardKISS"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/card_margin"
+        android:layout_marginLeft="@dimen/card_margin"
+        android:layout_marginRight="@dimen/card_margin"
+        android:background="@drawable/selector_single_blue"
+        android:clickable="true"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tvPP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvtPP"
-        android:text="-"
-        android:textColor="@color/primary_text_holo_light"
-        android:textSize="25sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp" >
 
-    <TextView
-        android:id="@+id/tvtKont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/tvtPP"
-        android:text="Kontingent:"
-        android:textColor="@color/primary_text_holo_light" />
+            <TextView
+                android:id="@+id/tvKISS_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="-" />
 
-    <TextView
-        android:id="@+id/tvKont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tvtKont"
-        android:layout_below="@id/tvtKont"
-        android:text="-"
-        android:textColor="@color/primary_text_holo_light"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/tvtKISS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/tvtKont"
-        android:text="KISS:"
-        android:textColor="@color/primary_text_holo_light" />
-
-    <TextView
-        android:id="@+id/tvKISS_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tvtKISS"
-        android:layout_below="@id/tvtKISS"
-        android:text="-"
-        android:textColor="@color/primary_text_holo_light"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/tvKISS_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tvtKISS"
-        android:layout_below="@id/tvKISS_1"
-        android:textColor="@color/primary_text_holo_light"
-        android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tvKISS_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="-" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
