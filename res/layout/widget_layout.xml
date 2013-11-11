@@ -3,7 +3,7 @@
     android:id="@+id/wLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#CC969696"
+    android:background="#80d9d9d9"
     android:orientation="vertical"
     android:padding="@dimen/widget_margin" >
 
