@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martin.kantidroid"
-    android:versionCode="28"
+    android:versionCode="29"
     android:versionName="2.00" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -33,51 +33,6 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
-        </receiver>
-
-        <!-- Kontingent Widget -->
-
-        <receiver
-            android:name="com.martin.kantidroid.KontWidget"
-            android:icon="@drawable/kontingent_ico"
-            android:label="Kontingent" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/wkont_info" />
-        </receiver>
-
-        <!-- Noten Widget -->
-
-        <receiver
-            android:name="com.martin.kantidroid.NotenWidget"
-            android:icon="@drawable/noten_ico"
-            android:label="Noten" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/wnot_info" />
-        </receiver>
-
-        <!-- KISS Widget -->
-
-        <receiver
-            android:name="com.martin.kantidroid.KISSWidget"
-            android:icon="@drawable/kiss_ico"
-            android:label="KISS" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/wkiss_info" />
         </receiver>
 
         <activity

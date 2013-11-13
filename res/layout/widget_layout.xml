@@ -16,7 +16,7 @@
         <LinearLayout
             android:id="@+id/llCardNoten"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginRight="@dimen/widget_margin"
             android:layout_weight="1"
             android:background="@drawable/selector_single_red"
@@ -27,6 +27,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:orientation="vertical" >
 
@@ -34,13 +35,19 @@
                     android:id="@+id/tvNotBig"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BigText" />
+                    android:layout_gravity="center"
+                    android:text="+ 11.0"
+                    android:textColor="#6B6B6B"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvNotSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SmallText" />
+                    android:layout_gravity="center"
+                    android:text="Ø 4.9209"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <ImageView
@@ -51,27 +58,66 @@
             <ImageButton
                 android:id="@+id/ibNotenAdd"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@null"
-                android:scaleType="fitCenter"
+                android:scaleType="centerInside"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
                 android:src="@drawable/add_blue_light" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/llCardKontingent"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:background="@drawable/selector_single_green"
             android:clickable="true"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:weightSum="2" >
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="HoloYolo"
-                android:textSize="25sp" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tvKontBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="25/72"
+                    android:textColor="#6B6B6B"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvKontSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="34.72%"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@android:color/darker_gray" />
+
+            <ImageButton
+                android:id="@+id/ibKontAdd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:scaleType="centerInside"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/add_blue_light" />
         </LinearLayout>
     </LinearLayout>
 
