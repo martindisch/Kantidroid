@@ -1,152 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/wLayout"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#80d9d9d9"
-    android:orientation="vertical"
-    android:padding="@dimen/widget_margin" >
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin_own" >
 
     <LinearLayout
+        android:id="@+id/wLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2" >
+        android:background="@drawable/widget_background"
+        android:orientation="vertical"
+        android:padding="@dimen/widget_margin" >
 
         <LinearLayout
-            android:id="@+id/llCardNoten"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="@dimen/widget_margin"
-            android:layout_weight="1"
-            android:background="@drawable/selector_single_red"
-            android:clickable="true"
-            android:orientation="horizontal"
-            android:weightSum="2" >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/tvNotBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="+ 11.0"
-                    android:textColor="#6B6B6B"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvNotSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Ø 4.9209"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="1dp"
-                android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray" />
-
-            <ImageButton
-                android:id="@+id/ibNotenAdd"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
-                android:scaleType="centerInside"
-                android:scaleX="1.2"
-                android:scaleY="1.2"
-                android:src="@drawable/add_blue_light" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llCardKontingent"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_single_green"
-            android:clickable="true"
-            android:orientation="horizontal"
-            android:weightSum="2" >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/tvKontBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="25/72"
-                    android:textColor="#6B6B6B"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvKontSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="34.72%"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="1dp"
-                android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray" />
-
-            <ImageButton
-                android:id="@+id/ibKontAdd"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
-                android:scaleType="centerInside"
-                android:scaleX="1.2"
-                android:scaleY="1.2"
-                android:src="@drawable/add_blue_light" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llCardKISS"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/widget_margin"
-        android:background="@drawable/selector_single_blue"
-        android:clickable="true"
-        android:orientation="vertical" >
-
-        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp" >
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2" >
 
-            <TextView
-                android:id="@+id/tvKISS_1"
+            <LinearLayout
+                android:id="@+id/llCardNoten"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="@dimen/widget_margin"
+                android:layout_weight="1"
+                android:background="@drawable/selector_single_red"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tvNotBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="+ 11.0"
+                        android:textColor="#6B6B6B"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvNotSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Ø 4.9209"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#C9C9C9"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <ImageButton
+                    android:id="@+id/ibNotenAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    android:src="@drawable/add_blue_light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCardKontingent"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_single_green"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tvKontBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="25/72"
+                        android:textColor="#6B6B6B"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvKontSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="34.72%"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="#C9C9C9"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <ImageButton
+                    android:id="@+id/ibKontAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    android:src="@drawable/add_blue_light" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCardKISS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_margin"
+            android:background="@drawable/selector_single_blue"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="-" />
+                android:padding="5dp"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/tvKISS_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="-" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tvKISS_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:text="-" />
+
+                <TextView
+                    android:id="@+id/tvKISS_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="-"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

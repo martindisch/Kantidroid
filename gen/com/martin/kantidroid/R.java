@@ -1687,6 +1687,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int preference_screen_top_margin=0x7f0b0024;
         public static final int preference_widget_width=0x7f0b0026;
         public static final int widget_margin=0x7f0b002d;
+        public static final int widget_margin_own=0x7f0b0030;
     }
     public static final class drawable {
         public static final int abc_ab_bottom_solid_dark_holo=0x7f020000;
@@ -2122,7 +2123,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textfield_multiline_focused_holo_light=0x7f0201ae;
         public static final int toast_frame=0x7f0201af;
         public static final int transparent=0x7f0201b0;
-        public static final int widget_preview=0x7f0201b1;
+        public static final int widget_background=0x7f0201b1;
+        public static final int widget_preview=0x7f0201b2;
     }
     public static final class id {
         public static final int action_bar=0x7f080039;
@@ -2175,8 +2177,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int clip=0x7f080018;
         public static final int clip_horizontal=0x7f080019;
         public static final int clip_vertical=0x7f08001a;
-        public static final int cmDelete=0x7f0800e4;
-        public static final int cmEdit=0x7f0800e3;
+        public static final int cmDelete=0x7f0800e1;
+        public static final int cmEdit=0x7f0800e0;
         public static final int collapseActionView=0x7f08000d;
         public static final int contentPanel=0x7f080073;
         public static final int custom=0x7f080077;
@@ -2217,23 +2219,23 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int home=0x7f08000e;
         public static final int homeAsUp=0x7f080005;
         public static final int hour=0x7f0800c6;
-        public static final int iAbout=0x7f0800e7;
-        public static final int iAbteilung=0x7f0800f2;
-        public static final int iAdd=0x7f0800e8;
-        public static final int iEdit=0x7f0800f0;
-        public static final int iInterval=0x7f0800eb;
-        public static final int iRefresh=0x7f0800e9;
-        public static final int iRemove=0x7f0800ea;
-        public static final int iReset=0x7f0800ee;
-        public static final int iResetCounter=0x7f0800ec;
-        public static final int iShortcut=0x7f0800e6;
-        public static final int iShowKISS=0x7f0800ed;
-        public static final int iSort=0x7f0800f1;
-        public static final int iTimetable=0x7f0800e5;
-        public static final int iViewRemove=0x7f0800f5;
-        public static final int iViewUse=0x7f0800f4;
-        public static final int ibKontAdd=0x7f0800df;
-        public static final int ibNotenAdd=0x7f0800dc;
+        public static final int iAbout=0x7f0800e4;
+        public static final int iAbteilung=0x7f0800ef;
+        public static final int iAdd=0x7f0800e5;
+        public static final int iEdit=0x7f0800ed;
+        public static final int iInterval=0x7f0800e8;
+        public static final int iRefresh=0x7f0800e6;
+        public static final int iRemove=0x7f0800e7;
+        public static final int iReset=0x7f0800eb;
+        public static final int iResetCounter=0x7f0800e9;
+        public static final int iShortcut=0x7f0800e3;
+        public static final int iShowKISS=0x7f0800ea;
+        public static final int iSort=0x7f0800ee;
+        public static final int iTimetable=0x7f0800e2;
+        public static final int iViewRemove=0x7f0800f2;
+        public static final int iViewUse=0x7f0800f1;
+        public static final int ibKontAdd=0x7f0800dd;
+        public static final int ibNotenAdd=0x7f0800da;
         public static final int icon=0x7f080047;
         public static final int ifRoom=0x7f08000a;
         public static final int image=0x7f080044;
@@ -2242,7 +2244,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int invalid=0x7f080024;
         public static final int ivAddKontingent=0x7f0800a6;
         public static final int ivAddNoten=0x7f0800a0;
-        public static final int kImport=0x7f0800ef;
+        public static final int kImport=0x7f0800ec;
         public static final int kvDate=0x7f0800aa;
         public static final int kvWebView=0x7f0800ab;
         public static final int left=0x7f08001f;
@@ -2262,15 +2264,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int llKontingentOverview=0x7f0800ae;
         public static final int lvMain=0x7f0800af;
         public static final int lvMain_noten=0x7f080064;
-        public static final int mViewAdd=0x7f0800f6;
-        public static final int mViewDiscard=0x7f0800f7;
-        public static final int mViewInfo=0x7f0800f8;
+        public static final int mViewAdd=0x7f0800f3;
+        public static final int mViewDiscard=0x7f0800f4;
+        public static final int mViewInfo=0x7f0800f5;
         public static final int message=0x7f080075;
         public static final int minute=0x7f0800c8;
         public static final int mixed=0x7f080026;
         public static final int month=0x7f080089;
         public static final int month_name=0x7f080080;
-        public static final int nImport=0x7f0800f3;
+        public static final int nImport=0x7f0800f0;
         public static final int never=0x7f080009;
         public static final int next_button=0x7f0800bd;
         public static final int no=0x7f080035;
@@ -2340,13 +2342,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tvGSchn=0x7f08009d;
         public static final int tvGT=0x7f0800a3;
         public static final int tvKISS=0x7f0800a9;
-        public static final int tvKISS_1=0x7f0800e0;
-        public static final int tvKISS_2=0x7f0800e1;
-        public static final int tvKontBig=0x7f0800dd;
-        public static final int tvKontSmall=0x7f0800de;
+        public static final int tvKISS_1=0x7f0800de;
+        public static final int tvKISS_2=0x7f0800df;
+        public static final int tvKontBig=0x7f0800db;
+        public static final int tvKontSmall=0x7f0800dc;
         public static final int tvLeft=0x7f0800b0;
-        public static final int tvNotBig=0x7f0800da;
-        public static final int tvNotSmall=0x7f0800db;
+        public static final int tvNotBig=0x7f0800d8;
+        public static final int tvNotSmall=0x7f0800d9;
         public static final int tvPlusP=0x7f080063;
         public static final int tvPromoviert=0x7f080062;
         public static final int tvRight=0x7f0800b1;
@@ -2366,12 +2368,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int typeface=0x7f08002d;
         public static final int up=0x7f08003e;
         public static final int useLogo=0x7f080003;
-        public static final int wLayout=0x7f0800d9;
+        public static final int wLayout=0x7f0800d7;
         public static final int widget_frame=0x7f0800b3;
         public static final int withText=0x7f08000c;
-        public static final int wkiss_layout=0x7f0800d7;
-        public static final int wkont_layout=0x7f0800d8;
-        public static final int wnot_layout=0x7f0800e2;
         public static final int year=0x7f08008b;
         public static final int yes=0x7f080036;
     }
@@ -2527,10 +2526,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewfach=0x7f030062;
         public static final int viewfach_noten=0x7f030063;
         public static final int viewpagerlayout_noten=0x7f030064;
-        public static final int widget_kiss_layout=0x7f030065;
-        public static final int widget_kont_layout=0x7f030066;
-        public static final int widget_layout=0x7f030067;
-        public static final int widget_not_layout=0x7f030068;
+        public static final int widget_layout=0x7f030065;
     }
     public static final class menu {
         public static final int context_menu=0x7f100000;

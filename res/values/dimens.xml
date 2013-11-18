@@ -6,5 +6,6 @@
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="card_margin">16dp</dimen>
     <dimen name="color_height">6dp</dimen>
+    <dimen name="widget_margin_own">8dp</dimen>
 
 </resources>
