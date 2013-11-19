@@ -1,6 +1,11 @@
 package com.martin.kantidroid;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import org.holoeverywhere.LayoutInflater;
@@ -400,6 +405,11 @@ public class MainActivity extends Activity implements OnClickListener {
 
 					});
 			delDg.show();
+			break;
+		case R.id.iBackup:
+			Intent i = new Intent(MainActivity.this, Backup.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(i);
 			break;
 		}
 		return super.onOptionsItemSelected(item);

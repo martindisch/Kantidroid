@@ -7,15 +7,20 @@
         android:orderInCategory="1"
         android:title="Stundenplan"
         app:showAsAction="never"/>
+    <item 
+        android:id="@+id/iBackup"
+        android:orderInCategory="2"
+        android:title="Backup"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/iShortcut"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="Zurücksetzen"
         app:showAsAction="never">
     </item>
     <item
         android:id="@+id/iAbout"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="Über"
         app:showAsAction="never"/>
 

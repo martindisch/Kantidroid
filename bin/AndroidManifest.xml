@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martin.kantidroid"
-    android:versionCode="30"
+    android:versionCode="31"
     android:versionName="2.00" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -43,6 +43,16 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.martin.kantidroid.Backup"
+            android:icon="@drawable/kantidroid_ico"
+            android:label="Backup" >
+            <intent-filter>
+                <action android:name="com.martin.kantidroid.BACKUP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
