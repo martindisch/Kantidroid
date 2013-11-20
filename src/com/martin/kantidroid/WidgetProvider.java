@@ -149,23 +149,32 @@ public class WidgetProvider extends AppWidgetProvider {
 				}
 				switch (c) {
 				case 0:
-					views.setTextColor(R.id.tvKISS_1,
+					views.setTextColor(R.id.tvKISS_1_name,
 							res.getColor(R.color.primary_text_holo_light));
-					views.setTextViewText(R.id.tvKISS_1, "-");
+					views.setTextColor(R.id.tvKISS_1_message,
+							res.getColor(R.color.primary_text_holo_light));
+					views.setTextViewText(R.id.tvKISS_1_name, "-");
+					views.setTextViewText(R.id.tvKISS_1_message, "");
 					views.setTextViewText(R.id.tvKISS_2, "");
 					break;
 				case 1:
-					views.setTextColor(R.id.tvKISS_1,
+					views.setTextColor(R.id.tvKISS_1_name,
 							res.getColor(R.color.holo_red_light));
-					views.setTextViewText(R.id.tvKISS_1, imKISS[0] + " ist im KISS gelistet");
+					views.setTextColor(R.id.tvKISS_1_message,
+							res.getColor(R.color.holo_red_light));
+					views.setTextViewText(R.id.tvKISS_1_name, imKISS[0]);
+					views.setTextViewText(R.id.tvKISS_1_message, " ist im KISS gelistet");
 					views.setTextViewText(R.id.tvKISS_2, "");
 					break;
 				case 2:
-					views.setTextColor(R.id.tvKISS_1,
+					views.setTextColor(R.id.tvKISS_1_name,
+							res.getColor(R.color.holo_red_light));
+					views.setTextColor(R.id.tvKISS_1_message,
 							res.getColor(R.color.holo_red_light));
 					views.setTextColor(R.id.tvKISS_2,
 							res.getColor(R.color.holo_red_light));
-					views.setTextViewText(R.id.tvKISS_1, imKISS[0] + " ist im KISS gelistet");
+					views.setTextViewText(R.id.tvKISS_1_message, " ist im KISS gelistet");
+					views.setTextViewText(R.id.tvKISS_2, "");
 					views.setTextViewText(R.id.tvKISS_2, "Weitere sind ebenfalls im KISS gelistet");
 					break;
 				}
