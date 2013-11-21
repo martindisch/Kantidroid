@@ -23,10 +23,5 @@
         android:orderInCategory="4"
         android:title="Über"
         app:showAsAction="never"/>
-    <item
-        android:id="@+id/iGDrive"
-        android:orderInCategory="5"
-        android:title="GDrive"
-        app:showAsAction="never"/>
 
 </menu>

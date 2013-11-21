@@ -411,11 +411,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 			break;
-		case R.id.iGDrive:
-			Intent gdrive = new Intent(MainActivity.this, GDrive.class);
-			gdrive.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(gdrive);
-			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
