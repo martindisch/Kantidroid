@@ -27,14 +27,15 @@ public final class R {
         public static final int shrink_fade_out_from_bottom=0x7f04000f;
     }
     public static final class array {
-        public static final int abteilungen=0x7f0f0001;
-        public static final int faecher_list=0x7f0f0005;
-        public static final int lehrer_list=0x7f0f0004;
-        public static final int relevance_entries=0x7f0f0002;
-        public static final int semesters=0x7f0f0003;
-        public static final int sorting_entries=0x7f0f0000;
-        public static final int uiyears=0x7f0f0007;
-        public static final int years=0x7f0f0006;
+        public static final int abteilungen=0x7f0f0002;
+        public static final int faecher_list=0x7f0f0006;
+        public static final int lehrer_list=0x7f0f0005;
+        public static final int prefnames=0x7f0f0000;
+        public static final int relevance_entries=0x7f0f0003;
+        public static final int semesters=0x7f0f0004;
+        public static final int sorting_entries=0x7f0f0001;
+        public static final int uiyears=0x7f0f0008;
+        public static final int years=0x7f0f0007;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
