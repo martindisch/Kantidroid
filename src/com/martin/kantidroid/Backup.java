@@ -13,20 +13,25 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
-import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.Toast;
 
+import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Backup extends Activity implements OnClickListener {
 
-	Button bBackup, bImport, bDelete;
+	ImageButton bBackup, bImport;
+	TextView tvSync, tvBackup;
 
 	File appdir;
 	File databases;
@@ -37,18 +42,20 @@ public class Backup extends Activity implements OnClickListener {
 	File[] files;
 	String[] prefnames;
 
+	Typeface tf;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.backup);
+		setContentView(R.layout.backup_combined);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		bBackup = (Button) findViewById(R.id.bBackup);
-		bImport = (Button) findViewById(R.id.bImport);
-		bDelete = (Button) findViewById(R.id.bDelete);
+		bBackup = (ImageButton) findViewById(R.id.bBackup);
+		bImport = (ImageButton) findViewById(R.id.bImport);
+		tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
+		tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
 		bBackup.setOnClickListener(this);
 		bImport.setOnClickListener(this);
-		bDelete.setOnClickListener(this);
-		
+
 		appdir = getFilesDir().getParentFile();
 		databases = new File(appdir + "/databases");
 		preferences = new File(appdir + "/shared_prefs");
@@ -57,6 +64,10 @@ public class Backup extends Activity implements OnClickListener {
 		backupdatabases = new File(kdroiddir + "/backup/databases");
 		backuppreferences = new File(kdroiddir + "/backup/shared_prefs");
 		prefnames = getResources().getStringArray(R.array.prefnames);
+
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+		tvSync.setTypeface(tf);
+		tvBackup.setTypeface(tf);
 	}
 
 	@Override
@@ -92,13 +103,6 @@ public class Backup extends Activity implements OnClickListener {
 					}
 				}
 			}
-			/*
-			 * if (preferences.isDirectory()) { files = preferences.listFiles();
-			 * backuppreferences.mkdirs(); for (int i = 0; i < files.length;
-			 * i++) { try { copy(files[i], new File(backuppreferences + "/" +
-			 * files[i].getName())); } catch (IOException e) {
-			 * e.printStackTrace(); } } }
-			 */
 			for (int i = 0; i < prefnames.length; i++) {
 				saveSharedPreferencesToFile(prefnames[i], new File(
 						backuppreferences + "/" + prefnames[i]));
@@ -106,65 +110,58 @@ public class Backup extends Activity implements OnClickListener {
 			Toast.makeText(this, "Daten gesichert", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.bImport:
-			// Delete existing data
+			AlertDialog.Builder delDg = new AlertDialog.Builder(this);
+			delDg.setTitle("Import");
+			delDg.setMessage("Stelle sicher, dass du wirklich ein älteres Backup im Ordner Kantidroid/Backup auf dem externen Speicher hast, da alle Daten in der App vor dem Import gelöscht werden.\n\nWillst du fortfahren?\n");
+			delDg.setNegativeButton("Nein", null);
+			delDg.setPositiveButton("Ja",
+					new DialogInterface.OnClickListener() {
 
-			if (databases.isDirectory()) {
-				files = databases.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					files[i].delete();
-				}
-			}
-			if (preferences.isDirectory()) {
-				files = preferences.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					files[i].delete();
-				}
-			}
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
 
-			// Copy new data
+							// Delete existing data
 
-			if (backupdatabases.isDirectory()) {
-				files = backupdatabases.listFiles();
-				databases.mkdirs();
-				for (int i = 0; i < files.length; i++) {
-					try {
-						copy(files[i],
-								new File(databases + "/" + files[i].getName()));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			/*
-			 * if (backuppreferences.isDirectory()) { files =
-			 * backuppreferences.listFiles(); preferences.mkdirs(); for (int i =
-			 * 0; i < files.length; i++) { try { copy(files[i], new
-			 * File(preferences + "/" + files[i].getName())); } catch
-			 * (IOException e) { e.printStackTrace(); } } }
-			 */
+							if (databases.isDirectory()) {
+								files = databases.listFiles();
+								for (int i = 0; i < files.length; i++) {
+									files[i].delete();
+								}
+							}
+							if (preferences.isDirectory()) {
+								files = preferences.listFiles();
+								for (int i = 0; i < files.length; i++) {
+									files[i].delete();
+								}
+							}
 
-			for (int i = 0; i < prefnames.length; i++) {
-				loadSharedPreferencesFromFile(prefnames[i], new File(
-						backuppreferences + "/" + prefnames[i]));
-			}
-			Toast.makeText(this, "Daten importiert", Toast.LENGTH_SHORT).show();
-			break;
-		case R.id.bDelete:
-			// Delete existing data
+							// Copy new data
 
-			if (databases.isDirectory()) {
-				files = databases.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					files[i].delete();
-				}
-			}
-			if (preferences.isDirectory()) {
-				files = preferences.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					files[i].delete();
-				}
-			}
-			Toast.makeText(this, "Daten gelöscht", Toast.LENGTH_SHORT).show();
+							if (backupdatabases.isDirectory()) {
+								files = backupdatabases.listFiles();
+								databases.mkdirs();
+								for (int i = 0; i < files.length; i++) {
+									try {
+										copy(files[i], new File(databases + "/"
+												+ files[i].getName()));
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							}
+
+							for (int i = 0; i < prefnames.length; i++) {
+								loadSharedPreferencesFromFile(prefnames[i],
+										new File(backuppreferences + "/"
+												+ prefnames[i]));
+							}
+							Toast.makeText(getApplicationContext(), "Daten importiert",
+									Toast.LENGTH_SHORT).show();
+						}
+
+					});
+			delDg.show();
+
 			break;
 		}
 	}

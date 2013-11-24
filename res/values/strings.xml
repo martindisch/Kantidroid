@@ -34,6 +34,8 @@
         <item>2. Semester</item>
     </string-array>
 
+    <string name="backup_importieren">Importiert Daten vom Ordner &quot;Kantidroid/Backup&quot; auf dem externen Speicher.</string>
+    <string name="backup_speichern">Speichert die Daten auf dem externen Speicher im Ordner &quot;Kantidroid/Backup&quot;</string>
     <string name="kiss_main">Füge Personen wie deine Lehrer oder dich selbst zur Überwachung mit dem \'+\' Symbol hinzu.Das KISS wird im Hintergrund auf diese Personen überprüft und du wirst benachrichtigt, falls sie vorhanden sind. Natürlich kannst du die Übersicht auch manuell aktualisieren.\n\nBerühre einen Namen in der Liste um ihn ändern zu können oder zu sehen, wie oft diese Person bereits im KISS zu sehen war.\n\nÜber das Dropdown-Menu rechts oben kannst du Personen entfernen, den Intervall ändern, in dem das KISS überprüft wird und die Ausfallzähler aller Personen zurücksetzen.</string>
     <string name="kont_main">Füge Fächer mit dem \'+\' Symbol hinzu und entferne sie mit dem Abfallsymbol.\n\nBerühre ein Fach in der Liste um eine detaillierte Übersicht über deinen Kontingentgebrauch zu bekommen und Kontingent zu nehmen.\n\nÜber das Dropdown-Menu rechts oben kannst du am Ende des Schuljahres dein Kontingent zurücksetzen.\nDort kannst du auch noch fehlende Fächer importieren, falls du sie bei den Noten bereits eingegeben hast.\nEs gibt auch die Möglichkeit, Fächer zu bearbeiten, falls der Name oder die Anzahl verfügbares Kontingent nicht korrekt ist.</string>
     <string name="kont_viewfach">Nimm Kontingent mit dem \'+\' Symbol oder mache eine Kontingentnutzung über das Abfallsymbol rückgängig.</string>
