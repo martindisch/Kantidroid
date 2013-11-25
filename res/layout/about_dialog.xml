@@ -21,6 +21,19 @@
             android:autoLink="email"
             android:text="martin.disch@hispeed.ch\n"
             android:textSize="20sp" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kantidroid auf GitHub"
+            android:textSize="20sp" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="https://github.com/martindisch/kantidroid\n"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"

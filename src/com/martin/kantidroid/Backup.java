@@ -51,7 +51,7 @@ public class Backup extends Activity implements OnClickListener {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		bBackup = (ImageButton) findViewById(R.id.bBackup);
 		bImport = (ImageButton) findViewById(R.id.bImport);
-		tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
+		//tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
 		tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
 		bBackup.setOnClickListener(this);
 		bImport.setOnClickListener(this);
@@ -66,7 +66,7 @@ public class Backup extends Activity implements OnClickListener {
 		prefnames = getResources().getStringArray(R.array.prefnames);
 
 		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
-		tvSync.setTypeface(tf);
+		//tvSync.setTypeface(tf);
 		tvBackup.setTypeface(tf);
 	}
 

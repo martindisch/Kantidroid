@@ -211,7 +211,7 @@ public class ViewFach extends Activity implements OnClickListener,
 		if (picked_number > 1) {
 			singularPlural = " Lektionen";
 		}
-		addition = dayOfMonth + "." + monthOfYear + "." + year + " - "
+		addition = dayOfMonth + "." + (monthOfYear + 1) + "." + year + " - "
 				+ picked_number + singularPlural + "\n";
 
 		if (date_old.contentEquals("empty")) {
