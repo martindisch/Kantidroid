@@ -6,12 +6,12 @@
     tools:context=".Main" >
 
     <LinearLayout
+        android:id="@+id/llKontingentOverview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/holo_green_light"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:id="@+id/llKontingentOverview" >
+        android:padding="10dp" >
 
         <TextView
             android:id="@+id/tvUsage"

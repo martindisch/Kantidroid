@@ -4,14 +4,13 @@ import java.util.Calendar;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.DatePickerDialog;
-import org.holoeverywhere.app.DatePickerDialog.OnDateSetListener;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.CheckBox;
-import org.holoeverywhere.widget.DatePicker;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.Toast;
+import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
+import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetListener;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -26,7 +25,6 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
@@ -142,9 +140,11 @@ public class AddMark extends Activity implements OnClickListener,
 					}
 
 					Calendar c = Calendar.getInstance();
-					new DatePickerDialog(this, this, c.get(Calendar.YEAR),
-							c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
-							.show();
+					DatePickerDialog dg = new DatePickerDialog();
+					dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+							c.get(Calendar.DAY_OF_MONTH));
+					dg.setOnDateSetListener(this);
+					dg.show(this);
 
 				} else {
 					Toast t = Toast.makeText(AddMark.this, "Ungültige Note",
@@ -214,9 +214,19 @@ public class AddMark extends Activity implements OnClickListener,
 	}
 
 	@Override
-	public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-		String date = arg0.getDayOfMonth() + "." + (arg0.getMonth() + 1) + "."
-				+ arg0.getYear();
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			finish();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear,
+			int dayOfMonth) {
+		String date = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
 
 		if (iSemester == 1) {
 			String sMarksOld = fach.getNoten1();
@@ -264,16 +274,6 @@ public class AddMark extends Activity implements OnClickListener,
 		} else {
 			finish();
 		}
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			finish();
-			break;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 }

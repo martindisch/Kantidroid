@@ -1,44 +1,43 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
         android:id="@+id/iAdd"
         android:icon="@drawable/add"
         android:orderInCategory="1"
-        android:title="Person hinzufügen"
-        app:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="Person hinzufügen"/>
     <item
         android:id="@+id/iRefresh"
         android:icon="@drawable/refresh"
         android:orderInCategory="2"
-        android:title="KISS aktualisieren"
-        app:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="KISS aktualisieren"/>
     <item
         android:id="@+id/iRemove"
         android:orderInCategory="3"
-        android:title="Person entfernen"
-        app:showAsAction="never">
+        android:showAsAction="never"
+        android:title="Person entfernen">
     </item>
     <item
         android:id="@+id/iInterval"
         android:orderInCategory="4"
-        android:title="Intervall ändern"
-        app:showAsAction="never">
+        android:showAsAction="never"
+        android:title="Intervall ändern">
     </item>
     <item
         android:id="@+id/iResetCounter"
         android:orderInCategory="5"
-        android:title="Zähler zurücksetzen"
-        app:showAsAction="never"/>
+        android:showAsAction="never"
+        android:title="Zähler zurücksetzen"/>
     <item
         android:id="@+id/iShowKISS"
         android:orderInCategory="6"
-        android:title="KISS anzeigen"
-        app:showAsAction="never"/>
+        android:showAsAction="never"
+        android:title="KISS anzeigen"/>
     <item
         android:id="@+id/iAbout"
         android:orderInCategory="7"
-        android:title="Über"
-        app:showAsAction="never"/>
+        android:showAsAction="never"
+        android:title="Über"/>
 
 </menu>

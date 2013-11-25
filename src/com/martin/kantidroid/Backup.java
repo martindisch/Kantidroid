@@ -155,8 +155,9 @@ public class Backup extends Activity implements OnClickListener {
 										new File(backuppreferences + "/"
 												+ prefnames[i]));
 							}
-							Toast.makeText(getApplicationContext(), "Daten importiert",
-									Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(),
+									"Daten importiert", Toast.LENGTH_SHORT)
+									.show();
 						}
 
 					});

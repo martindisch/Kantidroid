@@ -5,11 +5,10 @@ import java.util.Calendar;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.DatePickerDialog;
-import org.holoeverywhere.app.DatePickerDialog.OnDateSetListener;
-import org.holoeverywhere.widget.DatePicker;
 import org.holoeverywhere.widget.NumberPicker;
 import org.holoeverywhere.widget.Toast;
+import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
+import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetListener;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -21,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.martin.kantidroid.Check;
@@ -106,8 +106,11 @@ public class ViewFach extends Activity implements OnClickListener,
 	public void onClick(DialogInterface dialog, int which) {
 		picked_number = picker.getValue();
 		Calendar c = Calendar.getInstance();
-		new DatePickerDialog(this, this, c.get(Calendar.YEAR),
-				c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+		DatePickerDialog dg = new DatePickerDialog();
+		dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+				c.get(Calendar.DAY_OF_MONTH));
+		dg.setOnDateSetListener(this);
+		dg.show(this);
 	}
 
 	private void setKont() {
@@ -125,25 +128,6 @@ public class ViewFach extends Activity implements OnClickListener,
 			getData();
 			updateText();
 		}
-	}
-
-	@Override
-	public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-		String singularPlural = " Lektion";
-
-		if (picked_number > 1) {
-			singularPlural = " Lektionen";
-		}
-		addition = arg0.getDayOfMonth() + "." + (arg0.getMonth() + 1) + "."
-				+ arg0.getYear() + " - " + picked_number + singularPlural
-				+ "\n";
-
-		if (date_old.contentEquals("empty")) {
-			date_new = addition;
-		} else {
-			date_new = date_old + addition;
-		}
-		setKont();
 	}
 
 	@Override
@@ -217,5 +201,24 @@ public class ViewFach extends Activity implements OnClickListener,
 	public void onClick(View arg0) {
 		// Rien
 
+	}
+
+	@Override
+	public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear,
+			int dayOfMonth) {
+		String singularPlural = " Lektion";
+
+		if (picked_number > 1) {
+			singularPlural = " Lektionen";
+		}
+		addition = dayOfMonth + "." + (monthOfYear + 1) + "." + year + " - "
+				+ picked_number + singularPlural + "\n";
+
+		if (date_old.contentEquals("empty")) {
+			date_new = addition;
+		} else {
+			date_new = date_old + addition;
+		}
+		setKont();
 	}
 }

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
         android:id="@+id/iViewUse"
         android:icon="@drawable/add"
         android:orderInCategory="1"
-        android:title="Kontingent nutzen"
-        app:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="Kontingent nutzen"/>
     <item
         android:id="@+id/iViewRemove"
         android:icon="@drawable/discard"
         android:orderInCategory="2"
-        android:title="Nutzung rückgängig machen"
-        app:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="Nutzung rückgängig machen"/>
 
 </menu>

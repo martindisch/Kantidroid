@@ -34,16 +34,25 @@ public class WidgetProvider extends AppWidgetProvider {
 		for (int y = 0; y < wcount; y++) {
 			// Get the intent for a click-event
 			Intent notIntent = new Intent(context, com.martin.noten.Main.class);
-			Intent kontIntent = new Intent(context, com.martin.kontingent.Overview.class);
-			Intent kissIntent = new Intent(context, com.martin.kiss.MainActivity.class);
-			Intent acnotIntent = new Intent(context, com.martin.noten.AddSelect.class);
-			Intent ackontIntent = new Intent(context, com.martin.kontingent.AddSelect.class);
-			
-			PendingIntent penNotIntent = PendingIntent.getActivity(context, 0, notIntent, 0);
-			PendingIntent penKontIntent = PendingIntent.getActivity(context, 0, kontIntent, 0);
-			PendingIntent penKissIntent = PendingIntent.getActivity(context, 0, kissIntent, 0);
-			PendingIntent penacNotIntent = PendingIntent.getActivity(context, 0, acnotIntent, 0);
-			PendingIntent penacKontIntent = PendingIntent.getActivity(context, 0, ackontIntent, 0);
+			Intent kontIntent = new Intent(context,
+					com.martin.kontingent.Overview.class);
+			Intent kissIntent = new Intent(context,
+					com.martin.kiss.MainActivity.class);
+			Intent acnotIntent = new Intent(context,
+					com.martin.noten.AddSelect.class);
+			Intent ackontIntent = new Intent(context,
+					com.martin.kontingent.AddSelect.class);
+
+			PendingIntent penNotIntent = PendingIntent.getActivity(context, 0,
+					notIntent, 0);
+			PendingIntent penKontIntent = PendingIntent.getActivity(context, 0,
+					kontIntent, 0);
+			PendingIntent penKissIntent = PendingIntent.getActivity(context, 0,
+					kissIntent, 0);
+			PendingIntent penacNotIntent = PendingIntent.getActivity(context,
+					0, acnotIntent, 0);
+			PendingIntent penacKontIntent = PendingIntent.getActivity(context,
+					0, ackontIntent, 0);
 
 			// Get the views for the widget
 			RemoteViews views = new RemoteViews(context.getPackageName(),
@@ -69,7 +78,8 @@ public class WidgetProvider extends AppWidgetProvider {
 			} else {
 				prResult = prCheck.getFMS(2);
 			}
-			views.setTextViewText(R.id.tvNotBig, "+ " + prResult.sPP.split("/")[0]);
+			views.setTextViewText(R.id.tvNotBig, "+ "
+					+ prResult.sPP.split("/")[0]);
 			/*
 			 * if (prResult.iColor == R.color.holo_green_light) {
 			 * pluspunkte.setTextColor(res.getColor(R.color.holo_orange_light));
@@ -163,7 +173,8 @@ public class WidgetProvider extends AppWidgetProvider {
 					views.setTextColor(R.id.tvKISS_1_message,
 							res.getColor(R.color.holo_red_light));
 					views.setTextViewText(R.id.tvKISS_1_name, imKISS[0]);
-					views.setTextViewText(R.id.tvKISS_1_message, " ist im KISS gelistet");
+					views.setTextViewText(R.id.tvKISS_1_message,
+							" ist im KISS gelistet");
 					views.setTextViewText(R.id.tvKISS_2, "");
 					break;
 				case 2:
@@ -173,9 +184,11 @@ public class WidgetProvider extends AppWidgetProvider {
 							res.getColor(R.color.holo_red_light));
 					views.setTextColor(R.id.tvKISS_2,
 							res.getColor(R.color.holo_red_light));
-					views.setTextViewText(R.id.tvKISS_1_message, " ist im KISS gelistet");
+					views.setTextViewText(R.id.tvKISS_1_message,
+							" ist im KISS gelistet");
 					views.setTextViewText(R.id.tvKISS_2, "");
-					views.setTextViewText(R.id.tvKISS_2, "Weitere sind ebenfalls im KISS gelistet");
+					views.setTextViewText(R.id.tvKISS_2,
+							"Weitere sind ebenfalls im KISS gelistet");
 					break;
 				}
 			}

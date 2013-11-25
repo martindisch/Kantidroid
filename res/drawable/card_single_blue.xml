@@ -14,10 +14,10 @@
             <solid android:color="@color/holo_blue_light" />
 
             <padding
+                android:bottom="0dp"
                 android:left="0dp"
                 android:right="0dp"
-                android:top="@dimen/color_height"
-                android:bottom="0dp" />
+                android:top="@dimen/color_height" />
         </shape>
     </item>
     <item>
