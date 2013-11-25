@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:padding="10dp" >
 
-        <!-- <TextView
+        <TextView
             android:id="@+id/tvSyncRoboto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:background="#d9d9d9" />  -->
+            android:background="#d9d9d9" />
 
         <TextView
             android:id="@+id/tvBackupRoboto"
