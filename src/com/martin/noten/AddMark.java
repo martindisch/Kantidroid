@@ -226,7 +226,7 @@ public class AddMark extends Activity implements OnClickListener,
 	@Override
 	public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear,
 			int dayOfMonth) {
-		String date = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
+		String date = dayOfMonth + "." + monthOfYear + "." + year;
 
 		if (iSemester == 1) {
 			String sMarksOld = fach.getNoten1();
