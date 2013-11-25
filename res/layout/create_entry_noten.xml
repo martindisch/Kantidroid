@@ -18,12 +18,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fach" />
+<<<<<<< HEAD
             
             <AutoCompleteTextView 
+=======
+
+            <AutoCompleteTextView
+>>>>>>> beta
                 android:id="@+id/etAddFach"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences" />
+<<<<<<< HEAD
             
             <CheckBox 
                 android:id="@+id/cbPromotionsrelevant"
@@ -38,6 +44,22 @@
                 android:layout_height="wrap_content"
                 android:text="Weiteres Fach hinzufügen"
                 android:checked="true"/>
+=======
+
+            <CheckBox
+                android:id="@+id/cbPromotionsrelevant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Promotionsfach" />
+
+            <CheckBox
+                android:id="@+id/cbAnother"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Weiteres Fach hinzufügen" />
+>>>>>>> beta
 
             <LinearLayout
                 android:layout_width="fill_parent"

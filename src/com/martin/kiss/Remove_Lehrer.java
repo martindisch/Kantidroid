@@ -1,6 +1,9 @@
 package com.martin.kiss;
 
+<<<<<<< HEAD
 import org.holoeverywhere.ArrayAdapter;
+=======
+>>>>>>> beta
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ListActivity;
 import org.holoeverywhere.widget.ListView;
@@ -11,9 +14,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 
 import com.actionbarsherlock.view.MenuItem;
+=======
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+
+>>>>>>> beta
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
@@ -28,11 +38,22 @@ public class Remove_Lehrer extends ListActivity {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+<<<<<<< HEAD
 		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
 	
+=======
+		int[] ids = AppWidgetManager.getInstance(getApplication())
+				.getAppWidgetIds(
+						new ComponentName(getApplication(),
+								WidgetProvider.class));
+		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(rIntent);
+	}
+
+>>>>>>> beta
 	@Override
 	protected void onCreate(Bundle sSavedInstanceState) {
 		super.onCreate(sSavedInstanceState);

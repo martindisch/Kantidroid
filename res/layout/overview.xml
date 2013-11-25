@@ -6,8 +6,15 @@
     tools:context=".Main" >
 
     <LinearLayout
+<<<<<<< HEAD
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+=======
+        android:id="@+id/llKontingentOverview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/holo_green_light"
+>>>>>>> beta
         android:orientation="vertical"
         android:padding="10dp" >
 
@@ -15,6 +22,7 @@
             android:id="@+id/tvUsage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:text="Kontingent verbraucht"/>
     </LinearLayout>
 
@@ -25,6 +33,12 @@
         android:layout_height="4dp"
         android:progress="50" />
 
+=======
+            android:text="Kontingent verbraucht"
+            android:textColor="@color/primary_text_holo_dark" />
+    </LinearLayout>
+
+>>>>>>> beta
     <ListView
         android:id="@+id/lvMain"
         android:layout_width="fill_parent"

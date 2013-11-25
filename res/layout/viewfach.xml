@@ -7,14 +7,21 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> beta
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp" >
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> beta
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,8 +46,13 @@
                 android:layout_height="wrap_content"
                 android:text="Default"
                 android:textSize="25sp" />
+<<<<<<< HEAD
             
              <TextView
+=======
+
+            <TextView
+>>>>>>> beta
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -52,9 +64,13 @@
                 android:layout_height="wrap_content"
                 android:text="Default"
                 android:textSize="25sp" />
+<<<<<<< HEAD
 
             </LinearLayout>
 
+=======
+        </LinearLayout>
+>>>>>>> beta
     </ScrollView>
 
 </LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape
+            android:dither="true"
+            android:shape="rectangle" >
+            <corners
+                android:bottomLeftRadius="2dp"
+                android:bottomRightRadius="2dp"
+                android:radius="0dp" />
+
+            <solid android:color="#ccc" />
+        </shape>
+    </item>
+    <item android:bottom="2dp">
+        <shape
+            android:dither="true"
+            android:shape="rectangle" >
+            <corners
+                android:bottomLeftRadius="2dp"
+                android:bottomRightRadius="2dp"
+                android:radius="0dp" />
+
+            <solid android:color="@android:color/white" />
+
+            <padding
+                android:bottom="8dp"
+                android:left="8dp"
+                android:right="8dp"
+                android:top="8dp" />
+        </shape>
+    </item>
+
+</layer-list> <!-- http://ryanharter.com/blog/2013/01/31/how-to-make-an-android-card-list/  > -->

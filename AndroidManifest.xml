@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martin.kantidroid"
+<<<<<<< HEAD
     android:versionCode="20"
     android:versionName="1.16" >
+=======
+    android:versionCode="38"
+    android:versionName="2.00" >
+>>>>>>> beta
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -35,6 +40,7 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
+<<<<<<< HEAD
         <!-- Kontingent Widget -->
 
         <receiver
@@ -80,6 +86,8 @@
                 android:resource="@xml/wkiss_info" />
         </receiver>
 
+=======
+>>>>>>> beta
         <activity
             android:name="com.martin.kantidroid.MainActivity"
             android:icon="@drawable/kantidroid_ico"
@@ -90,11 +98,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity
+            android:name="com.martin.kantidroid.Backup"
+            android:icon="@drawable/kantidroid_ico"
+            android:label="Backup" >
+            <intent-filter>
+                <action android:name="com.martin.kantidroid.BACKUP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+>>>>>>> beta
 
         <!-- Kontingent -->
 
         <activity
+<<<<<<< HEAD
             android:name="com.example.kontingentprototype.Overview"
+=======
+            android:name="com.martin.kontingent.Overview"
+>>>>>>> beta
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
             android:label="Kontingent" >
@@ -105,7 +130,11 @@
             </intent-filter>
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.example.kontingentprototype.CreateEntry"
+=======
+            android:name="com.martin.kontingent.CreateEntry"
+>>>>>>> beta
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
             android:label="Fach hinzufügen" >
@@ -116,13 +145,21 @@
             </intent-filter>
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.example.kontingentprototype.ViewFach"
+=======
+            android:name="com.martin.kontingent.ViewFach"
+>>>>>>> beta
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
             android:label="Info" >
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.example.kontingentprototype.RemoveEntry"
+=======
+            android:name="com.martin.kontingent.RemoveEntry"
+>>>>>>> beta
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
             android:label="Fach zum entfernen auswählen" >
@@ -133,13 +170,21 @@
             </intent-filter>
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.example.kontingentprototype.RemoveUsage"
+=======
+            android:name="com.martin.kontingent.RemoveUsage"
+>>>>>>> beta
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
             android:label="Gebrauch zum entfernen auswählen" >
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.example.kontingentprototype.EditEntry"
+=======
+            android:name="com.martin.kontingent.EditEntry"
+>>>>>>> beta
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
             android:label="Fach bearbeiten" >
@@ -150,7 +195,11 @@
             </intent-filter>
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.example.kontingentprototype.SelectEdit"
+=======
+            android:name="com.martin.kontingent.SelectEdit"
+>>>>>>> beta
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
             android:label="Fach zum Bearbeiten auswählen" >
@@ -160,6 +209,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity
+            android:name="com.martin.kontingent.AddSelect"
+            android:configChanges="orientation"
+            android:icon="@drawable/kontingent_ico"
+            android:label="Fach auswählen" >
+            <intent-filter>
+                <action android:name="com.example.kontingentprototype.ADD_SELECT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+>>>>>>> beta
 
         <!-- Noten -->
 
@@ -167,8 +230,12 @@
             android:name="com.martin.noten.Main"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
+<<<<<<< HEAD
             android:label="Noten"
             android:screenOrientation="portrait" >
+=======
+            android:label="Noten" >
+>>>>>>> beta
             <intent-filter>
                 <action android:name="com.martin.noten.MAIN" />
 
@@ -263,6 +330,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity
+            android:name="com.martin.noten.AddSelect"
+            android:configChanges="orientation"
+            android:icon="@drawable/noten_ico"
+            android:label="Fach auswählen" >
+            <intent-filter>
+                <action android:name="com.martin.noten.ADD_SELECT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+>>>>>>> beta
 
         <!-- KISS -->
 

@@ -11,10 +11,17 @@ import org.holoeverywhere.widget.Toast;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
+<<<<<<< HEAD
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.actionbarsherlock.view.MenuItem;
+=======
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+
+>>>>>>> beta
 import com.martin.kantidroid.R;
 
 public class Guessing extends Activity implements OnClickListener {

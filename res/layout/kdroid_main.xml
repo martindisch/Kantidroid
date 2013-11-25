@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="match_parent" >
+=======
+    android:layout_height="match_parent"
+    android:background="@color/background_holo_light" >
+>>>>>>> beta
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
+<<<<<<< HEAD
         <com.martin.kantidroid.WidgetContainer
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,6 +52,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp" >
+=======
+        <LinearLayout
+            android:id="@+id/llCardNoten"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin"
+            android:background="@drawable/selector_multi_red"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Noten"
+                android:textSize="25sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tvPlusP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Pluspunkte"
+                android:textColor="@color/holo_orange_light" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+>>>>>>> beta
 
                 <TextView
                     android:id="@+id/tvGSchn"
@@ -59,6 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvGSchn"
                     android:text="Default"
+<<<<<<< HEAD
                     android:textSize="25sp" />
 
                 <ImageButton
@@ -102,6 +146,76 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp" >
+=======
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llActioncardNoten"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:background="@drawable/selector_actioncard_large"
+            android:clickable="true"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/ivAddNoten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/add_blue_light" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivAddNoten"
+                    android:text="Note hinzufügen"
+                    android:textColor="@color/holo_blue_light" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCardKontingent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:background="@drawable/selector_multi_green"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kontingent"
+                android:textSize="25sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tvUsage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Kontingent verbraucht" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+>>>>>>> beta
 
                 <TextView
                     android:id="@+id/tvGT"
@@ -115,6 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvGT"
                     android:text="null"
+<<<<<<< HEAD
                     android:textSize="25sp" />
 
                 <ImageButton
@@ -133,11 +248,75 @@
             android:layout_height="wrap_content"
             android:text="KISS"
             android:id="@+id/wContainerKISS" >
+=======
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llActioncardKontingent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:background="@drawable/selector_actioncard_large"
+            android:clickable="true"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/ivAddKontingent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/add_blue_light" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivAddKontingent"
+                    android:text="Kontingent hinzufügen"
+                    android:textColor="@color/holo_blue_light" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCardKISS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:background="@drawable/selector_single_blue"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KISS"
+                android:textSize="25sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+>>>>>>> beta
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:padding="10dp" >
+=======
+                android:paddingTop="10dp" >
+>>>>>>> beta
 
                 <TextView
                     android:id="@+id/tvTitle"
@@ -150,6 +329,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvTitle"
+<<<<<<< HEAD
                     android:text="-"
                     android:textSize="25sp" />
 
@@ -164,6 +344,11 @@
                     android:layout_alignParentRight="true" />
             </RelativeLayout>
         </com.martin.kantidroid.WidgetContainer>
+=======
+                    android:text="-" />
+            </RelativeLayout>
+        </LinearLayout>
+>>>>>>> beta
     </LinearLayout>
 
 </ScrollView>

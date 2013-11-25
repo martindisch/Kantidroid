@@ -22,10 +22,18 @@ public class PromoCheck {
 		double schn = 0;
 		double total = 0;
 		int fcount = 0;
+<<<<<<< HEAD
 
 		String sMessage = "Promoviert";
 		int iColor = R.color.holo_green_light;
 		String sPP = "0.0 Pluspunkte";
+=======
+		int mppcount = 0;
+
+		String sMessage = "Promoviert";
+		int iColor = R.color.holo_green_light;
+		String sPP = "0.0";
+>>>>>>> beta
 		String sSchnitt = "5.0000";
 
 		DatabaseHandler db = new DatabaseHandler(context);
@@ -81,6 +89,10 @@ public class PromoCheck {
 					total += Double.parseDouble(entry.getMathAverage2());
 					fcount++;
 				}
+<<<<<<< HEAD
+=======
+				mppcount++;
+>>>>>>> beta
 			}
 		}
 		if (!((minus * 2) > plus)) {
@@ -90,11 +102,19 @@ public class PromoCheck {
 			}
 			if (total_minus == 4) {
 				sMessage = "Promoviert falls in OG\n4 ungenügende Noten";
+<<<<<<< HEAD
 				iColor = R.color.holo_orange_light;
 			}
 			if (total_minus > 4) {
 				sMessage = "Mehr als 4 ungenügende Noten\nIm Endzeugnis darf dies nicht der Fall sein";
 				iColor = R.color.holo_orange_light;
+=======
+				iColor = R.color.holo_green_light;
+			}
+			if (total_minus > 4) {
+				sMessage = "Mehr als 4 ungenügende Noten\nIm Endzeugnis darf dies nicht der Fall sein";
+				iColor = R.color.holo_green_light;
+>>>>>>> beta
 			}
 
 		} else {
@@ -103,8 +123,13 @@ public class PromoCheck {
 		}
 
 		double PP_result = plus - (2 * minus);
+<<<<<<< HEAD
 		sPP = PP_result + " Pluspunkte";
 		
+=======
+		sPP = PP_result + "/" + (mppcount * 2) + " Pluspunkte";
+
+>>>>>>> beta
 		if (fcount > 0) {
 			sSchnitt = (String.format("%.4f", total / fcount));
 		} else {
@@ -126,7 +151,11 @@ public class PromoCheck {
 
 		String sMessage = "Promoviert";
 		int iColor = R.color.holo_green_light;
+<<<<<<< HEAD
 		String sPP = "0.0 Pluspunkte";
+=======
+		String sPP = "0.0";
+>>>>>>> beta
 		String sSchnitt = "5.0000";
 
 		DatabaseHandler db = new DatabaseHandler(context);
@@ -188,8 +217,12 @@ public class PromoCheck {
 			if (total_minus <= 3) {
 				sMessage = "Promoviert";
 				iColor = R.color.holo_green_light;
+<<<<<<< HEAD
 			}
 			else {
+=======
+			} else {
+>>>>>>> beta
 				sMessage = "Nicht promoviert\nMehr als 3 Ungenügende";
 				iColor = R.color.holo_red_light;
 			}
@@ -201,10 +234,17 @@ public class PromoCheck {
 			sMessage = "Nicht promoviert\nGesamtschnitt unter 4";
 			iColor = R.color.holo_red_light;
 		}
+<<<<<<< HEAD
 		
 		// HMS, also keine Pluspunkte anzeigen
 		sPP = "";
 		
+=======
+
+		// HMS, also keine Pluspunkte anzeigen
+		sPP = "";
+
+>>>>>>> beta
 		if (fcount > 0) {
 			sSchnitt = (String.format("%.4f", total / fcount));
 		} else {
@@ -214,7 +254,11 @@ public class PromoCheck {
 		PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt);
 		return prResult;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> beta
 	public PromoRes getFMS(int iSemester) {
 		Fach entry;
 		double plus = 0;
@@ -227,7 +271,11 @@ public class PromoCheck {
 
 		String sMessage = "Promoviert";
 		int iColor = R.color.holo_green_light;
+<<<<<<< HEAD
 		String sPP = "0.0 Pluspunkte";
+=======
+		String sPP = "0.0";
+>>>>>>> beta
 		String sSchnitt = "5.0000";
 
 		DatabaseHandler db = new DatabaseHandler(context);
@@ -293,8 +341,12 @@ public class PromoCheck {
 			if (!((total_real / fcount) < 4)) {
 				sMessage = "Promoviert";
 				iColor = R.color.holo_green_light;
+<<<<<<< HEAD
 			}
 			else {
+=======
+			} else {
+>>>>>>> beta
 				sMessage = "Nicht Promoviert\nPromotionsschnitt unter 4";
 				iColor = R.color.holo_red_light;
 			}
@@ -305,7 +357,11 @@ public class PromoCheck {
 
 		// FMS, also keine Pluspunkte anzeigen
 		sPP = "";
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> beta
 		if (fcount > 0) {
 			sSchnitt = (String.format("%.4f", total / fcount));
 		} else {

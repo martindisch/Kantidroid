@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <dimen name="widget_margin">0dp</dimen>
+=======
+
+    <dimen name="widget_margin_own">0dp</dimen>
+
+>>>>>>> beta
 </resources>

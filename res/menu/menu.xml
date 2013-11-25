@@ -14,6 +14,7 @@
         android:showAsAction="always"
         android:title="Fach entfernen"/>
     <item
+<<<<<<< HEAD
         android:id="@+id/iOverflow"
         android:icon="@drawable/expand"
         android:orderInCategory="2"
@@ -43,5 +44,32 @@
                 android:title="Über"/>
         </menu>
     </item>
+=======
+        android:id="@+id/iReset"
+        android:orderInCategory="3"
+        android:showAsAction="never"
+        android:title="Kontingent zurücksetzen"/>
+    <item
+        android:id="@+id/kImport"
+        android:orderInCategory="4"
+        android:showAsAction="never"
+        android:title="Fächer importieren"/>
+    <item
+        android:id="@+id/iEdit"
+        android:orderInCategory="5"
+        android:showAsAction="never"
+        android:title="Fach bearbeiten"/>
+    <item
+        android:id="@+id/iSort"
+        android:orderInCategory="6"
+        android:showAsAction="never"
+        android:title="Sortierung ändern">
+    </item>
+    <item
+        android:id="@+id/iAbout"
+        android:orderInCategory="7"
+        android:showAsAction="never"
+        android:title="Über"/>
+>>>>>>> beta
 
 </menu>

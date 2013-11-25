@@ -106,6 +106,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public List<Fach> getAllFaecher(Context context, int iSemester) {
 		SharedPreferences settings = context.getSharedPreferences(
 				"MarkSettings", Context.MODE_PRIVATE);
+<<<<<<< HEAD
+=======
+
+>>>>>>> beta
 		String sorting = null;
 
 		if (iSemester == 1) {

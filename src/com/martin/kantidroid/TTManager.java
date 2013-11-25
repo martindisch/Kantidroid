@@ -9,8 +9,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.os.Environment;
+<<<<<<< HEAD
 import android.util.Log;
 import android.widget.Toast;
+=======
+>>>>>>> beta
 
 public class TTManager {
 
@@ -37,7 +40,12 @@ public class TTManager {
 			// set the path where we want to save the file
 			// in this case, going to save it on the root directory of the
 			// sd card.
+<<<<<<< HEAD
 			File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
+=======
+			File SDCardRoot = new File(
+					Environment.getExternalStorageDirectory(), "/Kantidroid/");
+>>>>>>> beta
 			SDCardRoot.mkdirs();
 			// create a new file, specifying the path, and the filename
 			// which we want to save the file as.
@@ -64,14 +72,22 @@ public class TTManager {
 			}
 			// close the output stream when done
 			fileOutput.close();
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> beta
 			if (file.length() == 0) {
 				file.delete();
 				return false;
 			}
 
 			return true;
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> beta
 			// catch some possible errors...
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -83,7 +99,12 @@ public class TTManager {
 	}
 
 	public boolean checkTT(String sClass, String sYear) {
+<<<<<<< HEAD
 		File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
+=======
+		File SDCardRoot = new File(Environment.getExternalStorageDirectory(),
+				"/Kantidroid/");
+>>>>>>> beta
 		File file = new File(SDCardRoot, sYear + sClass + ".pdf");
 		if (file.exists()) {
 			return true;
@@ -92,7 +113,10 @@ public class TTManager {
 		}
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> beta
 	public String parseClass(String sClass) {
 		try {
 			char cNumber = sClass.charAt(0);

@@ -2,16 +2,26 @@ package com.martin.noten;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.holoeverywhere.ArrayAdapter;
+=======
+>>>>>>> beta
 import org.holoeverywhere.app.ListActivity;
 import org.holoeverywhere.widget.ListView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 
 import com.actionbarsherlock.view.MenuItem;
+=======
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+
+>>>>>>> beta
 import com.martin.kantidroid.R;
 
 public class EditSelect extends ListActivity {

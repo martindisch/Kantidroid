@@ -9,9 +9,17 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.widget.TextView;
 
 import com.actionbarsherlock.view.Menu;
+=======
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+>>>>>>> beta
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
@@ -31,11 +39,22 @@ public class ViewFach extends Activity {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+<<<<<<< HEAD
 		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
 	
+=======
+		int[] ids = AppWidgetManager.getInstance(getApplication())
+				.getAppWidgetIds(
+						new ComponentName(getApplication(),
+								WidgetProvider.class));
+		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(rIntent);
+	}
+
+>>>>>>> beta
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -132,14 +151,22 @@ public class ViewFach extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+<<<<<<< HEAD
 		com.actionbarsherlock.view.MenuInflater inflator = getSupportMenuInflater();
+=======
+		MenuInflater inflator = getMenuInflater();
+>>>>>>> beta
 		inflator.inflate(R.menu.viewmenu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean onOptionsItemSelected(
 			com.actionbarsherlock.view.MenuItem item) {
+=======
+	public boolean onOptionsItemSelected(MenuItem item) {
+>>>>>>> beta
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			finish();

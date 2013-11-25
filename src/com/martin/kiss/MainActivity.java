@@ -16,9 +16,15 @@ import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ListActivity;
 import org.holoeverywhere.app.ProgressDialog;
+<<<<<<< HEAD
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.NumberPicker;
 import org.holoeverywhere.widget.TextView;
+=======
+import org.holoeverywhere.widget.ArrayAdapter;
+import org.holoeverywhere.widget.ListView;
+import org.holoeverywhere.widget.NumberPicker;
+>>>>>>> beta
 import org.holoeverywhere.widget.Toast;
 
 import android.app.Notification;
@@ -33,31 +39,53 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+<<<<<<< HEAD
+=======
+import android.net.Uri;
+import android.os.Build;
+>>>>>>> beta
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+<<<<<<< HEAD
 import android.util.Log;
 import android.view.View;
 import android.widget.SimpleAdapter;
 
 import com.actionbarsherlock.view.Menu;
+=======
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+
+>>>>>>> beta
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
 public class MainActivity extends ListActivity {
 
+<<<<<<< HEAD
 	ProgressDialog pg;
 	String KISS = "";
 	List<String> actualOrder;
 	boolean done;
+=======
+	String KISS = "";
+	List<String> actualOrder;
+	boolean done;
+	ProgressDialog pd;
+>>>>>>> beta
 
 	@Override
 	protected void onStop() {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+<<<<<<< HEAD
 		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
@@ -67,6 +95,26 @@ public class MainActivity extends ListActivity {
 	protected void onCreate(Bundle sSavedInstanceState) {
 		super.onCreate(sSavedInstanceState);
 		requestWindowFeature(com.actionbarsherlock.view.Window.FEATURE_INDETERMINATE_PROGRESS);
+=======
+		int[] ids = AppWidgetManager.getInstance(getApplication())
+				.getAppWidgetIds(
+						new ComponentName(getApplication(),
+								WidgetProvider.class));
+		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(rIntent);
+	}
+
+	@Override
+	protected void onCreate(Bundle sSavedInstanceState) {
+		super.onCreate(sSavedInstanceState);
+		pd = new ProgressDialog(this);
+		pd.setMessage("KISS wird geladen...");
+		pd.setCancelable(false);
+		pd.setIndeterminate(true);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		}
+>>>>>>> beta
 		Intent service = new Intent(this, Background.class);
 		startService(service);
 		Check check = new Check();
@@ -155,7 +203,15 @@ public class MainActivity extends ListActivity {
 	private void createList() {
 		final Handler handler = new Handler();
 
+<<<<<<< HEAD
 		addonSherlock().setProgressBarIndeterminateVisibility(true);
+=======
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			setSupportProgressBarIndeterminateVisibility(true);
+		} else {
+			pd.show();
+		}
+>>>>>>> beta
 
 		Thread t = new Thread(new Runnable() {
 
@@ -279,8 +335,16 @@ public class MainActivity extends ListActivity {
 					@Override
 					public void run() {
 						startList();
+<<<<<<< HEAD
 						addonSherlock().setProgressBarIndeterminateVisibility(
 								false);
+=======
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+							setSupportProgressBarIndeterminateVisibility(false);
+						} else {
+							pd.hide();
+						}
+>>>>>>> beta
 					}
 
 				});
@@ -340,8 +404,15 @@ public class MainActivity extends ListActivity {
 					TaskStackBuilder stackBuilder = TaskStackBuilder
 							.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
+<<<<<<< HEAD
 					Intent iShow = new Intent(MainActivity.this, InfoscreenChoice.class);
 					stackBuilder.addNextIntent(iShow);
+=======
+					String url = "https://kpf.bks-campus.ch/infoscreen";
+					Intent iKISS = new Intent(Intent.ACTION_VIEW);
+					iKISS.setData(Uri.parse(url));
+					stackBuilder.addNextIntent(iKISS);
+>>>>>>> beta
 					PendingIntent resultPendingIntent = stackBuilder
 							.getPendingIntent(0,
 									PendingIntent.FLAG_UPDATE_CURRENT);
@@ -383,14 +454,22 @@ public class MainActivity extends ListActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+<<<<<<< HEAD
 		com.actionbarsherlock.view.MenuInflater inflator = getSupportMenuInflater();
+=======
+		MenuInflater inflator = getMenuInflater();
+>>>>>>> beta
 		inflator.inflate(R.menu.main_kiss, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean onMenuItemSelected(int featureId,
 			com.actionbarsherlock.view.MenuItem item) {
+=======
+	public boolean onOptionsItemSelected(MenuItem item) {
+>>>>>>> beta
 		switch (item.getItemId()) {
 		case R.id.iResetCounter:
 			AlertDialog.Builder dg = new AlertDialog.Builder(this);
@@ -456,9 +535,46 @@ public class MainActivity extends ListActivity {
 			builder.show();
 			break;
 		case R.id.iShowKISS:
+<<<<<<< HEAD
 			Intent iShow = new Intent(MainActivity.this, InfoscreenChoice.class);
 			iShow.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(iShow);
+=======
+			/*
+			 * Intent iShow = new Intent(MainActivity.this,
+			 * InfoscreenChoice.class);
+			 * iShow.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			 * startActivity(iShow);
+			 */
+
+			AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+					this, R.layout.simple_list_item_1);
+			arrayAdapter.add("Im Browser öffnen");
+			arrayAdapter.add("Aus dem Cache anzeigen");
+			builderSingle.setAdapter(arrayAdapter,
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							switch (which) {
+							case 0:
+								String url = "https://kpf.bks-campus.ch/infoscreen";
+								Intent iKISS = new Intent(Intent.ACTION_VIEW);
+								iKISS.setData(Uri.parse(url));
+								startActivity(iKISS);
+								break;
+							case 1:
+								Intent iCache = new Intent(MainActivity.this,
+										KissView.class);
+								iCache.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+								startActivity(iCache);
+								break;
+							}
+						}
+					});
+			builderSingle.show();
+>>>>>>> beta
 			break;
 		case R.id.iAbout:
 			AlertDialog.Builder infodg = new AlertDialog.Builder(this);
@@ -472,7 +588,11 @@ public class MainActivity extends ListActivity {
 			finish();
 			break;
 		}
+<<<<<<< HEAD
 		return super.onMenuItemSelected(featureId, item);
+=======
+		return super.onOptionsItemSelected(item);
+>>>>>>> beta
 	}
 
 	@Override
@@ -486,9 +606,15 @@ public class MainActivity extends ListActivity {
 			i.putExtras(bData);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
+<<<<<<< HEAD
 		}
 		else {
 			Toast.makeText(this, "Liste wird aktualisiert ...", Toast.LENGTH_SHORT).show();
+=======
+		} else {
+			Toast.makeText(this, "Liste wird aktualisiert ...",
+					Toast.LENGTH_SHORT).show();
+>>>>>>> beta
 		}
 	}
 

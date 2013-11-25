@@ -4,11 +4,18 @@ import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.Fragment;
 
 import android.support.v4.app.FragmentTransaction;
+<<<<<<< HEAD
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 
 public class TabListener<T extends Fragment> implements ActionBar.TabListener {
+=======
+import android.support.v7.app.ActionBar.Tab;
+
+public class TabListener<T extends Fragment> implements
+		android.support.v7.app.ActionBar.TabListener {
+>>>>>>> beta
 	private Fragment mFragment;
 	private final Activity mActivity;
 	private final String mTag;

@@ -2,6 +2,7 @@ package com.martin.noten;
 
 import java.util.Calendar;
 
+<<<<<<< HEAD
 import org.holoeverywhere.ArrayAdapter;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
@@ -13,6 +14,17 @@ import org.holoeverywhere.widget.DatePicker;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.Toast;
+=======
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.CheckBox;
+import org.holoeverywhere.widget.EditText;
+import org.holoeverywhere.widget.Spinner;
+import org.holoeverywhere.widget.Toast;
+import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
+import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetListener;
+>>>>>>> beta
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -21,12 +33,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+<<<<<<< HEAD
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.actionbarsherlock.view.MenuItem;
+=======
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+>>>>>>> beta
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
@@ -51,11 +72,22 @@ public class AddMark extends Activity implements OnClickListener,
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+<<<<<<< HEAD
 		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
 	
+=======
+		int[] ids = AppWidgetManager.getInstance(getApplication())
+				.getAppWidgetIds(
+						new ComponentName(getApplication(),
+								WidgetProvider.class));
+		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(rIntent);
+	}
+
+>>>>>>> beta
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -139,9 +171,17 @@ public class AddMark extends Activity implements OnClickListener,
 					}
 
 					Calendar c = Calendar.getInstance();
+<<<<<<< HEAD
 					new DatePickerDialog(this, this, c.get(Calendar.YEAR),
 							c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
 							.show();
+=======
+					DatePickerDialog dg = new DatePickerDialog();
+					dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+							c.get(Calendar.DAY_OF_MONTH));
+					dg.setOnDateSetListener(this);
+					dg.show(this);
+>>>>>>> beta
 
 				} else {
 					Toast t = Toast.makeText(AddMark.this, "Ungültige Note",
@@ -211,9 +251,25 @@ public class AddMark extends Activity implements OnClickListener,
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
 		String date = arg0.getDayOfMonth() + "." + (arg0.getMonth() + 1) + "."
 				+ arg0.getYear();
+=======
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			finish();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear,
+			int dayOfMonth) {
+		String date = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
+>>>>>>> beta
 
 		if (iSemester == 1) {
 			String sMarksOld = fach.getNoten1();
@@ -263,6 +319,7 @@ public class AddMark extends Activity implements OnClickListener,
 		}
 	}
 
+<<<<<<< HEAD
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -273,4 +330,6 @@ public class AddMark extends Activity implements OnClickListener,
 		return super.onOptionsItemSelected(item);
 	}
 
+=======
+>>>>>>> beta
 }

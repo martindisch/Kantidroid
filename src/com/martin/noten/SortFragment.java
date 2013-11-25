@@ -15,12 +15,22 @@ import com.martin.kantidroid.R;
 public class SortFragment extends DialogFragment implements OnClickListener {
 
 	int selected;
+<<<<<<< HEAD
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 		selected = settings.getInt("sorting", 0);
 		
+=======
+
+	@Override
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		SharedPreferences settings = getSharedPreferences("MarkSettings",
+				Context.MODE_PRIVATE);
+		selected = settings.getInt("sorting", 0);
+
+>>>>>>> beta
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle("Sortieren");
 		builder.setSingleChoiceItems(R.array.sorting_entries, selected, this);
@@ -32,6 +42,7 @@ public class SortFragment extends DialogFragment implements OnClickListener {
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if (which == -1) {
+<<<<<<< HEAD
 			SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = settings.edit();
 			
@@ -45,4 +56,18 @@ public class SortFragment extends DialogFragment implements OnClickListener {
 	}
 
 	
+=======
+			SharedPreferences settings = getSharedPreferences("MarkSettings",
+					Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = settings.edit();
+
+			editor.putInt("sorting", selected);
+			editor.commit();
+
+		} else {
+			selected = which;
+		}
+	}
+
+>>>>>>> beta
 }

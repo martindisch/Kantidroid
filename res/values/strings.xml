@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+<<<<<<< HEAD
     <string name="changelog">Version 1.16\n============\n - Stundenplan lässt sich über das Menü oben rechts auf der Startseite abrufen\n\nVersion 1.15\n============\n - Promotionsbestimmungen HMS/FMS hinzugefügt (Experimentell)\n\nVersion 1.14\n============\n - Bugfixes für KISS\n\nVersion 1.13\n============\n - Auswahl, ob KISS im Browser oder aus Cache angezeigt werden soll\n\nVersion 1.12\n============\n - Ausfälle werden in der KISS Übersicht zuoberst angezeigt\n - Um Datenguthaben zu sparen, kann das letzte zwischengespeicherte KISS angezeigt werden</string>
+=======
+    <string name="changelog">Version 2.00\n============\n - Design überarbeitet\n - Widget überarbeitet\n - Lokales Backup\n\nAuf Geräten mit physischem Menübutton muss das Menu über diesen aufgerufen werden\n\nVersion 1.16\n============\n - Stundenplan lässt sich über das Menü oben rechts auf der Startseite abrufen\n\nVersion 1.15\n============\n - Promotionsbestimmungen HMS/FMS hinzugefügt (Experimentell)\n\nVersion 1.14\n============\n - Bugfixes für KISS</string>
+>>>>>>> beta
     <string name="app_name">Kantidroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
+<<<<<<< HEAD
+=======
+    <string-array name="prefnames">
+        <item>check</item>
+        <item>MarkSettings</item>
+        <item>KISS</item>
+        <item>Kantidroid</item>
+        <item>Rem</item>
+        <item>mysettings</item>
+    </string-array>
+>>>>>>> beta
     <string-array name="sorting_entries">
         <item id="@+id/iSortName">Nach Namen sortieren</item>
         <item id="@+id/iSortMarkDesc">Absteigend sortieren</item>
@@ -21,6 +36,7 @@
         <item>Halb (0.5x)</item>
         <item>Doppelt (2x)</item>
     </string-array>
+<<<<<<< HEAD
 
     <string name="kiss_main">Füge Personen wie deine Lehrer oder dich selbst zur Überwachung mit dem \'+\' Symbol hinzu.Das KISS wird im Hintergrund auf diese Personen überprüft und du wirst benachrichtigt, falls sie vorhanden sind. Natürlich kannst du die Übersicht auch manuell aktualisieren.\n\nBerühre einen Namen in der Liste um ihn ändern zu können oder zu sehen, wie oft diese Person bereits im KISS zu sehen war.\n\nÜber das Dropdown-Menu rechts oben kannst du Personen entfernen, den Intervall ändern, in dem das KISS überprüft wird und die Ausfallzähler aller Personen zurücksetzen.</string>
     <string name="kont_main">Füge Fächer mit dem \'+\' Symbol hinzu und entferne sie mit dem Abfallsymbol.\n\nBerühre ein Fach in der Liste um eine detaillierte Übersicht über deinen Kontingentgebrauch zu bekommen und Kontingent zu nehmen.\n\nÜber das Dropdown-Menu rechts oben kannst du am Ende des Schuljahres dein Kontingent zurücksetzen.\nDort kannst du auch noch fehlende Fächer importieren, falls du sie bei den Noten bereits eingegeben hast.\nEs gibt auch die Möglichkeit, Fächer zu bearbeiten, falls der Name oder die Anzahl verfügbares Kontingent nicht korrekt ist.</string>
@@ -30,6 +46,23 @@
     <string name="noten_viewfach_addmark">Gib eine Note ein und wähle entweder eine vorgegebene Gewichtung aus oder gib über den \'...\' Button eine eigene ein.</string>
     <string name="license">\nCopyright (C) 2013 Sergey Shatunov\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
     <string name="kdroid_main">Willkommen bei Kantidroid!\n\nDies ist die Übersichtsseite. Von jeder Kategorie siehst du hier einige Daten. Berühre die Symbole, um zu den einzelnen Teilen der App zu gelangen.\n\nDu kannst auch direkte Verknüpfungen zu den einzelnen Teilen auf den Homescreen erstellen, indem du sie als Widgets hinzufügst. Es ist auch ein kleines Infowidget mit den wichtigsten Daten verfügbar.</string>
+=======
+    <string-array name="semesters">
+        <item>1. Semester</item>
+        <item>2. Semester</item>
+    </string-array>
+
+    <string name="backup_importieren">Importiert Daten vom Ordner &quot;Kantidroid/Backup&quot; auf dem externen Speicher.</string>
+    <string name="backup_speichern">Speichert die Daten auf dem externen Speicher im Ordner &quot;Kantidroid/Backup&quot;</string>
+    <string name="kiss_main">Füge Personen wie deine Lehrer oder dich selbst zur Überwachung mit dem \'+\' Symbol hinzu.Das KISS wird im Hintergrund auf diese Personen überprüft und du wirst benachrichtigt, falls sie vorhanden sind. Natürlich kannst du die Übersicht auch manuell aktualisieren.\n\nBerühre einen Namen in der Liste um ihn ändern zu können oder zu sehen, wie oft diese Person bereits im KISS zu sehen war.\n\nÜber das Menu kannst du Personen entfernen, den Intervall ändern, in dem das KISS überprüft wird und die Ausfallzähler aller Personen zurücksetzen.</string>
+    <string name="kont_main">Füge Fächer mit dem \'+\' Symbol hinzu und entferne sie mit dem Abfallsymbol.\n\nBerühre ein Fach in der Liste um eine detaillierte Übersicht über deinen Kontingentgebrauch zu bekommen und Kontingent zu nehmen.\n\nÜber das Menu kannst du am Ende des Schuljahres dein Kontingent zurücksetzen.\nDort kannst du auch noch fehlende Fächer importieren, falls du sie bei den Noten bereits eingegeben hast.\nEs gibt auch die Möglichkeit, Fächer zu bearbeiten, falls der Name oder die Anzahl verfügbares Kontingent nicht korrekt ist.</string>
+    <string name="kont_viewfach">Nimm Kontingent mit dem \'+\' Symbol oder mache eine Kontingentnutzung über das Abfallsymbol rückgängig.</string>
+    <string name="noten_main">Füge Fächer mit dem \'+\' Symbol hinzu oder entferne sie mit dem Abfallsymbol.\n\nBerühre ein Fach in der Liste um eine genaue Übersicht über deine Noten zu bekommen und Noten hinzuzufügen.\n\nÜber das Menu kannst du am Ende des Schuljahres die Noten zurücksetzen.\nDort kannst du auch noch fehlende Fächer importieren, falls du sie bereits beim Kontingent eingegeben hast.\nEs gibt auch die Möglichkeit, Fächer zu bearbeiten, falls du dich beim Namen vertippt hast.\nDie Sortierung der Liste kannst du ebenfalls ändern, sowie deine Abteilung (Gymnasium, HMS/FMS)</string>
+    <string name="noten_viewfach">Füge eine Note mit dem \'+\' Symbol hinzu oder entferne sie mit dem Abfallsymbol. Achte darauf, dass du das Fach im Tab des richtigen Semesters berührt hast.\n\nÜber das Infosymbol kannst du herausfinden, welche Note du in der nächsten Prüfung benötigst, um einen bestimmten Schnitt zu erreichen.</string>
+    <string name="noten_viewfach_addmark">Gib eine Note ein und wähle entweder eine vorgegebene Gewichtung aus oder gib über den \'...\' Button eine eigene ein.</string>
+    <string name="license">\nCopyright (C) 2013 Sergey Shatunov\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+    <string name="kdroid_main">Willkommen bei Kantidroid!\n\nDies ist die Übersichtsseite. Von jeder Kategorie siehst du hier einige Daten. Berühre die Karten, um zu den einzelnen Teilen der App zu gelangen.\n\nKantidroid hat auch ein Widget, das dir die wichtigsten Daten auf dem Homescreen anzeigt.</string>
+>>>>>>> beta
 
     <string-array name="lehrer_list">
         <item>Aeberhard Willi</item>
@@ -106,6 +139,10 @@
         <item>Janz Ervin</item>
         <item>Jehli Anita</item>
         <item>Joos Bärbel</item>
+<<<<<<< HEAD
+=======
+        <item>Joos Baerbel</item>
+>>>>>>> beta
         <item>Joos Franco</item>
         <item>Juon Luzius</item>
         <item>Just Josias</item>

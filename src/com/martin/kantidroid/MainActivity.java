@@ -1,6 +1,7 @@
 package com.martin.kantidroid;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,14 +10,26 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+=======
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+>>>>>>> beta
 import java.util.List;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
+<<<<<<< HEAD
 import org.holoeverywhere.app.AlertDialog.Builder;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.ProgressBar;
+=======
+import org.holoeverywhere.widget.EditText;
+import org.holoeverywhere.widget.LinearLayout;
+>>>>>>> beta
 import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
@@ -38,6 +51,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+<<<<<<< HEAD
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,6 +59,15 @@ import android.widget.ImageButton;
 
 import com.actionbarsherlock.view.Menu;
 import com.example.kontingentprototype.Overview;
+=======
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+
+import com.martin.kontingent.Overview;
+>>>>>>> beta
 import com.martin.noten.Fach;
 import com.martin.noten.Main;
 import com.martin.noten.PromoCheck;
@@ -52,6 +75,7 @@ import com.martin.noten.PromoRes;
 
 public class MainActivity extends Activity implements OnClickListener {
 
+<<<<<<< HEAD
 	ImageButton ibKontingent, ibKISS, ibNoten;
 	TextView tvSchn, promoviert, pluspunkte, tvUsage, tvUsage2, tvKISS;
 	View separator;
@@ -60,6 +84,14 @@ public class MainActivity extends Activity implements OnClickListener {
 	Fach entry;
 	ProgressBar pb;
 	WidgetContainer wcKont, wcNot, wcKISS;
+=======
+	LinearLayout cardKontingent, cardKISS, cardNoten, actioncardNoten,
+			actioncardKontingent;
+	TextView tvSchn, pluspunkte, tvUsage, tvUsage2, tvKISS;
+	double schn = 0;
+	Resources res;
+	Fach entry;
+>>>>>>> beta
 
 	@Override
 	protected void onStop() {
@@ -79,6 +111,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.kdroid_main);
+<<<<<<< HEAD
 		wcKont = (WidgetContainer) findViewById(R.id.wContainerKontingent);
 		wcNot = (WidgetContainer) findViewById(R.id.wContainerNoten);
 		wcKISS = (WidgetContainer) findViewById(R.id.wContainerKISS);
@@ -96,6 +129,22 @@ public class MainActivity extends Activity implements OnClickListener {
 		pluspunkte = (TextView) findViewById(R.id.tvPlusP);
 		separator = findViewById(R.id.vSeparator);
 		pb = (ProgressBar) findViewById(R.id.pbUsage);
+=======
+		// getSupportActionBar().setBackgroundDrawable(new
+		// ColorDrawable(getResources().getColor(R.color.holo_purple_light)));
+		cardNoten = (LinearLayout) findViewById(R.id.llCardNoten);
+		cardKontingent = (LinearLayout) findViewById(R.id.llCardKontingent);
+		cardKISS = (LinearLayout) findViewById(R.id.llCardKISS);
+		actioncardNoten = (LinearLayout) findViewById(R.id.llActioncardNoten);
+		actioncardKontingent = (LinearLayout) findViewById(R.id.llActioncardKontingent);
+		cardNoten.setOnClickListener(this);
+		cardKontingent.setOnClickListener(this);
+		cardKISS.setOnClickListener(this);
+		actioncardNoten.setOnClickListener(this);
+		actioncardKontingent.setOnClickListener(this);
+		tvSchn = (TextView) findViewById(R.id.tvViewSchn);
+		pluspunkte = (TextView) findViewById(R.id.tvPlusP);
+>>>>>>> beta
 		tvUsage = (TextView) findViewById(R.id.tvUsage);
 		tvUsage2 = (TextView) findViewById(R.id.tvViewText);
 		tvKISS = (TextView) findViewById(R.id.tvKISS);
@@ -110,13 +159,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			dg.show();
 			check.setSeen(getClass().getName(), this);
 		}
+<<<<<<< HEAD
 		if (!check.getSeen("1.16", this)) {
+=======
+		if (!check.getSeen("2.00", this)) {
+>>>>>>> beta
 			AlertDialog.Builder dgc = new AlertDialog.Builder(this);
 			dgc.setTitle("Changelog");
 			dgc.setNeutralButton("Schliessen", null);
 			dgc.setMessage(R.string.changelog);
 			dgc.show();
+<<<<<<< HEAD
 			check.setSeen("1.16", this);
+=======
+			check.setSeen("2.00", this);
+>>>>>>> beta
 		}
 
 		// Enable networking without secondary thread
@@ -155,16 +212,29 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else {
 			prResult = prCheck.getFMS(2);
 		}
+<<<<<<< HEAD
 		promoviert.setText(prResult.sMessage);
 		promoviert.setTextColor(res.getColor(prResult.iColor));
 		pluspunkte.setText(prResult.sPP);
 		pluspunkte.setTextColor(res.getColor(prResult.iColor));
 		separator.setBackgroundColor(res.getColor(prResult.iColor));
+=======
+		pluspunkte.setText(prResult.sPP);
+		if (prResult.iColor == R.color.holo_green_light) {
+			pluspunkte.setTextColor(res.getColor(R.color.holo_orange_light));
+		} else {
+			pluspunkte.setTextColor(res.getColor(prResult.iColor));
+		}
+>>>>>>> beta
 		tvSchn.setText(prResult.sSchnitt);
 
 		// Kontingent
 
+<<<<<<< HEAD
 		com.example.kontingentprototype.DatabaseHandler dbK = new com.example.kontingentprototype.DatabaseHandler(
+=======
+		com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
+>>>>>>> beta
 				this);
 		int countK = dbK.getFachCount();
 
@@ -173,9 +243,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		int iPercentage = 0;
 		double dPercentage = 0;
 
+<<<<<<< HEAD
 		List<com.example.kontingentprototype.Fach> faecherK = dbK
 				.getAllFaecher(this);
 		com.example.kontingentprototype.Fach entry = null;
+=======
+		List<com.martin.kontingent.Fach> faecherK = dbK.getAllFaecher(this);
+		com.martin.kontingent.Fach entry = null;
+>>>>>>> beta
 
 		int überzogen = 0;
 
@@ -200,9 +275,16 @@ public class MainActivity extends Activity implements OnClickListener {
 			dPercentage = (double) Math.round((double) used * 100 / totalK
 					* 100) / 100;
 		}
+<<<<<<< HEAD
 		tvUsage.setText(dPercentage + "% des Kontingents benutzt");
 		if (überzogen == 0) {
 			tvUsage.setTextColor(res.getColor(R.color.holo_green_light));
+=======
+		tvUsage2.setText(dPercentage + "% des Kontingents benutzt");
+		tvUsage.setText(used + "/" + totalK);
+		if (überzogen == 0) {
+			tvUsage.setTextColor(res.getColor(R.color.holo_orange_light));
+>>>>>>> beta
 		} else {
 			tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
 			String before = tvUsage.getText().toString();
@@ -212,10 +294,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			tvUsage.setText(before + "\nKontingent in " + überzogen + einzmehrz);
 		}
+<<<<<<< HEAD
 		pb.setMax(100);
 		pb.setProgress(iPercentage);
 
 		tvUsage2.setText(used + "/" + totalK);
+=======
+>>>>>>> beta
 
 		// KISS
 
@@ -249,37 +334,62 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+<<<<<<< HEAD
 		case R.id.ibKontingent:
+=======
+		case R.id.llCardKontingent:
+>>>>>>> beta
 			Intent i = new Intent(MainActivity.this, Overview.class);
 			i.putExtra("Internal_call", true);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 			break;
+<<<<<<< HEAD
 		case R.id.ibKISS:
+=======
+		case R.id.llCardKISS:
+>>>>>>> beta
 			Intent i2 = new Intent(MainActivity.this,
 					com.martin.kiss.MainActivity.class);
 			i2.putExtra("Internal_call", true);
 			i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i2);
 			break;
+<<<<<<< HEAD
 		case R.id.ibNoten:
+=======
+		case R.id.llCardNoten:
+>>>>>>> beta
 			Intent i3 = new Intent(MainActivity.this, Main.class);
 			i3.putExtra("Internal_call", true);
 			i3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i3);
 			break;
+<<<<<<< HEAD
 		case R.id.wContainerKontingent:
 			Intent i4 = new Intent(MainActivity.this, Overview.class);
+=======
+		case R.id.llActioncardNoten:
+			Intent i4 = new Intent(MainActivity.this,
+					com.martin.noten.AddSelect.class);
+>>>>>>> beta
 			i4.putExtra("Internal_call", true);
 			i4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i4);
 			break;
+<<<<<<< HEAD
 		case R.id.wContainerNoten:
 			Intent i5 = new Intent(MainActivity.this, Main.class);
+=======
+		case R.id.llActioncardKontingent:
+			Intent i5 = new Intent(MainActivity.this,
+					com.martin.kontingent.AddSelect.class);
+>>>>>>> beta
 			i5.putExtra("Internal_call", true);
 			i5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i5);
 			break;
+<<<<<<< HEAD
 		case R.id.wContainerKISS:
 			Intent i6 = new Intent(MainActivity.this,
 					com.martin.kiss.MainActivity.class);
@@ -287,19 +397,29 @@ public class MainActivity extends Activity implements OnClickListener {
 			i6.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i6);
 			break;
+=======
+>>>>>>> beta
 		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+<<<<<<< HEAD
 		com.actionbarsherlock.view.MenuInflater inflator = getSupportMenuInflater();
+=======
+		MenuInflater inflator = getMenuInflater();
+>>>>>>> beta
 		inflator.inflate(R.menu.kdroid_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean onMenuItemSelected(int featureId,
 			com.actionbarsherlock.view.MenuItem item) {
+=======
+	public boolean onOptionsItemSelected(MenuItem item) {
+>>>>>>> beta
 		switch (item.getItemId()) {
 		case R.id.iTimetable:
 			LayoutInflater ttinflater = this.getLayoutInflater();
@@ -385,10 +505,15 @@ public class MainActivity extends Activity implements OnClickListener {
 													"Stundenplan für diese Klasse konnte nicht gefunden werden",
 													Toast.LENGTH_SHORT).show();
 										}
+<<<<<<< HEAD
 									}
 									else {
 										Toast.makeText(
 												getApplicationContext(),
+=======
+									} else {
+										Toast.makeText(getApplicationContext(),
+>>>>>>> beta
 												"Keine Internetverbindung",
 												Toast.LENGTH_SHORT).show();
 									}
@@ -426,8 +551,18 @@ public class MainActivity extends Activity implements OnClickListener {
 					});
 			delDg.show();
 			break;
+<<<<<<< HEAD
 		}
 		return super.onMenuItemSelected(featureId, item);
+=======
+		case R.id.iBackup:
+			Intent i = new Intent(MainActivity.this, Backup.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(i);
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+>>>>>>> beta
 	}
 
 	public void clearApplicationData() {

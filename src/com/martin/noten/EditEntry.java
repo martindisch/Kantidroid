@@ -10,10 +10,17 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.actionbarsherlock.view.MenuItem;
+=======
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+
+>>>>>>> beta
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
@@ -31,11 +38,22 @@ public class EditEntry extends Activity implements OnClickListener {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+<<<<<<< HEAD
 		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
 	
+=======
+		int[] ids = AppWidgetManager.getInstance(getApplication())
+				.getAppWidgetIds(
+						new ComponentName(getApplication(),
+								WidgetProvider.class));
+		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(rIntent);
+	}
+
+>>>>>>> beta
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

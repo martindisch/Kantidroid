@@ -11,13 +11,20 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.view.MenuItem;
+>>>>>>> beta
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
+<<<<<<< HEAD
 import com.actionbarsherlock.view.MenuItem;
+=======
+>>>>>>> beta
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
@@ -33,11 +40,22 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+<<<<<<< HEAD
 		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
 	
+=======
+		int[] ids = AppWidgetManager.getInstance(getApplication())
+				.getAppWidgetIds(
+						new ComponentName(getApplication(),
+								WidgetProvider.class));
+		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(rIntent);
+	}
+
+>>>>>>> beta
 	@Override
 	protected void onCreate(Bundle sSavedInstanceState) {
 		super.onCreate(sSavedInstanceState);
@@ -56,7 +74,12 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 		bCancel.setOnClickListener(this);
 		cbAnother.setOnCheckedChangeListener(this);
 		String[] names = getResources().getStringArray(R.array.lehrer_list);
+<<<<<<< HEAD
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names);
+=======
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.simple_list_item_1, names);
+>>>>>>> beta
 		etName.setAdapter(adapter);
 	}
 

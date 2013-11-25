@@ -24,11 +24,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords" />
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> beta
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Anzahl im KISS gestanden" />
+<<<<<<< HEAD
             
             <TextView 
                 android:layout_width="wrap_content"
@@ -41,6 +46,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="15dp" >
+=======
+
+            <TextView
+                android:id="@+id/tvEditCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal" >
+>>>>>>> beta
 
                 <Button
                     android:id="@+id/bEditSave"

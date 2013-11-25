@@ -16,10 +16,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
+=======
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+
+>>>>>>> beta
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 
@@ -35,6 +45,7 @@ public class Main extends Activity implements OnClickListener {
 	Resources res;
 	int iSemester = 1;
 
+<<<<<<< HEAD
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,6 +78,61 @@ public class Main extends Activity implements OnClickListener {
 			bar.addTab(tabB, 1, false);
 			bar.addTab(tabC, 2, true);
 		}
+=======
+	// PAGER
+
+	SectionsPagerAdapter mSectionsPagerAdapter;
+	ViewPager mViewPager;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.viewpagerlayout_noten);
+		// PAGER
+
+		// Create the adapter that will return a fragment for each of the three
+		// primary sections of the app.
+		mSectionsPagerAdapter = new SectionsPagerAdapter(
+				getSupportFragmentManager());
+
+		// Set up the ViewPager with the sections adapter.
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setAdapter(mSectionsPagerAdapter);
+
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+
+			@Override
+			public void onPageSelected(int arg0) {
+				SharedPreferences spNoten = getApplicationContext()
+						.getSharedPreferences("MarkSettings",
+								getApplicationContext().MODE_PRIVATE);
+				SharedPreferences.Editor editor = spNoten.edit();
+				switch (arg0) {
+				case 0:
+					editor.putInt("selected_semester", 1);
+					break;
+				case 1:
+					editor.putInt("selected_semester", 2);
+					break;
+				case 2:
+					editor.putInt("selected_semester", 3);
+					break;
+				}
+				editor.commit();
+			}
+
+		});
+>>>>>>> beta
 		Check check = new Check();
 		if (!check.getSeen(getClass().getName(), this)) {
 			AlertDialog.Builder dg = new AlertDialog.Builder(this);
@@ -83,14 +149,22 @@ public class Main extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+<<<<<<< HEAD
 		com.actionbarsherlock.view.MenuInflater inflator = getSupportMenuInflater();
+=======
+		MenuInflater inflator = getMenuInflater();
+>>>>>>> beta
 		inflator.inflate(R.menu.menu_noten, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean onMenuItemSelected(int featureId,
 			com.actionbarsherlock.view.MenuItem item) {
+=======
+	public boolean onOptionsItemSelected(MenuItem item) {
+>>>>>>> beta
 		switch (item.getItemId()) {
 		case R.id.iAdd:
 			Intent iadd = new Intent(Main.this, CreateEntry.class);
@@ -137,6 +211,7 @@ public class Main extends Activity implements OnClickListener {
 
 					editor.putInt("sorting", selected);
 					editor.commit();
+<<<<<<< HEAD
 					if (settings.getInt("selected_semester", 1) == 1) {
 						getSupportFragmentManager().findFragmentByTag(
 								"semester1").onResume();
@@ -148,6 +223,9 @@ public class Main extends Activity implements OnClickListener {
 								.findFragmentByTag("zeugnis").onResume();
 					}
 
+=======
+					mViewPager.setAdapter(mSectionsPagerAdapter);
+>>>>>>> beta
 				}
 			});
 			dee.setSingleChoiceItems(R.array.sorting_entries, selected,
@@ -167,8 +245,12 @@ public class Main extends Activity implements OnClickListener {
 			String sAbteilung = spNoten.getString("Abteilung", "Gym");
 			if (sAbteilung.contentEquals("HMS")) {
 				selected = 1;
+<<<<<<< HEAD
 			}
 			else if (sAbteilung.contentEquals("FMS")) {
+=======
+			} else if (sAbteilung.contentEquals("FMS")) {
+>>>>>>> beta
 				selected = 2;
 			}
 
@@ -183,6 +265,7 @@ public class Main extends Activity implements OnClickListener {
 							"MarkSettings", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = settings.edit();
 					String Abteilung = "Gym";
+<<<<<<< HEAD
 					
 					if (selected == 1) {
 						Abteilung = "HMS";
@@ -204,6 +287,18 @@ public class Main extends Activity implements OnClickListener {
 								.findFragmentByTag("zeugnis").onResume();
 					}
 
+=======
+
+					if (selected == 1) {
+						Abteilung = "HMS";
+					} else if (selected == 2) {
+						Abteilung = "FMS";
+					}
+
+					editor.putString("Abteilung", Abteilung);
+					editor.commit();
+					mViewPager.setAdapter(mSectionsPagerAdapter);
+>>>>>>> beta
 				}
 			});
 			dr.setSingleChoiceItems(R.array.abteilungen, selected,
@@ -226,6 +321,7 @@ public class Main extends Activity implements OnClickListener {
 					this);
 			List<com.martin.noten.Fach> nFaecher = dbN.getAllFaecher(this, 1);
 
+<<<<<<< HEAD
 			com.example.kontingentprototype.DatabaseHandler dbK = new com.example.kontingentprototype.DatabaseHandler(
 					this);
 			List<com.example.kontingentprototype.Fach> kFaecher = dbK
@@ -233,6 +329,14 @@ public class Main extends Activity implements OnClickListener {
 
 			com.martin.noten.Fach entryN = null;
 			com.example.kontingentprototype.Fach entryK = null;
+=======
+			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
+					this);
+			List<com.martin.kontingent.Fach> kFaecher = dbK.getAllFaecher(this);
+
+			com.martin.noten.Fach entryN = null;
+			com.martin.kontingent.Fach entryK = null;
+>>>>>>> beta
 
 			boolean exists;
 			boolean imported = false;
@@ -257,7 +361,10 @@ public class Main extends Activity implements OnClickListener {
 					newFach.setName(entryK.getName());
 					newFach.setPromotionsrelevant("true");
 					dbN.addFach(newFach);
+<<<<<<< HEAD
 					onResume();
+=======
+>>>>>>> beta
 
 				}
 			}
@@ -272,14 +379,22 @@ public class Main extends Activity implements OnClickListener {
 				impinfo.setMessage("Alle Fächer wurden als Promotionsfächer übernommen. Sollte dies nicht korrekt sein, kannst du das über den Menüpunkt 'Fach bearbeiten' korrigieren.");
 				impinfo.setNeutralButton("Schliessen", null);
 				impinfo.show();
+<<<<<<< HEAD
+=======
+				mViewPager.setAdapter(mSectionsPagerAdapter);
+>>>>>>> beta
 			}
 			break;
 		case android.R.id.home:
 			finish();
 			break;
 		}
+<<<<<<< HEAD
 
 		return super.onMenuItemSelected(featureId, item);
+=======
+		return super.onOptionsItemSelected(item);
+>>>>>>> beta
 	}
 
 	@Override
@@ -303,6 +418,7 @@ public class Main extends Activity implements OnClickListener {
 		}
 		SharedPreferences settings = getSharedPreferences("MarkSettings",
 				Context.MODE_PRIVATE);
+<<<<<<< HEAD
 		if (settings.getInt("selected_semester", 1) == 1) {
 			getSupportFragmentManager().findFragmentByTag("semester1")
 					.onResume();
@@ -312,6 +428,9 @@ public class Main extends Activity implements OnClickListener {
 		} else {
 			getSupportFragmentManager().findFragmentByTag("zeugnis").onResume();
 		}
+=======
+		mViewPager.setAdapter(mSectionsPagerAdapter);
+>>>>>>> beta
 
 		Toast t = Toast.makeText(Main.this, "Noten zurückgesetzt",
 				Toast.LENGTH_SHORT);
@@ -325,6 +444,7 @@ public class Main extends Activity implements OnClickListener {
 		SharedPreferences settings = getSharedPreferences("MarkSettings",
 				Context.MODE_PRIVATE);
 		if (settings.getInt("selected_semester", 1) == 1) {
+<<<<<<< HEAD
 			getSupportFragmentManager().findFragmentByTag("semester1")
 					.onResume();
 			getSupportFragmentManager().findFragmentByTag("semester1")
@@ -338,6 +458,13 @@ public class Main extends Activity implements OnClickListener {
 			getSupportFragmentManager().findFragmentByTag("zeugnis").onResume();
 			getSupportFragmentManager().findFragmentByTag("zeugnis")
 					.setRetainInstance(true);
+=======
+			mViewPager.setCurrentItem(0);
+		} else if (settings.getInt("selected_semester", 1) == 2) {
+			mViewPager.setCurrentItem(1);
+		} else {
+			mViewPager.setCurrentItem(2);
+>>>>>>> beta
 		}
 	}
 }

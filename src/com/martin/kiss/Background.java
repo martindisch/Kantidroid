@@ -20,6 +20,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+<<<<<<< HEAD
+=======
+import android.net.Uri;
+>>>>>>> beta
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.format.DateUtils;
@@ -136,8 +140,15 @@ public class Background extends IntentService {
 					TaskStackBuilder stackBuilder = TaskStackBuilder
 							.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
+<<<<<<< HEAD
 					Intent iShow = new Intent(Background.this, InfoscreenChoice.class);
 					stackBuilder.addNextIntent(iShow);
+=======
+					String url = "https://kpf.bks-campus.ch/infoscreen";
+					Intent iKISS = new Intent(Intent.ACTION_VIEW);
+					iKISS.setData(Uri.parse(url));
+					stackBuilder.addNextIntent(iKISS);
+>>>>>>> beta
 					PendingIntent resultPendingIntent = stackBuilder
 							.getPendingIntent(0,
 									PendingIntent.FLAG_UPDATE_CURRENT);
@@ -169,7 +180,14 @@ public class Background extends IntentService {
 			}
 			Intent rIntent = new Intent(this, WidgetProvider.class);
 			rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+<<<<<<< HEAD
 			int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
+=======
+			int[] ids = AppWidgetManager.getInstance(getApplication())
+					.getAppWidgetIds(
+							new ComponentName(getApplication(),
+									WidgetProvider.class));
+>>>>>>> beta
 			rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 			sendBroadcast(rIntent);
 		}

@@ -5,6 +5,10 @@ import org.holoeverywhere.widget.TextView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.view.MenuItem;
+>>>>>>> beta
 import android.webkit.WebView;
 
 import com.martin.kantidroid.R;
@@ -13,7 +17,11 @@ public class KissView extends Activity {
 
 	TextView tvDate;
 	WebView wvKISS;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> beta
 	@Override
 	protected void onCreate(Bundle sSavedInstanceState) {
 		super.onCreate(sSavedInstanceState);
@@ -23,6 +31,7 @@ public class KissView extends Activity {
 		wvKISS = (WebView) findViewById(R.id.kvWebView);
 		SharedPreferences spKISS = getSharedPreferences("KISS", MODE_PRIVATE);
 		if (!spKISS.getString("last_refresh", "-").contentEquals("-")) {
+<<<<<<< HEAD
 			tvDate.setText("KISS vom " + spKISS.getString("last_refresh", "KISS nie geladen"));
 		}
 		else {
@@ -38,11 +47,33 @@ public class KissView extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(
 			com.actionbarsherlock.view.MenuItem item) {
+=======
+			tvDate.setText("KISS vom "
+					+ spKISS.getString("last_refresh", "KISS nie geladen"));
+		} else {
+			tvDate.setText("Kein aktuelles KISS verfügbar");
+		}
+		// wvKISS.loadData(spKISS.getString("KISS",
+		// "Internet ist nicht verfügbar und es ist kein Cache vorhanden"),
+		// "text/html", null);
+		// wvKISS.getSettings().setJavaScriptEnabled(true);
+		// wvKISS.getSettings().setAllowFileAccess(true);
+		// wvKISS.getSettings().setBuiltInZoomControls(true);
+		wvKISS.loadDataWithBaseURL(null, spKISS.getString("KISS", "Blook"),
+				"text/html", "utf-8", null);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+>>>>>>> beta
 		if (item.getItemId() == android.R.id.home) {
 			finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> beta
 
 }

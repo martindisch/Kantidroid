@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <attr name="titleLayout" format="reference"/>
     <declare-styleable name="WidgetContainer">
         <attr name="android:layout"/>
         <attr name="android:text"/>
         <attr name="titleLayout"/>
     </declare-styleable>
+=======
+
+    <attr name="titleLayout" format="reference" />
+
+    <declare-styleable name="WidgetContainer">
+        <attr name="android:layout" />
+        <attr name="android:text" />
+        <attr name="titleLayout" />
+    </declare-styleable>
+
+>>>>>>> beta
 </resources>

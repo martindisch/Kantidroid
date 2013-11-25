@@ -40,6 +40,7 @@
                     android:id="@+id/sRelevance"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:entries="@array/relevance_entries"
                     android:minHeight="50dp"
                     android:layout_weight="3" />
@@ -50,6 +51,18 @@
                     android:id="@+id/bOwnRelevance"
                     android:text="..."
                     android:layout_weight="1"/>
+=======
+                    android:layout_weight="3"
+                    android:entries="@array/relevance_entries"
+                    android:minHeight="50dp" />
+
+                <Button
+                    android:id="@+id/bOwnRelevance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="..." />
+>>>>>>> beta
             </LinearLayout>
 
             <CheckBox

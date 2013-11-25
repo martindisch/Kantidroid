@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <corners android:radius="5dp" />
@@ -13,5 +14,14 @@
         android:angle="270"
         android:endColor="#BDBDBD"
         android:startColor="#F2F2F2" />
+=======
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true"
+    android:shape="rectangle" >
+
+    <corners android:radius="2dp" />
+
+    <solid android:color="#80d9d9d9" />
+>>>>>>> beta
 
 </shape>
