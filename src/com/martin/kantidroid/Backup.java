@@ -18,7 +18,14 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.Toast;
 
+import com.dropbox.sync.android.DbxAccountManager;
+import com.dropbox.sync.android.DbxException;
+import com.dropbox.sync.android.DbxFileSystem;
+import com.dropbox.sync.android.DbxException.Unauthorized;
+import com.dropbox.sync.android.DbxFileSystem.SyncStatusListener;
+
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
@@ -44,6 +51,14 @@ public class Backup extends Activity implements OnClickListener {
 
 	Typeface tf;
 
+	private static final String appKey = "03ktxe8m7s1i0b6";
+	private static final String appSecret = "tvsp7mo5rtiogb1";
+
+	private DbxAccountManager mDbxAcctMgr;
+	private DbxFileSystem dbxFs;
+
+	private static final int REQUEST_LINK_TO_DBX = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +83,10 @@ public class Backup extends Activity implements OnClickListener {
 		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 		tvSync.setTypeface(tf);
 		tvBackup.setTypeface(tf);
+
+		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(),
+				appKey, appSecret);
+		initFs();
 	}
 
 	@Override
@@ -164,6 +183,82 @@ public class Backup extends Activity implements OnClickListener {
 			delDg.show();
 
 			break;
+		case R.id.bDbxBackup:
+			if (!mDbxAcctMgr.hasLinkedAccount()) {
+				mDbxAcctMgr.startLink((Activity) this, REQUEST_LINK_TO_DBX);
+			} else {
+				// Make local backup
+				
+				// Delete older backups
+
+				if (backupdatabases.isDirectory()) {
+					files = backupdatabases.listFiles();
+					for (int i = 0; i < files.length; i++) {
+						files[i].delete();
+					}
+				}
+				if (backuppreferences.isDirectory()) {
+					files = backuppreferences.listFiles();
+					for (int i = 0; i < files.length; i++) {
+						files[i].delete();
+					}
+				}
+
+				// Backup
+
+				if (databases.isDirectory()) {
+					files = databases.listFiles();
+					backupdatabases.mkdirs();
+					for (int i = 0; i < files.length; i++) {
+						try {
+							copy(files[i], new File(backupdatabases + "/"
+									+ files[i].getName()));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				for (int i = 0; i < prefnames.length; i++) {
+					saveSharedPreferencesToFile(prefnames[i], new File(
+							backuppreferences + "/" + prefnames[i]));
+				}
+				
+				// Sync to Dropbox
+				
+				
+			}
+			break;
+		case R.id.bDbxImport:
+
+			break;
+		}
+	}
+
+	private void initFs() {
+		if (mDbxAcctMgr.hasLinkedAccount()) {
+			try {
+				dbxFs = DbxFileSystem
+						.forAccount(mDbxAcctMgr.getLinkedAccount());
+				dbxFs.addSyncStatusListener(new SyncStatusListener() {
+
+					@Override
+					public void onSyncStatusChange(DbxFileSystem arg0) {
+						try {
+							Toast.makeText(getApplicationContext(),
+									arg0.hasSynced() + "", Toast.LENGTH_SHORT)
+									.show();
+						} catch (DbxException e) {
+							Toast.makeText(getApplicationContext(),
+									e.getMessage(), Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						}
+					}
+
+				});
+			} catch (Unauthorized e) {
+				e.printStackTrace();
+				Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 
@@ -261,6 +356,21 @@ public class Backup extends Activity implements OnClickListener {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_LINK_TO_DBX) {
+			if (resultCode == Activity.RESULT_OK) {
+				initFs();
+				Toast.makeText(this, "Link established", Toast.LENGTH_SHORT)
+						.show();
+			} else {
+				Toast.makeText(this, "Link failed", Toast.LENGTH_SHORT).show();
+			}
+		} else {
+			super.onActivityResult(requestCode, resultCode, data);
+		}
 	}
 
 }

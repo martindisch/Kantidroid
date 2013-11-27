@@ -35,6 +35,28 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
+        <!-- Dropbox -->
+        <activity android:name="com.dropbox.sync.android.DbxAuthActivity" />
+        <activity
+            android:name="com.dropbox.client2.android.AuthActivity"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <data android:scheme="db-03ktxe8m7s1i0b6" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.dropbox.sync.android.DbxSyncService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="Dropbox Sync" />
+
+        <!-- App -->
         <activity
             android:name="com.martin.kantidroid.MainActivity"
             android:icon="@drawable/kantidroid_ico"
