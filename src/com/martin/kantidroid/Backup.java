@@ -18,12 +18,6 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.Toast;
 
-import com.dropbox.sync.android.DbxAccountManager;
-import com.dropbox.sync.android.DbxException;
-import com.dropbox.sync.android.DbxFileSystem;
-import com.dropbox.sync.android.DbxException.Unauthorized;
-import com.dropbox.sync.android.DbxFileSystem.SyncStatusListener;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -32,13 +26,26 @@ import android.os.Environment;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.dropbox.sync.android.DbxAccountManager;
+import com.dropbox.sync.android.DbxException;
+import com.dropbox.sync.android.DbxException.Unauthorized;
+import com.dropbox.sync.android.DbxFile;
+import com.dropbox.sync.android.DbxFileSystem;
+import com.dropbox.sync.android.DbxFileSystem.SyncStatusListener;
+import com.dropbox.sync.android.DbxPath;
+import com.dropbox.sync.android.DbxPath.InvalidPathException;
 
 public class Backup extends Activity implements OnClickListener {
 
 	ImageButton bBackup, bImport;
 	TextView tvSync, tvBackup;
+	Button bDbxBackup, bDbxImport;
+	ProgressBar pbDbx;
 
 	File appdir;
 	File databases;
@@ -68,8 +75,13 @@ public class Backup extends Activity implements OnClickListener {
 		bImport = (ImageButton) findViewById(R.id.bImport);
 		tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
 		tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
+		bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
+		bDbxImport = (Button) findViewById(R.id.bDbxImport);
+		pbDbx = (ProgressBar) findViewById(R.id.pbDbx);
 		bBackup.setOnClickListener(this);
 		bImport.setOnClickListener(this);
+		bDbxBackup.setOnClickListener(this);
+		bDbxImport.setOnClickListener(this);
 
 		appdir = getFilesDir().getParentFile();
 		databases = new File(appdir + "/databases");
@@ -188,7 +200,7 @@ public class Backup extends Activity implements OnClickListener {
 				mDbxAcctMgr.startLink((Activity) this, REQUEST_LINK_TO_DBX);
 			} else {
 				// Make local backup
-				
+
 				// Delete older backups
 
 				if (backupdatabases.isDirectory()) {
@@ -222,10 +234,93 @@ public class Backup extends Activity implements OnClickListener {
 					saveSharedPreferencesToFile(prefnames[i], new File(
 							backuppreferences + "/" + prefnames[i]));
 				}
-				
+
 				// Sync to Dropbox
+
+				DbxPath databasePath = new DbxPath("/databases");
+				DbxPath prefPath = new DbxPath("/shared_prefs");
+				DbxFile dbxFile;
 				
+				// Delete from Dropbox
 				
+				/*try {
+					dbxFs.delete(databasePath);
+					dbxFs.delete(prefPath);
+				} catch (DbxException e1) {
+					Toast.makeText(this, e1.getMessage(),
+							Toast.LENGTH_SHORT).show();
+					e1.printStackTrace();
+				}*/
+
+				// databases
+
+				if (databases.isDirectory()) {
+					files = databases.listFiles();
+					for (int i = 0; i < files.length; i++) {
+						try {
+							if (dbxFs.exists(new DbxPath(databasePath, files[i]
+									.getName()))) {
+								dbxFile = dbxFs.open(new DbxPath(databasePath,
+										files[i].getName()));
+							} else {
+								dbxFile = dbxFs.create(new DbxPath(
+										databasePath, files[i].getName()));
+							}
+							dbxFile.writeFromExistingFile(files[i], false);
+							dbxFile.close();
+						} catch (InvalidPathException e) {
+							Toast.makeText(this, e.getMessage(),
+									Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						} catch (DbxException e) {
+							Toast.makeText(this, e.getMessage(),
+									Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						} catch (IOException e) {
+							Toast.makeText(this, e.getMessage(),
+									Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						}
+					}
+				}
+
+				// shared_prefs
+
+				if (preferences.isDirectory()) {
+					for (int i = 0; i < prefnames.length; i++) {
+						saveSharedPreferencesToFile(prefnames[i], new File(
+								backuppreferences + "/" + prefnames[i]));
+						files = preferences.listFiles();
+						for (int i1 = 0; i1 < files.length; i1++) {
+							try {
+								if (dbxFs.exists(new DbxPath(prefPath,
+										files[i1].getName()))) {
+									dbxFile = dbxFs.open(new DbxPath(prefPath,
+											files[i1].getName()));
+								} else {
+									dbxFile = dbxFs.create(new DbxPath(
+											prefPath, files[i1].getName()));
+								}
+								dbxFile.writeFromExistingFile(files[i1], false);
+								dbxFile.close();
+							} catch (InvalidPathException e) {
+								Toast.makeText(this, e.getMessage(),
+										Toast.LENGTH_SHORT).show();
+								e.printStackTrace();
+							} catch (DbxException e) {
+								Toast.makeText(this, e.getMessage(),
+										Toast.LENGTH_SHORT).show();
+								e.printStackTrace();
+							} catch (IOException e) {
+								Toast.makeText(this, e.getMessage(),
+										Toast.LENGTH_SHORT).show();
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+				Toast.makeText(this, "Daten werden hochgeladen",
+						Toast.LENGTH_SHORT).show();
 			}
 			break;
 		case R.id.bDbxImport:
@@ -244,17 +339,30 @@ public class Backup extends Activity implements OnClickListener {
 					@Override
 					public void onSyncStatusChange(DbxFileSystem arg0) {
 						try {
-							Toast.makeText(getApplicationContext(),
-									arg0.hasSynced() + "", Toast.LENGTH_SHORT)
-									.show();
+							if (arg0.getSyncStatus().upload.inProgress) {
+								pbDbx.setVisibility(ProgressBar.VISIBLE);
+							}
+							else {
+								pbDbx.setVisibility(ProgressBar.INVISIBLE);
+							}
 						} catch (DbxException e) {
-							Toast.makeText(getApplicationContext(),
-									e.getMessage(), Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 							e.printStackTrace();
 						}
 					}
 
 				});
+				try {
+					if (dbxFs.getSyncStatus().upload.inProgress) {
+						pbDbx.setVisibility(ProgressBar.VISIBLE);
+					}
+					else {
+						pbDbx.setVisibility(ProgressBar.INVISIBLE);
+					}
+				} catch (DbxException e) {
+					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
+				}
 			} catch (Unauthorized e) {
 				e.printStackTrace();
 				Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -363,10 +471,12 @@ public class Backup extends Activity implements OnClickListener {
 		if (requestCode == REQUEST_LINK_TO_DBX) {
 			if (resultCode == Activity.RESULT_OK) {
 				initFs();
-				Toast.makeText(this, "Link established", Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(this,
+						"Bei Dropbox eingeloggt. Nochmals drücken für Backup",
+						Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(this, "Link failed", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Login fehlgeschlagen", Toast.LENGTH_SHORT)
+						.show();
 			}
 		} else {
 			super.onActivityResult(requestCode, resultCode, data);
