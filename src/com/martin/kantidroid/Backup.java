@@ -44,8 +44,8 @@ public class Backup extends Activity implements OnClickListener {
 
 	ImageButton bBackup, bImport;
 	TextView tvSync, tvBackup;
-	Button bDbxBackup, bDbxImport;
-	ProgressBar pbDbx;
+	//Button bDbxBackup, bDbxImport;
+	//ProgressBar pbDbx;
 
 	File appdir;
 	File databases;
@@ -73,15 +73,15 @@ public class Backup extends Activity implements OnClickListener {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		bBackup = (ImageButton) findViewById(R.id.bBackup);
 		bImport = (ImageButton) findViewById(R.id.bImport);
-		tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
+		//tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
 		tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
-		bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
-		bDbxImport = (Button) findViewById(R.id.bDbxImport);
-		pbDbx = (ProgressBar) findViewById(R.id.pbDbx);
+		//bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
+		//bDbxImport = (Button) findViewById(R.id.bDbxImport);
+		//pbDbx = (ProgressBar) findViewById(R.id.pbDbx);
 		bBackup.setOnClickListener(this);
 		bImport.setOnClickListener(this);
-		bDbxBackup.setOnClickListener(this);
-		bDbxImport.setOnClickListener(this);
+		//bDbxBackup.setOnClickListener(this);
+		//bDbxImport.setOnClickListener(this);
 
 		appdir = getFilesDir().getParentFile();
 		databases = new File(appdir + "/databases");
@@ -93,7 +93,7 @@ public class Backup extends Activity implements OnClickListener {
 		prefnames = getResources().getStringArray(R.array.prefnames);
 
 		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
-		tvSync.setTypeface(tf);
+		//tvSync.setTypeface(tf);
 		tvBackup.setTypeface(tf);
 
 		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(),
@@ -105,6 +105,7 @@ public class Backup extends Activity implements OnClickListener {
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.bBackup:
+			// TODO: Check if a Dbx update is in progress
 			// Delete older backups
 
 			if (backupdatabases.isDirectory()) {
@@ -141,6 +142,7 @@ public class Backup extends Activity implements OnClickListener {
 			Toast.makeText(this, "Daten gesichert", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.bImport:
+			// TODO: Check if a Dbx update is in progress
 			AlertDialog.Builder delDg = new AlertDialog.Builder(this);
 			delDg.setTitle("Import");
 			delDg.setMessage("Stelle sicher, dass du wirklich ein älteres Backup im Ordner Kantidroid/Backup auf dem externen Speicher hast, da alle Daten in der App vor dem Import gelöscht werden.\n\nWillst du fortfahren?\n");
@@ -195,7 +197,7 @@ public class Backup extends Activity implements OnClickListener {
 			delDg.show();
 
 			break;
-		case R.id.bDbxBackup:
+		/*case R.id.bDbxBackup:
 			if (!mDbxAcctMgr.hasLinkedAccount()) {
 				mDbxAcctMgr.startLink((Activity) this, REQUEST_LINK_TO_DBX);
 			} else {
@@ -240,17 +242,6 @@ public class Backup extends Activity implements OnClickListener {
 				DbxPath databasePath = new DbxPath("/databases");
 				DbxPath prefPath = new DbxPath("/shared_prefs");
 				DbxFile dbxFile;
-				
-				// Delete from Dropbox
-				
-				/*try {
-					dbxFs.delete(databasePath);
-					dbxFs.delete(prefPath);
-				} catch (DbxException e1) {
-					Toast.makeText(this, e1.getMessage(),
-							Toast.LENGTH_SHORT).show();
-					e1.printStackTrace();
-				}*/
 
 				// databases
 
@@ -325,7 +316,7 @@ public class Backup extends Activity implements OnClickListener {
 			break;
 		case R.id.bDbxImport:
 
-			break;
+			break;*/
 		}
 	}
 
@@ -340,10 +331,10 @@ public class Backup extends Activity implements OnClickListener {
 					public void onSyncStatusChange(DbxFileSystem arg0) {
 						try {
 							if (arg0.getSyncStatus().upload.inProgress) {
-								pbDbx.setVisibility(ProgressBar.VISIBLE);
+								//pbDbx.setVisibility(ProgressBar.VISIBLE);
 							}
 							else {
-								pbDbx.setVisibility(ProgressBar.INVISIBLE);
+								//pbDbx.setVisibility(ProgressBar.INVISIBLE);
 							}
 						} catch (DbxException e) {
 							Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -354,10 +345,10 @@ public class Backup extends Activity implements OnClickListener {
 				});
 				try {
 					if (dbxFs.getSyncStatus().upload.inProgress) {
-						pbDbx.setVisibility(ProgressBar.VISIBLE);
+						//pbDbx.setVisibility(ProgressBar.VISIBLE);
 					}
 					else {
-						pbDbx.setVisibility(ProgressBar.INVISIBLE);
+						//pbDbx.setVisibility(ProgressBar.INVISIBLE);
 					}
 				} catch (DbxException e) {
 					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -385,6 +376,7 @@ public class Backup extends Activity implements OnClickListener {
 	}
 
 	private boolean saveSharedPreferencesToFile(String prefName, File dst) {
+		backuppreferences.mkdirs();
 		boolean res = false;
 		ObjectOutputStream output = null;
 		try {

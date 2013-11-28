@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="changelog">Version 2.00\n============\n - Design überarbeitet\n - Widget überarbeitet\n - Lokales Backup\n\nAuf Geräten mit physischem Menübutton muss das Menu über diesen aufgerufen werden\n\nVersion 1.16\n============\n - Stundenplan lässt sich über das Menü oben rechts auf der Startseite abrufen\n\nVersion 1.15\n============\n - Promotionsbestimmungen HMS/FMS hinzugefügt (Experimentell)\n\nVersion 1.14\n============\n - Bugfixes für KISS</string>
+    <string name="changelog">Version 2.01\n============\n - Bugfix für lokales Backup\n - Vorbereitung für Integration von Backup über Dropbox\n\nVersion 2.00\n============\n - Design überarbeitet\n - Widget überarbeitet\n - Lokales Backup\n\nAuf Geräten mit physischem Menübutton muss das Menu über diesen aufgerufen werden\n\nVersion 1.16\n============\n - Stundenplan lässt sich über das Menü oben rechts auf der Startseite abrufen\n\nVersion 1.15\n============\n - Promotionsbestimmungen HMS/FMS hinzugefügt (Experimentell)\n\nVersion 1.14\n============\n - Bugfixes für KISS</string>
     <string name="app_name">Kantidroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
