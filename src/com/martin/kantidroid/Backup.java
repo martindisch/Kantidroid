@@ -44,8 +44,8 @@ public class Backup extends Activity implements OnClickListener {
 
 	ImageButton bBackup, bImport;
 	TextView tvSync, tvBackup;
-	//Button bDbxBackup, bDbxImport;
-	//ProgressBar pbDbx;
+	Button bDbxBackup, bDbxImport;
+	ProgressBar pbDbx;
 
 	File appdir;
 	File databases;
@@ -73,15 +73,15 @@ public class Backup extends Activity implements OnClickListener {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		bBackup = (ImageButton) findViewById(R.id.bBackup);
 		bImport = (ImageButton) findViewById(R.id.bImport);
-		//tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
+		tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
 		tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
-		//bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
-		//bDbxImport = (Button) findViewById(R.id.bDbxImport);
-		//pbDbx = (ProgressBar) findViewById(R.id.pbDbx);
+		bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
+		bDbxImport = (Button) findViewById(R.id.bDbxImport);
+		pbDbx = (ProgressBar) findViewById(R.id.pbDbx);
 		bBackup.setOnClickListener(this);
 		bImport.setOnClickListener(this);
-		//bDbxBackup.setOnClickListener(this);
-		//bDbxImport.setOnClickListener(this);
+		bDbxBackup.setOnClickListener(this);
+		bDbxImport.setOnClickListener(this);
 
 		appdir = getFilesDir().getParentFile();
 		databases = new File(appdir + "/databases");
@@ -93,7 +93,7 @@ public class Backup extends Activity implements OnClickListener {
 		prefnames = getResources().getStringArray(R.array.prefnames);
 
 		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
-		//tvSync.setTypeface(tf);
+		tvSync.setTypeface(tf);
 		tvBackup.setTypeface(tf);
 
 		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(),
@@ -197,7 +197,7 @@ public class Backup extends Activity implements OnClickListener {
 			delDg.show();
 
 			break;
-		/*case R.id.bDbxBackup:
+		case R.id.bDbxBackup:
 			if (!mDbxAcctMgr.hasLinkedAccount()) {
 				mDbxAcctMgr.startLink((Activity) this, REQUEST_LINK_TO_DBX);
 			} else {
@@ -316,7 +316,7 @@ public class Backup extends Activity implements OnClickListener {
 			break;
 		case R.id.bDbxImport:
 
-			break;*/
+			break;
 		}
 	}
 
@@ -331,13 +331,13 @@ public class Backup extends Activity implements OnClickListener {
 					public void onSyncStatusChange(DbxFileSystem arg0) {
 						try {
 							if (arg0.getSyncStatus().upload.inProgress) {
-								//pbDbx.setVisibility(ProgressBar.VISIBLE);
-							}
-							else {
-								//pbDbx.setVisibility(ProgressBar.INVISIBLE);
+								pbDbx.setVisibility(ProgressBar.VISIBLE);
+							} else {
+								pbDbx.setVisibility(ProgressBar.INVISIBLE);
 							}
 						} catch (DbxException e) {
-							Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(),
+									e.getMessage(), Toast.LENGTH_SHORT).show();
 							e.printStackTrace();
 						}
 					}
@@ -345,13 +345,13 @@ public class Backup extends Activity implements OnClickListener {
 				});
 				try {
 					if (dbxFs.getSyncStatus().upload.inProgress) {
-						//pbDbx.setVisibility(ProgressBar.VISIBLE);
-					}
-					else {
-						//pbDbx.setVisibility(ProgressBar.INVISIBLE);
+						pbDbx.setVisibility(ProgressBar.VISIBLE);
+					} else {
+						pbDbx.setVisibility(ProgressBar.INVISIBLE);
 					}
 				} catch (DbxException e) {
-					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), e.getMessage(),
+							Toast.LENGTH_SHORT).show();
 					e.printStackTrace();
 				}
 			} catch (Unauthorized e) {

@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:padding="10dp" >
 
-        <!-- <RelativeLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -17,26 +17,26 @@
                 android:id="@+id/tvSyncRoboto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="Sync"
-                android:textSize="40sp"
-                android:layout_centerVertical="true" />
-            
-            <ProgressBar 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:visibility="visible"
+                android:textSize="40sp" />
+
+            <ProgressBar
                 android:id="@+id/pbDbx"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
-            
-            <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Synchronisieren..."
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/pbDbx"
                 android:layout_below="@id/pbDbx"
-                android:layout_alignEnd="@id/pbDbx"/>
+                android:text="Synchronisieren..." />
         </RelativeLayout>
 
         <LinearLayout
@@ -80,7 +80,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:background="#d9d9d9" /> -->
+            android:background="#d9d9d9" />
 
         <TextView
             android:id="@+id/tvBackupRoboto"
