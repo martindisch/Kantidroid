@@ -9,35 +9,56 @@
         android:orientation="vertical"
         android:padding="10dp" >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2" >
 
             <TextView
                 android:id="@+id/tvSyncRoboto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
                 android:text="Sync"
                 android:textSize="40sp" />
 
-            <ProgressBar
-                android:id="@+id/pbDbx"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:indeterminate="true"
-                android:visibility="visible" />
+                android:layout_weight="1" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/pbDbx"
-                android:layout_below="@id/pbDbx"
-                android:text="Synchronisieren..." />
-        </RelativeLayout>
+                <ProgressBar
+                    android:id="@+id/pbDbx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:indeterminate="true"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/ivSuccess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/success"
+                    android:paddingBottom="10dp"
+                    android:visibility="invisible"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/tvSyncprogressRoboto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pbDbx"
+                    android:layout_centerHorizontal="true"
+                    android:text="Synchronisieren" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

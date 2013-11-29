@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -43,9 +44,10 @@ import com.dropbox.sync.android.DbxPath.InvalidPathException;
 public class Backup extends Activity implements OnClickListener {
 
 	ImageButton bBackup, bImport;
-	TextView tvSync, tvBackup;
+	TextView tvSync, tvBackup, tvSyncprogress;
 	Button bDbxBackup, bDbxImport;
 	ProgressBar pbDbx;
+	ImageView ivSuccess;
 
 	File appdir;
 	File databases;
@@ -75,9 +77,11 @@ public class Backup extends Activity implements OnClickListener {
 		bImport = (ImageButton) findViewById(R.id.bImport);
 		tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
 		tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
+		tvSyncprogress = (TextView) findViewById(R.id.tvSyncprogressRoboto);
 		bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
 		bDbxImport = (Button) findViewById(R.id.bDbxImport);
 		pbDbx = (ProgressBar) findViewById(R.id.pbDbx);
+		ivSuccess = (ImageView) findViewById(R.id.ivSuccess);
 		bBackup.setOnClickListener(this);
 		bImport.setOnClickListener(this);
 		bDbxBackup.setOnClickListener(this);
@@ -95,6 +99,7 @@ public class Backup extends Activity implements OnClickListener {
 		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 		tvSync.setTypeface(tf);
 		tvBackup.setTypeface(tf);
+		tvSyncprogress.setTypeface(tf);
 
 		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(),
 				appKey, appSecret);
@@ -105,97 +110,10 @@ public class Backup extends Activity implements OnClickListener {
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.bBackup:
-			// TODO: Check if a Dbx update is in progress
-			// Delete older backups
-
-			if (backupdatabases.isDirectory()) {
-				files = backupdatabases.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					files[i].delete();
-				}
-			}
-			if (backuppreferences.isDirectory()) {
-				files = backuppreferences.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					files[i].delete();
-				}
-			}
-
-			// Backup
-
-			if (databases.isDirectory()) {
-				files = databases.listFiles();
-				backupdatabases.mkdirs();
-				for (int i = 0; i < files.length; i++) {
-					try {
-						copy(files[i], new File(backupdatabases + "/"
-								+ files[i].getName()));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			for (int i = 0; i < prefnames.length; i++) {
-				saveSharedPreferencesToFile(prefnames[i], new File(
-						backuppreferences + "/" + prefnames[i]));
-			}
-			Toast.makeText(this, "Daten gesichert", Toast.LENGTH_SHORT).show();
+			localBackup();
 			break;
 		case R.id.bImport:
-			// TODO: Check if a Dbx update is in progress
-			AlertDialog.Builder delDg = new AlertDialog.Builder(this);
-			delDg.setTitle("Import");
-			delDg.setMessage("Stelle sicher, dass du wirklich ein älteres Backup im Ordner Kantidroid/Backup auf dem externen Speicher hast, da alle Daten in der App vor dem Import gelöscht werden.\n\nWillst du fortfahren?\n");
-			delDg.setNegativeButton("Nein", null);
-			delDg.setPositiveButton("Ja",
-					new DialogInterface.OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-
-							// Delete existing data
-
-							if (databases.isDirectory()) {
-								files = databases.listFiles();
-								for (int i = 0; i < files.length; i++) {
-									files[i].delete();
-								}
-							}
-							if (preferences.isDirectory()) {
-								files = preferences.listFiles();
-								for (int i = 0; i < files.length; i++) {
-									files[i].delete();
-								}
-							}
-
-							// Copy new data
-
-							if (backupdatabases.isDirectory()) {
-								files = backupdatabases.listFiles();
-								databases.mkdirs();
-								for (int i = 0; i < files.length; i++) {
-									try {
-										copy(files[i], new File(databases + "/"
-												+ files[i].getName()));
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
-								}
-							}
-
-							for (int i = 0; i < prefnames.length; i++) {
-								loadSharedPreferencesFromFile(prefnames[i],
-										new File(backuppreferences + "/"
-												+ prefnames[i]));
-							}
-							Toast.makeText(getApplicationContext(),
-									"Daten importiert", Toast.LENGTH_SHORT)
-									.show();
-						}
-
-					});
-			delDg.show();
-
+			localImport();
 			break;
 		case R.id.bDbxBackup:
 			if (!mDbxAcctMgr.hasLinkedAccount()) {
@@ -203,39 +121,7 @@ public class Backup extends Activity implements OnClickListener {
 			} else {
 				// Make local backup
 
-				// Delete older backups
-
-				if (backupdatabases.isDirectory()) {
-					files = backupdatabases.listFiles();
-					for (int i = 0; i < files.length; i++) {
-						files[i].delete();
-					}
-				}
-				if (backuppreferences.isDirectory()) {
-					files = backuppreferences.listFiles();
-					for (int i = 0; i < files.length; i++) {
-						files[i].delete();
-					}
-				}
-
-				// Backup
-
-				if (databases.isDirectory()) {
-					files = databases.listFiles();
-					backupdatabases.mkdirs();
-					for (int i = 0; i < files.length; i++) {
-						try {
-							copy(files[i], new File(backupdatabases + "/"
-									+ files[i].getName()));
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-				for (int i = 0; i < prefnames.length; i++) {
-					saveSharedPreferencesToFile(prefnames[i], new File(
-							backuppreferences + "/" + prefnames[i]));
-				}
+				localBackup();
 
 				// Sync to Dropbox
 
@@ -320,6 +206,118 @@ public class Backup extends Activity implements OnClickListener {
 		}
 	}
 
+	private void localBackup() {
+		if (!dbxSynchronizing()) {
+			// Delete older backups
+
+			if (backupdatabases.isDirectory()) {
+				files = backupdatabases.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					files[i].delete();
+				}
+			}
+			if (backuppreferences.isDirectory()) {
+				files = backuppreferences.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					files[i].delete();
+				}
+			}
+
+			// Backup
+
+			if (databases.isDirectory()) {
+				files = databases.listFiles();
+				backupdatabases.mkdirs();
+				for (int i = 0; i < files.length; i++) {
+					try {
+						copy(files[i], new File(backupdatabases + "/"
+								+ files[i].getName()));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			for (int i = 0; i < prefnames.length; i++) {
+				saveSharedPreferencesToFile(prefnames[i], new File(
+						backuppreferences + "/" + prefnames[i]));
+			}
+			Toast.makeText(this, "Daten gesichert", Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(this, "Dropbox synchronisiert gerade",
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private void localImport() {
+		AlertDialog.Builder delDg = new AlertDialog.Builder(this);
+		delDg.setTitle("Import");
+		delDg.setMessage("Stelle sicher, dass du wirklich ein älteres Backup im Ordner Kantidroid/Backup auf dem externen Speicher hast, da alle Daten in der App vor dem Import gelöscht werden.\n\nWillst du fortfahren?\n");
+		delDg.setNegativeButton("Nein", null);
+		delDg.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+				// Delete existing data
+
+				if (databases.isDirectory()) {
+					files = databases.listFiles();
+					for (int i = 0; i < files.length; i++) {
+						files[i].delete();
+					}
+				}
+				if (preferences.isDirectory()) {
+					files = preferences.listFiles();
+					for (int i = 0; i < files.length; i++) {
+						files[i].delete();
+					}
+				}
+
+				// Copy new data
+
+				if (backupdatabases.isDirectory()) {
+					files = backupdatabases.listFiles();
+					databases.mkdirs();
+					for (int i = 0; i < files.length; i++) {
+						try {
+							copy(files[i],
+									new File(databases + "/"
+											+ files[i].getName()));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+
+				for (int i = 0; i < prefnames.length; i++) {
+					loadSharedPreferencesFromFile(prefnames[i], new File(
+							backuppreferences + "/" + prefnames[i]));
+				}
+				Toast.makeText(getApplicationContext(), "Daten importiert",
+						Toast.LENGTH_SHORT).show();
+			}
+
+		});
+		delDg.show();
+	}
+
+	private boolean dbxSynchronizing() {
+		boolean synchronizing = false;
+		if (mDbxAcctMgr.hasLinkedAccount()) {
+			try {
+				if (dbxFs.getSyncStatus().upload.inProgress
+						|| dbxFs.getSyncStatus().download.inProgress) {
+					synchronizing = true;
+				}
+			} catch (DbxException e) {
+				Toast.makeText(getApplicationContext(), e.getMessage(),
+						Toast.LENGTH_SHORT).show();
+				e.printStackTrace();
+			}
+		}
+		return synchronizing;
+	}
+
 	private void initFs() {
 		if (mDbxAcctMgr.hasLinkedAccount()) {
 			try {
@@ -329,30 +327,26 @@ public class Backup extends Activity implements OnClickListener {
 
 					@Override
 					public void onSyncStatusChange(DbxFileSystem arg0) {
-						try {
-							if (arg0.getSyncStatus().upload.inProgress) {
-								pbDbx.setVisibility(ProgressBar.VISIBLE);
-							} else {
-								pbDbx.setVisibility(ProgressBar.INVISIBLE);
-							}
-						} catch (DbxException e) {
-							Toast.makeText(getApplicationContext(),
-									e.getMessage(), Toast.LENGTH_SHORT).show();
-							e.printStackTrace();
+						if (dbxSynchronizing()) {
+							pbDbx.setVisibility(ProgressBar.VISIBLE);
+							ivSuccess.setVisibility(ImageView.INVISIBLE);
+							tvSyncprogress.setText("Synchronisieren");
+						} else {
+							pbDbx.setVisibility(ProgressBar.INVISIBLE);
+							ivSuccess.setVisibility(ImageView.VISIBLE);
+							tvSyncprogress.setText("Synchronisiert");
 						}
 					}
 
 				});
-				try {
-					if (dbxFs.getSyncStatus().upload.inProgress) {
-						pbDbx.setVisibility(ProgressBar.VISIBLE);
-					} else {
-						pbDbx.setVisibility(ProgressBar.INVISIBLE);
-					}
-				} catch (DbxException e) {
-					Toast.makeText(getApplicationContext(), e.getMessage(),
-							Toast.LENGTH_SHORT).show();
-					e.printStackTrace();
+				if (dbxSynchronizing()) {
+					pbDbx.setVisibility(ProgressBar.VISIBLE);
+					ivSuccess.setVisibility(ImageView.INVISIBLE);
+					tvSyncprogress.setText("Synchronisieren");
+				} else {
+					pbDbx.setVisibility(ProgressBar.INVISIBLE);
+					ivSuccess.setVisibility(ImageView.VISIBLE);
+					tvSyncprogress.setText("Synchronisiert");
 				}
 			} catch (Unauthorized e) {
 				e.printStackTrace();
