@@ -21,11 +21,16 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.format.DateUtils;
 import android.text.format.Time;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.martin.kantidroid.Check;
+import com.martin.kantidroid.MOTD;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
@@ -39,8 +44,12 @@ public class Background extends IntentService {
 	protected void onHandleIntent(Intent intent) {
 		if (isNetworkAvailable()) {
 			String result = "";
+			String motd = "";
 			try {
 				URL url = new URL("https://kpf.bks-campus.ch/infoscreen");
+				URL urlmotd = new URL("http://androiddev.bplaced.net/motd.txt");
+
+				// KISS
 				HttpURLConnection con = (HttpURLConnection) url
 						.openConnection();
 				InputStream in = con.getInputStream();
@@ -49,6 +58,16 @@ public class Background extends IntentService {
 				String line = "";
 				while ((line = reader.readLine()) != null) {
 					result += line;
+				}
+
+				// MOTD
+				con = (HttpURLConnection) urlmotd.openConnection();
+				in = con.getInputStream();
+				reader = null;
+				reader = new BufferedReader(new InputStreamReader(in));
+				line = "";
+				while ((line = reader.readLine()) != null) {
+					motd += line;
 				}
 				if (reader != null) {
 					reader.close();
@@ -67,9 +86,53 @@ public class Background extends IntentService {
 				editor.commit();
 				checkLehrer();
 			}
+			if (!motd.contentEquals("")) {
+				checkMOTD(motd);
+			}
+		}
+		ScheduleNextUpdate();
+	}
+
+	private void checkMOTD(String motd) {
+		String[] lines = motd.split("/");
+		SharedPreferences spKISS = getApplicationContext()
+				.getSharedPreferences("KISS", this.MODE_PRIVATE);
+		Check check = new Check();
+		if (!check.getSeen(lines[0], this)) {
+			int idCounter = spKISS.getInt("idCounter", 0);
+			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+					this);
+			mBuilder.setSmallIcon(R.drawable.kantidroid_ico);
+			mBuilder.setContentTitle(lines[0]);
+			mBuilder.setContentText(lines[1]);
+			mBuilder.setAutoCancel(true);
+			long[] pattern = { 0, 300, 200, 300 };
+			mBuilder.setVibrate(pattern);
+			mBuilder.setDefaults(Notification.DEFAULT_LIGHTS);
+			mBuilder.setDefaults(Notification.DEFAULT_SOUND);
+
+			TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+			stackBuilder.addParentStack(MainActivity.class);
+			Intent iMOTD = new Intent(Background.this, MOTD.class);
+			Bundle data = new Bundle();
+			data.putStringArray("data", lines);
+			iMOTD.putExtras(data);
+			stackBuilder.addNextIntent(iMOTD);
+			PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+					0, PendingIntent.FLAG_UPDATE_CURRENT);
+			mBuilder.setContentIntent(resultPendingIntent);
+
+			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			mNotificationManager.notify(idCounter, mBuilder.build());
+			idCounter++;
+
+			// Remember notification id
+			SharedPreferences.Editor ieditor = spKISS.edit();
+			ieditor.putInt("idCounter", idCounter);
+			ieditor.commit();
+			check.setSeen(lines[0], this);
 		}
 
-		ScheduleNextUpdate();
 	}
 
 	private void ScheduleNextUpdate() {

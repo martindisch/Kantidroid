@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martin.kantidroid"
-    android:versionCode="40"
-    android:versionName="2.01" >
+    android:versionCode="41"
+    android:versionName="2.10" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -20,12 +20,12 @@
         android:icon="@drawable/kantidroid_ico"
         android:label="@string/app_name"
         android:theme="@style/Holo.Theme.Light" >
-        <receiver android:name="com.martin.kiss.MyBroadcastreceiver" >
+        <receiver android:name=".kiss.MyBroadcastreceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.martin.kantidroid.WidgetProvider" >
+        <receiver android:name=".WidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -73,6 +73,16 @@
             android:label="Backup" >
             <intent-filter>
                 <action android:name="com.martin.kantidroid.BACKUP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.martin.kantidroid.MOTD"
+            android:icon="@drawable/kantidroid_ico"
+            android:label="MOTD" >
+            <intent-filter>
+                <action android:name="com.martin.kantidroid.MOTD" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
