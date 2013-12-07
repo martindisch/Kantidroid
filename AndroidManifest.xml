@@ -20,11 +20,6 @@
         android:icon="@drawable/kantidroid_ico"
         android:label="@string/app_name"
         android:theme="@style/Holo.Theme.Light" >
-        <receiver android:name=".kiss.MyBroadcastreceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
         <receiver android:name=".WidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
