@@ -89,12 +89,13 @@ public class ViewFach extends Activity {
 
 	private void initialize() {
 		name = (TextView) findViewById(R.id.tvViewName);
+		/* TODO:
 		noten = (TextView) findViewById(R.id.tvViewNoten);
 		relevance = (TextView) findViewById(R.id.tvViewGewichtung);
 		math_average = (TextView) findViewById(R.id.tvViewMathAverage);
 		real_average = (TextView) findViewById(R.id.tvViewRealAverage);
 		promotionsfach = (TextView) findViewById(R.id.tvViewPromotionsfach);
-		dates = (TextView) findViewById(R.id.tvViewDate);
+		dates = (TextView) findViewById(R.id.tvViewDate);*/
 		updateText();
 	}
 

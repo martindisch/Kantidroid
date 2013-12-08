@@ -85,8 +85,9 @@ public class AddMark extends Activity implements OnClickListener,
 	private void initialize() {
 		bSave = (Button) findViewById(R.id.bAddSave);
 		bCancel = (Button) findViewById(R.id.bAddCancel);
+		/* TODO:
 		bOwnRelevance = (Button) findViewById(R.id.bOwnRelevance);
-		sRelevance = (Spinner) findViewById(R.id.sRelevance);
+		sRelevance = (Spinner) findViewById(R.id.sRelevance);*/
 		etMark = (EditText) findViewById(R.id.etAddMark);
 		cbAnother = (CheckBox) findViewById(R.id.cbAnotherMark);
 		bSave.setOnClickListener(this);
@@ -161,6 +162,7 @@ public class AddMark extends Activity implements OnClickListener,
 		case R.id.bAddCancel:
 			finish();
 			break;
+			/* TODO:
 		case R.id.bOwnRelevance:
 			AlertDialog.Builder inp = new AlertDialog.Builder(this);
 			inp.setTitle("Relevanz");
@@ -194,7 +196,7 @@ public class AddMark extends Activity implements OnClickListener,
 			});
 			inp.setNegativeButton("Abbrechen", null);
 			inp.show();
-			break;
+			break;*/
 		}
 	}
 

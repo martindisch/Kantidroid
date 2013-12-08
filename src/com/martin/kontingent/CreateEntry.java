@@ -4,20 +4,24 @@ import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.AutoCompleteTextView;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.CheckBox;
-import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.Toast;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
@@ -26,9 +30,12 @@ public class CreateEntry extends Activity implements OnClickListener,
 		OnCheckedChangeListener {
 
 	AutoCompleteTextView fach;
-	EditText kontingent;
 	Button save, cancel;
 	CheckBox another;
+	RadioGroup rGroup, rgOther;
+	RadioButton rb2, rb4, rb6, rb8, rbOther;
+	EditText etOther;
+	boolean checked;
 
 	@Override
 	protected void onStop() {
@@ -54,24 +61,55 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 	private void initialize() {
 		fach = (AutoCompleteTextView) findViewById(R.id.etAddFach);
-		kontingent = (EditText) findViewById(R.id.etAddKontingent);
 		save = (Button) findViewById(R.id.bAddSave);
 		cancel = (Button) findViewById(R.id.bAddCancel);
 		another = (CheckBox) findViewById(R.id.cbAnother);
+		rGroup = (RadioGroup) findViewById(R.id.rgKontingent);
+		rb2 = (RadioButton) findViewById(R.id.rb2);
+		rb4 = (RadioButton) findViewById(R.id.rb4);
+		rb6 = (RadioButton) findViewById(R.id.rb6);
+		rb8 = (RadioButton) findViewById(R.id.rb8);
+		rbOther = (RadioButton) findViewById(R.id.rbOther);
+		etOther = (EditText) findViewById(R.id.etOther);
+		rgOther = (RadioGroup) findViewById(R.id.rgOther);
 
 		save.setOnClickListener(this);
 		cancel.setOnClickListener(this);
 		another.setOnCheckedChangeListener(this);
+		rGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				if ((rGroup.getCheckedRadioButtonId() == R.id.rb2)
+						|| (rGroup.getCheckedRadioButtonId() == R.id.rb4)
+						|| (rGroup.getCheckedRadioButtonId() == R.id.rb6)
+						|| (rGroup.getCheckedRadioButtonId() == R.id.rb8)) {
+					rgOther.clearCheck();
+				}
+			}
+
+		});
+		rgOther.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				if (rgOther.getCheckedRadioButtonId() == R.id.rbOther) {
+					rGroup.clearCheck();
+				}
+			}
+		});
 
 		String[] names = getResources().getStringArray(R.array.faecher_list);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				R.layout.simple_list_item_1, names);
 		fach.setAdapter(adapter);
+
+		checked = false;
 	}
 
 	private void getCheckbox() {
 		SharedPreferences settings = getSharedPreferences("mysettings",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("another", true);
 
 		if (bAnother == true) {
@@ -85,31 +123,24 @@ public class CreateEntry extends Activity implements OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bAddSave:
-			String sFach = fach.getText().toString();
-			String sKont_av = kontingent.getText().toString();
-
-			if (!sFach.contentEquals("") && !sKont_av.contentEquals("")) {
-
-				Fach ffach = new Fach(sFach, sKont_av);
-				DatabaseHandler db = new DatabaseHandler(this);
-
-				db.addFach(ffach);
-
-				if (another.isChecked()) {
-					fach.setText("");
-					kontingent.setText("");
-					Toast t = Toast.makeText(CreateEntry.this,
-							"Fach gespeichert", Toast.LENGTH_SHORT);
-					t.show();
-					fach.requestFocus();
-				} else {
-					finish();
-				}
-			} else {
-				Toast t = Toast.makeText(CreateEntry.this,
-						"Fülle beide Felder aus", Toast.LENGTH_SHORT);
-				t.show();
-			}
+			/*
+			 * TODO: String sFach = fach.getText().toString(); String sKont_av =
+			 * kontingent.getText().toString();
+			 * 
+			 * if (!sFach.contentEquals("") && !sKont_av.contentEquals("")) {
+			 * 
+			 * Fach ffach = new Fach(sFach, sKont_av); DatabaseHandler db = new
+			 * DatabaseHandler(this);
+			 * 
+			 * db.addFach(ffach);
+			 * 
+			 * if (another.isChecked()) { fach.setText("");
+			 * kontingent.setText(""); Toast t =
+			 * Toast.makeText(CreateEntry.this, "Fach gespeichert",
+			 * Toast.LENGTH_SHORT); t.show(); fach.requestFocus(); } else {
+			 * finish(); } } else { Toast t = Toast.makeText(CreateEntry.this,
+			 * "Fülle beide Felder aus", Toast.LENGTH_SHORT); t.show(); }
+			 */
 			break;
 		case R.id.bAddCancel:
 			finish();
