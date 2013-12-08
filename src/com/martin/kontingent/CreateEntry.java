@@ -80,10 +80,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				if ((rGroup.getCheckedRadioButtonId() == R.id.rb2)
-						|| (rGroup.getCheckedRadioButtonId() == R.id.rb4)
-						|| (rGroup.getCheckedRadioButtonId() == R.id.rb6)
-						|| (rGroup.getCheckedRadioButtonId() == R.id.rb8)) {
+				if (!(checkedId == -1)) {
 					rgOther.clearCheck();
 				}
 			}
@@ -93,7 +90,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 			
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				if (rgOther.getCheckedRadioButtonId() == R.id.rbOther) {
+				if (!(checkedId == -1)) {
 					rGroup.clearCheck();
 				}
 			}
