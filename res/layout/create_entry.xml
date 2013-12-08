@@ -14,27 +14,72 @@
             android:orientation="vertical"
             android:padding="10dp" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fach" />
-
             <AutoCompleteTextView
                 android:id="@+id/etAddFach"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="Fach"
                 android:inputType="textCapSentences" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Anzahl Kontingent" />
+                android:layout_marginLeft="10dp"
+                android:text="Anzahl Kontingent"
+                android:textAllCaps="true"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etAddKontingent"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#999999" 
+                android:layout_marginBottom="10dp"/>
+
+            <RadioGroup
+                android:id="@+id/rgKontingent"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:orientation="horizontal"
+                android:weightSum="4" >
+
+                <RadioButton
+                    android:id="@+id/rb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4" />
+
+                <RadioButton
+                    android:id="@+id/rb6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="6" />
+
+                <RadioButton
+                    android:id="@+id/rb8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="8" />
+            </RadioGroup>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Andere" 
+                android:layout_marginBottom="20dp"/>
 
             <CheckBox
                 android:id="@+id/cbAnother"

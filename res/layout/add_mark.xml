@@ -14,43 +14,85 @@
             android:orientation="vertical"
             android:padding="10dp" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Note" />
-
             <EditText
                 android:id="@+id/etAddMark"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:hint="Note"
                 android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gewichtung" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Gewichtung"
+                android:textAllCaps="true"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#999999" />
+
+            <RadioGroup
+                android:id="@+id/rgGewichtung"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="4" >
+                android:orientation="vertical" >
 
-                <Spinner
-                    android:id="@+id/sRelevance"
-                    android:layout_width="0dp"
+                <RadioButton
+                    android:id="@+id/rbGanz"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:entries="@array/relevance_entries"
-                    android:minHeight="50dp" />
+                    android:checked="true"
+                    android:text="Ganz (1x)" />
 
-                <Button
-                    android:id="@+id/bOwnRelevance"
-                    android:layout_width="0dp"
+                <RadioButton
+                    android:id="@+id/rbGanz"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="..." />
-            </LinearLayout>
+                    android:text="Halb (0.5x)" />
+
+                <RadioButton
+                    android:id="@+id/rbGanz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Doppelt (2x)" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Andere" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Datum"
+                android:textAllCaps="true"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#999999" />
+            
+            <Spinner 
+                android:id="@+id/sDatumMark"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"/>
 
             <CheckBox
                 android:id="@+id/cbAnotherMark"
