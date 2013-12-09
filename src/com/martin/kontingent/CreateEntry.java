@@ -12,11 +12,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -27,6 +29,8 @@ import android.widget.RadioGroup;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
+// TODO: This absolutely positively won't work. It's so bad.
+
 public class CreateEntry extends Activity implements OnClickListener,
 		OnCheckedChangeListener {
 
@@ -36,7 +40,8 @@ public class CreateEntry extends Activity implements OnClickListener,
 	RadioGroup rGroup;
 	RadioButton rb2, rb4, rb6, rb8;
 	EditText etOther;
-	int rbSelected;
+	String selectedKont;
+	boolean textChanged;
 
 	@Override
 	protected void onStop() {
@@ -79,19 +84,19 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				if (!(checkedId == -1)) {
+				if (!textChanged) {
 					switch (checkedId) {
 					case R.id.rb2:
-						rbSelected = 2;
+						selectedKont = "2";
 						break;
 					case R.id.rb4:
-						rbSelected = 4;
+						selectedKont = "4";
 						break;
 					case R.id.rb6:
-						rbSelected = 6;
+						selectedKont = "6";
 						break;
 					case R.id.rb8:
-						rbSelected = 8;
+						selectedKont = "8";
 						break;
 					}
 					etOther.setEnabled(false);
@@ -100,24 +105,35 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 		});
 
-		etOther.setOnFocusChangeListener(new OnFocusChangeListener() {
+		etOther.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if (getCurrentFocus().getId() == R.id.etOther) {
-					for (int i = 0; i < rGroup.getChildCount(); i++) {
-						rGroup.getChildAt(i).setEnabled(false);
-					}
-					rbSelected = 0;
+			public void afterTextChanged(Editable arg0) {
+				textChanged = true;
+				for (int i = 0; i < rGroup.getChildCount(); i++) {
+					rGroup.getChildAt(i).setEnabled(false);
 				}
+				selectedKont = etOther.getText().toString();
 			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+			}
+
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+			}
+			
 		});
 		String[] names = getResources().getStringArray(R.array.faecher_list);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				R.layout.simple_list_item_1, names);
 		fach.setAdapter(adapter);
 
-		rbSelected = 0;
+		selectedKont = "0";
+		textChanged = false;
 	}
 
 	private void getCheckbox() {
@@ -138,11 +154,9 @@ public class CreateEntry extends Activity implements OnClickListener,
 		case R.id.bAddSave:
 
 			String sFach = fach.getText().toString();
-			String sKont_av = Integer.toString(rbSelected);
+			String sKont_av = selectedKont;
 
-			if (!sFach.contentEquals("")
-					&& ((!(rbSelected == 0)) || (!(etOther.getText().toString()
-							.contentEquals(""))))) {
+			if (!(sFach.contentEquals("") || selectedKont.contentEquals("") || selectedKont.contentEquals("0"))) {
 
 				Fach ffach = new Fach(sFach, sKont_av);
 				DatabaseHandler db = new DatabaseHandler(this);
@@ -151,12 +165,14 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 				if (another.isChecked()) {
 					fach.setText("");
+					etOther.setText("");
 					etOther.setEnabled(true);
 					for (int i = 0; i < rGroup.getChildCount(); i++) {
 						rGroup.getChildAt(i).setEnabled(true);
 					}
 					rGroup.clearCheck();
-					rbSelected = 0;
+					selectedKont = "0";
+					textChanged = false;
 					Toast t = Toast.makeText(CreateEntry.this,
 							"Fach gespeichert", Toast.LENGTH_SHORT);
 					t.show();

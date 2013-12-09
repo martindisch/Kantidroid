@@ -80,7 +80,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:hint="Andere Anzahl" />
+                android:hint="Andere Anzahl"
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/cbAnother"
