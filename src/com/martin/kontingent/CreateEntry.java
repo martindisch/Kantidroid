@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -32,10 +33,10 @@ public class CreateEntry extends Activity implements OnClickListener,
 	AutoCompleteTextView fach;
 	Button save, cancel;
 	CheckBox another;
-	RadioGroup rGroup, rgOther;
-	RadioButton rb2, rb4, rb6, rb8, rbOther;
+	RadioGroup rGroup;
+	RadioButton rb2, rb4, rb6, rb8;
 	EditText etOther;
-	boolean checked;
+	int rbSelected;
 
 	@Override
 	protected void onStop() {
@@ -69,9 +70,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 		rb4 = (RadioButton) findViewById(R.id.rb4);
 		rb6 = (RadioButton) findViewById(R.id.rb6);
 		rb8 = (RadioButton) findViewById(R.id.rb8);
-		rbOther = (RadioButton) findViewById(R.id.rbOther);
 		etOther = (EditText) findViewById(R.id.etOther);
-		rgOther = (RadioGroup) findViewById(R.id.rgOther);
 
 		save.setOnClickListener(this);
 		cancel.setOnClickListener(this);
@@ -81,27 +80,44 @@ public class CreateEntry extends Activity implements OnClickListener,
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				if (!(checkedId == -1)) {
-					rgOther.clearCheck();
+					switch (checkedId) {
+					case R.id.rb2:
+						rbSelected = 2;
+						break;
+					case R.id.rb4:
+						rbSelected = 4;
+						break;
+					case R.id.rb6:
+						rbSelected = 6;
+						break;
+					case R.id.rb8:
+						rbSelected = 8;
+						break;
+					}
+					etOther.setEnabled(false);
 				}
 			}
 
 		});
-		rgOther.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-			
+
+		etOther.setOnFocusChangeListener(new OnFocusChangeListener() {
+
 			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				if (!(checkedId == -1)) {
-					rGroup.clearCheck();
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (getCurrentFocus().getId() == R.id.etOther) {
+					for (int i = 0; i < rGroup.getChildCount(); i++) {
+						rGroup.getChildAt(i).setEnabled(false);
+					}
+					rbSelected = 0;
 				}
 			}
 		});
-
 		String[] names = getResources().getStringArray(R.array.faecher_list);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				R.layout.simple_list_item_1, names);
 		fach.setAdapter(adapter);
 
-		checked = false;
+		rbSelected = 0;
 	}
 
 	private void getCheckbox() {
@@ -120,24 +136,40 @@ public class CreateEntry extends Activity implements OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bAddSave:
-			/*
-			 * TODO: String sFach = fach.getText().toString(); String sKont_av =
-			 * kontingent.getText().toString();
-			 * 
-			 * if (!sFach.contentEquals("") && !sKont_av.contentEquals("")) {
-			 * 
-			 * Fach ffach = new Fach(sFach, sKont_av); DatabaseHandler db = new
-			 * DatabaseHandler(this);
-			 * 
-			 * db.addFach(ffach);
-			 * 
-			 * if (another.isChecked()) { fach.setText("");
-			 * kontingent.setText(""); Toast t =
-			 * Toast.makeText(CreateEntry.this, "Fach gespeichert",
-			 * Toast.LENGTH_SHORT); t.show(); fach.requestFocus(); } else {
-			 * finish(); } } else { Toast t = Toast.makeText(CreateEntry.this,
-			 * "Fülle beide Felder aus", Toast.LENGTH_SHORT); t.show(); }
-			 */
+
+			String sFach = fach.getText().toString();
+			String sKont_av = Integer.toString(rbSelected);
+
+			if (!sFach.contentEquals("")
+					&& ((!(rbSelected == 0)) || (!(etOther.getText().toString()
+							.contentEquals(""))))) {
+
+				Fach ffach = new Fach(sFach, sKont_av);
+				DatabaseHandler db = new DatabaseHandler(this);
+
+				db.addFach(ffach);
+
+				if (another.isChecked()) {
+					fach.setText("");
+					etOther.setEnabled(true);
+					for (int i = 0; i < rGroup.getChildCount(); i++) {
+						rGroup.getChildAt(i).setEnabled(true);
+					}
+					rGroup.clearCheck();
+					rbSelected = 0;
+					Toast t = Toast.makeText(CreateEntry.this,
+							"Fach gespeichert", Toast.LENGTH_SHORT);
+					t.show();
+					fach.requestFocus();
+				} else {
+					finish();
+				}
+			} else {
+				Toast t = Toast.makeText(CreateEntry.this,
+						"Gib alle nötigen Daten ein", Toast.LENGTH_SHORT);
+				t.show();
+			}
+
 			break;
 		case R.id.bAddCancel:
 			finish();
@@ -149,7 +181,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		SharedPreferences settings = getSharedPreferences("mysettings",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = settings.edit();
 		if (another.isChecked()) {

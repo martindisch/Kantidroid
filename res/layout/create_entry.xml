@@ -75,29 +75,12 @@
                     android:text="8" />
             </RadioGroup>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/etOther"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <RadioGroup
-                    android:id="@+id/rgOther"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <RadioButton
-                        android:id="@+id/rbOther"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </RadioGroup>
-
-                <EditText
-                    android:id="@+id/etOther"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:hint="Andere" />
-            </LinearLayout>
+                android:layout_marginBottom="20dp"
+                android:hint="Andere Anzahl" />
 
             <CheckBox
                 android:id="@+id/cbAnother"

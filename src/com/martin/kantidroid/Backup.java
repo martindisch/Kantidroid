@@ -144,7 +144,7 @@ public class Backup extends Activity implements OnClickListener {
 									int which) {
 								// Make local backup
 
-								localBackup();
+								localBackup_noDg();
 
 								// Sync to Dropbox
 
@@ -325,6 +325,48 @@ public class Backup extends Activity implements OnClickListener {
 	}
 
 	private void localBackup() {
+		if (!dbxSynchronizing()) {
+			// Delete older backups
+
+			if (backupdatabases.isDirectory()) {
+				files = backupdatabases.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					files[i].delete();
+				}
+			}
+			if (backuppreferences.isDirectory()) {
+				files = backuppreferences.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					files[i].delete();
+				}
+			}
+
+			// Backup
+
+			if (databases.isDirectory()) {
+				files = databases.listFiles();
+				backupdatabases.mkdirs();
+				for (int i = 0; i < files.length; i++) {
+					try {
+						copy(files[i], new File(backupdatabases + "/"
+								+ files[i].getName()));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			for (int i = 0; i < prefnames.length; i++) {
+				saveSharedPreferencesToFile(prefnames[i], new File(
+						backuppreferences + "/" + prefnames[i]));
+			}
+			Toast.makeText(this, "Daten gesichert", Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(this, "Dropbox synchronisiert gerade",
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	private void localBackup_noDg() {
 		if (!dbxSynchronizing()) {
 			// Delete older backups
 
