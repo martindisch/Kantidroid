@@ -14,35 +14,49 @@ import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetL
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class AddMark extends Activity implements OnClickListener,
-		OnCheckedChangeListener, OnDateSetListener {
+// This is the ugliest, most hacky part of the whole project.
+// That's because I hate it and absolutely don't want to spend
+// a single second longer working on it.
 
-	Button bSave, bCancel, bOwnRelevance;
-	Spinner sRelevance;
-	EditText etMark;
+public class AddMark extends Activity implements OnClickListener,
+		OnCheckedChangeListener {
+
+	Button bSave, bCancel;
+	Spinner sDate;
+	EditText etMark, etOther;
 	CheckBox cbAnother;
+	RadioGroup rgGewichtung;
 	int id;
-	boolean OwnRelevance = false;
-	double dOwnRelevance;
 	int iSemester;
 	Fach fach;
 	String sSelectedRelevance;
 	DatabaseHandler db;
+	String selectedDate, sMark;
+	ArrayAdapter adapter;
+	boolean textChanged, firsttime;
+	AddMark crap;
+	RadioButton rbGanz;
 
 	@Override
 	protected void onStop() {
@@ -83,26 +97,138 @@ public class AddMark extends Activity implements OnClickListener,
 	}
 
 	private void initialize() {
+		firsttime = true;
+		crap = this;
+		sSelectedRelevance = "1";
+		sMark = "0";
+		textChanged = false;
+		Calendar c = Calendar.getInstance();
+		selectedDate = c.get(Calendar.DAY_OF_MONTH) + "."
+				+ (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR);
 		bSave = (Button) findViewById(R.id.bAddSave);
+		rbGanz = (RadioButton) findViewById(R.id.rbGanz);
 		bCancel = (Button) findViewById(R.id.bAddCancel);
-		/* TODO:
-		bOwnRelevance = (Button) findViewById(R.id.bOwnRelevance);
-		sRelevance = (Spinner) findViewById(R.id.sRelevance);*/
-		etMark = (EditText) findViewById(R.id.etAddMark);
+		sDate = (Spinner) findViewById(R.id.sDatumMark);
+		etOther = (EditText) findViewById(R.id.etAndere);
+		rgGewichtung = (RadioGroup) findViewById(R.id.rgGewichtung);
+		etMark = (EditText) findViewById(R.id.etMark);
 		cbAnother = (CheckBox) findViewById(R.id.cbAnotherMark);
 		bSave.setOnClickListener(this);
 		bCancel.setOnClickListener(this);
-		bOwnRelevance.setOnClickListener(this);
+		adapter = new ArrayAdapter(this, R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+		adapter.add(selectedDate);
+		sDate.setAdapter(adapter);
 		cbAnother.setOnCheckedChangeListener(this);
+		
+		etMark.setText("");
+		etOther.setText("");
+
+		sDate.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					Calendar c = Calendar.getInstance();
+					DatePickerDialog dg = new DatePickerDialog();
+					dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+							c.get(Calendar.DAY_OF_MONTH));
+					dg.setOnDateSetListener(new OnDateSetListener() {
+
+						@Override
+						public void onDateSet(DatePickerDialog dialog,
+								int year, int monthOfYear, int dayOfMonth) {
+							selectedDate = dayOfMonth + "." + (monthOfYear + 1)
+									+ "." + year;
+							adapter.clear();
+							adapter.add(selectedDate);
+						}
+					});
+					dg.show(crap);
+				}
+				return true;
+			}
+		});
+
+		etMark.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				sMark = s.toString();
+			}
+		});
+
+		etOther.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (!s.toString().contentEquals("")) {
+					sSelectedRelevance = s.toString();
+					textChanged = true;
+					for (int i = 0; i < 3; i++) {
+						rgGewichtung.getChildAt(i).setEnabled(false);
+					}
+				}
+			}
+		});
+
+		rgGewichtung
+				.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(RadioGroup group, int checkedId) {
+						if (!textChanged && !firsttime) {
+							switch (checkedId) {
+							case R.id.rbDoppelt:
+								sSelectedRelevance = "2";
+								break;
+							case R.id.rbGanz:
+								sSelectedRelevance = "1";
+								break;
+							case R.id.rbHalb:
+								sSelectedRelevance = "0.5";
+								break;
+							}
+							etOther.setEnabled(false);
+						}
+					}
+				});
 
 		DatabaseHandler db = new DatabaseHandler(this);
 		Fach fach = db.getFach(id);
 		setTitle("Note für " + fach.getName() + " hinzufügen");
+		
+		for (int i = 0; i < rgGewichtung.getChildCount(); i++) {
+			rgGewichtung.getChildAt(i).setEnabled(true);
+		}
+		rgGewichtung.clearCheck();
+		
+		firsttime = false;
 	}
 
 	private void getCheckbox() {
 		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("anotherMark", true);
 
 		if (bAnother == true) {
@@ -116,36 +242,53 @@ public class AddMark extends Activity implements OnClickListener,
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.bAddSave:
-			if (!etMark.getText().toString().contentEquals("")) {
-				double sMark = Double.parseDouble(etMark.getText().toString());
+			if (!(sMark.contentEquals("") || sMark.contentEquals("0") || sSelectedRelevance
+					.contentEquals("0"))) {
+				double dMark = Double.parseDouble(sMark);
 
-				if (sMark >= 1 && sMark <= 6.3) {
+				if (dMark >= 1 && dMark <= 6.3) {
 					db = new DatabaseHandler(this);
 					fach = db.getFach(id);
 
-					sSelectedRelevance = "";
-					if (OwnRelevance) {
-						sSelectedRelevance = String.valueOf(dOwnRelevance);
-					} else {
-						switch (sRelevance.getSelectedItemPosition()) {
-						case 0:
-							sSelectedRelevance = "1.0";
-							break;
-						case 1:
-							sSelectedRelevance = "0.5";
-							break;
-						case 2:
-							sSelectedRelevance = "2.0";
-							break;
+					if (iSemester == 1) {
+						String sMarksOld = fach.getNoten1();
+						String sMarksNew;
+						String sEntry = etMark.getText().toString() + " - "
+								+ sSelectedRelevance + " - " + selectedDate
+								+ "\n";
+						if (sMarksOld.contentEquals("-")) {
+							sMarksNew = sEntry;
+						} else {
+							sMarksNew = sMarksOld + sEntry;
 						}
+
+						fach.setNoten1(sMarksNew);
+						db.updateFach(fach);
+					} else {
+						String sMarksOld = fach.getNoten2();
+						String sMarksNew;
+						String sEntry = etMark.getText().toString() + " - "
+								+ sSelectedRelevance + " - " + selectedDate
+								+ "\n";
+						if (sMarksOld.contentEquals("-")) {
+							sMarksNew = sEntry;
+						} else {
+							sMarksNew = sMarksOld + sEntry;
+						}
+
+						fach.setNoten2(sMarksNew);
+						db.updateFach(fach);
 					}
 
-					Calendar c = Calendar.getInstance();
-					DatePickerDialog dg = new DatePickerDialog();
-					dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-							c.get(Calendar.DAY_OF_MONTH));
-					dg.setOnDateSetListener(this);
-					dg.show(this);
+					if (cbAnother.isChecked()) {
+						initialize();
+						Toast t = Toast.makeText(AddMark.this,
+								"Note gespeichert", Toast.LENGTH_SHORT);
+						t.show();
+						etMark.requestFocus();
+					} else {
+						finish();
+					}
 
 				} else {
 					Toast t = Toast.makeText(AddMark.this, "Ungültige Note",
@@ -162,41 +305,6 @@ public class AddMark extends Activity implements OnClickListener,
 		case R.id.bAddCancel:
 			finish();
 			break;
-			/* TODO:
-		case R.id.bOwnRelevance:
-			AlertDialog.Builder inp = new AlertDialog.Builder(this);
-			inp.setTitle("Relevanz");
-			inp.setMessage("Gib an, wie viel diese Note zählen soll (1, 0.5, 0.2 etc.)");
-			final EditText rel = new EditText(this);
-			rel.setInputType(InputType.TYPE_CLASS_NUMBER
-					| InputType.TYPE_NUMBER_FLAG_DECIMAL);
-			inp.setView(rel);
-			inp.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					if (!rel.getText().toString().contentEquals("")) {
-						dOwnRelevance = Double.parseDouble(rel.getText()
-								.toString());
-						sRelevance.setEnabled(false);
-						OwnRelevance = true;
-
-						String choices[] = { rel.getText().toString() + "x" };
-
-						ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-								getApplicationContext(),
-								android.R.layout.simple_spinner_item, choices);
-						sRelevance.setAdapter(spinnerArrayAdapter);
-					} else {
-						Toast t = Toast.makeText(AddMark.this,
-								"Gib einen Wert ein", Toast.LENGTH_SHORT);
-						t.show();
-					}
-				}
-			});
-			inp.setNegativeButton("Abbrechen", null);
-			inp.show();
-			break;*/
 		}
 	}
 
@@ -223,59 +331,6 @@ public class AddMark extends Activity implements OnClickListener,
 			break;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear,
-			int dayOfMonth) {
-		String date = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
-
-		if (iSemester == 1) {
-			String sMarksOld = fach.getNoten1();
-			String sMarksNew;
-			String sEntry = etMark.getText().toString() + " - "
-					+ sSelectedRelevance + " - " + date + "\n";
-			if (sMarksOld.contentEquals("-")) {
-				sMarksNew = sEntry;
-			} else {
-				sMarksNew = sMarksOld + sEntry;
-			}
-
-			fach.setNoten1(sMarksNew);
-			db.updateFach(fach);
-		} else {
-			String sMarksOld = fach.getNoten2();
-			String sMarksNew;
-			String sEntry = etMark.getText().toString() + " - "
-					+ sSelectedRelevance + " - " + date + "\n";
-			if (sMarksOld.contentEquals("-")) {
-				sMarksNew = sEntry;
-			} else {
-				sMarksNew = sMarksOld + sEntry;
-			}
-
-			fach.setNoten2(sMarksNew);
-			db.updateFach(fach);
-		}
-
-		if (cbAnother.isChecked()) {
-			ArrayAdapter<CharSequence> adapter = ArrayAdapter
-					.createFromResource(this, R.array.relevance_entries,
-							R.layout.simple_spinner_item);
-			adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-			sRelevance.setAdapter(adapter);
-
-			etMark.setText("");
-			sRelevance.setEnabled(true);
-			OwnRelevance = false;
-			sRelevance.setSelection(0);
-			Toast t = Toast.makeText(AddMark.this, "Note gespeichert",
-					Toast.LENGTH_SHORT);
-			t.show();
-			etMark.requestFocus();
-		} else {
-			finish();
-		}
 	}
 
 }

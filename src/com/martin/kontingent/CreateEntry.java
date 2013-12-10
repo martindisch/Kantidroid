@@ -38,7 +38,6 @@ public class CreateEntry extends Activity implements OnClickListener,
 	Button save, cancel;
 	CheckBox another;
 	RadioGroup rGroup;
-	RadioButton rb2, rb4, rb6, rb8;
 	EditText etOther;
 	String selectedKont;
 	boolean textChanged;
@@ -71,10 +70,6 @@ public class CreateEntry extends Activity implements OnClickListener,
 		cancel = (Button) findViewById(R.id.bAddCancel);
 		another = (CheckBox) findViewById(R.id.cbAnother);
 		rGroup = (RadioGroup) findViewById(R.id.rgKontingent);
-		rb2 = (RadioButton) findViewById(R.id.rb2);
-		rb4 = (RadioButton) findViewById(R.id.rb4);
-		rb6 = (RadioButton) findViewById(R.id.rb6);
-		rb8 = (RadioButton) findViewById(R.id.rb8);
 		etOther = (EditText) findViewById(R.id.etOther);
 
 		save.setOnClickListener(this);

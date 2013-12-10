@@ -15,7 +15,7 @@
             android:padding="10dp" >
 
             <EditText
-                android:id="@+id/etAddMark"
+                android:id="@+id/etMark"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="Note"
@@ -53,13 +53,13 @@
                     android:text="Ganz (1x)" />
 
                 <RadioButton
-                    android:id="@+id/rbGanz"
+                    android:id="@+id/rbHalb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Halb (0.5x)" />
 
                 <RadioButton
-                    android:id="@+id/rbGanz"
+                    android:id="@+id/rbDoppelt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Doppelt (2x)" />
@@ -67,7 +67,9 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Andere" />
+                    android:id="@+id/etAndere"
+                    android:hint="Andere"
+                    android:inputType="number" />
             </RadioGroup>
 
             <TextView
