@@ -103,7 +103,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tvArthmeticMedium"
+                    android:id="@+id/tvGradeMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -130,7 +130,7 @@
             <ListView
                 android:id="@+id/lvViewfach"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="100dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -225,7 +225,8 @@
                     android:src="@drawable/info_blue_light"
                     android:background="@null"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="7dp"/>
                 
                 <View 
                     android:layout_alignLeft="@id/ibMarkRequest"

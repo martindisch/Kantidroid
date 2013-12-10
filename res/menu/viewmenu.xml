@@ -2,22 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/mViewAdd"
-        android:icon="@drawable/add"
-        android:orderInCategory="1"
-        android:showAsAction="always"
-        android:title="Note hinzufügen"/>
-    <item
         android:id="@+id/mViewDiscard"
         android:icon="@drawable/discard"
-        android:orderInCategory="2"
+        android:orderInCategory="1"
         android:showAsAction="always"
         android:title="Note entfernen"/>
-    <item
-        android:id="@+id/mViewInfo"
-        android:icon="@drawable/info"
-        android:orderInCategory="3"
-        android:showAsAction="always"
-        android:title="Notenvorhersage"/>
 
 </menu>

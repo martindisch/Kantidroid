@@ -2,16 +2,20 @@ package com.martin.noten;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.NumberPicker;
 import org.holoeverywhere.widget.Toast;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.martin.kantidroid.Check;
@@ -20,13 +24,14 @@ import com.martin.kantidroid.WidgetProvider;
 
 public class ViewFach extends Activity {
 
-	TextView name, noten, math_average, real_average, relevance,
-			promotionsfach, dates;
-	NumberPicker picker;
+	TextView name, math_average, real_average, promotionsfach;
 	int id, iSemester;
 	String fname, fnoten, addition, fmath_average, freal_average,
 			fpromotionsfach;
 	String[] entries, mark;
+	Typeface tf;
+	ImageButton ibAddMark, ibMarkRequest;
+	ListView lvViewfach;
 
 	@Override
 	protected void onStop() {
@@ -57,6 +62,9 @@ public class ViewFach extends Activity {
 			check.setSeen(getClass().getName(), this);
 		}
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+		name.setTypeface(tf);
 	}
 
 	private void getData() {
@@ -88,31 +96,46 @@ public class ViewFach extends Activity {
 	}
 
 	private void initialize() {
-		name = (TextView) findViewById(R.id.tvViewName);
-		/* TODO:
-		noten = (TextView) findViewById(R.id.tvViewNoten);
-		relevance = (TextView) findViewById(R.id.tvViewGewichtung);
-		math_average = (TextView) findViewById(R.id.tvViewMathAverage);
-		real_average = (TextView) findViewById(R.id.tvViewRealAverage);
-		promotionsfach = (TextView) findViewById(R.id.tvViewPromotionsfach);
-		dates = (TextView) findViewById(R.id.tvViewDate);*/
+		name = (TextView) findViewById(R.id.tvFachTitle);
+		math_average = (TextView) findViewById(R.id.tvArthmeticMedium);
+		real_average = (TextView) findViewById(R.id.tvGradeMedium);
+		promotionsfach = (TextView) findViewById(R.id.tvPromotion);
+		lvViewfach = (ListView) findViewById(R.id.lvViewfach);
+		
+		ibAddMark = (ImageButton) findViewById(R.id.ibAddMark);
+		ibMarkRequest = (ImageButton) findViewById(R.id.ibMarkRequest);
+		ibAddMark.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				addMark();
+			}
+		});
+		
+		ibMarkRequest.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		updateText();
 	}
 
 	private void updateText() {
-		String dispNote = "-";
-		String dispGewichtung = "-";
-		String dispDate = "-";
+		String[] sDates = new String[entries.length];
+		String[] sRelevances = new String[entries.length];
+		String[] sMarks = new String[entries.length];
+		
 		name.setText(fname);
 		if (!fnoten.contentEquals("-")) {
-			dispNote = "";
-			dispGewichtung = "";
-			dispDate = "";
 			for (int i = 0; i < entries.length; i++) {
 				mark = entries[i].split(" - ");
-				dispNote += mark[0] + "\n";
-				dispGewichtung += mark[1] + "\n";
-				dispDate += mark[2] + "\n";
+				sMarks[i] = mark[0];
+				sRelevances[i] = mark[1];
+				sDates[i] = mark[2];
 			}
 		}
 
@@ -122,11 +145,11 @@ public class ViewFach extends Activity {
 			promotionsfach.setText("Nein");
 		}
 
-		noten.setText(dispNote);
-		relevance.setText(dispGewichtung);
 		math_average.setText(fmath_average);
 		real_average.setText(freal_average);
-		dates.setText(dispDate);
+		
+		ViewFachAdapter adapter = new ViewFachAdapter(this, sDates, sRelevances, sMarks);
+		lvViewfach.setAdapter(adapter);
 	}
 
 	@Override
@@ -149,83 +172,89 @@ public class ViewFach extends Activity {
 		case android.R.id.home:
 			finish();
 			break;
-		case R.id.mViewAdd:
-			Bundle data = new Bundle();
-			data.putInt("id", id);
-			data.putInt("semester", iSemester);
-			Intent i = new Intent(ViewFach.this, AddMark.class);
-			i.putExtras(data);
-			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(i);
-			break;
 		case R.id.mViewDiscard:
-			DatabaseHandler db = new DatabaseHandler(this);
-			Fach check = db.getFach(id);
-			if (iSemester == 1) {
-				if (!check.getNoten1().contentEquals("-")) {
-					Bundle data2 = new Bundle();
-					data2.putInt("id", id);
-					data2.putInt("semester", iSemester);
-					Intent i2 = new Intent(ViewFach.this, RemoveMark.class);
-					i2.putExtras(data2);
-					i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(i2);
-				} else {
-					Toast t = Toast.makeText(ViewFach.this,
-							"Keine Note zu entfernen", Toast.LENGTH_SHORT);
-					t.show();
-				}
-			} else {
-				if (!check.getNoten2().contentEquals("-")) {
-					Bundle data2 = new Bundle();
-					data2.putInt("id", id);
-					data2.putInt("semester", iSemester);
-					Intent i2 = new Intent(ViewFach.this, RemoveMark.class);
-					i2.putExtras(data2);
-					i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(i2);
-				} else {
-					Toast t = Toast.makeText(ViewFach.this,
-							"Keine Note zu entfernen", Toast.LENGTH_SHORT);
-					t.show();
-				}
-			}
-			break;
-		case R.id.mViewInfo:
-			DatabaseHandler dba = new DatabaseHandler(this);
-			Fach checka = dba.getFach(id);
-			if (iSemester == 1) {
-				if (!checka.getNoten1().contentEquals("-")) {
-					Bundle data2 = new Bundle();
-					data2.putInt("id", id);
-					data2.putInt("semester", iSemester);
-					Intent i2 = new Intent(ViewFach.this, Guessing.class);
-					i2.putExtras(data2);
-					i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(i2);
-				} else {
-					Toast t = Toast.makeText(ViewFach.this,
-							"Keine Noten vorhanden", Toast.LENGTH_SHORT);
-					t.show();
-				}
-			} else {
-				if (!checka.getNoten2().contentEquals("-")) {
-					Bundle data2 = new Bundle();
-					data2.putInt("id", id);
-					data2.putInt("semester", iSemester);
-					Intent i2 = new Intent(ViewFach.this, Guessing.class);
-					i2.putExtras(data2);
-					i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(i2);
-				} else {
-					Toast t = Toast.makeText(ViewFach.this,
-							"Keine Noten vorhanden", Toast.LENGTH_SHORT);
-					t.show();
-				}
-			}
+			removeMark();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void removeMark() {
+		DatabaseHandler db = new DatabaseHandler(this);
+		Fach check = db.getFach(id);
+		if (iSemester == 1) {
+			if (!check.getNoten1().contentEquals("-")) {
+				Bundle data2 = new Bundle();
+				data2.putInt("id", id);
+				data2.putInt("semester", iSemester);
+				Intent i2 = new Intent(ViewFach.this, RemoveMark.class);
+				i2.putExtras(data2);
+				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(i2);
+			} else {
+				Toast t = Toast.makeText(ViewFach.this,
+						"Keine Note zu entfernen", Toast.LENGTH_SHORT);
+				t.show();
+			}
+		} else {
+			if (!check.getNoten2().contentEquals("-")) {
+				Bundle data2 = new Bundle();
+				data2.putInt("id", id);
+				data2.putInt("semester", iSemester);
+				Intent i2 = new Intent(ViewFach.this, RemoveMark.class);
+				i2.putExtras(data2);
+				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(i2);
+			} else {
+				Toast t = Toast.makeText(ViewFach.this,
+						"Keine Note zu entfernen", Toast.LENGTH_SHORT);
+				t.show();
+			}
+		}
+	}
+
+	private void addMark() {
+		Bundle data = new Bundle();
+		data.putInt("id", id);
+		data.putInt("semester", iSemester);
+		Intent i = new Intent(ViewFach.this, AddMark.class);
+		i.putExtras(data);
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(i);
+	}
+
+	private void startGuessing() {
+		DatabaseHandler dba = new DatabaseHandler(this);
+		Fach checka = dba.getFach(id);
+		if (iSemester == 1) {
+			if (!checka.getNoten1().contentEquals("-")) {
+				Bundle data2 = new Bundle();
+				data2.putInt("id", id);
+				data2.putInt("semester", iSemester);
+				Intent i2 = new Intent(ViewFach.this, Guessing.class);
+				i2.putExtras(data2);
+				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(i2);
+			} else {
+				Toast t = Toast.makeText(ViewFach.this,
+						"Keine Noten vorhanden", Toast.LENGTH_SHORT);
+				t.show();
+			}
+		} else {
+			if (!checka.getNoten2().contentEquals("-")) {
+				Bundle data2 = new Bundle();
+				data2.putInt("id", id);
+				data2.putInt("semester", iSemester);
+				Intent i2 = new Intent(ViewFach.this, Guessing.class);
+				i2.putExtras(data2);
+				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(i2);
+			} else {
+				Toast t = Toast.makeText(ViewFach.this,
+						"Keine Noten vorhanden", Toast.LENGTH_SHORT);
+				t.show();
+			}
+		}
 	}
 
 }
