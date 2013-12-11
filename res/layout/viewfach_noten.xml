@@ -98,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Zeugnis Note"
+                    android:text="Zeugnisnote"
                     android:textColor="#8e8e8e"
                     android:textSize="14sp" />
 
@@ -156,12 +156,12 @@
                     android:id="@+id/tvNextMarkInfo"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:text="Benötigte Note für nächst höheren Schnitt"
+                    android:text="Benötigte Note für nächst höhere Zeugnisnote"
                     android:textColor="#8e8e8e"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tvNextMark"
+                    android:id="@+id/tvNextHigherMark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -185,12 +185,12 @@
                     android:id="@+id/tvPrevMarkInfo"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:text="Benötigte Note für nächst tieferen Schnitt"
+                    android:text="Benötigte Note für nächst tiefere Zeugnisnote"
                     android:textColor="#8e8e8e"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tvPrevMark"
+                    android:id="@+id/tvNextLowerMark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

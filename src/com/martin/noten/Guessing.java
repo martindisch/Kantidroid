@@ -1,5 +1,8 @@
 package com.martin.noten;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Button;
@@ -135,6 +138,8 @@ public class Guessing extends Activity implements OnClickListener {
 
 					double needed = upper_term / dRelevance;
 
+					BigDecimal bd = new BigDecimal(needed);
+
 					AlertDialog.Builder infodg = new AlertDialog.Builder(this);
 					infodg.setTitle("Notenvorhersage");
 					String konjunktiv = "musst";
@@ -145,7 +150,8 @@ public class Guessing extends Activity implements OnClickListener {
 							+ " einen Schnitt von " + dGoal + " zu erreichen, "
 							+ konjunktiv + " du bei der nächsten Prüfung (die "
 							+ dRelevance + "-mal zählt), eine Note von "
-							+ needed + " erreichen.");
+							+ bd.setScale(2, RoundingMode.HALF_UP).toString()
+							+ " erreichen.");
 					infodg.setNeutralButton("Schliessen", null);
 					infodg.show();
 

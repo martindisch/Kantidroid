@@ -1,5 +1,8 @@
 package com.martin.noten;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Toast;
@@ -32,6 +35,7 @@ public class ViewFach extends Activity {
 	Typeface tf;
 	ImageButton ibAddMark, ibMarkRequest;
 	ListView lvViewfach;
+	TextView nextHigher, nextLower;
 
 	@Override
 	protected void onStop() {
@@ -101,6 +105,8 @@ public class ViewFach extends Activity {
 		real_average = (TextView) findViewById(R.id.tvGradeMedium);
 		promotionsfach = (TextView) findViewById(R.id.tvPromotion);
 		lvViewfach = (ListView) findViewById(R.id.lvViewfach);
+		nextHigher = (TextView) findViewById(R.id.tvNextHigherMark);
+		nextLower = (TextView) findViewById(R.id.tvNextLowerMark);
 		
 		ibAddMark = (ImageButton) findViewById(R.id.ibAddMark);
 		ibMarkRequest = (ImageButton) findViewById(R.id.ibMarkRequest);
@@ -116,8 +122,7 @@ public class ViewFach extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				startGuessing();
 			}
 		});
 		
@@ -150,6 +155,72 @@ public class ViewFach extends Activity {
 		
 		ViewFachAdapter adapter = new ViewFachAdapter(this, sDates, sRelevances, sMarks);
 		lvViewfach.setAdapter(adapter);
+		
+		doPrediction();
+	}
+
+	private void doPrediction() {
+		double dCurrentMark = Double.parseDouble(freal_average);
+		double dNextHigher = getNeeded(dCurrentMark + 0.25);
+		double dNextLower = getNeeded(dCurrentMark - 0.75);
+		
+		BigDecimal bdHigher = new BigDecimal(dNextHigher);
+		BigDecimal bdLower = new BigDecimal(dNextLower);
+		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP).toString());
+		nextLower.setText(bdLower.setScale(2, RoundingMode.HALF_UP).toString());
+	}
+	
+	private double getNeeded(double dGoal) {
+		DatabaseHandler db = new DatabaseHandler(this);
+		Fach fach = db.getFach(id);
+
+		double upper_term;
+		double dRelevance = 1;
+
+		if (iSemester == 1) {
+			String sMarks = fach.getNoten1();
+
+			String[] entries = sMarks.split("\n");
+			int count = entries.length;
+			double subtraktion = 0;
+			double multiplikatoren = 0;
+
+			for (int i = 0; i < count; i++) {
+				String[] item = entries[i].split(" - ");
+				subtraktion = subtraktion
+						+ (Double.parseDouble(item[0].replace(",",
+								".")) * Double.parseDouble(item[1]
+								.replace(",", ".")));
+				multiplikatoren = multiplikatoren
+						+ Double.parseDouble(item[1].replace(",",
+								"."));
+			}
+			upper_term = dGoal * (multiplikatoren + dRelevance)
+					- subtraktion;
+		} else {
+			String sMarks = fach.getNoten2();
+
+			String[] entries = sMarks.split("\n");
+			int count = entries.length;
+			double subtraktion = 0;
+			double multiplikatoren = 0;
+
+			for (int i = 0; i < count; i++) {
+				String[] item = entries[i].split(" - ");
+				subtraktion = subtraktion
+						+ (Double.parseDouble(item[0].replace(",",
+								".")) * Double.parseDouble(item[1]
+								.replace(",", ".")));
+				multiplikatoren = multiplikatoren
+						+ Double.parseDouble(item[1].replace(",",
+								"."));
+			}
+			upper_term = dGoal * (multiplikatoren + dRelevance)
+					- subtraktion;
+		}
+
+		double needed = upper_term / dRelevance;
+		return needed;
 	}
 
 	@Override
