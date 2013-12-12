@@ -79,8 +79,6 @@ public class MainActivity extends ListActivity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 			supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		}
-		Intent service = new Intent(this, Background.class);
-		startService(service);
 		Check check = new Check();
 		if (!check.getSeen(getClass().getName(), this)) {
 			AlertDialog.Builder dg = new AlertDialog.Builder(this);

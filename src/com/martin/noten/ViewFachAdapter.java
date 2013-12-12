@@ -62,7 +62,7 @@ public class ViewFachAdapter extends BaseAdapter {
 			tvRight.setText(sMarks[arg0]);
 		}
 		if (Double.parseDouble(sMarks[arg0]) < 3.75) {
-			tvRight.setTextColor(Color.RED);
+			tvRight.setTextColor(Color.parseColor("#cc0000"));
 		}
 		return vi;
 	}

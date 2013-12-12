@@ -40,6 +40,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.martin.kiss.Background;
 import com.martin.kontingent.Overview;
 import com.martin.noten.Fach;
 import com.martin.noten.Main;
@@ -122,6 +123,8 @@ public class MainActivity extends Activity implements OnClickListener {
 					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
+		Intent service = new Intent(this, Background.class);
+		startService(service);
 	}
 
 	@Override
