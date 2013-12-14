@@ -14,13 +14,12 @@
             android:orientation="vertical"
             android:padding="10dp" >
 
-
             <AutoCompleteTextView
                 android:id="@+id/etAddFach"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
-                android:hint="Fach" />
+                android:hint="Fach"
+                android:inputType="textCapSentences" />
 
             <CheckBox
                 android:id="@+id/cbPromotionsrelevant"

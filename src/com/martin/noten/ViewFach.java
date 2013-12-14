@@ -66,7 +66,7 @@ public class ViewFach extends Activity {
 			check.setSeen(getClass().getName(), this);
 		}
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 		name.setTypeface(tf);
 	}
@@ -107,25 +107,25 @@ public class ViewFach extends Activity {
 		lvViewfach = (ListView) findViewById(R.id.lvViewfach);
 		nextHigher = (TextView) findViewById(R.id.tvNextHigherMark);
 		nextLower = (TextView) findViewById(R.id.tvNextLowerMark);
-		
+
 		ibAddMark = (ImageButton) findViewById(R.id.ibAddMark);
 		ibMarkRequest = (ImageButton) findViewById(R.id.ibMarkRequest);
 		ibAddMark.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				addMark();
 			}
 		});
-		
+
 		ibMarkRequest.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				startGuessing();
 			}
 		});
-		
+
 		updateText();
 	}
 
@@ -133,7 +133,7 @@ public class ViewFach extends Activity {
 		String[] sDates = new String[entries.length];
 		String[] sRelevances = new String[entries.length];
 		String[] sMarks = new String[entries.length];
-		
+
 		name.setText(fname);
 		if (!fnoten.contentEquals("-")) {
 			for (int i = 0; i < entries.length; i++) {
@@ -152,10 +152,11 @@ public class ViewFach extends Activity {
 
 		math_average.setText(fmath_average);
 		real_average.setText(freal_average);
-		
-		ViewFachAdapter adapter = new ViewFachAdapter(this, sDates, sRelevances, sMarks);
+
+		ViewFachAdapter adapter = new ViewFachAdapter(this, sDates,
+				sRelevances, sMarks);
 		lvViewfach.setAdapter(adapter);
-		
+
 		doPrediction();
 	}
 
@@ -163,13 +164,14 @@ public class ViewFach extends Activity {
 		double dCurrentMark = Double.parseDouble(freal_average);
 		double dNextHigher = getNeeded(dCurrentMark + 0.25);
 		double dNextLower = getNeeded(dCurrentMark - 0.75);
-		
+
 		BigDecimal bdHigher = new BigDecimal(dNextHigher);
 		BigDecimal bdLower = new BigDecimal(dNextLower);
-		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP).toString());
+		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP)
+				.toString());
 		nextLower.setText(bdLower.setScale(2, RoundingMode.HALF_UP).toString());
 	}
-	
+
 	private double getNeeded(double dGoal) {
 		DatabaseHandler db = new DatabaseHandler(this);
 		Fach fach = db.getFach(id);
@@ -188,15 +190,12 @@ public class ViewFach extends Activity {
 			for (int i = 0; i < count; i++) {
 				String[] item = entries[i].split(" - ");
 				subtraktion = subtraktion
-						+ (Double.parseDouble(item[0].replace(",",
-								".")) * Double.parseDouble(item[1]
-								.replace(",", ".")));
+						+ (Double.parseDouble(item[0].replace(",", ".")) * Double
+								.parseDouble(item[1].replace(",", ".")));
 				multiplikatoren = multiplikatoren
-						+ Double.parseDouble(item[1].replace(",",
-								"."));
+						+ Double.parseDouble(item[1].replace(",", "."));
 			}
-			upper_term = dGoal * (multiplikatoren + dRelevance)
-					- subtraktion;
+			upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
 		} else {
 			String sMarks = fach.getNoten2();
 
@@ -208,15 +207,12 @@ public class ViewFach extends Activity {
 			for (int i = 0; i < count; i++) {
 				String[] item = entries[i].split(" - ");
 				subtraktion = subtraktion
-						+ (Double.parseDouble(item[0].replace(",",
-								".")) * Double.parseDouble(item[1]
-								.replace(",", ".")));
+						+ (Double.parseDouble(item[0].replace(",", ".")) * Double
+								.parseDouble(item[1].replace(",", ".")));
 				multiplikatoren = multiplikatoren
-						+ Double.parseDouble(item[1].replace(",",
-								"."));
+						+ Double.parseDouble(item[1].replace(",", "."));
 			}
-			upper_term = dGoal * (multiplikatoren + dRelevance)
-					- subtraktion;
+			upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
 		}
 
 		double needed = upper_term / dRelevance;

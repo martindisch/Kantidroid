@@ -120,7 +120,7 @@ public class AddMark extends Activity implements OnClickListener,
 		adapter.add(selectedDate);
 		sDate.setAdapter(adapter);
 		cbAnother.setOnCheckedChangeListener(this);
-		
+
 		etMark.setText("");
 		etOther.setText("");
 
@@ -217,12 +217,12 @@ public class AddMark extends Activity implements OnClickListener,
 		DatabaseHandler db = new DatabaseHandler(this);
 		Fach fach = db.getFach(id);
 		setTitle("Note für " + fach.getName() + " hinzufügen");
-		
+
 		for (int i = 0; i < rgGewichtung.getChildCount(); i++) {
 			rgGewichtung.getChildAt(i).setEnabled(true);
 		}
 		rgGewichtung.clearCheck();
-		
+
 		firsttime = false;
 	}
 

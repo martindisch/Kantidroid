@@ -3,13 +3,13 @@ package com.martin.noten;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.widget.TextView;
 
-import com.martin.kantidroid.R;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.martin.kantidroid.R;
 
 public class ViewFachAdapter extends BaseAdapter {
 
@@ -55,10 +55,10 @@ public class ViewFachAdapter extends BaseAdapter {
 		tvRight = (TextView) vi.findViewById(R.id.tvRight);
 		tvLeft.setTextColor(Color.parseColor("#8e8e8e"));
 		tvLeft.setText(sDates[arg0]);
-		if (!sRelevances[arg0].contentEquals("1") && !(sRelevances[arg0].contentEquals("1.0"))) {
+		if (!sRelevances[arg0].contentEquals("1")
+				&& !(sRelevances[arg0].contentEquals("1.0"))) {
 			tvRight.setText("(" + sRelevances[arg0] + ") " + sMarks[arg0]);
-		}
-		else {
+		} else {
 			tvRight.setText(sMarks[arg0]);
 		}
 		if (Double.parseDouble(sMarks[arg0]) < 3.75) {

@@ -13,9 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,7 +21,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.martin.kantidroid.R;
@@ -118,7 +115,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
 			}
-			
+
 		});
 		String[] names = getResources().getStringArray(R.array.faecher_list);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -149,7 +146,8 @@ public class CreateEntry extends Activity implements OnClickListener,
 			String sFach = fach.getText().toString();
 			String sKont_av = selectedKont;
 
-			if (!(sFach.contentEquals("") || selectedKont.contentEquals("") || selectedKont.contentEquals("0"))) {
+			if (!(sFach.contentEquals("") || selectedKont.contentEquals("") || selectedKont
+					.contentEquals("0"))) {
 
 				Fach ffach = new Fach(sFach, sKont_av);
 				DatabaseHandler db = new DatabaseHandler(this);

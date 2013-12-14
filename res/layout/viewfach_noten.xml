@@ -2,12 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#e8e8e8" >
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+    android:background="#e8e8e8"
+    android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -130,7 +126,7 @@
             <ListView
                 android:id="@+id/lvViewfach"
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="90dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -198,7 +194,7 @@
                     android:text="3.80"
                     android:textColor="#cc0000" />
             </RelativeLayout>
-            
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
@@ -213,28 +209,26 @@
                 <TextView
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:text="Gewünschten Schnitt manuell eingeben"
                     android:layout_centerVertical="true"
+                    android:text="Gewünschten Schnitt manuell eingeben"
                     android:textColor="#8e8e8e"
                     android:textSize="14sp" />
 
-                <ImageButton 
+                <ImageButton
                     android:id="@+id/ibMarkRequest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/info_blue_light"
-                    android:background="@null"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="7dp"/>
-                
-                <View 
-                    android:layout_alignLeft="@id/ibMarkRequest"
-                    android:layout_height="32dp"
+                    android:background="@null"
+                    android:paddingLeft="7dp"
+                    android:src="@drawable/info_blue_light" />
+
+                <View
                     android:layout_width="1dp"
-                    android:background="#d0d0d0"/>
+                    android:layout_height="32dp"
+                    android:layout_alignLeft="@id/ibMarkRequest"
+                    android:background="#d0d0d0" />
             </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
-
 </LinearLayout>

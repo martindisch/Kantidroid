@@ -21,7 +21,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -120,11 +119,11 @@ public class ViewFach extends Activity implements OnClickListener,
 				dates[i] = entries[i].split(" - ")[0];
 				usages[i] = entries[i].split(" - ")[1];
 			}
-			
+
 			ViewFachAdapter adapter = new ViewFachAdapter(this, dates, usages);
 			lvUsage.setAdapter(adapter);
 		}
-		
+
 	}
 
 	@Override

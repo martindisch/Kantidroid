@@ -1,11 +1,6 @@
 package com.martin.kantidroid;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 import org.holoeverywhere.LayoutInflater;
@@ -383,12 +378,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			ttdg.show();
 			break;
 		case R.id.iAbout:
-			AlertDialog.Builder infodg = new AlertDialog.Builder(this);
-			LayoutInflater inflater = this.getLayoutInflater();
-			infodg.setTitle("Über");
-			infodg.setView(inflater.inflate(R.layout.about_dialog));
-			infodg.setNeutralButton("Schliessen", null);
-			infodg.show();
+			Intent ia = new Intent(this, About.class);
+			ia.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(ia);
 			break;
 		case R.id.iShortcut:
 			AlertDialog.Builder delDg = new AlertDialog.Builder(this);

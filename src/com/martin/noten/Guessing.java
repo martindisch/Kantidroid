@@ -148,7 +148,8 @@ public class Guessing extends Activity implements OnClickListener {
 
 					BigDecimal bd = new BigDecimal(needed);
 
-					tvResult.setText(bd.setScale(2, RoundingMode.HALF_UP).toString());
+					tvResult.setText(bd.setScale(2, RoundingMode.HALF_UP)
+							.toString());
 					tvMessage.setVisibility(TextView.VISIBLE);
 					tvResult.setVisibility(TextView.VISIBLE);
 				} else {

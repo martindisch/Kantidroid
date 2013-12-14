@@ -10,42 +10,17 @@
         android:padding="10dp" >
 
         <TextView
+            android:id="@+id/tvAboutTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Martin Disch, 2013\n\nFeedback an"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autoLink="email"
-            android:text="martin.disch@hispeed.ch\n"
-            android:textSize="20sp" />
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kantidroid auf GitHub"
-            android:textSize="20sp" />
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:text="https://github.com/martindisch/kantidroid\n"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Diese App wurde mithilfe von Open Source-Software erstellt.\n\nHoloEverywhere:"
+            android:text="HoloEverywhere"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/license"
-            android:textSize="15sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
 </ScrollView>

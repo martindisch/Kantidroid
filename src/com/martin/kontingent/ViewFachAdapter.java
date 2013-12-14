@@ -3,13 +3,13 @@ package com.martin.kontingent;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.widget.TextView;
 
-import com.martin.kantidroid.R;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.martin.kantidroid.R;
 
 public class ViewFachAdapter extends BaseAdapter {
 
@@ -19,8 +19,7 @@ public class ViewFachAdapter extends BaseAdapter {
 	private TextView tvLeft, tvRight;
 	private static LayoutInflater inflater;
 
-	public ViewFachAdapter(Context context, String[] sDates,
-			String[] sUsages) {
+	public ViewFachAdapter(Context context, String[] sDates, String[] sUsages) {
 		super();
 		this.context = context;
 		this.sDates = sDates;

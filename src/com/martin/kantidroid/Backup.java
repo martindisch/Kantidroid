@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -110,7 +109,7 @@ public class Backup extends Activity implements OnClickListener {
 
 		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(),
 				appKey, appSecret);
-		
+
 		if (!mDbxAcctMgr.hasLinkedAccount()) {
 			tvSyncprogress.setVisibility(TextView.INVISIBLE);
 			pbDbx.setVisibility(ProgressBar.INVISIBLE);
@@ -197,14 +196,21 @@ public class Backup extends Activity implements OnClickListener {
 										try {
 											if (dbxFs.exists(new DbxPath(
 													prefPath, prefnames[i1]))) {
-												dbxFile = dbxFs.open(new DbxPath(
-														prefPath, prefnames[i1]));
+												dbxFile = dbxFs
+														.open(new DbxPath(
+																prefPath,
+																prefnames[i1]));
 											} else {
-												dbxFile = dbxFs.create(new DbxPath(
-														prefPath, prefnames[i1]));
+												dbxFile = dbxFs
+														.create(new DbxPath(
+																prefPath,
+																prefnames[i1]));
 											}
 											dbxFile.writeFromExistingFile(
-													new File(backuppreferences + "/" + prefnames[i1]), false);
+													new File(backuppreferences
+															+ "/"
+															+ prefnames[i1]),
+													false);
 											dbxFile.close();
 										} catch (InvalidPathException e) {
 											Toast.makeText(
@@ -365,7 +371,7 @@ public class Backup extends Activity implements OnClickListener {
 					Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
 	private void localBackup_noDg() {
 		if (!dbxSynchronizing()) {
 			// Delete older backups
@@ -429,7 +435,8 @@ public class Backup extends Activity implements OnClickListener {
 				if (preferences.isDirectory()) {
 					files = preferences.listFiles();
 					for (int i = 0; i < files.length; i++) {
-						if (!files[i].getName().contentEquals("dropbox-credentials.xml")) {
+						if (!files[i].getName().contentEquals(
+								"dropbox-credentials.xml")) {
 							files[i].delete();
 						}
 					}
@@ -475,7 +482,8 @@ public class Backup extends Activity implements OnClickListener {
 		if (preferences.isDirectory()) {
 			files = preferences.listFiles();
 			for (int i = 0; i < files.length; i++) {
-				if (!files[i].getName().contentEquals("dropbox-credentials.xml")) {
+				if (!files[i].getName()
+						.contentEquals("dropbox-credentials.xml")) {
 					files[i].delete();
 				}
 			}

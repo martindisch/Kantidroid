@@ -26,8 +26,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.format.DateUtils;
 import android.text.format.Time;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.MOTD;
