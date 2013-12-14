@@ -14,13 +14,16 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.DatePicker;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.martin.kantidroid.Check;
@@ -30,11 +33,14 @@ import com.martin.kantidroid.WidgetProvider;
 public class ViewFach extends Activity implements OnClickListener,
 		android.content.DialogInterface.OnClickListener, OnDateSetListener {
 
-	TextView name, kontingent, dates;
+	TextView tvTitle, tvUsage;
+	ImageButton ibAddKont;
+	ListView lvUsage;
 	NumberPicker picker;
 	int id, kont_us, picked_number;
 	boolean invoke;
 	String fname, fkont, date_new, date_old, addition;
+	Typeface tf;
 
 	@Override
 	protected void onStop() {
@@ -83,9 +89,20 @@ public class ViewFach extends Activity implements OnClickListener,
 	}
 
 	private void initialize() {
-		name = (TextView) findViewById(R.id.tvViewName);
-		kontingent = (TextView) findViewById(R.id.tvViewKontingent);
-		dates = (TextView) findViewById(R.id.tvViewDates);
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+
+		tvTitle = (TextView) findViewById(R.id.tvFachTitle);
+		tvTitle.setTypeface(tf);
+		ibAddKont = (ImageButton) findViewById(R.id.ibAddKont);
+		ibAddKont.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				useKont();
+			}
+		});
+		tvUsage = (TextView) findViewById(R.id.tvViewUsage);
+		lvUsage = (ListView) findViewById(R.id.lvViewUsage);
+
 		updateText();
 		if (invoke) {
 			invokedUse();
@@ -93,13 +110,21 @@ public class ViewFach extends Activity implements OnClickListener,
 	}
 
 	private void updateText() {
-		name.setText(fname);
-		kontingent.setText(fkont);
+		tvTitle.setText(fname);
+		tvUsage.setText(fkont);
 		if (!date_old.contentEquals("empty")) {
-			dates.setText(date_old);
-		} else {
-			dates.setText("");
+			String[] entries = date_old.split("\n");
+			String[] dates = new String[entries.length];
+			String[] usages = new String[entries.length];
+			for (int i = 0; i < entries.length; i++) {
+				dates[i] = entries[i].split(" - ")[0];
+				usages[i] = entries[i].split(" - ")[1];
+			}
+			
+			ViewFachAdapter adapter = new ViewFachAdapter(this, dates, usages);
+			lvUsage.setAdapter(adapter);
 		}
+		
 	}
 
 	@Override
@@ -161,19 +186,6 @@ public class ViewFach extends Activity implements OnClickListener,
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.iViewUse:
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("Anzahl genommenes Kontingent");
-			View view = LayoutInflater.inflate(this, R.layout.numberpicker);
-			picker = (NumberPicker) view.findViewById(R.id.numberPicker);
-			picker.setMinValue(1);
-			picker.setMaxValue(4);
-			picker.setValue(1);
-			builder.setView(view);
-			builder.setNegativeButton("Abbrechen", null);
-			builder.setPositiveButton("OK", this);
-			builder.show();
-			break;
 		case R.id.iViewRemove:
 			if (!(kont_us == 0)) {
 				Bundle data = new Bundle();
@@ -220,5 +232,19 @@ public class ViewFach extends Activity implements OnClickListener,
 			date_new = date_old + addition;
 		}
 		setKont();
+	}
+
+	private void useKont() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Anzahl genommenes Kontingent");
+		View view = LayoutInflater.inflate(this, R.layout.numberpicker);
+		picker = (NumberPicker) view.findViewById(R.id.numberPicker);
+		picker.setMinValue(1);
+		picker.setMaxValue(4);
+		picker.setValue(1);
+		builder.setView(view);
+		builder.setNegativeButton("Abbrechen", null);
+		builder.setPositiveButton("OK", this);
+		builder.show();
 	}
 }

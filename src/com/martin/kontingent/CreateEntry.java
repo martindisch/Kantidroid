@@ -29,8 +29,6 @@ import android.widget.RadioGroup;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-// TODO: This absolutely positively won't work. It's so bad.
-
 public class CreateEntry extends Activity implements OnClickListener,
 		OnCheckedChangeListener {
 

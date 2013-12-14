@@ -71,6 +71,32 @@
                     android:layout_weight="1"
                     android:text="Abbrechen" />
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Benötigte Note:"
+                    android:textSize="20sp"
+                    android:id="@+id/tvGuessingNecessary"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible" />
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvGuessingResult"
+                    android:text="6"
+                    android:textSize="50sp"
+                    android:layout_toRightOf="@id/tvGuessingNecessary"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

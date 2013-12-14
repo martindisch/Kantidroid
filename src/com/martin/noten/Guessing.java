@@ -12,11 +12,13 @@ import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.Toast;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.martin.kantidroid.R;
 
@@ -26,10 +28,12 @@ public class Guessing extends Activity implements OnClickListener {
 	Spinner sRelevance;
 	EditText etMark;
 	CheckBox cbAnother;
+	TextView tvResult, tvMessage;
 	int id;
 	boolean OwnRelevance = false;
 	double dOwnRelevance;
 	int iSemester;
+	Typeface tf;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +51,15 @@ public class Guessing extends Activity implements OnClickListener {
 	}
 
 	private void initialize() {
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 		bCalc = (Button) findViewById(R.id.bGuessingCalculate);
 		bCancel = (Button) findViewById(R.id.bGuessingCancel);
 		bOwnRelevance = (Button) findViewById(R.id.bGuessingOwnRelevance);
 		sRelevance = (Spinner) findViewById(R.id.sGuessingRelevance);
 		etMark = (EditText) findViewById(R.id.etGuessingMark);
+		tvResult = (TextView) findViewById(R.id.tvGuessingResult);
+		tvResult.setTypeface(tf);
+		tvMessage = (TextView) findViewById(R.id.tvGuessingNecessary);
 		bCalc.setOnClickListener(this);
 		bCancel.setOnClickListener(this);
 		bOwnRelevance.setOnClickListener(this);
@@ -140,21 +148,9 @@ public class Guessing extends Activity implements OnClickListener {
 
 					BigDecimal bd = new BigDecimal(needed);
 
-					AlertDialog.Builder infodg = new AlertDialog.Builder(this);
-					infodg.setTitle("Notenvorhersage");
-					String konjunktiv = "musst";
-					if (needed > 6) {
-						konjunktiv = "müsstest";
-					}
-					infodg.setMessage("Um im Fach " + db.getFach(id).getName()
-							+ " einen Schnitt von " + dGoal + " zu erreichen, "
-							+ konjunktiv + " du bei der nächsten Prüfung (die "
-							+ dRelevance + "-mal zählt), eine Note von "
-							+ bd.setScale(2, RoundingMode.HALF_UP).toString()
-							+ " erreichen.");
-					infodg.setNeutralButton("Schliessen", null);
-					infodg.show();
-
+					tvResult.setText(bd.setScale(2, RoundingMode.HALF_UP).toString());
+					tvMessage.setVisibility(TextView.VISIBLE);
+					tvResult.setVisibility(TextView.VISIBLE);
 				} else {
 					Toast t = Toast.makeText(Guessing.this, "Ungültige Note",
 							Toast.LENGTH_SHORT);

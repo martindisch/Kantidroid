@@ -58,7 +58,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="4" />
+                    android:text="4"
+                    android:checked="true" />
 
                 <RadioButton
                     android:id="@+id/rb6"
@@ -80,8 +81,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:hint="Andere Anzahl"
-                android:inputType="number" />
+                android:hint="Anzahl Kontingent"
+                android:inputType="number"
+                android:text="4" />
 
             <CheckBox
                 android:id="@+id/cbAnother"
