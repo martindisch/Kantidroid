@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="5.80"
+                    android:text="-"
                     android:textColor="#669900" />
             </RelativeLayout>
 
@@ -191,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="3.80"
+                    android:text="-"
                     android:textColor="#cc0000" />
             </RelativeLayout>
 

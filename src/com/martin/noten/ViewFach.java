@@ -130,34 +130,64 @@ public class ViewFach extends Activity {
 	}
 
 	private void updateText() {
-		String[] sDates = new String[entries.length];
-		String[] sRelevances = new String[entries.length];
-		String[] sMarks = new String[entries.length];
-
 		name.setText(fname);
-		if (!fnoten.contentEquals("-")) {
-			for (int i = 0; i < entries.length; i++) {
-				mark = entries[i].split(" - ");
-				sMarks[i] = mark[0];
-				sRelevances[i] = mark[1];
-				sDates[i] = mark[2];
-			}
-		}
-
 		if (fpromotionsfach.contentEquals("true")) {
 			promotionsfach.setText("Ja");
 		} else {
 			promotionsfach.setText("Nein");
 		}
-
 		math_average.setText(fmath_average);
 		real_average.setText(freal_average);
 
-		ViewFachAdapter adapter = new ViewFachAdapter(this, sDates,
-				sRelevances, sMarks);
+		DatabaseHandler db = new DatabaseHandler(this);
+		Fach checka = db.getFach(id);
+		
+		String[] empty = { };
+		ViewFachAdapter adapter = new ViewFachAdapter(this, empty,
+				empty, empty);
 		lvViewfach.setAdapter(adapter);
 
-		doPrediction();
+		if (iSemester == 1) {
+			if (!checka.getNoten1().contentEquals("-")) {
+				String[] sDates = new String[entries.length];
+				String[] sRelevances = new String[entries.length];
+				String[] sMarks = new String[entries.length];
+
+				if (!fnoten.contentEquals("-")) {
+					for (int i = 0; i < entries.length; i++) {
+						mark = entries[i].split(" - ");
+						sMarks[i] = mark[0];
+						sRelevances[i] = mark[1];
+						sDates[i] = mark[2];
+					}
+				}
+				adapter = new ViewFachAdapter(this, sDates,
+						sRelevances, sMarks);
+				lvViewfach.setAdapter(adapter);
+
+				doPrediction();
+			}
+		} else {
+			if (!checka.getNoten2().contentEquals("-")) {
+				String[] sDates = new String[entries.length];
+				String[] sRelevances = new String[entries.length];
+				String[] sMarks = new String[entries.length];
+
+				if (!fnoten.contentEquals("-")) {
+					for (int i = 0; i < entries.length; i++) {
+						mark = entries[i].split(" - ");
+						sMarks[i] = mark[0];
+						sRelevances[i] = mark[1];
+						sDates[i] = mark[2];
+					}
+				}
+				adapter = new ViewFachAdapter(this, sDates,
+						sRelevances, sMarks);
+				lvViewfach.setAdapter(adapter);
+
+				doPrediction();
+			}
+		}
 	}
 
 	private void doPrediction() {
@@ -220,8 +250,8 @@ public class ViewFach extends Activity {
 	}
 
 	@Override
-	protected void onPostResume() {
-		super.onPostResume();
+	protected void onResume() {
+		super.onResume();
 		getData();
 		updateText();
 	}
