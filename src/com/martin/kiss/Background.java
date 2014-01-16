@@ -96,7 +96,7 @@ public class Background extends IntentService {
 		SharedPreferences spKISS = getApplicationContext()
 				.getSharedPreferences("KISS", this.MODE_PRIVATE);
 		Check check = new Check();
-		if (!check.getSeen(lines[0], this)) {
+		if (!check.getSeen(lines[0], this) && !lines[0].contains("html") && !lines[1].contains("html")) {
 			int idCounter = spKISS.getInt("idCounter", 0);
 			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 					this);
