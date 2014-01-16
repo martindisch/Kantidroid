@@ -102,6 +102,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.martin.kantidroid.Food"
+            android:icon="@drawable/kantidroid_ico"
+            android:label="Menupläne" >
+            <intent-filter>
+                <action android:name="com.martin.kantidroid.FOOD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <!-- Kontingent -->
 

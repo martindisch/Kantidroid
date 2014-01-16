@@ -62,8 +62,9 @@ public class Backup extends Activity implements OnClickListener {
 
 	Typeface tf;
 
-	private static final String appKey = "03ktxe8m7s1i0b6";
-	private static final String appSecret = "tvsp7mo5rtiogb1";
+	private String appKey = "03ktxe8m7s1i0b6";
+	// Is initialized later on, loaded from credential storage
+	private String appSecret;
 
 	private DbxAccountManager mDbxAcctMgr;
 	private DbxFileSystem dbxFs;
@@ -77,6 +78,9 @@ public class Backup extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		appSecret = getApplicationContext().getString(R.string.appSecret);
+		
 		setContentView(R.layout.backup_combined);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		bBackup = (ImageButton) findViewById(R.id.bBackup);

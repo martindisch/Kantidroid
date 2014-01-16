@@ -406,6 +406,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 			break;
+		case R.id.iFood:
+			Intent ifo = new Intent(MainActivity.this, Food.class);
+			ifo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(ifo);
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
