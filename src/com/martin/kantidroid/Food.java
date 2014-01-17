@@ -1,24 +1,17 @@
 package com.martin.kantidroid;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.holoeverywhere.app.Activity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,7 +32,7 @@ public class Food extends Activity {
 		setContentView(R.layout.food);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
 
 		tvOut = (TextView) findViewById(R.id.tvFoodText);
 		tvOut.setTypeface(tf);

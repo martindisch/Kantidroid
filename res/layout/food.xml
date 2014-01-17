@@ -7,21 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/activity_horizontal_margin" >
-
-        <TextView
-            android:id="@+id/tvFoodText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nil\n"
-            android:textSize="50sp"
-            android:layout_centerHorizontal="true" />
-
+        
         <EditText
             android:id="@+id/etFoodRequest"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvFoodText"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_centerHorizontal="true" />
 
         <Button
@@ -30,8 +20,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/etFoodRequest"
             android:text="Send request"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tvFoodText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nil\n"
+            android:layout_below="@id/bFoodLoad"
+            android:layout_centerHorizontal="true" />
+
+        
     </RelativeLayout>
 
 </ScrollView>
