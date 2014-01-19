@@ -1,59 +1,116 @@
 package com.martin.kantidroid;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.ProgressDialog;
+import org.holoeverywhere.preference.SharedPreferences;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.Window;
 
-public class Food extends Activity {
+public class Food extends Activity implements RestsLoaded {
 
-	private TextView tvOut;
-	private EditText etRequest;
-	private Button bRequest;
-	private Typeface tf;
-	private String sOut = "";
 	private String[] weekdays = { "Montag", "Dienstag", "Mittwoch",
 			"Donnerstag", "Freitag", "Samstag", "Sonntag" };
+	private String[] sRests = { "mensa", "bodmer", "konvikt" };
+	private String[][] sMenu = new String[7][3];
+	private boolean bLoaded = false;
+
+	private FoodPagerAdapter mSectionsPagerAdapter;
+	private ViewPager mViewPager;
+	
+	private ProgressDialog pd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.food);
+		pd = new ProgressDialog(this);
+		pd.setMessage("KISS wird geladen...");
+		pd.setCancelable(false);
+		pd.setIndeterminate(true);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		}
+		
+		setContentView(R.layout.viewpagerlayout_food);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
+		// PAGER
 
-		tvOut = (TextView) findViewById(R.id.tvFoodText);
-		tvOut.setTypeface(tf);
-		etRequest = (EditText) findViewById(R.id.etFoodRequest);
-		bRequest = (Button) findViewById(R.id.bFoodLoad);
-		bRequest.setOnClickListener(new OnClickListener() {
+		// Create the adapter that will return a fragment for each of the three
+		// primary sections of the app.
+		mSectionsPagerAdapter = new FoodPagerAdapter(
+				getSupportFragmentManager());
 
-			@Override
-			public void onClick(View arg0) {
-				getResponse(getString(R.string.testpage), etRequest.getText()
-						.toString());
-			}
+		// Set up the ViewPager with the sections adapter.
+		mViewPager = (ViewPager) findViewById(R.id.pager);
 
-		});
+		getCurrentWeek();
 	}
 
-	private void getResponse(final String url, final String request) {
+	private void getCurrentWeek() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			setSupportProgressBarIndeterminateVisibility(true);
+		} else {
+			pd.show();
+		}
+		
+		bLoaded = false;
+
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// Get JSON response
+				ServiceHandler sh = new ServiceHandler();
+				final String jsonStr = sh.makeServiceCall(
+						getString(R.string.getcurrent), ServiceHandler.GET);
+
+				if (jsonStr != null) {
+					try {
+						// Get the top object, representing all restaurants for a week
+						JSONObject rests = new JSONObject(jsonStr);
+
+						// Iterate through all restaurants
+						for (int i = 0; i < 3; i++) {
+
+							// Get the current restaurant object
+							JSONObject rest = (JSONObject) rests.get(sRests[i]);
+
+							// Iterate through all the days
+							for (int z = 0; z < 7; z++) {
+								sMenu[z][i] = rest.getString(weekdays[z]);
+							}
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						
+						// Now that we're loaded, start displaying the fragments
+						mViewPager.setAdapter(mSectionsPagerAdapter);
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+							setSupportProgressBarIndeterminateVisibility(false);
+						} else {
+							pd.hide();
+						}
+					}
+				});
+			}
+		}).start();
+	}
+
+	/*public void getResponse(final String url, final String request) {
 
 		new Thread(new Runnable() {
 
@@ -67,7 +124,8 @@ public class Food extends Activity {
 				final String jsonStr = sh.makeServiceCall(url,
 						ServiceHandler.GET, params);
 
-				if (jsonStr != null && !jsonStr.contentEquals("invalid request")) {
+				if (jsonStr != null
+						&& !jsonStr.contentEquals("invalid request")) {
 					try {
 						// Get top object, respresenting a single restaurant and containing all kalenderwochen
 						JSONObject rest = new JSONObject(jsonStr);
@@ -106,19 +164,9 @@ public class Food extends Activity {
 						e.printStackTrace();
 					}
 				}
-				else {
-					runOnUiThread(new Runnable() {
-						
-						@Override
-						public void run() {
-							tvOut.setText("Invalid request");
-						}
-					});
-				}
-
 			}
 		}).start();
-	}
+	}*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -128,6 +176,23 @@ public class Food extends Activity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public Fragment findFragmentByPosition(int position) {
+		FoodPagerAdapter fragmentPagerAdapter = mSectionsPagerAdapter;
+		return getSupportFragmentManager().findFragmentByTag(
+				"android:switcher:" + mViewPager.getId() + ":"
+						+ fragmentPagerAdapter.getItemId(position));
+	}
+
+	@Override
+	public boolean loaded() {
+		return bLoaded;
+	}
+
+	@Override
+	public String[][] getMenus() {
+		return sMenu;
 	}
 
 }

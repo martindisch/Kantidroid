@@ -6,6 +6,7 @@ import java.util.List;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.app.ProgressDialog;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.Spinner;
@@ -33,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 
 import com.martin.kiss.Background;
@@ -50,6 +52,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	double schn = 0;
 	Resources res;
 	Fach entry;
+	private ProgressDialog pd;
 
 	@Override
 	protected void onStop() {
@@ -407,9 +410,16 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(i);
 			break;
 		case R.id.iFood:
-			Intent ifo = new Intent(MainActivity.this, Food.class);
-			ifo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(ifo);
+			if (isNetworkAvailable()) {
+				Intent ifo = new Intent(MainActivity.this, Food.class);
+				ifo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(ifo);
+			}
+			else {
+				Toast.makeText(getApplicationContext(),
+						"Keine Internetverbindung",
+						Toast.LENGTH_SHORT).show();
+			}
 			break;
 		}
 		return super.onOptionsItemSelected(item);
