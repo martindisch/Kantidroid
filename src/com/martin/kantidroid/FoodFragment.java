@@ -14,7 +14,8 @@ public class FoodFragment extends Fragment {
 
 	private Typeface rLight, rThin;
 	private TextView tvDay, tvMensa, tvMensamenu, tvBodmer, tvBodmermenu,
-			tvKonvikt, tvKonviktmenu;
+			tvKonvikt, tvKonviktmenu, tvCafemartin, tvCafemartinmenu, tvMigros,
+			tvMigrosmenu, tvDate;
 	private RestsLoaded mCallback;
 
 	@Override
@@ -34,6 +35,12 @@ public class FoodFragment extends Fragment {
 		tvBodmermenu = (TextView) view.findViewById(R.id.tvFoodBodmermenu);
 		tvKonvikt = (TextView) view.findViewById(R.id.tvFoodKonvikt);
 		tvKonviktmenu = (TextView) view.findViewById(R.id.tvFoodKonviktmenu);
+		tvCafemartin = (TextView) view.findViewById(R.id.tvFoodCafemartin);
+		tvCafemartinmenu = (TextView) view
+				.findViewById(R.id.tvFoodCafemartinmenu);
+		tvMigros = (TextView) view.findViewById(R.id.tvFoodMigros);
+		tvMigrosmenu = (TextView) view.findViewById(R.id.tvFoodMigrosmenu);
+		tvDate = (TextView) view.findViewById(R.id.tvFoodDate);
 
 		tvDay.setTypeface(rThin);
 		tvDay.setText(getArguments().getString("day"));
@@ -43,24 +50,36 @@ public class FoodFragment extends Fragment {
 		tvBodmermenu.setTypeface(rLight);
 		tvKonvikt.setTypeface(rLight, Typeface.BOLD);
 		tvKonviktmenu.setTypeface(rLight);
+		tvCafemartin.setTypeface(rLight, Typeface.BOLD);
+		tvCafemartinmenu.setTypeface(rLight);
+		tvMigros.setTypeface(rLight, Typeface.BOLD);
+		tvMigrosmenu.setTypeface(rLight);
+		tvDate.setTypeface(rThin);
 
 		String[][] crappers = mCallback.getMenus();
-		tvMensamenu.setText(crappers[getArguments().getInt(
-				"position")][0]);
-		tvBodmermenu.setText(crappers[getArguments().getInt(
-				"position")][1]);
-		tvKonviktmenu.setText(crappers[getArguments().getInt(
-				"position")][2]);
 		
+		for (int i = 0; i < crappers[getArguments().getInt("position")].length; i++) {
+			if (crappers[getArguments().getInt("position")][i]
+					.contentEquals("null")) {
+				crappers[getArguments().getInt("position")][i] = "Nicht verfügbar";
+			}
+		}
+		tvMensamenu.setText(crappers[getArguments().getInt("position")][0]);
+		tvBodmermenu.setText(crappers[getArguments().getInt("position")][1]);
+		tvKonviktmenu.setText(crappers[getArguments().getInt("position")][2]);
+		tvCafemartinmenu
+				.setText(crappers[getArguments().getInt("position")][3]);
+		tvMigrosmenu.setText(crappers[getArguments().getInt("position")][4]);
+		
+		tvDate.setText("Kalenderwoche " + mCallback.getDates()[getArguments().getInt("position")]);
+
 		return view;
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		
 	}
-
 
 	@Override
 	public void onAttach(org.holoeverywhere.app.Activity activity) {

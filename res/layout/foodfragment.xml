@@ -14,6 +14,15 @@
             android:layout_height="wrap_content"
             android:text="Wochentag"
             android:textSize="40sp" />
+        
+        <TextView 
+            android:id="@+id/tvFoodDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datum"
+            android:layout_alignBaseline="@id/tvFoodDay"
+            android:layout_toRightOf="@id/tvFoodDay"
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/tvFoodMensa"
@@ -68,6 +77,42 @@
             android:layout_alignStart="@id/tvFoodMensa"
             android:layout_below="@id/tvFoodKonvikt"
             android:text="Konviktmenu" />
+        
+        <TextView
+            android:id="@+id/tvFoodCafemartin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvFoodKonviktmenu"
+            android:layout_margin="20dp"
+            android:text="Café Martinsplatz"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFoodCafemartinmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/tvFoodMensa"
+            android:layout_below="@id/tvFoodCafemartin"
+            android:text="Café Martinsplatz Menu" />
+        
+        <TextView
+            android:id="@+id/tvFoodMigros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvFoodCafemartinmenu"
+            android:layout_margin="20dp"
+            android:text="Migros Restaurant"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFoodMigrosmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/tvFoodMensa"
+            android:layout_below="@id/tvFoodMigros"
+            android:text="Migrosmenu" />
     </RelativeLayout>
 
 </ScrollView>

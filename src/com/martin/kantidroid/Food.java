@@ -1,5 +1,8 @@
 package com.martin.kantidroid;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.ProgressDialog;
 import org.holoeverywhere.preference.SharedPreferences;
@@ -10,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -17,8 +21,9 @@ public class Food extends Activity implements RestsLoaded {
 
 	private String[] weekdays = { "Montag", "Dienstag", "Mittwoch",
 			"Donnerstag", "Freitag", "Samstag", "Sonntag" };
-	private String[] sRests = { "mensa", "bodmer", "konvikt" };
-	private String[][] sMenu = new String[7][3];
+	private String[] sRests = { "mensa", "bodmer", "konvikt", "cafemartin", "migros" };
+	private String[][] sMenu = new String[7][5];
+	private String[] sDates = new String[7];
 	private boolean bLoaded = false;
 
 	private FoodPagerAdapter mSectionsPagerAdapter;
@@ -30,7 +35,7 @@ public class Food extends Activity implements RestsLoaded {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		pd = new ProgressDialog(this);
-		pd.setMessage("KISS wird geladen...");
+		pd.setMessage("Menuplan wird geladen...");
 		pd.setCancelable(false);
 		pd.setIndeterminate(true);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -75,9 +80,13 @@ public class Food extends Activity implements RestsLoaded {
 					try {
 						// Get the top object, representing all restaurants for a week
 						JSONObject rests = new JSONObject(jsonStr);
+						
+						// Get the extras
+						JSONObject extras = (JSONObject) rests.get("extras");
+						makeDates((String) extras.get("kw"));
 
 						// Iterate through all restaurants
-						for (int i = 0; i < 3; i++) {
+						for (int i = 0; i < 5; i++) {
 
 							// Get the current restaurant object
 							JSONObject rest = (JSONObject) rests.get(sRests[i]);
@@ -184,6 +193,33 @@ public class Food extends Activity implements RestsLoaded {
 				"android:switcher:" + mViewPager.getId() + ":"
 						+ fragmentPagerAdapter.getItemId(position));
 	}
+	
+	/*private void makeDates(String kw, String sDay, String sD, String sM, String sY) {
+		int day = Integer.valueOf(sDay);
+		int d = Integer.valueOf(sD);
+		int m = Integer.valueOf(sM);
+		int y = Integer.valueOf(sY);
+		
+		day--;
+		
+		Calendar c = Calendar.getInstance();
+		c.setFirstDayOfWeek(Calendar.MONDAY);
+		
+		
+		if (day < 5) {
+			for (int i = 0; i < 7; i++) {
+				sDates[i] = d + "." + m + "." + y;
+			}
+			sDates[day] = d + "." + m + "." + y;
+		}
+		
+	}*/
+	
+	private void makeDates(String kw) {
+		for (int i = 0; i < sDates.length; i++) {
+			sDates[i] = Integer.valueOf(kw) + "";
+		}
+	}
 
 	@Override
 	public boolean loaded() {
@@ -193,6 +229,11 @@ public class Food extends Activity implements RestsLoaded {
 	@Override
 	public String[][] getMenus() {
 		return sMenu;
+	}
+
+	@Override
+	public String[] getDates() {
+		return sDates;
 	}
 
 }
