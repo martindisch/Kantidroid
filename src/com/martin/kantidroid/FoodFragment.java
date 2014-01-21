@@ -1,11 +1,14 @@
 package com.martin.kantidroid;
 
+import java.util.Calendar;
+
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Fragment;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -57,7 +60,7 @@ public class FoodFragment extends Fragment {
 		tvDate.setTypeface(rThin);
 
 		String[][] crappers = mCallback.getMenus();
-		
+
 		for (int i = 0; i < crappers[getArguments().getInt("position")].length; i++) {
 			if (crappers[getArguments().getInt("position")][i]
 					.contentEquals("null")) {
@@ -71,7 +74,7 @@ public class FoodFragment extends Fragment {
 				.setText(crappers[getArguments().getInt("position")][3]);
 		tvMigrosmenu.setText(crappers[getArguments().getInt("position")][4]);
 		
-		tvDate.setText("Kalenderwoche " + mCallback.getDates()[getArguments().getInt("position")]);
+		tvDate.setText(mCallback.getDates()[getArguments().getInt("position")]);
 
 		return view;
 	}

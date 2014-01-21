@@ -1,11 +1,10 @@
 package com.martin.kantidroid;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.ProgressDialog;
-import org.holoeverywhere.preference.SharedPreferences;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -24,6 +22,7 @@ public class Food extends Activity implements RestsLoaded {
 	private String[] sRests = { "mensa", "bodmer", "konvikt", "cafemartin", "migros" };
 	private String[][] sMenu = new String[7][5];
 	private String[] sDates = new String[7];
+	private int iDay;
 	private boolean bLoaded = false;
 
 	private FoodPagerAdapter mSectionsPagerAdapter;
@@ -83,7 +82,9 @@ public class Food extends Activity implements RestsLoaded {
 						
 						// Get the extras
 						JSONObject extras = (JSONObject) rests.get("extras");
+						makeDay((String) extras.getString("day"));
 						makeDates((String) extras.get("kw"));
+						
 
 						// Iterate through all restaurants
 						for (int i = 0; i < 5; i++) {
@@ -108,6 +109,9 @@ public class Food extends Activity implements RestsLoaded {
 						
 						// Now that we're loaded, start displaying the fragments
 						mViewPager.setAdapter(mSectionsPagerAdapter);
+						if (iDay < 6) {
+							mViewPager.setCurrentItem(iDay - 1);
+						}
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 							setSupportProgressBarIndeterminateVisibility(false);
 						} else {
@@ -216,9 +220,18 @@ public class Food extends Activity implements RestsLoaded {
 	}*/
 	
 	private void makeDates(String kw) {
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DAY_OF_WEEK, - (iDay - 1));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		
 		for (int i = 0; i < sDates.length; i++) {
-			sDates[i] = Integer.valueOf(kw) + "";
+			sDates[i] = sdf.format(c.getTime());
+			c.add(Calendar.DAY_OF_WEEK, 1);
 		}
+	}
+	
+	private void makeDay(String day) {
+		iDay = Integer.valueOf(day);
 	}
 
 	@Override
