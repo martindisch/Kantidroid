@@ -30,6 +30,13 @@
                 android:action="android.intent.action.VIEW"
                 android:data="https://plus.google.com/104712908004426299903/posts" />
         </Preference>
+        <Preference
+            android:summary="Datenbank Menüpläne"
+            android:title="Andrea Brütsch" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:zmittag.info@gmail.com" />
+        </Preference>
     </PreferenceCategory>
 
 </PreferenceScreen>

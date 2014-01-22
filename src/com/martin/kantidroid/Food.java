@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,6 +56,16 @@ public class Food extends Activity implements RestsLoaded {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
 		getCurrentWeek();
+		
+		Check check = new Check();
+		if (!check.getSeen(getClass().getName(), this)) {
+			AlertDialog.Builder dg = new AlertDialog.Builder(this);
+			dg.setTitle("Info");
+			dg.setNeutralButton("Schliessen", null);
+			dg.setMessage(R.string.menuplan);
+			dg.show();
+			check.setSeen(getClass().getName(), this);
+		}
 	}
 
 	private void getCurrentWeek() {
@@ -221,7 +232,12 @@ public class Food extends Activity implements RestsLoaded {
 	
 	private void makeDates(String kw) {
 		Calendar c = Calendar.getInstance();
-		c.add(Calendar.DAY_OF_WEEK, - (iDay - 1));
+		if (iDay < 6) {
+			c.add(Calendar.DAY_OF_WEEK, - (iDay - 1));
+		}
+		else {
+			c.add(Calendar.DAY_OF_WEEK,  + (7 - iDay) + 1);
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		
 		for (int i = 0; i < sDates.length; i++) {

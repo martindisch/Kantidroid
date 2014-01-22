@@ -1,16 +1,13 @@
 package com.martin.kantidroid;
 
-import java.util.Calendar;
-
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Fragment;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.format.Time;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FoodFragment extends Fragment {

@@ -34,8 +34,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 
 import com.martin.kiss.Background;
 import com.martin.kontingent.Overview;
@@ -100,13 +100,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			dg.show();
 			check.setSeen(getClass().getName(), this);
 		}
-		if (!check.getSeen("2.11", this)) {
+		if (!check.getSeen("2.20", this)) {
 			AlertDialog.Builder dgc = new AlertDialog.Builder(this);
 			dgc.setTitle("Changelog");
 			dgc.setNeutralButton("Schliessen", null);
-			dgc.setMessage(R.string.changelog);
+			
+			// Text only message
+			//dgc.setMessage(R.string.changelog);
+			
+			// With layout
+			LayoutInflater inflater = getLayoutInflater();
+		    View view = inflater.inflate(R.layout.changelog, null);
+		    dgc.setView(view);
+			
 			dgc.show();
-			check.setSeen("2.11", this);
+			check.setSeen("2.20", this);
 		}
 
 		// Enable networking without secondary thread

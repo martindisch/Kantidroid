@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="changelog">Version 2.11\n============\n - Bugfix für Crash in Fach ohne Noten\n\nVersion 2.10\n============\n - Dropbox Backup\n - Redesign UI\n - Viele kleine Verbesserungen\n\nVersion 2.01\n============\n - Bugfix für lokales Backup\n - Vorbereitung für Integration von Backup über Dropbox\n\nVersion 2.00\n============\n - Design überarbeitet\n - Widget überarbeitet\n - Lokales Backup\n\nAuf Geräten mit physischem Menübutton muss das Menu über diesen aufgerufen werden</string>
+    <string name="changelog">Version 2.2\n============\n - Menüpläne\n\nVersion 2.11\n============\n - Bugfix für Crash in Fach ohne Noten\n\nVersion 2.10\n============\n - Dropbox Backup\n - Redesign UI\n - Viele kleine Verbesserungen\n\nVersion 2.01\n============\n - Bugfix für lokales Backup\n - Vorbereitung für Integration von Backup über Dropbox\n\nVersion 2.00\n============\n - Design überarbeitet\n - Widget überarbeitet\n - Lokales Backup\n\nAuf Geräten mit physischem Menübutton muss das Menu über diesen aufgerufen werden</string>
     <string name="app_name">Kantidroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -34,6 +34,7 @@
         <item>2. Semester</item>
     </string-array>
 
+    <string name="menuplan">Wische/Swipe nach links und rechts, um das Menü für einen anderen Tag anzusehen.</string>
     <string name="backup_importieren">Importiert Daten vom Ordner &quot;Kantidroid/Backup&quot; auf dem externen Speicher.</string>
     <string name="backup_speichern">Speichert die Daten auf dem externen Speicher im Ordner &quot;Kantidroid/Backup&quot;</string>
     <string name="kiss_main">Füge Personen wie deine Lehrer oder dich selbst zur Überwachung mit dem \'+\' Symbol hinzu.Das KISS wird im Hintergrund auf diese Personen überprüft und du wirst benachrichtigt, falls sie vorhanden sind. Natürlich kannst du die Übersicht auch manuell aktualisieren.\n\nBerühre einen Namen in der Liste um ihn ändern zu können oder zu sehen, wie oft diese Person bereits im KISS zu sehen war.\n\nÜber das Menu kannst du Personen entfernen, den Intervall ändern, in dem das KISS überprüft wird und die Ausfallzähler aller Personen zurücksetzen.</string>
