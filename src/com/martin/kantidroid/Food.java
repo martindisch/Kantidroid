@@ -20,7 +20,8 @@ public class Food extends Activity implements RestsLoaded {
 
 	private String[] weekdays = { "Montag", "Dienstag", "Mittwoch",
 			"Donnerstag", "Freitag", "Samstag", "Sonntag" };
-	private String[] sRests = { "mensa", "bodmer", "konvikt", "cafemartin", "migros" };
+	private String[] sRests = { "mensa", "bodmer", "konvikt", "cafemartin",
+			"migros" };
 	private String[][] sMenu = new String[7][5];
 	private String[] sDates = new String[7];
 	private int iDay;
@@ -28,7 +29,7 @@ public class Food extends Activity implements RestsLoaded {
 
 	private FoodPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
-	
+
 	private ProgressDialog pd;
 
 	@Override
@@ -41,7 +42,7 @@ public class Food extends Activity implements RestsLoaded {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 			supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		}
-		
+
 		setContentView(R.layout.viewpagerlayout_food);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -56,7 +57,7 @@ public class Food extends Activity implements RestsLoaded {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
 		getCurrentWeek();
-		
+
 		Check check = new Check();
 		if (!check.getSeen(getClass().getName(), this)) {
 			AlertDialog.Builder dg = new AlertDialog.Builder(this);
@@ -74,7 +75,7 @@ public class Food extends Activity implements RestsLoaded {
 		} else {
 			pd.show();
 		}
-		
+
 		bLoaded = false;
 
 		new Thread(new Runnable() {
@@ -90,12 +91,11 @@ public class Food extends Activity implements RestsLoaded {
 					try {
 						// Get the top object, representing all restaurants for a week
 						JSONObject rests = new JSONObject(jsonStr);
-						
+
 						// Get the extras
 						JSONObject extras = (JSONObject) rests.get("extras");
 						makeDay((String) extras.getString("day"));
 						makeDates((String) extras.get("kw"));
-						
 
 						// Iterate through all restaurants
 						for (int i = 0; i < 5; i++) {
@@ -114,10 +114,10 @@ public class Food extends Activity implements RestsLoaded {
 					}
 				}
 				runOnUiThread(new Runnable() {
-					
+
 					@Override
 					public void run() {
-						
+
 						// Now that we're loaded, start displaying the fragments
 						mViewPager.setAdapter(mSectionsPagerAdapter);
 						if (iDay < 6) {
@@ -208,7 +208,7 @@ public class Food extends Activity implements RestsLoaded {
 				"android:switcher:" + mViewPager.getId() + ":"
 						+ fragmentPagerAdapter.getItemId(position));
 	}
-	
+
 	/*private void makeDates(String kw, String sDay, String sD, String sM, String sY) {
 		int day = Integer.valueOf(sDay);
 		int d = Integer.valueOf(sD);
@@ -229,23 +229,22 @@ public class Food extends Activity implements RestsLoaded {
 		}
 		
 	}*/
-	
+
 	private void makeDates(String kw) {
 		Calendar c = Calendar.getInstance();
 		if (iDay < 6) {
-			c.add(Calendar.DAY_OF_WEEK, - (iDay - 1));
-		}
-		else {
-			c.add(Calendar.DAY_OF_WEEK,  + (7 - iDay) + 1);
+			c.add(Calendar.DAY_OF_WEEK, -(iDay - 1));
+		} else {
+			c.add(Calendar.DAY_OF_WEEK, +(7 - iDay) + 1);
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-		
+
 		for (int i = 0; i < sDates.length; i++) {
 			sDates[i] = sdf.format(c.getTime());
 			c.add(Calendar.DAY_OF_WEEK, 1);
 		}
 	}
-	
+
 	private void makeDay(String day) {
 		iDay = Integer.valueOf(day);
 	}

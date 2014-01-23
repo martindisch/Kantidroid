@@ -35,7 +35,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 
 import com.martin.kiss.Background;
 import com.martin.kontingent.Overview;
@@ -104,15 +103,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			AlertDialog.Builder dgc = new AlertDialog.Builder(this);
 			dgc.setTitle("Changelog");
 			dgc.setNeutralButton("Schliessen", null);
-			
+
 			// Text only message
 			//dgc.setMessage(R.string.changelog);
-			
+
 			// With layout
 			LayoutInflater inflater = getLayoutInflater();
-		    View view = inflater.inflate(R.layout.changelog, null);
-		    dgc.setView(view);
-			
+			View view = inflater.inflate(R.layout.changelog, null);
+			dgc.setView(view);
+
 			dgc.show();
 			check.setSeen("2.20", this);
 		}
@@ -422,11 +421,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				Intent ifo = new Intent(MainActivity.this, Food.class);
 				ifo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(ifo);
-			}
-			else {
+			} else {
 				Toast.makeText(getApplicationContext(),
-						"Keine Internetverbindung",
-						Toast.LENGTH_SHORT).show();
+						"Keine Internetverbindung", Toast.LENGTH_SHORT).show();
 			}
 			break;
 		}

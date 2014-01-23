@@ -5,7 +5,7 @@
         android:id="@+id/iTimetable"
         android:showAsAction="never"
         android:title="Stundenplan"/>
-    <item 
+    <item
         android:id="@+id/iFood"
         android:showAsAction="never"
         android:title="Menuplan"/>

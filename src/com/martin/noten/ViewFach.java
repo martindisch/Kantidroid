@@ -141,10 +141,9 @@ public class ViewFach extends Activity {
 
 		DatabaseHandler db = new DatabaseHandler(this);
 		Fach checka = db.getFach(id);
-		
-		String[] empty = { };
-		ViewFachAdapter adapter = new ViewFachAdapter(this, empty,
-				empty, empty);
+
+		String[] empty = {};
+		ViewFachAdapter adapter = new ViewFachAdapter(this, empty, empty, empty);
 		lvViewfach.setAdapter(adapter);
 
 		if (iSemester == 1) {
@@ -161,8 +160,7 @@ public class ViewFach extends Activity {
 						sDates[i] = mark[2];
 					}
 				}
-				adapter = new ViewFachAdapter(this, sDates,
-						sRelevances, sMarks);
+				adapter = new ViewFachAdapter(this, sDates, sRelevances, sMarks);
 				lvViewfach.setAdapter(adapter);
 
 				doPrediction();
@@ -181,8 +179,7 @@ public class ViewFach extends Activity {
 						sDates[i] = mark[2];
 					}
 				}
-				adapter = new ViewFachAdapter(this, sDates,
-						sRelevances, sMarks);
+				adapter = new ViewFachAdapter(this, sDates, sRelevances, sMarks);
 				lvViewfach.setAdapter(adapter);
 
 				doPrediction();

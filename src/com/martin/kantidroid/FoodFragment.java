@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FoodFragment extends Fragment {
@@ -70,7 +69,7 @@ public class FoodFragment extends Fragment {
 		tvCafemartinmenu
 				.setText(crappers[getArguments().getInt("position")][3]);
 		tvMigrosmenu.setText(crappers[getArguments().getInt("position")][4]);
-		
+
 		tvDate.setText(mCallback.getDates()[getArguments().getInt("position")]);
 
 		return view;

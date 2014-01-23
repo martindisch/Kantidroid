@@ -78,9 +78,9 @@ public class Backup extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		appSecret = getApplicationContext().getString(R.string.appSecret);
-		
+
 		setContentView(R.layout.backup_combined);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		bBackup = (ImageButton) findViewById(R.id.bBackup);

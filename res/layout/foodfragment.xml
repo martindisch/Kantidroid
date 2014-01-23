@@ -14,15 +14,15 @@
             android:layout_height="wrap_content"
             android:text="Wochentag"
             android:textSize="40sp" />
-        
-        <TextView 
+
+        <TextView
             android:id="@+id/tvFoodDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Datum"
             android:layout_alignBaseline="@id/tvFoodDay"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/tvFoodDay"
-            android:layout_marginLeft="20dp"/>
+            android:text="Datum" />
 
         <TextView
             android:id="@+id/tvFoodMensa"
@@ -31,15 +31,15 @@
             android:layout_below="@id/tvFoodDay"
             android:layout_margin="20dp"
             android:text="Mensa"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvFoodMensamenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_below="@id/tvFoodMensa"
+            android:layout_marginLeft="20dp"
             android:text="Mensamenu" />
 
         <TextView
@@ -49,15 +49,15 @@
             android:layout_below="@id/tvFoodMensamenu"
             android:layout_margin="20dp"
             android:text="Bodmer"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvFoodBodmermenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_below="@id/tvFoodBodmer"
+            android:layout_marginLeft="20dp"
             android:text="Bodmermenu" />
 
         <TextView
@@ -67,17 +67,17 @@
             android:layout_below="@id/tvFoodBodmermenu"
             android:layout_margin="20dp"
             android:text="Konvikt"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvFoodKonviktmenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_below="@id/tvFoodKonvikt"
+            android:layout_marginLeft="20dp"
             android:text="Konviktmenu" />
-        
+
         <TextView
             android:id="@+id/tvFoodCafemartin"
             android:layout_width="wrap_content"
@@ -85,17 +85,17 @@
             android:layout_below="@id/tvFoodKonviktmenu"
             android:layout_margin="20dp"
             android:text="Café Martinsplatz"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvFoodCafemartinmenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_below="@id/tvFoodCafemartin"
+            android:layout_marginLeft="20dp"
             android:text="Café Martinsplatz Menu" />
-        
+
         <TextView
             android:id="@+id/tvFoodMigros"
             android:layout_width="wrap_content"
@@ -103,15 +103,15 @@
             android:layout_below="@id/tvFoodCafemartinmenu"
             android:layout_margin="20dp"
             android:text="Migros Restaurant"
-            android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvFoodMigrosmenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_below="@id/tvFoodMigros"
+            android:layout_marginLeft="20dp"
             android:text="Migrosmenu" />
     </RelativeLayout>
 
