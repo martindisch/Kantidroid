@@ -13,7 +13,7 @@ The app for students of the Bündner Kantonsschule Chur.
 
 Dependencies
 ==========
-For the backwards compatible Holo Theme I'm using [HoloEverywhere] (https://github.com/Prototik/HoloEverywhere), which should be added to the project as an android library.
+For the backwards compatible Holo theme I'm using [HoloEverywhere] (https://github.com/Prototik/HoloEverywhere), which should be added to the project as an android library.
 The backup functionality relies on the [Dropbox Sync API] (https://www.dropbox.com/developers/sync). This library can simply be thrown into the libs folder and is already included.
 
 Credentials
