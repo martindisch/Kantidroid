@@ -1,7 +1,7 @@
 Kantidroid
 ==========
 
-The app for students of the Bündner Kantonsschule Chur.
+The app for students of the BÃ¼ndner Kantonsschule Chur.
 
 **Features:**
 * Extensive mark management, calculations & predictions
@@ -18,7 +18,9 @@ The backup functionality relies on the [Dropbox Sync API] (https://www.dropbox.c
 
 Credentials
 ==========
-Since this app needs access to third party APIs, there are some credentials such as Dropbox's app secret, which cannot be revealed. They're located in /res/values/creds.xml, which is listed in .gitignore and thus not on Github. In case you want to have these features in your own build, you'll have to get your own API key and appSecret and put it in a new creds.xml.
+Since this app needs access to third party APIs, there are some credentials such as Dropbox's app secret, which cannot be revealed. They're located in /res/values/creds.xml, which is listed in .gitignore and thus not on Github.
+
+In case you want to have these features in your own build, you'll have to get your own API key and appSecret and put it in a new creds.xml.
 
 License
 ==========
