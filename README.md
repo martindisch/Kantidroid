@@ -3,6 +3,14 @@ Kantidroid
 
 The app for students of the Bündner Kantonsschule Chur.
 
+**Features**
+* Extensive mark management, calculations & predictions
+* Absences management
+* Notifications for class cancellations
+* Class schedules
+* Menus for restaurants relevant for students
+* Dropbox backup of important informations
+
 Dependencies
 ==========
 For the backwards compatible Holo Theme I'm using [HoloEverywhere] (https://github.com/Prototik/HoloEverywhere), which should be added to the project as an android library.
