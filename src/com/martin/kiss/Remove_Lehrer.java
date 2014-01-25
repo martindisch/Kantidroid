@@ -6,6 +6,7 @@ import org.holoeverywhere.widget.ListView;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,7 +46,7 @@ public class Remove_Lehrer extends ListActivity {
 
 	private void createList() {
 		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		sList = spKISS.getString("lehrer", "");
 		old_noti = spKISS.getString("noti", "");
 		sNames = sList.split("-");

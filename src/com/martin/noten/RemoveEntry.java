@@ -8,6 +8,7 @@ import org.holoeverywhere.widget.ListView;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,7 +49,7 @@ public class RemoveEntry extends ListActivity implements
 		DatabaseHandler db = new DatabaseHandler(this);
 		int count = db.getFachCount();
 		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
 				spNoten.getInt("selected_semester", 1));
 		String[] names = new String[count];
@@ -65,7 +66,7 @@ public class RemoveEntry extends ListActivity implements
 		super.onListItemClick(l, v, position, id);
 		DatabaseHandler db = new DatabaseHandler(this);
 		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
 				spNoten.getInt("selected_semester", 1));
 

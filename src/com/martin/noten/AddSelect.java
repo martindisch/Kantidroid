@@ -9,6 +9,7 @@ import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.Spinner;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,7 +35,7 @@ public class AddSelect extends ListActivity {
 		DatabaseHandler db = new DatabaseHandler(this);
 		int count = db.getFachCount();
 		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
 				spNoten.getInt("selected_semester", 1));
 		String[] names = new String[count];
@@ -51,7 +52,7 @@ public class AddSelect extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 		DatabaseHandler db = new DatabaseHandler(this);
 		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
 				spNoten.getInt("selected_semester", 1));

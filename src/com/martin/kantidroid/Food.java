@@ -94,7 +94,7 @@ public class Food extends Activity implements RestsLoaded {
 
 						// Get the extras
 						JSONObject extras = (JSONObject) rests.get("extras");
-						makeDay((String) extras.getString("day"));
+						makeDay(extras.getString("day"));
 						makeDates((String) extras.get("kw"));
 
 						// Iterate through all restaurants

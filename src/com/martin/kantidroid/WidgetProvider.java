@@ -66,7 +66,7 @@ public class WidgetProvider extends AppWidgetProvider {
 			// Noten
 
 			SharedPreferences spNoten = context.getSharedPreferences(
-					"MarkSettings", context.MODE_PRIVATE);
+					"MarkSettings", Context.MODE_PRIVATE);
 			String sAbteilung = spNoten.getString("Abteilung", "Gym");
 			PromoCheck prCheck = new PromoCheck(context);
 			PromoRes prResult = null;
@@ -121,7 +121,7 @@ public class WidgetProvider extends AppWidgetProvider {
 			}
 
 			if (!(totalK == 0)) {
-				iPercentage = (int) ((used * 100) / totalK);
+				iPercentage = (used * 100) / totalK;
 				dPercentage = (double) Math.round((double) used * 100 / totalK
 						* 100) / 100;
 			}
@@ -141,7 +141,7 @@ public class WidgetProvider extends AppWidgetProvider {
 			// KISS
 
 			SharedPreferences spKISS = context.getSharedPreferences("KISS",
-					context.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			String sLehrer = spKISS.getString("lehrer", "");
 
 			if (!sLehrer.contentEquals("")) {

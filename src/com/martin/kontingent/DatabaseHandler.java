@@ -89,7 +89,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	// Get all fächer
 	public List<Fach> getAllFaecher(Context context) {
 		SharedPreferences settings = context.getSharedPreferences("mysettings",
-				context.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		String sSorting = " ORDER BY name";
 
 		int iSorting = settings.getInt("sorting", 0);

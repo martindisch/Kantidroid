@@ -195,7 +195,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 		if (!(totalK == 0)) {
-			iPercentage = (int) ((used * 100) / totalK);
+			iPercentage = (used * 100) / totalK;
 			dPercentage = (double) Math.round((double) used * 100 / totalK
 					* 100) / 100;
 		}
@@ -216,7 +216,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		// KISS
 
 		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		String sLehrer = spKISS.getString("lehrer", "");
 		String liste = "";
 
@@ -441,7 +441,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 			}
 		}
-		SharedPreferences sp = getSharedPreferences("KISS", this.MODE_PRIVATE);
+		SharedPreferences sp = getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		Editor ed = sp.edit();
 		ed.clear();
 		ed.commit();

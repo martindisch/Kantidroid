@@ -150,8 +150,8 @@ public class Guessing extends Activity implements OnClickListener {
 
 					tvResult.setText(bd.setScale(2, RoundingMode.HALF_UP)
 							.toString());
-					tvMessage.setVisibility(TextView.VISIBLE);
-					tvResult.setVisibility(TextView.VISIBLE);
+					tvMessage.setVisibility(View.VISIBLE);
+					tvResult.setVisibility(View.VISIBLE);
 				} else {
 					Toast t = Toast.makeText(Guessing.this, "Ungültige Note",
 							Toast.LENGTH_SHORT);

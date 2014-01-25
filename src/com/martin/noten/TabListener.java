@@ -29,6 +29,7 @@ public class TabListener<T extends Fragment> implements
 		mClass = clz;
 	}
 
+	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		if (mFragment == null) {
 			mFragment = Fragment.instantiate(mActivity, mClass.getName());
@@ -38,12 +39,14 @@ public class TabListener<T extends Fragment> implements
 		}
 	}
 
+	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 		if (mFragment != null) {
 			ft.detach(mFragment);
 		}
 	}
 
+	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 
 	}

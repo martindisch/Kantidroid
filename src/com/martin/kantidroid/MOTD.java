@@ -10,13 +10,14 @@ public class MOTD extends Activity {
 
 	private String[] list;
 	private TextView title, message;
-	private Typeface tf;
+	private Typeface tfT, tfL;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getData();
-		tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+		tfT = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+		tfL = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
 		setContentView(R.layout.motd);
 
 		title = (TextView) findViewById(R.id.tvMOTD_title);
@@ -24,8 +25,9 @@ public class MOTD extends Activity {
 		message.setSingleLine(false);
 
 		title.setText(list[0]);
-		title.setTypeface(tf);
+		title.setTypeface(tfT);
 		message.setText(unescape(list[1]));
+		message.setTypeface(tfL);
 	}
 
 	private void getData() {

@@ -94,7 +94,7 @@ public class Background extends IntentService {
 	private void checkMOTD(String motd) {
 		String[] lines = motd.split("/");
 		SharedPreferences spKISS = getApplicationContext()
-				.getSharedPreferences("KISS", this.MODE_PRIVATE);
+				.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		Check check = new Check();
 		if (!check.getSeen(lines[0], this) && !lines[0].contains("html")
 				&& !lines[1].contains("html")) {
@@ -136,7 +136,7 @@ public class Background extends IntentService {
 
 	private void ScheduleNextUpdate() {
 		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		Intent intent = new Intent(this, this.getClass());
 		PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
@@ -152,7 +152,7 @@ public class Background extends IntentService {
 
 	private void checkLehrer() {
 		SharedPreferences spKISS = getApplicationContext()
-				.getSharedPreferences("KISS", this.MODE_PRIVATE);
+				.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		String sLehrer = spKISS.getString("lehrer", "");
 		String sKISS = spKISS.getString("KISS", "");
 		String sNoti = spKISS.getString("noti", "");

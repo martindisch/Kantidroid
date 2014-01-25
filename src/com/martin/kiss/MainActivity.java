@@ -115,7 +115,7 @@ public class MainActivity extends ListActivity {
 	private ArrayList<Map<String, String>> buildData() {
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 
 		String sLehrer = spKISS.getString("lehrer", "");
 
@@ -152,7 +152,7 @@ public class MainActivity extends ListActivity {
 
 		if (KISS.contentEquals("")) {
 			SharedPreferences spKISS = getSharedPreferences("KISS",
-					this.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			current_kiss = spKISS.getString("KISS", "");
 		}
 
@@ -310,7 +310,7 @@ public class MainActivity extends ListActivity {
 
 	private void checkLehrer() {
 		SharedPreferences spKISS = getApplicationContext()
-				.getSharedPreferences("KISS", this.MODE_PRIVATE);
+				.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		String sLehrer = spKISS.getString("lehrer", "");
 		String sKISS = spKISS.getString("KISS", "");
 		String sNoti = spKISS.getString("noti", "");
@@ -448,7 +448,7 @@ public class MainActivity extends ListActivity {
 			break;
 		case R.id.iInterval:
 			SharedPreferences spKISS = this.getSharedPreferences("KISS",
-					this.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			final NumberPicker np = new NumberPicker(this);
 			np.setMinValue(1);
 			np.setMaxValue(9000);

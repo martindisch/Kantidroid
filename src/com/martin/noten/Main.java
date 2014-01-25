@@ -285,7 +285,7 @@ public class Main extends Activity implements OnClickListener {
 	public void onClick(DialogInterface arg0, int arg1) {
 		DatabaseHandler db = new DatabaseHandler(this);
 		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				this.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
 				spNoten.getInt("selected_semester", 1));
 		Fach selected;

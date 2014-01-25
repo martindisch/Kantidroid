@@ -46,6 +46,7 @@ public class Overview extends Activity implements OnClickListener,
 	Fach fSelected = null;
 	LinearLayout KOverview;
 
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overview);
@@ -167,7 +168,7 @@ public class Overview extends Activity implements OnClickListener,
 		}
 
 		if (!(total == 0)) {
-			iPercentage = (int) used * 100 / total;
+			iPercentage = used * 100 / total;
 			dPercentage = (double) Math
 					.round((double) used * 100 / total * 100) / 100;
 		}

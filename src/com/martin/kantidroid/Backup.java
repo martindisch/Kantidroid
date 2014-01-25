@@ -115,9 +115,9 @@ public class Backup extends Activity implements OnClickListener {
 				appKey, appSecret);
 
 		if (!mDbxAcctMgr.hasLinkedAccount()) {
-			tvSyncprogress.setVisibility(TextView.INVISIBLE);
-			pbDbx.setVisibility(ProgressBar.INVISIBLE);
-			ivSuccess.setVisibility(ImageView.INVISIBLE);
+			tvSyncprogress.setVisibility(View.INVISIBLE);
+			pbDbx.setVisibility(View.INVISIBLE);
+			ivSuccess.setVisibility(View.INVISIBLE);
 		}
 		initFs();
 	}
@@ -133,7 +133,7 @@ public class Backup extends Activity implements OnClickListener {
 			break;
 		case R.id.bDbxBackup:
 			if (!mDbxAcctMgr.hasLinkedAccount()) {
-				mDbxAcctMgr.startLink((Activity) this, REQUEST_LINK_TO_DBX);
+				mDbxAcctMgr.startLink(this, REQUEST_LINK_TO_DBX);
 			} else {
 				AlertDialog.Builder delDg = new AlertDialog.Builder(this);
 				delDg.setTitle("Dropbox");
@@ -248,7 +248,7 @@ public class Backup extends Activity implements OnClickListener {
 			break;
 		case R.id.bDbxImport:
 			if (!mDbxAcctMgr.hasLinkedAccount()) {
-				mDbxAcctMgr.startLink((Activity) this, REQUEST_LINK_TO_DBX);
+				mDbxAcctMgr.startLink(this, REQUEST_LINK_TO_DBX);
 			} else {
 				AlertDialog.Builder delDg = new AlertDialog.Builder(this);
 				delDg.setTitle("Dropbox");
@@ -543,24 +543,24 @@ public class Backup extends Activity implements OnClickListener {
 					@Override
 					public void onSyncStatusChange(DbxFileSystem arg0) {
 						if (dbxSynchronizing()) {
-							pbDbx.setVisibility(ProgressBar.VISIBLE);
-							ivSuccess.setVisibility(ImageView.INVISIBLE);
+							pbDbx.setVisibility(View.VISIBLE);
+							ivSuccess.setVisibility(View.INVISIBLE);
 							tvSyncprogress.setText("Synchronisieren");
 						} else {
-							pbDbx.setVisibility(ProgressBar.INVISIBLE);
-							ivSuccess.setVisibility(ImageView.VISIBLE);
+							pbDbx.setVisibility(View.INVISIBLE);
+							ivSuccess.setVisibility(View.VISIBLE);
 							tvSyncprogress.setText("Synchronisiert");
 						}
 					}
 
 				});
 				if (dbxSynchronizing()) {
-					pbDbx.setVisibility(ProgressBar.VISIBLE);
-					ivSuccess.setVisibility(ImageView.INVISIBLE);
+					pbDbx.setVisibility(View.VISIBLE);
+					ivSuccess.setVisibility(View.INVISIBLE);
 					tvSyncprogress.setText("Synchronisieren");
 				} else {
-					pbDbx.setVisibility(ProgressBar.INVISIBLE);
-					ivSuccess.setVisibility(ImageView.VISIBLE);
+					pbDbx.setVisibility(View.INVISIBLE);
+					ivSuccess.setVisibility(View.VISIBLE);
 					tvSyncprogress.setText("Synchronisiert");
 				}
 			} catch (Unauthorized e) {
@@ -683,7 +683,7 @@ public class Backup extends Activity implements OnClickListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_LINK_TO_DBX) {
-			if (resultCode == Activity.RESULT_OK) {
+			if (resultCode == android.app.Activity.RESULT_OK) {
 				initFs();
 				Toast.makeText(this,
 						"Bei Dropbox eingeloggt. Nochmals drücken für Backup",
