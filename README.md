@@ -3,7 +3,7 @@ Kantidroid
 
 The app for students of the Bündner Kantonsschule Chur.
 
-**Features**
+**Features:**
 * Extensive mark management, calculations & predictions
 * Absences management
 * Notifications for class cancellations
