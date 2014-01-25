@@ -9,7 +9,7 @@ The app for students of the Bündner Kantonsschule Chur.
 * Notifications for class cancellations
 * Class schedules
 * Menus for restaurants relevant for students
-* Dropbox backup of important informations
+* Dropbox backup of important information
 
 Dependencies
 ==========
