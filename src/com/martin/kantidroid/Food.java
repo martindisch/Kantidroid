@@ -237,7 +237,7 @@ public class Food extends Activity implements RestsLoaded {
 		} else {
 			c.add(Calendar.DAY_OF_WEEK, +(7 - iDay) + 1);
 		}
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
 
 		for (int i = 0; i < sDates.length; i++) {
 			sDates[i] = sdf.format(c.getTime());
