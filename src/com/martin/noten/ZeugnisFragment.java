@@ -127,7 +127,6 @@ public class ZeugnisFragment extends Fragment {
 		getSem();
 		res = getResources();
 		checkPromo();
-
 	}
 
 	private void getSem() {

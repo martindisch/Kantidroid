@@ -92,9 +92,9 @@ public class Fach {
 		// Falls beide Semester ausgefüllt
 		if (!this.getRealAverage1().contentEquals("-")
 				&& !this.getRealAverage2().contentEquals("-")) {
-			double RealAverage = 0.5 * Math.round(((Double.parseDouble(this
+			double RealAverage = 0.25 * Math.round(((Double.parseDouble(this
 					.getRealAverage1()) + Double.parseDouble(this
-					.getRealAverage2())) / 2) / 0.5);
+					.getRealAverage2())) / 2) / 0.25);
 			schnitt = RealAverage + "";
 		}
 

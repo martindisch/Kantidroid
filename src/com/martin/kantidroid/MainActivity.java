@@ -99,21 +99,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			dg.show();
 			check.setSeen(getClass().getName(), this);
 		}
-		if (!check.getSeen("2.20", this)) {
+		if (!check.getSeen("2.21", this)) {
 			AlertDialog.Builder dgc = new AlertDialog.Builder(this);
 			dgc.setTitle("Changelog");
 			dgc.setNeutralButton("Schliessen", null);
 
 			// Text only message
-			//dgc.setMessage(R.string.changelog);
+			dgc.setMessage(R.string.changelog);
 
 			// With layout
-			LayoutInflater inflater = getLayoutInflater();
-			View view = inflater.inflate(R.layout.changelog, null);
-			dgc.setView(view);
+			//LayoutInflater inflater = getLayoutInflater();
+			//View view = inflater.inflate(R.layout.changelog, null);
+			//dgc.setView(view);
 
 			dgc.show();
-			check.setSeen("2.20", this);
+			check.setSeen("2.21", this);
 		}
 
 		// Enable networking without secondary thread
