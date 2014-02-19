@@ -35,7 +35,7 @@ public class ViewFach extends Activity {
 	Typeface tf;
 	ImageButton ibAddMark, ibMarkRequest;
 	ListView lvViewfach;
-	TextView nextHigher, nextLower;
+	TextView nextHigher, keepAv;
 
 	@Override
 	protected void onStop() {
@@ -106,7 +106,7 @@ public class ViewFach extends Activity {
 		promotionsfach = (TextView) findViewById(R.id.tvPromotion);
 		lvViewfach = (ListView) findViewById(R.id.lvViewfach);
 		nextHigher = (TextView) findViewById(R.id.tvNextHigherMark);
-		nextLower = (TextView) findViewById(R.id.tvNextLowerMark);
+		keepAv = (TextView) findViewById(R.id.tvKeepAverage);
 
 		ibAddMark = (ImageButton) findViewById(R.id.ibAddMark);
 		ibMarkRequest = (ImageButton) findViewById(R.id.ibMarkRequest);
@@ -190,13 +190,13 @@ public class ViewFach extends Activity {
 	private void doPrediction() {
 		double dCurrentMark = Double.parseDouble(freal_average);
 		double dNextHigher = getNeeded(dCurrentMark + 0.25);
-		double dNextLower = getNeeded(dCurrentMark - 0.75);
+		double dKeepAverage = getNeeded(dCurrentMark - 0.25);
 
 		BigDecimal bdHigher = new BigDecimal(dNextHigher);
-		BigDecimal bdLower = new BigDecimal(dNextLower);
+		BigDecimal bdKeepAverage = new BigDecimal(dKeepAverage);
 		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP)
 				.toString());
-		nextLower.setText(bdLower.setScale(2, RoundingMode.HALF_UP).toString());
+		keepAv.setText(bdKeepAverage.setScale(2, RoundingMode.HALF_UP).toString());
 	}
 
 	private double getNeeded(double dGoal) {
