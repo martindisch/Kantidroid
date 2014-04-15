@@ -42,6 +42,7 @@ public class ZeugnisFragment extends Fragment {
 	double schn = 0;
 	Resources res;
 	Fach fSelected = null;
+	private Fach[] toSort;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +53,13 @@ public class ZeugnisFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		createList();
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				createList();				
+			}
+		}).start();
 	}
 
 	@Override
@@ -69,12 +76,7 @@ public class ZeugnisFragment extends Fragment {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.cmEdit:
-			DatabaseHandler db = new DatabaseHandler(getActivity()
-					.getApplicationContext());
-			List<Fach> faecher = db.getAllFaecher(getActivity()
-					.getApplicationContext(), 0);
-
-			fSelected = db.getFach(faecher.get(info.position).getID());
+			fSelected = toSort[info.position];
 
 			Bundle data = new Bundle();
 			data.putInt("id", fSelected.getID());
@@ -84,12 +86,7 @@ public class ZeugnisFragment extends Fragment {
 			startActivity(i);
 			break;
 		case R.id.cmDelete:
-			DatabaseHandler db1 = new DatabaseHandler(getActivity()
-					.getApplicationContext());
-			List<Fach> faecher1 = db1.getAllFaecher(getActivity()
-					.getApplicationContext(), 0);
-
-			fSelected = db1.getFach(faecher1.get(info.position).getID());
+			fSelected = toSort[info.position];
 
 			AlertDialog.Builder dg = new AlertDialog.Builder(getActivity());
 			dg.setTitle("Fach löschen");
@@ -122,9 +119,15 @@ public class ZeugnisFragment extends Fragment {
 		String[] from = { "fach", "anzahl" };
 		int[] to = { R.id.tvLeft, R.id.tvRight };
 
-		SimpleAdapter adapter = new MyAdapter(getActivity(), list,
+		final SimpleAdapter adapter = new MyAdapter(getActivity(), list,
 				R.layout.overview_list_item, from, to);
-		lv.setAdapter(adapter);
+		lv.post(new Runnable() {
+			
+			@Override
+			public void run() {
+				lv.setAdapter(adapter);
+			}
+		});
 		registerForContextMenu(lv);
 		getSem();
 		res = getResources();
@@ -148,9 +151,18 @@ public class ZeugnisFragment extends Fragment {
 		} else {
 			prResult = prCheck.getFMS(semester);
 		}
-		promoviert.setText(prResult.sMessage);
-		indicator.setBackgroundColor(res.getColor(prResult.iColor));
-		pluspunkte.setText(prResult.sPP);
+		
+		final PromoRes resources = prResult;
+		
+		lv.post(new Runnable() {
+			
+			@Override
+			public void run() {
+				promoviert.setText(resources.sMessage);
+				indicator.setBackgroundColor(res.getColor(resources.iColor));
+				pluspunkte.setText(resources.sPP);
+			}
+		});
 	}
 
 	private static void shellsort(Fach[] a) {
@@ -159,7 +171,7 @@ public class ZeugnisFragment extends Fragment {
 			for (int i = gap; i < a.length; i++) {
 				Fach tmp = a[i];
 				for (j = i; j >= gap
-						&& Double.parseDouble(tmp.getZeugnis()) < Double
+						&& Double.parseDouble(tmp.getZeugnis()) > Double
 								.parseDouble(a[j - gap].getZeugnis()); j -= gap) {
 					a[j] = a[j - gap];
 				}
@@ -172,13 +184,13 @@ public class ZeugnisFragment extends Fragment {
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		DatabaseHandler db = new DatabaseHandler(getActivity());
 		List<Fach> faecher = db.getAllFaecher(getActivity(), 3);
-		Fach[] toSort = new Fach[faecher.size()];
+		toSort = new Fach[faecher.size()];
 		for (int i = 0; i < faecher.size(); i++) {
 			toSort[i] = faecher.get(i);
 		}
 		
 		shellsort(toSort);
-
+		
 		for (Fach entry : toSort) {
 			list.add(putData(entry.getName(), entry.getZeugnis()));
 		}
