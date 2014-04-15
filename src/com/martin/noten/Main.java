@@ -2,7 +2,6 @@ package com.martin.noten;
 
 import java.util.List;
 
-import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.ListView;

@@ -2,7 +2,6 @@ package com.martin.noten;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;
@@ -54,10 +52,10 @@ public class ZeugnisFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				createList();				
+				createList();
 			}
 		}).start();
 	}
@@ -122,7 +120,7 @@ public class ZeugnisFragment extends Fragment {
 		final SimpleAdapter adapter = new MyAdapter(getActivity(), list,
 				R.layout.overview_list_item, from, to);
 		lv.post(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				lv.setAdapter(adapter);
@@ -151,11 +149,11 @@ public class ZeugnisFragment extends Fragment {
 		} else {
 			prResult = prCheck.getFMS(semester);
 		}
-		
+
 		final PromoRes resources = prResult;
-		
+
 		lv.post(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				promoviert.setText(resources.sMessage);
@@ -188,9 +186,9 @@ public class ZeugnisFragment extends Fragment {
 		for (int i = 0; i < faecher.size(); i++) {
 			toSort[i] = faecher.get(i);
 		}
-		
+
 		shellsort(toSort);
-		
+
 		for (Fach entry : toSort) {
 			list.add(putData(entry.getName(), entry.getZeugnis()));
 		}

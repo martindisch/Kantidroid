@@ -196,7 +196,8 @@ public class ViewFach extends Activity {
 		BigDecimal bdKeepAverage = new BigDecimal(dKeepAverage);
 		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP)
 				.toString());
-		keepAv.setText(bdKeepAverage.setScale(2, RoundingMode.HALF_UP).toString());
+		keepAv.setText(bdKeepAverage.setScale(2, RoundingMode.HALF_UP)
+				.toString());
 	}
 
 	private double getNeeded(double dGoal) {

@@ -59,7 +59,7 @@ public class FoodFragment extends Fragment {
 					crappers[getArguments().getInt("position")][i] = "Nicht verfügbar";
 				}
 			}
-		// In case the activity has already been destroyed
+			// In case the activity has already been destroyed
 		} catch (NullPointerException e) {
 			getActivity().finish();
 		}

@@ -441,7 +441,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 			}
 		}
-		SharedPreferences sp = getSharedPreferences("KISS", Context.MODE_PRIVATE);
+		SharedPreferences sp = getSharedPreferences("KISS",
+				Context.MODE_PRIVATE);
 		Editor ed = sp.edit();
 		ed.clear();
 		ed.commit();
