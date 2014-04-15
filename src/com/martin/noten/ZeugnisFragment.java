@@ -158,7 +158,9 @@ public class ZeugnisFragment extends Fragment {
 		for (int gap = a.length / 2; gap > 0; gap /= 2) {
 			for (int i = gap; i < a.length; i++) {
 				Fach tmp = a[i];
-				for (j = i; j >= gap && Double.parseDouble(tmp.getZeugnis()) < Double.parseDouble(a[j - gap].getZeugnis()); j -= gap) {
+				for (j = i; j >= gap
+						&& Double.parseDouble(tmp.getZeugnis()) < Double
+								.parseDouble(a[j - gap].getZeugnis()); j -= gap) {
 					a[j] = a[j - gap];
 				}
 				a[j] = tmp;
@@ -167,33 +169,19 @@ public class ZeugnisFragment extends Fragment {
 	}
 
 	private ArrayList<Map<String, String>> buildData() {
-		long measure = System.currentTimeMillis();
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		DatabaseHandler db = new DatabaseHandler(getActivity());
 		List<Fach> faecher = db.getAllFaecher(getActivity(), 3);
-		
-		Log.e("FFF", (System.currentTimeMillis() - measure) + "ms to get from database");
-		measure = System.currentTimeMillis();
-		
 		Fach[] toSort = new Fach[faecher.size()];
 		for (int i = 0; i < faecher.size(); i++) {
 			toSort[i] = faecher.get(i);
 		}
 		
-		Log.e("FFF", (System.currentTimeMillis() - measure) + "ms to make the array");
-		measure = System.currentTimeMillis();
-		
 		shellsort(toSort);
-		
-		Log.e("FFF", (System.currentTimeMillis() - measure) + "ms to sort");
-		measure = System.currentTimeMillis();
 
-		for (Fach entry : faecher) {
+		for (Fach entry : toSort) {
 			list.add(putData(entry.getName(), entry.getZeugnis()));
 		}
-		
-		Log.e("FFF", (System.currentTimeMillis() - measure) + "ms to fill the list");
-		measure = System.currentTimeMillis();
 
 		return list;
 	}
