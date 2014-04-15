@@ -110,7 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		String sorting = null;
 
 		if (iSemester == 1) {
-			switch (settings.getInt("sorting", 0)) {
+			switch (settings.getInt("sorting", 1)) {
 			case 0:
 				sorting = " ORDER BY name";
 				break;
@@ -122,7 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				break;
 			}
 		} else if (iSemester == 2) {
-			switch (settings.getInt("sorting", 0)) {
+			switch (settings.getInt("sorting", 1)) {
 			case 0:
 				sorting = " ORDER BY name";
 				break;
@@ -134,7 +134,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				break;
 			}
 		} else {
-			switch (settings.getInt("sorting", 0)) {
+			switch (settings.getInt("sorting", 1)) {
 			case 0:
 				sorting = " ORDER BY name";
 				break;

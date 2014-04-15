@@ -13,6 +13,7 @@ import org.holoeverywhere.widget.TextView;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -41,6 +42,7 @@ public class ZeugnisFragment extends Fragment {
 	Resources res;
 	Fach fSelected = null;
 	private Fach[] toSort;
+	private static boolean ASC;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -169,13 +171,30 @@ public class ZeugnisFragment extends Fragment {
 			for (int i = gap; i < a.length; i++) {
 				Fach tmp = a[i];
 				for (j = i; j >= gap
-						&& Double.parseDouble(tmp.getZeugnis()) > Double
-								.parseDouble(a[j - gap].getZeugnis()); j -= gap) {
+						&& check(Double.parseDouble(tmp.getZeugnis()), Double
+								.parseDouble(a[j - gap].getZeugnis())); j -= gap) {
 					a[j] = a[j - gap];
 				}
 				a[j] = tmp;
 			}
 		}
+	}
+	
+	private static boolean check(double a, double b) {
+		if (!ASC) {
+			if (a > b) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			if (a < b) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private ArrayList<Map<String, String>> buildData() {
@@ -187,6 +206,13 @@ public class ZeugnisFragment extends Fragment {
 			toSort[i] = faecher.get(i);
 		}
 
+		SharedPreferences settings = getActivity().getSharedPreferences(
+				"MarkSettings", Context.MODE_PRIVATE);
+		ASC = false;
+		if (settings.getInt("sorting", 1) == 2) {
+			ASC = true;
+		}
+		
 		shellsort(toSort);
 
 		for (Fach entry : toSort) {
