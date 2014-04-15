@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="changelog">Version 2.23\n============\n - Kommazahlen bei eigener Gewichtung</string>
+    <string name="changelog">Version 2.24\n============\n - Sortieren in Zeugnisansicht verbessert\n - Alte \'Über\'-Dialoge entfernt\n - Migros Restaurant entfernt\n - Bug in Menüplan behoben</string>
     <string name="app_name">Kantidroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
