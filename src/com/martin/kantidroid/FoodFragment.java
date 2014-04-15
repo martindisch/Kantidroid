@@ -59,7 +59,7 @@ public class FoodFragment extends Fragment {
 					crappers[getArguments().getInt("position")][i] = "Nicht verfügbar";
 				}
 			}
-			// In case the activity has already been destroyed
+			// In case we got bullshit from getMenus()
 		} catch (NullPointerException e) {
 			getActivity().finish();
 		}
@@ -73,11 +73,6 @@ public class FoodFragment extends Fragment {
 		tvDate.setText(mCallback.getDates()[getArguments().getInt("position")]);
 
 		return view;
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
 	}
 
 	@Override
