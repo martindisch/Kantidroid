@@ -39,10 +39,5 @@
         android:showAsAction="never"
         android:title="Sortierung ändern">
     </item>
-    <item
-        android:id="@+id/iAbout"
-        android:orderInCategory="8"
-        android:showAsAction="never"
-        android:title="Über"/>
 
 </menu>

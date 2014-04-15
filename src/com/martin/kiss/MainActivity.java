@@ -509,14 +509,6 @@ public class MainActivity extends ListActivity {
 					});
 			builderSingle.show();
 			break;
-		case R.id.iAbout:
-			AlertDialog.Builder infodg = new AlertDialog.Builder(this);
-			LayoutInflater inflater = this.getLayoutInflater();
-			infodg.setTitle("Über");
-			infodg.setView(inflater.inflate(R.layout.about_dialog));
-			infodg.setNeutralButton("Schliessen", null);
-			infodg.show();
-			break;
 		case android.R.id.home:
 			finish();
 			break;

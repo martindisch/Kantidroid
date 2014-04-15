@@ -34,10 +34,5 @@
         android:orderInCategory="6"
         android:showAsAction="never"
         android:title="KISS anzeigen"/>
-    <item
-        android:id="@+id/iAbout"
-        android:orderInCategory="7"
-        android:showAsAction="never"
-        android:title="Über"/>
 
 </menu>

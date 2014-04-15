@@ -244,14 +244,6 @@ public class Overview extends Activity implements OnClickListener,
 			}
 
 			break;
-		case R.id.iAbout:
-			AlertDialog.Builder infodg = new AlertDialog.Builder(this);
-			LayoutInflater inflater = this.getLayoutInflater();
-			infodg.setTitle("Über");
-			infodg.setView(inflater.inflate(R.layout.about_dialog));
-			infodg.setNeutralButton("Schliessen", null);
-			infodg.show();
-			break;
 		case R.id.iReset:
 			AlertDialog.Builder dg = new AlertDialog.Builder(this);
 			dg.setTitle("Kontingent zurücksetzen");
