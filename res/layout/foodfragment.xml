@@ -96,23 +96,6 @@
             android:layout_marginLeft="20dp"
             android:text="Café Martinsplatz Menu" />
 
-        <TextView
-            android:id="@+id/tvFoodMigros"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvFoodCafemartinmenu"
-            android:layout_margin="20dp"
-            android:text="Migros Restaurant"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvFoodMigrosmenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvFoodMigros"
-            android:layout_marginLeft="20dp"
-            android:text="Migrosmenu" />
     </RelativeLayout>
 
 </ScrollView>
