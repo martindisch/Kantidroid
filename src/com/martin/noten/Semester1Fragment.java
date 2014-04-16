@@ -52,7 +52,13 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 	@Override
 	public void onResume() {
 		super.onResume();
-		createList();
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				createList();
+			}
+		}).start();
 	}
 
 	@Override
@@ -122,9 +128,15 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 		String[] from = { "fach", "anzahl" };
 		int[] to = { R.id.tvLeft, R.id.tvRight };
 
-		SimpleAdapter adapter = new MyAdapter(getActivity(), list,
+		final SimpleAdapter adapter = new MyAdapter(getActivity(), list,
 				R.layout.overview_list_item, from, to);
-		lv.setAdapter(adapter);
+		lv.post(new Runnable() {
+
+			@Override
+			public void run() {
+				lv.setAdapter(adapter);
+			}
+		});
 		lv.setOnItemClickListener(this);
 		registerForContextMenu(lv);
 		getSem();
@@ -149,10 +161,18 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 		} else {
 			prResult = prCheck.getFMS(semester);
 		}
-		promoviert.setText(prResult.sMessage);
-		indicator.setBackgroundColor(res.getColor(prResult.iColor));
-		pluspunkte.setText(prResult.sPP);
-		// separator.setBackgroundColor(res.getColor(prResult.iColor));
+
+		final PromoRes resources = prResult;
+
+		lv.post(new Runnable() {
+
+			@Override
+			public void run() {
+				promoviert.setText(resources.sMessage);
+				indicator.setBackgroundColor(res.getColor(resources.iColor));
+				pluspunkte.setText(resources.sPP);
+			}
+		});
 	}
 
 	private ArrayList<Map<String, String>> buildData() {
