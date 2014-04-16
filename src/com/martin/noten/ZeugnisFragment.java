@@ -139,8 +139,9 @@ public class ZeugnisFragment extends Fragment {
 	}
 
 	private void checkPromo() {
+		getActivity();
 		SharedPreferences spNoten = getActivity().getSharedPreferences(
-				"MarkSettings", getActivity().MODE_PRIVATE);
+				"MarkSettings", Context.MODE_PRIVATE);
 		String sAbteilung = spNoten.getString("Abteilung", "Gym");
 		PromoCheck prCheck = new PromoCheck(getActivity());
 		PromoRes prResult = null;

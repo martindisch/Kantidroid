@@ -8,6 +8,7 @@ import org.holoeverywhere.widget.Toast;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -68,8 +69,9 @@ public class CreateEntry extends Activity implements OnClickListener,
 	}
 
 	private void getCheckbox() {
+		getApplicationContext();
 		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("anotherFach", true);
 
 		if (bAnother == true) {
@@ -120,8 +122,9 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		getApplicationContext();
 		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = settings.edit();
 		if (another.isChecked()) {

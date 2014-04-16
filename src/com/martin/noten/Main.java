@@ -72,9 +72,10 @@ public class Main extends Activity implements OnClickListener {
 
 			@Override
 			public void onPageSelected(int arg0) {
+				getApplicationContext();
 				SharedPreferences spNoten = getApplicationContext()
 						.getSharedPreferences("MarkSettings",
-								getApplicationContext().MODE_PRIVATE);
+								Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spNoten.edit();
 				switch (arg0) {
 				case 0:
@@ -292,8 +293,6 @@ public class Main extends Activity implements OnClickListener {
 			selected.setZeugnis("-");
 			db.updateFach(selected);
 		}
-		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 		Toast t = Toast.makeText(Main.this, "Noten zurückgesetzt",

@@ -53,7 +53,7 @@ public class AddMark extends Activity implements OnClickListener,
 	String sSelectedRelevance;
 	DatabaseHandler db;
 	String selectedDate, sMark;
-	ArrayAdapter adapter;
+	ArrayAdapter<String> adapter;
 	boolean textChanged, firsttime;
 	AddMark crap;
 	RadioButton rbGanz;
@@ -115,7 +115,7 @@ public class AddMark extends Activity implements OnClickListener,
 		cbAnother = (CheckBox) findViewById(R.id.cbAnotherMark);
 		bSave.setOnClickListener(this);
 		bCancel.setOnClickListener(this);
-		adapter = new ArrayAdapter(this, R.layout.simple_spinner_item);
+		adapter = new ArrayAdapter<String>(this, R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 		adapter.add(selectedDate);
 		sDate.setAdapter(adapter);
@@ -310,8 +310,9 @@ public class AddMark extends Activity implements OnClickListener,
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		getApplicationContext();
 		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = settings.edit();
 		if (cbAnother.isChecked()) {

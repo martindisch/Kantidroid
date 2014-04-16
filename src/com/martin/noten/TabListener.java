@@ -29,6 +29,7 @@ public class TabListener<T extends Fragment> implements
 		mClass = clz;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		if (mFragment == null) {

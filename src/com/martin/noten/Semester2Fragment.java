@@ -11,6 +11,7 @@ import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.TextView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -149,8 +150,9 @@ public class Semester2Fragment extends Fragment implements OnItemClickListener {
 	}
 
 	private void checkPromo() {
+		getActivity();
 		SharedPreferences spNoten = getActivity().getSharedPreferences(
-				"MarkSettings", getActivity().MODE_PRIVATE);
+				"MarkSettings", Context.MODE_PRIVATE);
 		String sAbteilung = spNoten.getString("Abteilung", "Gym");
 		PromoCheck prCheck = new PromoCheck(getActivity());
 		PromoRes prResult = null;

@@ -1,6 +1,7 @@
 package com.martin.noten;
 
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 
@@ -108,7 +109,7 @@ public class PromoCheck {
 		sPP = PP_result + "/" + (mppcount * 2) + " Pluspunkte";
 
 		if (fcount > 0) {
-			sSchnitt = (String.format("%.4f", total / fcount));
+			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));
 		} else {
 			sSchnitt = ("-");
 		}
@@ -119,7 +120,6 @@ public class PromoCheck {
 
 	public PromoRes getHMS(int iSemester) {
 		Fach entry;
-		double plus = 0;
 		double minus = 0;
 		int total_minus = 0;
 		double schn = 0;
@@ -143,9 +143,6 @@ public class PromoCheck {
 						&& !entry.getRealAverage2().contentEquals("-")) {
 					schn = (Double.parseDouble(entry.getRealAverage1()) + Double
 							.parseDouble(entry.getRealAverage2())) / 2;
-					if (schn > 4) {
-						plus += schn - 4;
-					}
 					if (schn < 4) {
 						minus += 4 - schn;
 						total_minus++;
@@ -158,9 +155,6 @@ public class PromoCheck {
 				// Falls nur erstes Semester ausgefüllt
 				if (entry.getRealAverage2().contentEquals("-")
 						&& !entry.getRealAverage1().contentEquals("-")) {
-					if (Double.parseDouble(entry.getRealAverage1()) > 4) {
-						plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
-					}
 					if (Double.parseDouble(entry.getRealAverage1()) < 4) {
 						minus += (4 - Double.parseDouble(entry
 								.getRealAverage1()));
@@ -173,9 +167,6 @@ public class PromoCheck {
 				// Falls nur zweites Semester ausgefüllt
 				if (!entry.getRealAverage2().contentEquals("-")
 						&& entry.getRealAverage1().contentEquals("-")) {
-					if (Double.parseDouble(entry.getRealAverage2()) > 4) {
-						plus += Double.parseDouble(entry.getRealAverage2()) - 4;
-					}
 					if (Double.parseDouble(entry.getRealAverage2()) < 4) {
 						minus += 4 - Double
 								.parseDouble(entry.getRealAverage2());
@@ -207,7 +198,7 @@ public class PromoCheck {
 		sPP = "";
 
 		if (fcount > 0) {
-			sSchnitt = (String.format("%.4f", total / fcount));
+			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));
 		} else {
 			sSchnitt = ("-");
 		}
@@ -218,9 +209,7 @@ public class PromoCheck {
 
 	public PromoRes getFMS(int iSemester) {
 		Fach entry;
-		double plus = 0;
 		double minus = 0;
-		int total_minus = 0;
 		double schn = 0;
 		double total = 0;
 		double total_real = 0;
@@ -243,12 +232,8 @@ public class PromoCheck {
 						&& !entry.getRealAverage2().contentEquals("-")) {
 					schn = (Double.parseDouble(entry.getRealAverage1()) + Double
 							.parseDouble(entry.getRealAverage2())) / 2;
-					if (schn > 4) {
-						plus += schn - 4;
-					}
 					if (schn < 4) {
 						minus += 4 - schn;
-						total_minus++;
 					}
 					total += (Double.parseDouble(entry.getMathAverage1()) + Double
 							.parseDouble(entry.getMathAverage2())) / 2;
@@ -260,13 +245,9 @@ public class PromoCheck {
 				// Falls nur erstes Semester ausgefüllt
 				if (entry.getRealAverage2().contentEquals("-")
 						&& !entry.getRealAverage1().contentEquals("-")) {
-					if (Double.parseDouble(entry.getRealAverage1()) > 4) {
-						plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
-					}
 					if (Double.parseDouble(entry.getRealAverage1()) < 4) {
 						minus += (4 - Double.parseDouble(entry
 								.getRealAverage1()));
-						total_minus++;
 					}
 					total += Double.parseDouble(entry.getMathAverage1());
 					total_real += Double.parseDouble(entry.getRealAverage1());
@@ -276,13 +257,9 @@ public class PromoCheck {
 				// Falls nur zweites Semester ausgefüllt
 				if (!entry.getRealAverage2().contentEquals("-")
 						&& entry.getRealAverage1().contentEquals("-")) {
-					if (Double.parseDouble(entry.getRealAverage2()) > 4) {
-						plus += Double.parseDouble(entry.getRealAverage2()) - 4;
-					}
 					if (Double.parseDouble(entry.getRealAverage2()) < 4) {
 						minus += 4 - Double
 								.parseDouble(entry.getRealAverage2());
-						total_minus++;
 					}
 					total += Double.parseDouble(entry.getMathAverage2());
 					total_real += Double.parseDouble(entry.getRealAverage2());
@@ -307,7 +284,7 @@ public class PromoCheck {
 		sPP = "";
 
 		if (fcount > 0) {
-			sSchnitt = (String.format("%.4f", total / fcount));
+			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));
 		} else {
 			sSchnitt = ("-");
 		}
