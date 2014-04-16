@@ -184,14 +184,19 @@ public class ZeugnisFragment extends Fragment {
 		for (int gap = a.length / 2; gap > 0; gap /= 2) {
 			for (int i = gap; i < a.length; i++) {
 				Fach tmp = a[i];
-				for (j = i; j >= gap
-						&& check(Double.parseDouble(tmp.getZeugnis()),
-								Double.parseDouble(a[j - gap].getZeugnis())); j -= gap) {
+				for (j = i; j >= gap && check(getNumber(tmp.getZeugnis()), getNumber(a[j - gap].getZeugnis())); j -= gap) {
 					a[j] = a[j - gap];
 				}
 				a[j] = tmp;
 			}
 		}
+	}
+	
+	private static double getNumber(String text) {
+		if (text.contentEquals("-")) {
+			return 0;
+		}
+		return Double.parseDouble(text);
 	}
 
 	private static boolean check(double a, double b) {
