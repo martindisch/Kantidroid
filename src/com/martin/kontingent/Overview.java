@@ -142,7 +142,6 @@ public class Overview extends Activity implements OnClickListener,
 
 		int total = 0;
 		int used = 0;
-		int iPercentage = 0;
 		double dPercentage = 0;
 
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext());
@@ -167,7 +166,6 @@ public class Overview extends Activity implements OnClickListener,
 		}
 
 		if (!(total == 0)) {
-			iPercentage = used * 100 / total;
 			dPercentage = (double) Math
 					.round((double) used * 100 / total * 100) / 100;
 		}

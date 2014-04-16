@@ -13,7 +13,6 @@ import com.martin.kantidroid.R;
 
 public class ViewFachAdapter extends BaseAdapter {
 
-	private Context context;
 	private String[] sDates;
 	private String[] sUsages;
 	private TextView tvLeft, tvRight;
@@ -21,7 +20,6 @@ public class ViewFachAdapter extends BaseAdapter {
 
 	public ViewFachAdapter(Context context, String[] sDates, String[] sUsages) {
 		super();
-		this.context = context;
 		this.sDates = sDates;
 		this.sUsages = sUsages;
 		inflater = (LayoutInflater) context
