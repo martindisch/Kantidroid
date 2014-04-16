@@ -8,6 +8,7 @@ import org.holoeverywhere.widget.Toast;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -65,8 +66,9 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 	}
 
 	private void getCB() {
+		getApplicationContext();
 		SharedPreferences settings = getSharedPreferences("KISS",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("another", true);
 
 		if (bAnother == true) {
@@ -81,9 +83,10 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 		switch (arg0.getId()) {
 		case R.id.bAddSave:
 			if (!etName.getText().toString().contentEquals("")) {
+				getApplicationContext();
 				SharedPreferences spKISS = getApplicationContext()
 						.getSharedPreferences("KISS",
-								getApplicationContext().MODE_PRIVATE);
+								Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				if (spKISS.getString("lehrer", "").contentEquals("")) {
 					editor.putString("lehrer", etName.getText().toString());
@@ -117,8 +120,9 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 
 	@Override
 	public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+		getApplicationContext();
 		SharedPreferences settings = getSharedPreferences("KISS",
-				getApplicationContext().MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 
 		if (cbAnother.isChecked()) {

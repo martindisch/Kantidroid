@@ -8,6 +8,7 @@ import org.holoeverywhere.widget.Toast;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -48,8 +49,9 @@ public class EditLehrer extends Activity implements OnClickListener {
 	}
 
 	private void initialize() {
+		getApplicationContext();
 		SharedPreferences spRem = getApplicationContext().getSharedPreferences(
-				"Rem", getApplicationContext().MODE_PRIVATE);
+				"Rem", Context.MODE_PRIVATE);
 		etName = (EditText) findViewById(R.id.etEditName);
 		tvCount = (TextView) findViewById(R.id.tvEditCount);
 		bSave = (Button) findViewById(R.id.bEditSave);
@@ -67,18 +69,19 @@ public class EditLehrer extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		String et = etName.getText().toString();
 		switch (v.getId()) {
 		case R.id.bEditSave:
 			if (!etName.getText().toString().contentEquals("")) {
+				getApplicationContext();
 				SharedPreferences spKISS = getApplicationContext()
 						.getSharedPreferences("KISS",
-								getApplicationContext().MODE_PRIVATE);
+								Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				if (!sName.contentEquals(etName.getText().toString())) {
+					getApplicationContext();
 					SharedPreferences spRem = getApplicationContext()
 							.getSharedPreferences("Rem",
-									getApplicationContext().MODE_PRIVATE);
+									Context.MODE_PRIVATE);
 					SharedPreferences.Editor ed = spRem.edit();
 					ed.putInt(etName.getText().toString(),
 							spRem.getInt(sName, 0));

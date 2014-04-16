@@ -74,9 +74,10 @@ public class Background extends IntentService {
 				e.printStackTrace();
 			}
 			if (!result.contentEquals("")) {
+				getApplicationContext();
 				SharedPreferences spKISS = getApplicationContext()
 						.getSharedPreferences("KISS",
-								getApplicationContext().MODE_PRIVATE);
+								Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				editor.putString("KISS", result);
 				editor.putString("last_refresh", DateFormat
@@ -221,10 +222,11 @@ public class Background extends IntentService {
 					}
 					ieditor.putInt("idCounter", idCounter);
 					ieditor.commit();
+					getApplicationContext();
 					// Remember
 					SharedPreferences spRem = getApplicationContext()
 							.getSharedPreferences("Rem",
-									getApplicationContext().MODE_PRIVATE);
+									Context.MODE_PRIVATE);
 					SharedPreferences.Editor RemEdit = spRem.edit();
 					int iAusfaelle = spRem.getInt(entries[i], 0);
 					iAusfaelle++;

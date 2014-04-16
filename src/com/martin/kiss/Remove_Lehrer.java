@@ -82,9 +82,10 @@ public class Remove_Lehrer extends ListActivity {
 				} else {
 					new_noti = "";
 				}
+				getApplicationContext();
 				SharedPreferences spKISS = getApplicationContext()
 						.getSharedPreferences("KISS",
-								getApplicationContext().MODE_PRIVATE);
+								Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				editor.putString("lehrer", sNewList);
 				editor.putString("noti", new_noti);

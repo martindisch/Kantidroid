@@ -178,9 +178,10 @@ public class MainActivity extends ListActivity {
 			public void run() {
 				try {
 					if (isNetworkAvailable()) {
+						getApplicationContext();
 						SharedPreferences spKISS = getApplicationContext()
 								.getSharedPreferences("KISS",
-										getApplicationContext().MODE_PRIVATE);
+										Context.MODE_PRIVATE);
 						if (!spKISS.getString("lehrer", "").contentEquals("")) {
 							URL url = new URL(
 									"https://kpf.bks-campus.ch/infoscreen");
@@ -199,9 +200,10 @@ public class MainActivity extends ListActivity {
 							}
 						}
 					} else {
+						getApplicationContext();
 						SharedPreferences spKISS = getApplicationContext()
 								.getSharedPreferences("KISS",
-										getApplicationContext().MODE_PRIVATE);
+										Context.MODE_PRIVATE);
 						final String sDate = spKISS.getString("last_refresh",
 								"never");
 						KISS = "";
@@ -239,9 +241,10 @@ public class MainActivity extends ListActivity {
 					}
 				} catch (final Exception e) {
 					KISS = "";
+					getApplicationContext();
 					SharedPreferences spKISS = getApplicationContext()
 							.getSharedPreferences("KISS",
-									getApplicationContext().MODE_PRIVATE);
+									Context.MODE_PRIVATE);
 					final String sDate = spKISS.getString("last_refresh",
 							"never");
 					if (!sDate.contentEquals("never")) {
@@ -277,9 +280,10 @@ public class MainActivity extends ListActivity {
 					}
 				}
 				if (!result.contentEquals("")) {
+					getApplicationContext();
 					SharedPreferences spKISS = getApplicationContext()
 							.getSharedPreferences("KISS",
-									getApplicationContext().MODE_PRIVATE);
+									Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = spKISS.edit();
 					editor.putString("KISS", result);
 					editor.putString("last_refresh", DateFormat
@@ -378,10 +382,11 @@ public class MainActivity extends ListActivity {
 					}
 					ieditor.putInt("idCounter", idCounter);
 					ieditor.commit();
+					getApplicationContext();
 					// Remember
 					SharedPreferences spRem = getApplicationContext()
 							.getSharedPreferences("Rem",
-									getApplicationContext().MODE_PRIVATE);
+									Context.MODE_PRIVATE);
 					SharedPreferences.Editor RemEdit = spRem.edit();
 					int iAusfaelle = spRem.getInt(entries[i], 0);
 					iAusfaelle++;
@@ -417,9 +422,10 @@ public class MainActivity extends ListActivity {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
+					getApplicationContext();
 					SharedPreferences spRem = getApplicationContext()
 							.getSharedPreferences("Rem",
-									getApplicationContext().MODE_PRIVATE);
+									Context.MODE_PRIVATE);
 					SharedPreferences.Editor ed = spRem.edit();
 					ed.clear();
 					ed.commit();
@@ -461,9 +467,10 @@ public class MainActivity extends ListActivity {
 
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
+					getApplicationContext();
 					SharedPreferences spKISS = getApplicationContext()
 							.getSharedPreferences("KISS",
-									getApplicationContext().MODE_PRIVATE);
+									Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = spKISS.edit();
 					editor.putInt("interval", np.getValue());
 					editor.commit();
