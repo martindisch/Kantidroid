@@ -95,14 +95,11 @@ public class WidgetProvider extends AppWidgetProvider {
 
 			int totalK = 0;
 			int used = 0;
-			int iPercentage = 0;
 			double dPercentage = 0;
 
 			List<com.martin.kontingent.Fach> faecherK = dbK
 					.getAllFaecher(context);
 			com.martin.kontingent.Fach entry = null;
-
-			int überzogen = 0;
 
 			for (int i = 0; i < countK; i++) {
 				entry = faecherK.get(i);
@@ -111,17 +108,10 @@ public class WidgetProvider extends AppWidgetProvider {
 				}
 				if (!entry.getKont_us().contentEquals("-")) {
 					used = used + Integer.parseInt(entry.getKont_us());
-
-					// Check für überzogen
-					if (Integer.parseInt(entry.getKont_us()) > Integer
-							.parseInt(entry.getKont_av())) {
-						überzogen++;
-					}
 				}
 			}
 
 			if (!(totalK == 0)) {
-				iPercentage = (used * 100) / totalK;
 				dPercentage = (double) Math.round((double) used * 100 / totalK
 						* 100) / 100;
 			}

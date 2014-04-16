@@ -6,7 +6,6 @@ import java.util.List;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.ProgressDialog;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.Spinner;
@@ -51,7 +50,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	double schn = 0;
 	Resources res;
 	Fach entry;
-	private ProgressDialog pd;
 
 	@Override
 	protected void onStop() {
@@ -170,7 +168,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		int totalK = 0;
 		int used = 0;
-		int iPercentage = 0;
 		double dPercentage = 0;
 
 		List<com.martin.kontingent.Fach> faecherK = dbK.getAllFaecher(this);
@@ -195,7 +192,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 		if (!(totalK == 0)) {
-			iPercentage = (used * 100) / totalK;
 			dPercentage = (double) Math.round((double) used * 100 / totalK
 					* 100) / 100;
 		}
@@ -300,7 +296,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					.findViewById(R.id.ttetClass);
 			SharedPreferences sp = getApplicationContext()
 					.getSharedPreferences("Kantidroid",
-							getApplicationContext().MODE_PRIVATE);
+							Context.MODE_PRIVATE);
 			ttsYear.setSelection(sp.getInt("yearindex", 0));
 			ttetClass.setText(sp.getString("class", ""));
 			AlertDialog.Builder ttdg = new AlertDialog.Builder(this);
@@ -315,10 +311,11 @@ public class MainActivity extends Activity implements OnClickListener {
 							String sYear = res.getStringArray(R.array.years)[ttsYear
 									.getSelectedItemPosition()];
 							String sClass = ttetClass.getText().toString();
+							getApplicationContext();
 							SharedPreferences sp = getApplicationContext()
 									.getSharedPreferences(
 											"Kantidroid",
-											getApplicationContext().MODE_PRIVATE);
+											Context.MODE_PRIVATE);
 							SharedPreferences.Editor editor = sp.edit();
 							editor.putInt("yearindex",
 									ttsYear.getSelectedItemPosition());
