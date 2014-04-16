@@ -11,9 +11,9 @@ import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.TextView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -172,25 +172,23 @@ public class ZeugnisFragment extends Fragment {
 			for (int i = gap; i < a.length; i++) {
 				Fach tmp = a[i];
 				for (j = i; j >= gap
-						&& check(Double.parseDouble(tmp.getZeugnis()), Double
-								.parseDouble(a[j - gap].getZeugnis())); j -= gap) {
+						&& check(Double.parseDouble(tmp.getZeugnis()),
+								Double.parseDouble(a[j - gap].getZeugnis())); j -= gap) {
 					a[j] = a[j - gap];
 				}
 				a[j] = tmp;
 			}
 		}
 	}
-	
+
 	private static boolean check(double a, double b) {
 		if (!ASC) {
 			if (a > b) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
-		}
-		else {
+		} else {
 			if (a < b) {
 				return true;
 			}
@@ -213,7 +211,7 @@ public class ZeugnisFragment extends Fragment {
 		if (settings.getInt("sorting", 1) == 2) {
 			ASC = true;
 		}
-		
+
 		shellsort(toSort);
 
 		for (Fach entry : toSort) {

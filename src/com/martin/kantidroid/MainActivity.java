@@ -295,8 +295,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			final EditText ttetClass = (EditText) ttDialog
 					.findViewById(R.id.ttetClass);
 			SharedPreferences sp = getApplicationContext()
-					.getSharedPreferences("Kantidroid",
-							Context.MODE_PRIVATE);
+					.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
 			ttsYear.setSelection(sp.getInt("yearindex", 0));
 			ttetClass.setText(sp.getString("class", ""));
 			AlertDialog.Builder ttdg = new AlertDialog.Builder(this);
@@ -313,8 +312,7 @@ public class MainActivity extends Activity implements OnClickListener {
 							String sClass = ttetClass.getText().toString();
 							getApplicationContext();
 							SharedPreferences sp = getApplicationContext()
-									.getSharedPreferences(
-											"Kantidroid",
+									.getSharedPreferences("Kantidroid",
 											Context.MODE_PRIVATE);
 							SharedPreferences.Editor editor = sp.edit();
 							editor.putInt("yearindex",

@@ -74,14 +74,12 @@ public class EditLehrer extends Activity implements OnClickListener {
 			if (!etName.getText().toString().contentEquals("")) {
 				getApplicationContext();
 				SharedPreferences spKISS = getApplicationContext()
-						.getSharedPreferences("KISS",
-								Context.MODE_PRIVATE);
+						.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				if (!sName.contentEquals(etName.getText().toString())) {
 					getApplicationContext();
 					SharedPreferences spRem = getApplicationContext()
-							.getSharedPreferences("Rem",
-									Context.MODE_PRIVATE);
+							.getSharedPreferences("Rem", Context.MODE_PRIVATE);
 					SharedPreferences.Editor ed = spRem.edit();
 					ed.putInt(etName.getText().toString(),
 							spRem.getInt(sName, 0));

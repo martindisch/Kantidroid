@@ -117,16 +117,6 @@ public class WidgetProvider extends AppWidgetProvider {
 			}
 			views.setTextViewText(R.id.tvKontSmall, dPercentage + "%");
 			views.setTextViewText(R.id.tvKontBig, used + "/" + totalK);
-			/*
-			 * if (überzogen == 0) {
-			 * tvUsage.setTextColor(res.getColor(R.color.holo_orange_light)); }
-			 * else {
-			 * tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
-			 * String before = tvUsage.getText().toString(); String einzmehrz =
-			 * " Fach überzogen"; if (überzogen > 1) { einzmehrz =
-			 * " Fächern überzogen"; } tvUsage.setText(before +
-			 * "\nKontingent in " + überzogen + einzmehrz); }
-			 */
 
 			// KISS
 

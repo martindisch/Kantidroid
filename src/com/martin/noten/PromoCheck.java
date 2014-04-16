@@ -109,7 +109,8 @@ public class PromoCheck {
 		sPP = PP_result + "/" + (mppcount * 2) + " Pluspunkte";
 
 		if (fcount > 0) {
-			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));
+			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total
+					/ fcount));
 		} else {
 			sSchnitt = ("-");
 		}
@@ -198,7 +199,8 @@ public class PromoCheck {
 		sPP = "";
 
 		if (fcount > 0) {
-			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));
+			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total
+					/ fcount));
 		} else {
 			sSchnitt = ("-");
 		}
@@ -284,7 +286,8 @@ public class PromoCheck {
 		sPP = "";
 
 		if (fcount > 0) {
-			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));
+			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total
+					/ fcount));
 		} else {
 			sSchnitt = ("-");
 		}

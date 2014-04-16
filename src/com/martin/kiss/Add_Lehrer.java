@@ -85,8 +85,7 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 			if (!etName.getText().toString().contentEquals("")) {
 				getApplicationContext();
 				SharedPreferences spKISS = getApplicationContext()
-						.getSharedPreferences("KISS",
-								Context.MODE_PRIVATE);
+						.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				if (spKISS.getString("lehrer", "").contentEquals("")) {
 					editor.putString("lehrer", etName.getText().toString());
