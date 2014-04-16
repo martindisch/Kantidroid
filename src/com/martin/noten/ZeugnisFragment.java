@@ -43,11 +43,22 @@ public class ZeugnisFragment extends Fragment {
 	Fach fSelected = null;
 	private Fach[] toSort;
 	private static boolean ASC;
+	private int index, top;
+	private boolean savedState = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.activity_main_noten, container, false);
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		index = lv.getFirstVisiblePosition();
+		View v = lv.getChildAt(0);
+		top = (v == null) ? 0 : v.getTop();
+		savedState = true;
 	}
 
 	@Override
@@ -126,6 +137,9 @@ public class ZeugnisFragment extends Fragment {
 			@Override
 			public void run() {
 				lv.setAdapter(adapter);
+				if (savedState) {
+					lv.setSelectionFromTop(index, top);
+				}
 			}
 		});
 		registerForContextMenu(lv);

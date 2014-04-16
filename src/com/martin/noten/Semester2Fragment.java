@@ -43,11 +43,22 @@ public class Semester2Fragment extends Fragment implements OnItemClickListener {
 	Resources res;
 	Fach fSelected = null;
 	RelativeLayout indicator;
+	private int index, top;
+	private boolean savedState = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.activity_main_noten, container, false);
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		index = lv.getFirstVisiblePosition();
+		View v = lv.getChildAt(0);
+		top = (v == null) ? 0 : v.getTop();
+		savedState = true;
 	}
 
 	@Override
@@ -136,6 +147,9 @@ public class Semester2Fragment extends Fragment implements OnItemClickListener {
 			@Override
 			public void run() {
 				lv.setAdapter(adapter);
+				if (savedState) {
+					lv.setSelectionFromTop(index, top);
+				}
 			}
 		});
 		lv.setOnItemClickListener(this);
