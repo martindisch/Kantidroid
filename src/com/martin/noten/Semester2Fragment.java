@@ -164,7 +164,6 @@ public class Semester2Fragment extends Fragment implements OnItemClickListener {
 	}
 
 	private void checkPromo() {
-		getActivity();
 		SharedPreferences spNoten = getActivity().getSharedPreferences(
 				"MarkSettings", Context.MODE_PRIVATE);
 		String sAbteilung = spNoten.getString("Abteilung", "Gym");
