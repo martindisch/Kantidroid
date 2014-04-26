@@ -49,6 +49,7 @@ public class ZeugnisFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		setRetainInstance(true);
 		return inflater.inflate(R.layout.activity_main_noten, container, false);
 	}
 	
