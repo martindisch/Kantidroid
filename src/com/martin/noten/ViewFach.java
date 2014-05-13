@@ -29,8 +29,7 @@ public class ViewFach extends Activity {
 
 	TextView name, math_average, real_average, promotionsfach;
 	int id, iSemester;
-	String fname, fnoten, addition, fmath_average, freal_average,
-			fpromotionsfach;
+	String fname, fnoten, addition, fmath_average, freal_average, fpromotionsfach;
 	String[] entries, mark;
 	Typeface tf;
 	ImageButton ibAddMark, ibMarkRequest;
@@ -42,10 +41,7 @@ public class ViewFach extends Activity {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -194,10 +190,8 @@ public class ViewFach extends Activity {
 
 		BigDecimal bdHigher = new BigDecimal(dNextHigher);
 		BigDecimal bdKeepAverage = new BigDecimal(dKeepAverage);
-		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP)
-				.toString());
-		keepAv.setText(bdKeepAverage.setScale(2, RoundingMode.HALF_UP)
-				.toString());
+		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP).toString());
+		keepAv.setText(bdKeepAverage.setScale(2, RoundingMode.HALF_UP).toString());
 	}
 
 	private double getNeeded(double dGoal) {
@@ -217,11 +211,8 @@ public class ViewFach extends Activity {
 
 			for (int i = 0; i < count; i++) {
 				String[] item = entries[i].split(" - ");
-				subtraktion = subtraktion
-						+ (Double.parseDouble(item[0].replace(",", ".")) * Double
-								.parseDouble(item[1].replace(",", ".")));
-				multiplikatoren = multiplikatoren
-						+ Double.parseDouble(item[1].replace(",", "."));
+				subtraktion = subtraktion + (Double.parseDouble(item[0].replace(",", ".")) * Double.parseDouble(item[1].replace(",", ".")));
+				multiplikatoren = multiplikatoren + Double.parseDouble(item[1].replace(",", "."));
 			}
 			upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
 		} else {
@@ -234,11 +225,8 @@ public class ViewFach extends Activity {
 
 			for (int i = 0; i < count; i++) {
 				String[] item = entries[i].split(" - ");
-				subtraktion = subtraktion
-						+ (Double.parseDouble(item[0].replace(",", ".")) * Double
-								.parseDouble(item[1].replace(",", ".")));
-				multiplikatoren = multiplikatoren
-						+ Double.parseDouble(item[1].replace(",", "."));
+				subtraktion = subtraktion + (Double.parseDouble(item[0].replace(",", ".")) * Double.parseDouble(item[1].replace(",", ".")));
+				multiplikatoren = multiplikatoren + Double.parseDouble(item[1].replace(",", "."));
 			}
 			upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
 		}
@@ -287,8 +275,7 @@ public class ViewFach extends Activity {
 				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i2);
 			} else {
-				Toast t = Toast.makeText(ViewFach.this,
-						"Keine Note zu entfernen", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(ViewFach.this, "Keine Note zu entfernen", Toast.LENGTH_SHORT);
 				t.show();
 			}
 		} else {
@@ -301,8 +288,7 @@ public class ViewFach extends Activity {
 				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i2);
 			} else {
-				Toast t = Toast.makeText(ViewFach.this,
-						"Keine Note zu entfernen", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(ViewFach.this, "Keine Note zu entfernen", Toast.LENGTH_SHORT);
 				t.show();
 			}
 		}
@@ -331,8 +317,7 @@ public class ViewFach extends Activity {
 				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i2);
 			} else {
-				Toast t = Toast.makeText(ViewFach.this,
-						"Keine Noten vorhanden", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(ViewFach.this, "Keine Noten vorhanden", Toast.LENGTH_SHORT);
 				t.show();
 			}
 		} else {
@@ -345,8 +330,7 @@ public class ViewFach extends Activity {
 				i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i2);
 			} else {
-				Toast t = Toast.makeText(ViewFach.this,
-						"Keine Noten vorhanden", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(ViewFach.this, "Keine Noten vorhanden", Toast.LENGTH_SHORT);
 				t.show();
 			}
 		}

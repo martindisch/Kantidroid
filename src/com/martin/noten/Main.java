@@ -50,8 +50,7 @@ public class Main extends Activity implements OnClickListener {
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(
-				getSupportFragmentManager());
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -73,9 +72,7 @@ public class Main extends Activity implements OnClickListener {
 			@Override
 			public void onPageSelected(int arg0) {
 				getApplicationContext();
-				SharedPreferences spNoten = getApplicationContext()
-						.getSharedPreferences("MarkSettings",
-								Context.MODE_PRIVATE);
+				SharedPreferences spNoten = getApplicationContext().getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spNoten.edit();
 				switch (arg0) {
 				case 0:
@@ -136,8 +133,7 @@ public class Main extends Activity implements OnClickListener {
 			break;
 		case R.id.iSort:
 			selected = 0;
-			SharedPreferences settings = getSharedPreferences("MarkSettings",
-					Context.MODE_PRIVATE);
+			SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 			selected = settings.getInt("sorting", 0);
 
 			AlertDialog.Builder dee = new AlertDialog.Builder(this);
@@ -147,8 +143,7 @@ public class Main extends Activity implements OnClickListener {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					SharedPreferences settings = getSharedPreferences(
-							"MarkSettings", Context.MODE_PRIVATE);
+					SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = settings.edit();
 
 					editor.putInt("sorting", selected);
@@ -156,20 +151,18 @@ public class Main extends Activity implements OnClickListener {
 					mViewPager.setAdapter(mSectionsPagerAdapter);
 				}
 			});
-			dee.setSingleChoiceItems(R.array.sorting_entries, selected,
-					new DialogInterface.OnClickListener() {
+			dee.setSingleChoiceItems(R.array.sorting_entries, selected, new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							selected = which;
-						}
-					});
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					selected = which;
+				}
+			});
 			dee.show();
 			break;
 		case R.id.iAbteilung:
 			selected = 0;
-			SharedPreferences spNoten = getSharedPreferences("MarkSettings",
-					Context.MODE_PRIVATE);
+			SharedPreferences spNoten = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 			String sAbteilung = spNoten.getString("Abteilung", "Gym");
 			if (sAbteilung.contentEquals("HMS")) {
 				selected = 1;
@@ -184,8 +177,7 @@ public class Main extends Activity implements OnClickListener {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					SharedPreferences settings = getSharedPreferences(
-							"MarkSettings", Context.MODE_PRIVATE);
+					SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = settings.edit();
 					String Abteilung = "Gym";
 
@@ -200,14 +192,13 @@ public class Main extends Activity implements OnClickListener {
 					mViewPager.setAdapter(mSectionsPagerAdapter);
 				}
 			});
-			dr.setSingleChoiceItems(R.array.abteilungen, selected,
-					new DialogInterface.OnClickListener() {
+			dr.setSingleChoiceItems(R.array.abteilungen, selected, new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							selected = which;
-						}
-					});
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					selected = which;
+				}
+			});
 			dr.show();
 			break;
 		case R.id.iEdit:
@@ -216,12 +207,10 @@ public class Main extends Activity implements OnClickListener {
 			startActivity(iedit);
 			break;
 		case R.id.nImport:
-			com.martin.noten.DatabaseHandler dbN = new com.martin.noten.DatabaseHandler(
-					this);
+			com.martin.noten.DatabaseHandler dbN = new com.martin.noten.DatabaseHandler(this);
 			List<com.martin.noten.Fach> nFaecher = dbN.getAllFaecher(this, 1);
 
-			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
-					this);
+			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(this);
 			List<com.martin.kontingent.Fach> kFaecher = dbK.getAllFaecher(this);
 
 			com.martin.noten.Fach entryN = null;
@@ -236,8 +225,7 @@ public class Main extends Activity implements OnClickListener {
 
 				for (int z = 0; z < nFaecher.size(); z++) {
 					entryN = nFaecher.get(z);
-					if (entryK.getName().contentEquals(
-							entryN.getName().toString())) {
+					if (entryK.getName().contentEquals(entryN.getName().toString())) {
 						exists = true;
 						break;
 					}
@@ -254,9 +242,7 @@ public class Main extends Activity implements OnClickListener {
 				}
 			}
 			if (!imported) {
-				Toast t = Toast
-						.makeText(this, "Keine neuen Fächer zu importieren",
-								Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Keine neuen Fächer zu importieren", Toast.LENGTH_SHORT);
 				t.show();
 			} else {
 				AlertDialog.Builder impinfo = new AlertDialog.Builder(this);
@@ -277,10 +263,8 @@ public class Main extends Activity implements OnClickListener {
 	@Override
 	public void onClick(DialogInterface arg0, int arg1) {
 		DatabaseHandler db = new DatabaseHandler(this);
-		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
-		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
-				spNoten.getInt("selected_semester", 1));
+		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
+		List<Fach> faecher = db.getAllFaecher(getApplicationContext(), spNoten.getInt("selected_semester", 1));
 		Fach selected;
 		for (int i = 0; i < db.getFachCount(); i++) {
 			selected = db.getFach(faecher.get(i).getID());
@@ -295,8 +279,7 @@ public class Main extends Activity implements OnClickListener {
 		}
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
-		Toast t = Toast.makeText(Main.this, "Noten zurückgesetzt",
-				Toast.LENGTH_SHORT);
+		Toast t = Toast.makeText(Main.this, "Noten zurückgesetzt", Toast.LENGTH_SHORT);
 		t.show();
 
 	}
@@ -304,8 +287,7 @@ public class Main extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 		if (settings.getInt("selected_semester", 1) == 1) {
 			mViewPager.setCurrentItem(0);
 		} else if (settings.getInt("selected_semester", 1) == 2) {

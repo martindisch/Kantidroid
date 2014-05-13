@@ -9,8 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class FoodPagerAdapter extends FragmentPagerAdapter {
 
-	private String[] weekdays = { "Montag", "Dienstag", "Mittwoch",
-			"Donnerstag", "Freitag", "Samstag", "Sonntag" };
+	private String[] weekdays = { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
 
 	public FoodPagerAdapter(FragmentManager fm) {
 		super(fm);

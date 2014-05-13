@@ -24,8 +24,7 @@ public class KissView extends Activity {
 		wvKISS = (WebView) findViewById(R.id.kvWebView);
 		SharedPreferences spKISS = getSharedPreferences("KISS", MODE_PRIVATE);
 		if (!spKISS.getString("last_refresh", "-").contentEquals("-")) {
-			tvDate.setText("KISS vom "
-					+ spKISS.getString("last_refresh", "KISS nie geladen"));
+			tvDate.setText("KISS vom " + spKISS.getString("last_refresh", "KISS nie geladen"));
 		} else {
 			tvDate.setText("Kein aktuelles KISS verfügbar");
 		}
@@ -35,8 +34,7 @@ public class KissView extends Activity {
 		// wvKISS.getSettings().setJavaScriptEnabled(true);
 		// wvKISS.getSettings().setAllowFileAccess(true);
 		// wvKISS.getSettings().setBuiltInZoomControls(true);
-		wvKISS.loadDataWithBaseURL(null, spKISS.getString("KISS", "Blook"),
-				"text/html", "utf-8", null);
+		wvKISS.loadDataWithBaseURL(null, spKISS.getString("KISS", "Blook"), "text/html", "utf-8", null);
 	}
 
 	@Override

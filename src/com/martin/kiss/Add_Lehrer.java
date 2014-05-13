@@ -22,8 +22,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class Add_Lehrer extends Activity implements OnClickListener,
-		OnCheckedChangeListener {
+public class Add_Lehrer extends Activity implements OnClickListener, OnCheckedChangeListener {
 
 	Button bSave, bCancel;
 	AutoCompleteTextView etName;
@@ -34,10 +33,7 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -60,15 +56,13 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 		bCancel.setOnClickListener(this);
 		cbAnother.setOnCheckedChangeListener(this);
 		String[] names = getResources().getStringArray(R.array.lehrer_list);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, names);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names);
 		etName.setAdapter(adapter);
 	}
 
 	private void getCB() {
 		getApplicationContext();
-		SharedPreferences settings = getSharedPreferences("KISS",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("another", true);
 
 		if (bAnother == true) {
@@ -84,29 +78,25 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 		case R.id.bAddSave:
 			if (!etName.getText().toString().contentEquals("")) {
 				getApplicationContext();
-				SharedPreferences spKISS = getApplicationContext()
-						.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+				SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				if (spKISS.getString("lehrer", "").contentEquals("")) {
 					editor.putString("lehrer", etName.getText().toString());
 				} else {
 					String old = spKISS.getString("lehrer", "");
-					editor.putString("lehrer", old + "-"
-							+ etName.getText().toString());
+					editor.putString("lehrer", old + "-" + etName.getText().toString());
 				}
 				editor.commit();
 				if (cbAnother.isChecked()) {
 					etName.setText("");
-					Toast t = Toast.makeText(this, "Person gespeichert",
-							Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(this, "Person gespeichert", Toast.LENGTH_SHORT);
 					t.show();
 					etName.requestFocus();
 				} else {
 					finish();
 				}
 			} else {
-				Toast t = Toast.makeText(this, "Gib einen Namen ein",
-						Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Gib einen Namen ein", Toast.LENGTH_SHORT);
 				t.show();
 			}
 
@@ -120,8 +110,7 @@ public class Add_Lehrer extends Activity implements OnClickListener,
 	@Override
 	public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 		getApplicationContext();
-		SharedPreferences settings = getSharedPreferences("KISS",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 
 		if (cbAnother.isChecked()) {

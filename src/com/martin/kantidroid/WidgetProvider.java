@@ -22,8 +22,7 @@ public class WidgetProvider extends AppWidgetProvider {
 	Resources res;
 
 	@Override
-	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
-			int[] appWidgetIds) {
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 		res = context.getResources();
 
@@ -33,29 +32,19 @@ public class WidgetProvider extends AppWidgetProvider {
 		for (int y = 0; y < wcount; y++) {
 			// Get the intent for a click-event
 			Intent notIntent = new Intent(context, com.martin.noten.Main.class);
-			Intent kontIntent = new Intent(context,
-					com.martin.kontingent.Overview.class);
-			Intent kissIntent = new Intent(context,
-					com.martin.kiss.MainActivity.class);
-			Intent acnotIntent = new Intent(context,
-					com.martin.noten.AddSelect.class);
-			Intent ackontIntent = new Intent(context,
-					com.martin.kontingent.AddSelect.class);
+			Intent kontIntent = new Intent(context, com.martin.kontingent.Overview.class);
+			Intent kissIntent = new Intent(context, com.martin.kiss.MainActivity.class);
+			Intent acnotIntent = new Intent(context, com.martin.noten.AddSelect.class);
+			Intent ackontIntent = new Intent(context, com.martin.kontingent.AddSelect.class);
 
-			PendingIntent penNotIntent = PendingIntent.getActivity(context, 0,
-					notIntent, 0);
-			PendingIntent penKontIntent = PendingIntent.getActivity(context, 0,
-					kontIntent, 0);
-			PendingIntent penKissIntent = PendingIntent.getActivity(context, 0,
-					kissIntent, 0);
-			PendingIntent penacNotIntent = PendingIntent.getActivity(context,
-					0, acnotIntent, 0);
-			PendingIntent penacKontIntent = PendingIntent.getActivity(context,
-					0, ackontIntent, 0);
+			PendingIntent penNotIntent = PendingIntent.getActivity(context, 0, notIntent, 0);
+			PendingIntent penKontIntent = PendingIntent.getActivity(context, 0, kontIntent, 0);
+			PendingIntent penKissIntent = PendingIntent.getActivity(context, 0, kissIntent, 0);
+			PendingIntent penacNotIntent = PendingIntent.getActivity(context, 0, acnotIntent, 0);
+			PendingIntent penacKontIntent = PendingIntent.getActivity(context, 0, ackontIntent, 0);
 
 			// Get the views for the widget
-			RemoteViews views = new RemoteViews(context.getPackageName(),
-					R.layout.widget_layout);
+			RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 			// set the intent for the click-event
 			views.setOnClickPendingIntent(R.id.llCardNoten, penNotIntent);
 			views.setOnClickPendingIntent(R.id.llCardKontingent, penKontIntent);
@@ -65,8 +54,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
 			// Noten
 
-			SharedPreferences spNoten = context.getSharedPreferences(
-					"MarkSettings", Context.MODE_PRIVATE);
+			SharedPreferences spNoten = context.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 			String sAbteilung = spNoten.getString("Abteilung", "Gym");
 			PromoCheck prCheck = new PromoCheck(context);
 			PromoRes prResult = null;
@@ -77,8 +65,7 @@ public class WidgetProvider extends AppWidgetProvider {
 			} else {
 				prResult = prCheck.getFMS(2);
 			}
-			views.setTextViewText(R.id.tvNotBig, "+ "
-					+ prResult.sPP.split("/")[0]);
+			views.setTextViewText(R.id.tvNotBig, "+ " + prResult.sPP.split("/")[0]);
 			/*
 			 * if (prResult.iColor == R.color.holo_green_light) {
 			 * pluspunkte.setTextColor(res.getColor(R.color.holo_orange_light));
@@ -89,16 +76,14 @@ public class WidgetProvider extends AppWidgetProvider {
 
 			// Kontingent
 
-			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
-					context);
+			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(context);
 			int countK = dbK.getFachCount();
 
 			int totalK = 0;
 			int used = 0;
 			double dPercentage = 0;
 
-			List<com.martin.kontingent.Fach> faecherK = dbK
-					.getAllFaecher(context);
+			List<com.martin.kontingent.Fach> faecherK = dbK.getAllFaecher(context);
 			com.martin.kontingent.Fach entry = null;
 
 			for (int i = 0; i < countK; i++) {
@@ -112,16 +97,14 @@ public class WidgetProvider extends AppWidgetProvider {
 			}
 
 			if (!(totalK == 0)) {
-				dPercentage = (double) Math.round((double) used * 100 / totalK
-						* 100) / 100;
+				dPercentage = (double) Math.round((double) used * 100 / totalK * 100) / 100;
 			}
 			views.setTextViewText(R.id.tvKontSmall, dPercentage + "%");
 			views.setTextViewText(R.id.tvKontBig, used + "/" + totalK);
 
 			// KISS
 
-			SharedPreferences spKISS = context.getSharedPreferences("KISS",
-					Context.MODE_PRIVATE);
+			SharedPreferences spKISS = context.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 			String sLehrer = spKISS.getString("lehrer", "");
 
 			if (!sLehrer.contentEquals("")) {
@@ -138,36 +121,26 @@ public class WidgetProvider extends AppWidgetProvider {
 				}
 				switch (c) {
 				case 0:
-					views.setTextColor(R.id.tvKISS_1_name,
-							res.getColor(R.color.primary_text_holo_light));
-					views.setTextColor(R.id.tvKISS_1_message,
-							res.getColor(R.color.primary_text_holo_light));
+					views.setTextColor(R.id.tvKISS_1_name, res.getColor(R.color.primary_text_holo_light));
+					views.setTextColor(R.id.tvKISS_1_message, res.getColor(R.color.primary_text_holo_light));
 					views.setTextViewText(R.id.tvKISS_1_name, "-");
 					views.setTextViewText(R.id.tvKISS_1_message, "");
 					views.setTextViewText(R.id.tvKISS_2, "");
 					break;
 				case 1:
-					views.setTextColor(R.id.tvKISS_1_name,
-							res.getColor(R.color.holo_red_light));
-					views.setTextColor(R.id.tvKISS_1_message,
-							res.getColor(R.color.holo_red_light));
+					views.setTextColor(R.id.tvKISS_1_name, res.getColor(R.color.holo_red_light));
+					views.setTextColor(R.id.tvKISS_1_message, res.getColor(R.color.holo_red_light));
 					views.setTextViewText(R.id.tvKISS_1_name, imKISS[0]);
-					views.setTextViewText(R.id.tvKISS_1_message,
-							" ist im KISS gelistet");
+					views.setTextViewText(R.id.tvKISS_1_message, " ist im KISS gelistet");
 					views.setTextViewText(R.id.tvKISS_2, "");
 					break;
 				case 2:
-					views.setTextColor(R.id.tvKISS_1_name,
-							res.getColor(R.color.holo_red_light));
-					views.setTextColor(R.id.tvKISS_1_message,
-							res.getColor(R.color.holo_red_light));
-					views.setTextColor(R.id.tvKISS_2,
-							res.getColor(R.color.holo_red_light));
-					views.setTextViewText(R.id.tvKISS_1_message,
-							" ist im KISS gelistet");
+					views.setTextColor(R.id.tvKISS_1_name, res.getColor(R.color.holo_red_light));
+					views.setTextColor(R.id.tvKISS_1_message, res.getColor(R.color.holo_red_light));
+					views.setTextColor(R.id.tvKISS_2, res.getColor(R.color.holo_red_light));
+					views.setTextViewText(R.id.tvKISS_1_message, " ist im KISS gelistet");
 					views.setTextViewText(R.id.tvKISS_2, "");
-					views.setTextViewText(R.id.tvKISS_2,
-							"Weitere sind ebenfalls im KISS gelistet");
+					views.setTextViewText(R.id.tvKISS_2, "Weitere sind ebenfalls im KISS gelistet");
 					break;
 				}
 			}

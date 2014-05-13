@@ -31,9 +31,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	// creating db
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String CREATE_KONT_TABLE = "CREATE TABLE " + TABLE_KONT + "(" + KEY_ID
-				+ " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_KONT_AV
-				+ " TEXT," + KEY_KONT_US + " TEXT," + KEY_DATES + " TEXT" + ")";
+		String CREATE_KONT_TABLE = "CREATE TABLE " + TABLE_KONT + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_KONT_AV + " TEXT," + KEY_KONT_US + " TEXT," + KEY_DATES + " TEXT"
+				+ ")";
 		db.execSQL(CREATE_KONT_TABLE);
 	}
 
@@ -69,16 +68,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public Fach getFach(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_KONT, new String[] { KEY_ID, KEY_NAME,
-				KEY_KONT_AV, KEY_KONT_US, KEY_DATES }, KEY_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(TABLE_KONT, new String[] { KEY_ID, KEY_NAME, KEY_KONT_AV, KEY_KONT_US, KEY_DATES }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null) {
 			cursor.moveToFirst();
 		}
 
-		Fach fach = new Fach(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4));
+		Fach fach = new Fach(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
 
 		cursor.close();
 		db.close();
@@ -88,8 +83,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 	// Get all fächer
 	public List<Fach> getAllFaecher(Context context) {
-		SharedPreferences settings = context.getSharedPreferences("mysettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = context.getSharedPreferences("mysettings", Context.MODE_PRIVATE);
 		String sSorting = " ORDER BY name";
 
 		int iSorting = settings.getInt("sorting", 0);
@@ -155,16 +149,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_KONT_US, fach.getKont_us());
 		values.put(KEY_DATES, fach.getDates());
 
-		return db.update(TABLE_KONT, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(fach.getID()) });
+		return db.update(TABLE_KONT, values, KEY_ID + " = ?", new String[] { String.valueOf(fach.getID()) });
 	}
 
 	// delete entry
 	public void deleteFach(Fach fach) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
-		db.delete(TABLE_KONT, KEY_ID + " = ?",
-				new String[] { String.valueOf(fach.getID()) });
+		db.delete(TABLE_KONT, KEY_ID + " = ?", new String[] { String.valueOf(fach.getID()) });
 		db.close();
 	}
 

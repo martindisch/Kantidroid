@@ -34,8 +34,7 @@ import android.widget.SimpleAdapter;
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 
-public class Overview extends Activity implements OnClickListener,
-		OnItemClickListener {
+public class Overview extends Activity implements OnClickListener, OnItemClickListener {
 
 	int selected = 0;
 	ListView lv;
@@ -75,8 +74,7 @@ public class Overview extends Activity implements OnClickListener,
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View view,
-			ContextMenuInfo menuInfo) {
+	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, view, menuInfo);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.context_menu, menu);
@@ -84,8 +82,7 @@ public class Overview extends Activity implements OnClickListener,
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-				.getMenuInfo();
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.cmEdit:
 			DatabaseHandler db = new DatabaseHandler(this);
@@ -108,14 +105,12 @@ public class Overview extends Activity implements OnClickListener,
 
 			AlertDialog.Builder dg = new AlertDialog.Builder(this);
 			dg.setTitle("Fach löschen");
-			dg.setMessage("Willst du das Fach " + fSelected.getName()
-					+ " wirklich löschen?");
+			dg.setMessage("Willst du das Fach " + fSelected.getName() + " wirklich löschen?");
 			dg.setPositiveButton("Ja", new OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					DatabaseHandler db = new DatabaseHandler(
-							getApplicationContext());
+					DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 					db.deleteFach(fSelected);
 					createList();
 				}
@@ -133,8 +128,7 @@ public class Overview extends Activity implements OnClickListener,
 		String[] from = { "fach", "anzahl" };
 		int[] to = { R.id.tvLeft, R.id.tvRight };
 
-		SimpleAdapter adapter = new MyAdapter(this, list,
-				R.layout.overview_list_item, from, to);
+		SimpleAdapter adapter = new MyAdapter(this, list, R.layout.overview_list_item, from, to);
 		lv.setAdapter(adapter);
 		registerForContextMenu(lv);
 		DatabaseHandler db = new DatabaseHandler(this);
@@ -158,25 +152,21 @@ public class Overview extends Activity implements OnClickListener,
 				used = used + Integer.parseInt(entry.getKont_us());
 
 				// Check für überzogen
-				if (Integer.parseInt(entry.getKont_us()) > Integer
-						.parseInt(entry.getKont_av())) {
+				if (Integer.parseInt(entry.getKont_us()) > Integer.parseInt(entry.getKont_av())) {
 					überzogen++;
 				}
 			}
 		}
 
 		if (!(total == 0)) {
-			dPercentage = (double) Math
-					.round((double) used * 100 / total * 100) / 100;
+			dPercentage = (double) Math.round((double) used * 100 / total * 100) / 100;
 		}
 
 		res = getResources();
 
-		tvUsage.setText(dPercentage + "% des Kontingents benutzt (" + used
-				+ "/" + total + ")");
+		tvUsage.setText(dPercentage + "% des Kontingents benutzt (" + used + "/" + total + ")");
 		if (überzogen == 0) {
-			KOverview
-					.setBackgroundColor(res.getColor(R.color.holo_green_light));
+			KOverview.setBackgroundColor(res.getColor(R.color.holo_green_light));
 			// tvUsage.setTextColor(res.getColor(R.color.holo_green_light));
 		} else {
 			// tvUsage.setTextColor(res.getColor(R.color.holo_red_light));
@@ -199,8 +189,7 @@ public class Overview extends Activity implements OnClickListener,
 		List<Fach> faecher = db.getAllFaecher(getApplicationContext());
 		for (int i = 0; i < count; i++) {
 			Fach entry = faecher.get(i);
-			list.add(putData(entry.getName(),
-					entry.getKont_us() + "/" + entry.getKont_av()));
+			list.add(putData(entry.getName(), entry.getKont_us() + "/" + entry.getKont_av()));
 		}
 
 		return list;
@@ -231,8 +220,7 @@ public class Overview extends Activity implements OnClickListener,
 		case R.id.iRemove:
 			DatabaseHandler db = new DatabaseHandler(this);
 			if (db.getFachCount() == 0) {
-				Toast t = Toast.makeText(this, "Kein Fach zu entfernen",
-						Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Kein Fach zu entfernen", Toast.LENGTH_SHORT);
 				t.show();
 			} else {
 				Intent iremove = new Intent(Overview.this, RemoveEntry.class);
@@ -250,8 +238,7 @@ public class Overview extends Activity implements OnClickListener,
 			dg.show();
 			break;
 		case R.id.iSort:
-			SharedPreferences settings = getSharedPreferences("mysettings",
-					Context.MODE_PRIVATE);
+			SharedPreferences settings = getSharedPreferences("mysettings", Context.MODE_PRIVATE);
 			selected = settings.getInt("sorting", 0);
 
 			AlertDialog.Builder dee = new AlertDialog.Builder(this);
@@ -261,8 +248,7 @@ public class Overview extends Activity implements OnClickListener,
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					SharedPreferences settings = getSharedPreferences(
-							"mysettings", Context.MODE_PRIVATE);
+					SharedPreferences settings = getSharedPreferences("mysettings", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = settings.edit();
 
 					editor.putInt("sorting", selected);
@@ -270,14 +256,13 @@ public class Overview extends Activity implements OnClickListener,
 					createList();
 				}
 			});
-			dee.setSingleChoiceItems(R.array.sorting_entries, selected,
-					new DialogInterface.OnClickListener() {
+			dee.setSingleChoiceItems(R.array.sorting_entries, selected, new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							selected = which;
-						}
-					});
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					selected = which;
+				}
+			});
 			dee.show();
 			break;
 		case R.id.iEdit:
@@ -286,12 +271,10 @@ public class Overview extends Activity implements OnClickListener,
 			startActivity(iedit);
 			break;
 		case R.id.kImport:
-			com.martin.noten.DatabaseHandler dbN = new com.martin.noten.DatabaseHandler(
-					this);
+			com.martin.noten.DatabaseHandler dbN = new com.martin.noten.DatabaseHandler(this);
 			List<com.martin.noten.Fach> nFaecher = dbN.getAllFaecher(this, 1);
 
-			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
-					this);
+			com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(this);
 			List<com.martin.kontingent.Fach> kFaecher = dbK.getAllFaecher(this);
 
 			com.martin.noten.Fach entryN = null;
@@ -306,8 +289,7 @@ public class Overview extends Activity implements OnClickListener,
 
 				for (int z = 0; z < kFaecher.size(); z++) {
 					entryK = kFaecher.get(z);
-					if (entryN.getName().contentEquals(
-							entryK.getName().toString())) {
+					if (entryN.getName().contentEquals(entryK.getName().toString())) {
 						exists = true;
 						break;
 					}
@@ -343,9 +325,7 @@ public class Overview extends Activity implements OnClickListener,
 				}
 			}
 			if (!imported) {
-				Toast t = Toast
-						.makeText(this, "Keine neuen Fächer zu importieren",
-								Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Keine neuen Fächer zu importieren", Toast.LENGTH_SHORT);
 				t.show();
 			}
 			break;
@@ -369,8 +349,7 @@ public class Overview extends Activity implements OnClickListener,
 			db.updateFach(selected);
 		}
 		createList();
-		Toast t = Toast.makeText(Overview.this, "Kontingent zurückgesetzt",
-				Toast.LENGTH_SHORT);
+		Toast t = Toast.makeText(Overview.this, "Kontingent zurückgesetzt", Toast.LENGTH_SHORT);
 		t.show();
 	}
 

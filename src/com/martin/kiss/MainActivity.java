@@ -60,10 +60,7 @@ public class MainActivity extends ListActivity {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -105,16 +102,14 @@ public class MainActivity extends ListActivity {
 		String[] from = { "name", "ausfall" };
 		int[] to = { R.id.tvLeft, R.id.tvRight };
 
-		MyAdapter adapter = new MyAdapter(this, list,
-				R.layout.overview_list_item, from, to);
+		MyAdapter adapter = new MyAdapter(this, list, R.layout.overview_list_item, from, to);
 		setListAdapter(adapter);
 		done = true;
 	}
 
 	private ArrayList<Map<String, String>> buildData() {
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
-		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				Context.MODE_PRIVATE);
+		SharedPreferences spKISS = this.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 
 		String sLehrer = spKISS.getString("lehrer", "");
 
@@ -150,8 +145,7 @@ public class MainActivity extends ListActivity {
 		String current_kiss = KISS;
 
 		if (KISS.contentEquals("")) {
-			SharedPreferences spKISS = getSharedPreferences("KISS",
-					Context.MODE_PRIVATE);
+			SharedPreferences spKISS = getSharedPreferences("KISS", Context.MODE_PRIVATE);
 			current_kiss = spKISS.getString("KISS", "");
 		}
 
@@ -179,18 +173,13 @@ public class MainActivity extends ListActivity {
 				try {
 					if (isNetworkAvailable()) {
 						getApplicationContext();
-						SharedPreferences spKISS = getApplicationContext()
-								.getSharedPreferences("KISS",
-										Context.MODE_PRIVATE);
+						SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 						if (!spKISS.getString("lehrer", "").contentEquals("")) {
-							URL url = new URL(
-									"https://kpf.bks-campus.ch/infoscreen");
-							HttpURLConnection con = (HttpURLConnection) url
-									.openConnection();
+							URL url = new URL("https://kpf.bks-campus.ch/infoscreen");
+							HttpURLConnection con = (HttpURLConnection) url.openConnection();
 							InputStream in = con.getInputStream();
 							BufferedReader reader = null;
-							reader = new BufferedReader(new InputStreamReader(
-									in));
+							reader = new BufferedReader(new InputStreamReader(in));
 							String line = "";
 							while ((line = reader.readLine()) != null) {
 								result += line;
@@ -201,22 +190,15 @@ public class MainActivity extends ListActivity {
 						}
 					} else {
 						getApplicationContext();
-						SharedPreferences spKISS = getApplicationContext()
-								.getSharedPreferences("KISS",
-										Context.MODE_PRIVATE);
-						final String sDate = spKISS.getString("last_refresh",
-								"never");
+						SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
+						final String sDate = spKISS.getString("last_refresh", "never");
 						KISS = "";
 						if (!sDate.contentEquals("never")) {
 							handler.post(new Runnable() {
 
 								@Override
 								public void run() {
-									Toast t = Toast.makeText(
-											getApplicationContext(),
-											"Internet ist nicht verfügbar, greife auf Cache vom "
-													+ sDate + " zurück",
-											Toast.LENGTH_SHORT);
+									Toast t = Toast.makeText(getApplicationContext(), "Internet ist nicht verfügbar, greife auf Cache vom " + sDate + " zurück", Toast.LENGTH_SHORT);
 									t.show();
 								}
 
@@ -226,11 +208,7 @@ public class MainActivity extends ListActivity {
 
 								@Override
 								public void run() {
-									Toast t = Toast
-											.makeText(
-													MainActivity.this,
-													"Internet ist nicht verfügbar und es ist kein Cache vorhanden",
-													Toast.LENGTH_SHORT);
+									Toast t = Toast.makeText(MainActivity.this, "Internet ist nicht verfügbar und es ist kein Cache vorhanden", Toast.LENGTH_SHORT);
 									t.show();
 								}
 
@@ -242,20 +220,14 @@ public class MainActivity extends ListActivity {
 				} catch (final Exception e) {
 					KISS = "";
 					getApplicationContext();
-					SharedPreferences spKISS = getApplicationContext()
-							.getSharedPreferences("KISS", Context.MODE_PRIVATE);
-					final String sDate = spKISS.getString("last_refresh",
-							"never");
+					SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
+					final String sDate = spKISS.getString("last_refresh", "never");
 					if (!sDate.contentEquals("never")) {
 						handler.post(new Runnable() {
 
 							@Override
 							public void run() {
-								Toast t = Toast.makeText(
-										getApplicationContext(),
-										"Mit Netzwerk verbunden aber KISS nicht verfügbar, greife auf Cache vom "
-												+ sDate + " zurück",
-										Toast.LENGTH_SHORT);
+								Toast t = Toast.makeText(getApplicationContext(), "Mit Netzwerk verbunden aber KISS nicht verfügbar, greife auf Cache vom " + sDate + " zurück", Toast.LENGTH_SHORT);
 								t.show();
 							}
 
@@ -266,11 +238,7 @@ public class MainActivity extends ListActivity {
 
 							@Override
 							public void run() {
-								Toast t = Toast
-										.makeText(
-												getApplicationContext(),
-												"Mit Netzwerk verbunden aber KISS nicht verfügbar und es ist kein Cache vorhanden",
-												Toast.LENGTH_SHORT);
+								Toast t = Toast.makeText(getApplicationContext(), "Mit Netzwerk verbunden aber KISS nicht verfügbar und es ist kein Cache vorhanden", Toast.LENGTH_SHORT);
 								t.show();
 							}
 
@@ -280,12 +248,10 @@ public class MainActivity extends ListActivity {
 				}
 				if (!result.contentEquals("")) {
 					getApplicationContext();
-					SharedPreferences spKISS = getApplicationContext()
-							.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+					SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = spKISS.edit();
 					editor.putString("KISS", result);
-					editor.putString("last_refresh", DateFormat
-							.getDateTimeInstance().format(new Date()));
+					editor.putString("last_refresh", DateFormat.getDateTimeInstance().format(new Date()));
 					editor.commit();
 					KISS = result;
 				}
@@ -310,8 +276,7 @@ public class MainActivity extends ListActivity {
 	}
 
 	private void checkLehrer() {
-		SharedPreferences spKISS = getApplicationContext()
-				.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+		SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		String sLehrer = spKISS.getString("lehrer", "");
 		String sKISS = spKISS.getString("KISS", "");
 		String sNoti = spKISS.getString("noti", "");
@@ -344,27 +309,22 @@ public class MainActivity extends ListActivity {
 			sNoti = spKISS.getString("noti", "");
 			for (int i = 0; i < entries.length; i++) {
 				if (sKISS.contains(entries[i]) && !sNoti.contains(entries[i])) {
-					NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-							this);
+					NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
 					mBuilder.setSmallIcon(R.drawable.kiss_ico);
 					mBuilder.setContentTitle("KISS");
-					mBuilder.setContentText(entries[i]
-							+ " ist im KISS verzeichnet.");
+					mBuilder.setContentText(entries[i] + " ist im KISS verzeichnet.");
 					mBuilder.setAutoCancel(true);
 					long[] pattern = { 0, 300, 200, 300 };
 					mBuilder.setVibrate(pattern);
 					mBuilder.setDefaults(Notification.DEFAULT_LIGHTS);
 					mBuilder.setDefaults(Notification.DEFAULT_SOUND);
-					TaskStackBuilder stackBuilder = TaskStackBuilder
-							.create(this);
+					TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
 					String url = "https://kpf.bks-campus.ch/infoscreen";
 					Intent iKISS = new Intent(Intent.ACTION_VIEW);
 					iKISS.setData(Uri.parse(url));
 					stackBuilder.addNextIntent(iKISS);
-					PendingIntent resultPendingIntent = stackBuilder
-							.getPendingIntent(0,
-									PendingIntent.FLAG_UPDATE_CURRENT);
+					PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 					mBuilder.setContentIntent(resultPendingIntent);
 					NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 					mNotificationManager.notify(idCounter, mBuilder.build());
@@ -382,8 +342,7 @@ public class MainActivity extends ListActivity {
 					ieditor.commit();
 					getApplicationContext();
 					// Remember
-					SharedPreferences spRem = getApplicationContext()
-							.getSharedPreferences("Rem", Context.MODE_PRIVATE);
+					SharedPreferences spRem = getApplicationContext().getSharedPreferences("Rem", Context.MODE_PRIVATE);
 					SharedPreferences.Editor RemEdit = spRem.edit();
 					int iAusfaelle = spRem.getInt(entries[i], 0);
 					iAusfaelle++;
@@ -396,8 +355,7 @@ public class MainActivity extends ListActivity {
 
 	private boolean isNetworkAvailable() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager
-				.getActiveNetworkInfo();
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
@@ -420,13 +378,11 @@ public class MainActivity extends ListActivity {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					getApplicationContext();
-					SharedPreferences spRem = getApplicationContext()
-							.getSharedPreferences("Rem", Context.MODE_PRIVATE);
+					SharedPreferences spRem = getApplicationContext().getSharedPreferences("Rem", Context.MODE_PRIVATE);
 					SharedPreferences.Editor ed = spRem.edit();
 					ed.clear();
 					ed.commit();
-					Toast t = Toast.makeText(getApplicationContext(),
-							"Zähler zurückgesetzt", Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(getApplicationContext(), "Zähler zurückgesetzt", Toast.LENGTH_SHORT);
 					t.show();
 				}
 
@@ -448,8 +404,7 @@ public class MainActivity extends ListActivity {
 			startActivity(iRemove);
 			break;
 		case R.id.iInterval:
-			SharedPreferences spKISS = this.getSharedPreferences("KISS",
-					Context.MODE_PRIVATE);
+			SharedPreferences spKISS = this.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 			final NumberPicker np = new NumberPicker(this);
 			np.setMinValue(1);
 			np.setMaxValue(9000);
@@ -464,8 +419,7 @@ public class MainActivity extends ListActivity {
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
 					getApplicationContext();
-					SharedPreferences spKISS = getApplicationContext()
-							.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+					SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = spKISS.edit();
 					editor.putInt("interval", np.getValue());
 					editor.commit();
@@ -483,31 +437,28 @@ public class MainActivity extends ListActivity {
 			 */
 
 			AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
-			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-					this, R.layout.simple_list_item_1);
+			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1);
 			arrayAdapter.add("Im Browser öffnen");
 			arrayAdapter.add("Aus dem Cache anzeigen");
-			builderSingle.setAdapter(arrayAdapter,
-					new DialogInterface.OnClickListener() {
+			builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							switch (which) {
-							case 0:
-								String url = "https://kpf.bks-campus.ch/infoscreen";
-								Intent iKISS = new Intent(Intent.ACTION_VIEW);
-								iKISS.setData(Uri.parse(url));
-								startActivity(iKISS);
-								break;
-							case 1:
-								Intent iCache = new Intent(MainActivity.this,
-										KissView.class);
-								iCache.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-								startActivity(iCache);
-								break;
-							}
-						}
-					});
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					switch (which) {
+					case 0:
+						String url = "https://kpf.bks-campus.ch/infoscreen";
+						Intent iKISS = new Intent(Intent.ACTION_VIEW);
+						iKISS.setData(Uri.parse(url));
+						startActivity(iKISS);
+						break;
+					case 1:
+						Intent iCache = new Intent(MainActivity.this, KissView.class);
+						iCache.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(iCache);
+						break;
+					}
+				}
+			});
 			builderSingle.show();
 			break;
 		case android.R.id.home:
@@ -529,8 +480,7 @@ public class MainActivity extends ListActivity {
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 		} else {
-			Toast.makeText(this, "Liste wird aktualisiert ...",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Liste wird aktualisiert ...", Toast.LENGTH_SHORT).show();
 		}
 	}
 

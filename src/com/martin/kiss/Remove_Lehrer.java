@@ -29,10 +29,7 @@ public class Remove_Lehrer extends ListActivity {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -45,18 +42,15 @@ public class Remove_Lehrer extends ListActivity {
 	}
 
 	private void createList() {
-		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				Context.MODE_PRIVATE);
+		SharedPreferences spKISS = this.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		sList = spKISS.getString("lehrer", "");
 		old_noti = spKISS.getString("noti", "");
 		sNames = sList.split("-");
-		setListAdapter(new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, sNames));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, sNames));
 	}
 
 	@Override
-	protected void onListItemClick(ListView l, View v, final int position,
-			long id) {
+	protected void onListItemClick(ListView l, View v, final int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
 		AlertDialog.Builder dg = new AlertDialog.Builder(this);
@@ -83,8 +77,7 @@ public class Remove_Lehrer extends ListActivity {
 					new_noti = "";
 				}
 				getApplicationContext();
-				SharedPreferences spKISS = getApplicationContext()
-						.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+				SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				editor.putString("lehrer", sNewList);
 				editor.putString("noti", new_noti);

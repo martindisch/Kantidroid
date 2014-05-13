@@ -99,8 +99,7 @@ public class Guessing extends Activity implements OnClickListener {
 
 					double upper_term;
 					double dRelevance = Double.parseDouble(sSelectedRelevance);
-					double dGoal = Double.parseDouble(etMark.getText()
-							.toString());
+					double dGoal = Double.parseDouble(etMark.getText().toString());
 
 					if (iSemester == 1) {
 						String sMarks = fach.getNoten1();
@@ -112,16 +111,10 @@ public class Guessing extends Activity implements OnClickListener {
 
 						for (int i = 0; i < count; i++) {
 							String[] item = entries[i].split(" - ");
-							subtraktion = subtraktion
-									+ (Double.parseDouble(item[0].replace(",",
-											".")) * Double.parseDouble(item[1]
-											.replace(",", ".")));
-							multiplikatoren = multiplikatoren
-									+ Double.parseDouble(item[1].replace(",",
-											"."));
+							subtraktion = subtraktion + (Double.parseDouble(item[0].replace(",", ".")) * Double.parseDouble(item[1].replace(",", ".")));
+							multiplikatoren = multiplikatoren + Double.parseDouble(item[1].replace(",", "."));
 						}
-						upper_term = dGoal * (multiplikatoren + dRelevance)
-								- subtraktion;
+						upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
 					} else {
 						String sMarks = fach.getNoten2();
 
@@ -132,34 +125,25 @@ public class Guessing extends Activity implements OnClickListener {
 
 						for (int i = 0; i < count; i++) {
 							String[] item = entries[i].split(" - ");
-							subtraktion = subtraktion
-									+ (Double.parseDouble(item[0].replace(",",
-											".")) * Double.parseDouble(item[1]
-											.replace(",", ".")));
-							multiplikatoren = multiplikatoren
-									+ Double.parseDouble(item[1].replace(",",
-											"."));
+							subtraktion = subtraktion + (Double.parseDouble(item[0].replace(",", ".")) * Double.parseDouble(item[1].replace(",", ".")));
+							multiplikatoren = multiplikatoren + Double.parseDouble(item[1].replace(",", "."));
 						}
-						upper_term = dGoal * (multiplikatoren + dRelevance)
-								- subtraktion;
+						upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
 					}
 
 					double needed = upper_term / dRelevance;
 
 					BigDecimal bd = new BigDecimal(needed);
 
-					tvResult.setText(bd.setScale(2, RoundingMode.HALF_UP)
-							.toString());
+					tvResult.setText(bd.setScale(2, RoundingMode.HALF_UP).toString());
 					tvMessage.setVisibility(View.VISIBLE);
 					tvResult.setVisibility(View.VISIBLE);
 				} else {
-					Toast t = Toast.makeText(Guessing.this, "Ungültige Note",
-							Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(Guessing.this, "Ungültige Note", Toast.LENGTH_SHORT);
 					t.show();
 				}
 			} else {
-				Toast t = Toast.makeText(this, "Leeres Feld",
-						Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Leeres Feld", Toast.LENGTH_SHORT);
 				t.show();
 			}
 
@@ -172,21 +156,18 @@ public class Guessing extends Activity implements OnClickListener {
 			inp.setTitle("Relevanz");
 			inp.setMessage("Gib an, wie viel diese Note zählen soll (1, 0.5, 0.2 etc.)");
 			final EditText rel = new EditText(this);
-			rel.setInputType(InputType.TYPE_CLASS_NUMBER
-					| InputType.TYPE_NUMBER_FLAG_DECIMAL);
+			rel.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			inp.setView(rel);
 			inp.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					if (!rel.getText().toString().contentEquals("")) {
-						dOwnRelevance = Double.parseDouble(rel.getText()
-								.toString());
+						dOwnRelevance = Double.parseDouble(rel.getText().toString());
 						sRelevance.setEnabled(false);
 						OwnRelevance = true;
 					} else {
-						Toast t = Toast.makeText(Guessing.this,
-								"Gib einen Wert ein", Toast.LENGTH_SHORT);
+						Toast t = Toast.makeText(Guessing.this, "Gib einen Wert ein", Toast.LENGTH_SHORT);
 						t.show();
 					}
 				}

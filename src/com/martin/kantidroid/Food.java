@@ -18,8 +18,7 @@ import android.view.Window;
 
 public class Food extends Activity implements RestsLoaded {
 
-	private String[] weekdays = { "Montag", "Dienstag", "Mittwoch",
-			"Donnerstag", "Freitag", "Samstag", "Sonntag" };
+	private String[] weekdays = { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
 	private String[] sRests = { "mensa", "bodmer", "konvikt", "cafemartin" };
 	private String[][] sMenu = new String[7][4];
 	private String[] sDates = new String[7];
@@ -49,8 +48,7 @@ public class Food extends Activity implements RestsLoaded {
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mSectionsPagerAdapter = new FoodPagerAdapter(
-				getSupportFragmentManager());
+		mSectionsPagerAdapter = new FoodPagerAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -83,8 +81,7 @@ public class Food extends Activity implements RestsLoaded {
 			public void run() {
 				// Get JSON response
 				ServiceHandler sh = new ServiceHandler();
-				final String jsonStr = sh.makeServiceCall(
-						getString(R.string.getcurrent), ServiceHandler.GET);
+				final String jsonStr = sh.makeServiceCall(getString(R.string.getcurrent), ServiceHandler.GET);
 
 				if (jsonStr != null) {
 					try {
@@ -145,9 +142,7 @@ public class Food extends Activity implements RestsLoaded {
 
 	public Fragment findFragmentByPosition(int position) {
 		FoodPagerAdapter fragmentPagerAdapter = mSectionsPagerAdapter;
-		return getSupportFragmentManager().findFragmentByTag(
-				"android:switcher:" + mViewPager.getId() + ":"
-						+ fragmentPagerAdapter.getItemId(position));
+		return getSupportFragmentManager().findFragmentByTag("android:switcher:" + mViewPager.getId() + ":" + fragmentPagerAdapter.getItemId(position));
 	}
 
 	private void makeDates(String kw) {

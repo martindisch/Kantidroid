@@ -39,8 +39,7 @@ import com.martin.kantidroid.WidgetProvider;
 // That's because I hate it and absolutely don't want to spend
 // a single second longer working on it.
 
-public class AddMark extends Activity implements OnClickListener,
-		OnCheckedChangeListener {
+public class AddMark extends Activity implements OnClickListener, OnCheckedChangeListener {
 
 	Button bSave, bCancel;
 	Spinner sDate;
@@ -63,10 +62,7 @@ public class AddMark extends Activity implements OnClickListener,
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -103,8 +99,7 @@ public class AddMark extends Activity implements OnClickListener,
 		sMark = "0";
 		textChanged = false;
 		Calendar c = Calendar.getInstance();
-		selectedDate = c.get(Calendar.DAY_OF_MONTH) + "."
-				+ (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR);
+		selectedDate = c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR);
 		bSave = (Button) findViewById(R.id.bAddSave);
 		rbGanz = (RadioButton) findViewById(R.id.rbGanz);
 		bCancel = (Button) findViewById(R.id.bAddCancel);
@@ -131,15 +126,12 @@ public class AddMark extends Activity implements OnClickListener,
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					Calendar c = Calendar.getInstance();
 					DatePickerDialog dg = new DatePickerDialog();
-					dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-							c.get(Calendar.DAY_OF_MONTH));
+					dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 					dg.setOnDateSetListener(new OnDateSetListener() {
 
 						@Override
-						public void onDateSet(DatePickerDialog dialog,
-								int year, int monthOfYear, int dayOfMonth) {
-							selectedDate = dayOfMonth + "." + (monthOfYear + 1)
-									+ "." + year;
+						public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
+							selectedDate = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
 							adapter.clear();
 							adapter.add(selectedDate);
 						}
@@ -153,13 +145,11 @@ public class AddMark extends Activity implements OnClickListener,
 		etMark.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
 
 			@Override
@@ -171,13 +161,11 @@ public class AddMark extends Activity implements OnClickListener,
 		etOther.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
 
 			@Override
@@ -192,27 +180,26 @@ public class AddMark extends Activity implements OnClickListener,
 			}
 		});
 
-		rgGewichtung
-				.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+		rgGewichtung.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-					@Override
-					public void onCheckedChanged(RadioGroup group, int checkedId) {
-						if (!textChanged && !firsttime) {
-							switch (checkedId) {
-							case R.id.rbDoppelt:
-								sSelectedRelevance = "2";
-								break;
-							case R.id.rbGanz:
-								sSelectedRelevance = "1";
-								break;
-							case R.id.rbHalb:
-								sSelectedRelevance = "0.5";
-								break;
-							}
-							etOther.setEnabled(false);
-						}
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				if (!textChanged && !firsttime) {
+					switch (checkedId) {
+					case R.id.rbDoppelt:
+						sSelectedRelevance = "2";
+						break;
+					case R.id.rbGanz:
+						sSelectedRelevance = "1";
+						break;
+					case R.id.rbHalb:
+						sSelectedRelevance = "0.5";
+						break;
 					}
-				});
+					etOther.setEnabled(false);
+				}
+			}
+		});
 
 		DatabaseHandler db = new DatabaseHandler(this);
 		Fach fach = db.getFach(id);
@@ -227,8 +214,7 @@ public class AddMark extends Activity implements OnClickListener,
 	}
 
 	private void getCheckbox() {
-		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("anotherMark", true);
 
 		if (bAnother == true) {
@@ -242,8 +228,7 @@ public class AddMark extends Activity implements OnClickListener,
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.bAddSave:
-			if (!(sMark.contentEquals("") || sMark.contentEquals("0") || sSelectedRelevance
-					.contentEquals("0"))) {
+			if (!(sMark.contentEquals("") || sMark.contentEquals("0") || sSelectedRelevance.contentEquals("0"))) {
 				double dMark = Double.parseDouble(sMark);
 
 				if (dMark >= 1 && dMark <= 6.3) {
@@ -253,9 +238,7 @@ public class AddMark extends Activity implements OnClickListener,
 					if (iSemester == 1) {
 						String sMarksOld = fach.getNoten1();
 						String sMarksNew;
-						String sEntry = etMark.getText().toString() + " - "
-								+ sSelectedRelevance + " - " + selectedDate
-								+ "\n";
+						String sEntry = etMark.getText().toString() + " - " + sSelectedRelevance + " - " + selectedDate + "\n";
 						if (sMarksOld.contentEquals("-")) {
 							sMarksNew = sEntry;
 						} else {
@@ -267,9 +250,7 @@ public class AddMark extends Activity implements OnClickListener,
 					} else {
 						String sMarksOld = fach.getNoten2();
 						String sMarksNew;
-						String sEntry = etMark.getText().toString() + " - "
-								+ sSelectedRelevance + " - " + selectedDate
-								+ "\n";
+						String sEntry = etMark.getText().toString() + " - " + sSelectedRelevance + " - " + selectedDate + "\n";
 						if (sMarksOld.contentEquals("-")) {
 							sMarksNew = sEntry;
 						} else {
@@ -282,8 +263,7 @@ public class AddMark extends Activity implements OnClickListener,
 
 					if (cbAnother.isChecked()) {
 						initialize();
-						Toast t = Toast.makeText(AddMark.this,
-								"Note gespeichert", Toast.LENGTH_SHORT);
+						Toast t = Toast.makeText(AddMark.this, "Note gespeichert", Toast.LENGTH_SHORT);
 						t.show();
 						etMark.requestFocus();
 					} else {
@@ -291,13 +271,11 @@ public class AddMark extends Activity implements OnClickListener,
 					}
 
 				} else {
-					Toast t = Toast.makeText(AddMark.this, "Ungültige Note",
-							Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(AddMark.this, "Ungültige Note", Toast.LENGTH_SHORT);
 					t.show();
 				}
 			} else {
-				Toast t = Toast.makeText(this, "Leeres Feld",
-						Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Leeres Feld", Toast.LENGTH_SHORT);
 				t.show();
 			}
 
@@ -311,8 +289,7 @@ public class AddMark extends Activity implements OnClickListener,
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		getApplicationContext();
-		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = settings.edit();
 		if (cbAnother.isChecked()) {

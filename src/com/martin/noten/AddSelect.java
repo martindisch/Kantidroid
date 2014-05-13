@@ -34,28 +34,23 @@ public class AddSelect extends ListActivity {
 	private void createList() {
 		DatabaseHandler db = new DatabaseHandler(this);
 		int count = db.getFachCount();
-		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
-		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
-				spNoten.getInt("selected_semester", 1));
+		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
+		List<Fach> faecher = db.getAllFaecher(getApplicationContext(), spNoten.getInt("selected_semester", 1));
 		String[] names = new String[count];
 		for (int i = 0; i < count; i++) {
 			Fach entry = faecher.get(i);
 			names[i] = entry.getName();
 		}
-		setListAdapter(new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, names));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names));
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		DatabaseHandler db = new DatabaseHandler(this);
-		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 
-		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
-				spNoten.getInt("selected_semester", 1));
+		List<Fach> faecher = db.getAllFaecher(getApplicationContext(), spNoten.getInt("selected_semester", 1));
 
 		selected = db.getFach(faecher.get(position).getID());
 		int predictedsem = spNoten.getInt("selected_semester", 1);
@@ -66,8 +61,7 @@ public class AddSelect extends ListActivity {
 		AlertDialog.Builder inp = new AlertDialog.Builder(this);
 		inp.setTitle("Semester");
 		LayoutInflater inflator = this.getLayoutInflater();
-		LinearLayout ll = (LinearLayout) inflator
-				.inflate(R.layout.semester_choice);
+		LinearLayout ll = (LinearLayout) inflator.inflate(R.layout.semester_choice);
 		final Spinner sem = (Spinner) ll.findViewById(R.id.spSemester);
 		sem.setSelection(predictedsem - 1);
 		inp.setView(ll);

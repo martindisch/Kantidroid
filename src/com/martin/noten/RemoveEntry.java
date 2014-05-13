@@ -20,8 +20,7 @@ import android.widget.ArrayAdapter;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class RemoveEntry extends ListActivity implements
-		android.content.DialogInterface.OnClickListener {
+public class RemoveEntry extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
 	Fach selected = null;
 
@@ -30,10 +29,7 @@ public class RemoveEntry extends ListActivity implements
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -48,34 +44,28 @@ public class RemoveEntry extends ListActivity implements
 	private void createList() {
 		DatabaseHandler db = new DatabaseHandler(this);
 		int count = db.getFachCount();
-		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
-		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
-				spNoten.getInt("selected_semester", 1));
+		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
+		List<Fach> faecher = db.getAllFaecher(getApplicationContext(), spNoten.getInt("selected_semester", 1));
 		String[] names = new String[count];
 		for (int i = 0; i < count; i++) {
 			Fach entry = faecher.get(i);
 			names[i] = entry.getName();
 		}
-		setListAdapter(new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, names));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names));
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		DatabaseHandler db = new DatabaseHandler(this);
-		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
-		List<Fach> faecher = db.getAllFaecher(getApplicationContext(),
-				spNoten.getInt("selected_semester", 1));
+		SharedPreferences spNoten = this.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
+		List<Fach> faecher = db.getAllFaecher(getApplicationContext(), spNoten.getInt("selected_semester", 1));
 
 		selected = db.getFach(faecher.get(position).getID());
 
 		AlertDialog.Builder dg = new AlertDialog.Builder(this);
 		dg.setTitle("Fach löschen");
-		dg.setMessage("Willst du das Fach " + selected.getName()
-				+ " wirklich löschen?");
+		dg.setMessage("Willst du das Fach " + selected.getName() + " wirklich löschen?");
 		dg.setPositiveButton("Ja", this);
 		dg.setNegativeButton("Nein", null);
 		dg.show();

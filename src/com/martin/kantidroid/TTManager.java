@@ -17,13 +17,10 @@ public class TTManager {
 			// set the download URL, a url that points to a file on the
 			// internet
 			// this is the file to be downloaded
-			URL url = new URL(
-					"http://www.bks-campus.ch/Organisation/klassen/stundenplaene"
-							+ sYear + "/" + sClass + ".pdf");
+			URL url = new URL("http://www.bks-campus.ch/Organisation/klassen/stundenplaene" + sYear + "/" + sClass + ".pdf");
 
 			// create the new connection
-			HttpURLConnection urlConnection = (HttpURLConnection) url
-					.openConnection();
+			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
 			// set up some things on the connection
 			urlConnection.setRequestMethod("GET");
@@ -35,8 +32,7 @@ public class TTManager {
 			// set the path where we want to save the file
 			// in this case, going to save it on the root directory of the
 			// sd card.
-			File SDCardRoot = new File(
-					Environment.getExternalStorageDirectory(), "/Kantidroid/");
+			File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
 			SDCardRoot.mkdirs();
 			// create a new file, specifying the path, and the filename
 			// which we want to save the file as.
@@ -82,8 +78,7 @@ public class TTManager {
 	}
 
 	public boolean checkTT(String sClass, String sYear) {
-		File SDCardRoot = new File(Environment.getExternalStorageDirectory(),
-				"/Kantidroid/");
+		File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
 		File file = new File(SDCardRoot, sYear + sClass + ".pdf");
 		if (file.exists()) {
 			return true;
@@ -97,8 +92,7 @@ public class TTManager {
 			char cNumber = sClass.charAt(0);
 			char cAbteilung = sClass.charAt(1);
 			char cClass = sClass.charAt(2);
-			String sNewClass = (cNumber + "-" + cAbteilung + cClass)
-					.toLowerCase();
+			String sNewClass = (cNumber + "-" + cAbteilung + cClass).toLowerCase();
 			return sNewClass;
 		} catch (Exception e) {
 			return "Error";

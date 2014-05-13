@@ -17,8 +17,7 @@ import android.widget.ArrayAdapter;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class RemoveMark extends ListActivity implements
-		android.content.DialogInterface.OnClickListener {
+public class RemoveMark extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
 	String noten;
 	String entries[], current[];
@@ -29,10 +28,7 @@ public class RemoveMark extends ListActivity implements
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -67,8 +63,7 @@ public class RemoveMark extends ListActivity implements
 	}
 
 	private void createList() {
-		setListAdapter(new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, entries));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, entries));
 	}
 
 	@Override
@@ -77,8 +72,7 @@ public class RemoveMark extends ListActivity implements
 		pos = position;
 		AlertDialog.Builder dg = new AlertDialog.Builder(this);
 		dg.setTitle("Note entfernen");
-		dg.setMessage("Willst du die Note '" + entries[position]
-				+ "' wirklich entfernen?");
+		dg.setMessage("Willst du die Note '" + entries[position] + "' wirklich entfernen?");
 		dg.setPositiveButton("Ja", this);
 		dg.setNegativeButton("Nein", null);
 		dg.show();
@@ -109,8 +103,7 @@ public class RemoveMark extends ListActivity implements
 
 		db.updateFach(updated);
 
-		Toast t = Toast.makeText(RemoveMark.this, "Note entfernt",
-				Toast.LENGTH_SHORT);
+		Toast t = Toast.makeText(RemoveMark.this, "Note entfernt", Toast.LENGTH_SHORT);
 		t.show();
 
 		finish();

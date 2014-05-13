@@ -22,8 +22,7 @@ public class ViewFachAdapter extends BaseAdapter {
 		super();
 		this.sDates = sDates;
 		this.sUsages = sUsages;
-		inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override

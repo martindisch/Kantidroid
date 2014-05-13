@@ -36,12 +36,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	// creating db
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String CREATE_KONT_TABLE = "CREATE TABLE " + TABLE_MARKS + "(" + KEY_ID
-				+ " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_NOTEN1
-				+ " Text," + KEY_MATH_AVERAGE1 + " Text," + KEY_REAL_AVERAGE1
-				+ " Text," + KEY_NOTEN2 + " Text," + KEY_MATH_AVERAGE2
-				+ " Text," + KEY_REAL_AVERAGE2 + " Text," + KEY_ZEUGNIS
-				+ " Text," + KEY_PROMOTIONSRELEVANT + " Text" + ")";
+		String CREATE_KONT_TABLE = "CREATE TABLE " + TABLE_MARKS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_NOTEN1 + " Text," + KEY_MATH_AVERAGE1 + " Text,"
+				+ KEY_REAL_AVERAGE1 + " Text," + KEY_NOTEN2 + " Text," + KEY_MATH_AVERAGE2 + " Text," + KEY_REAL_AVERAGE2 + " Text," + KEY_ZEUGNIS + " Text," + KEY_PROMOTIONSRELEVANT + " Text" + ")";
 		db.execSQL(CREATE_KONT_TABLE);
 	}
 
@@ -82,18 +78,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public Fach getFach(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_MARKS, new String[] { KEY_ID, KEY_NAME,
-				KEY_NOTEN1, KEY_MATH_AVERAGE1, KEY_REAL_AVERAGE1, KEY_NOTEN2,
-				KEY_MATH_AVERAGE2, KEY_REAL_AVERAGE2, KEY_ZEUGNIS,
-				KEY_PROMOTIONSRELEVANT }, KEY_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(TABLE_MARKS, new String[] { KEY_ID, KEY_NAME, KEY_NOTEN1, KEY_MATH_AVERAGE1, KEY_REAL_AVERAGE1, KEY_NOTEN2, KEY_MATH_AVERAGE2, KEY_REAL_AVERAGE2, KEY_ZEUGNIS,
+				KEY_PROMOTIONSRELEVANT }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null) {
 			cursor.moveToFirst();
 		}
 
-		Fach fach = new Fach(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
+		Fach fach = new Fach(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
 				cursor.getString(7), cursor.getString(8), cursor.getString(9));
 
 		cursor.close();
@@ -104,8 +95,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 	// Get all fächer
 	public List<Fach> getAllFaecher(Context context, int iSemester) {
-		SharedPreferences settings = context.getSharedPreferences(
-				"MarkSettings", Context.MODE_PRIVATE);
+		SharedPreferences settings = context.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 
 		String sorting = null;
 
@@ -212,8 +202,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_ZEUGNIS, fach.getZeugnis());
 		values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
 
-		int update = db.update(TABLE_MARKS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(fach.getID()) });
+		int update = db.update(TABLE_MARKS, values, KEY_ID + " = ?", new String[] { String.valueOf(fach.getID()) });
 		db.close();
 		return update;
 	}
@@ -222,8 +211,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void deleteFach(Fach fach) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
-		db.delete(TABLE_MARKS, KEY_ID + " = ?",
-				new String[] { String.valueOf(fach.getID()) });
+		db.delete(TABLE_MARKS, KEY_ID + " = ?", new String[] { String.valueOf(fach.getID()) });
 		db.close();
 	}
 

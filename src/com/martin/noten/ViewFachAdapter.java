@@ -19,14 +19,12 @@ public class ViewFachAdapter extends BaseAdapter {
 	private TextView tvLeft, tvRight;
 	private static LayoutInflater inflater;
 
-	public ViewFachAdapter(Context context, String[] sDates,
-			String[] sRelevances, String[] sMarks) {
+	public ViewFachAdapter(Context context, String[] sDates, String[] sRelevances, String[] sMarks) {
 		super();
 		this.sDates = sDates;
 		this.sRelevances = sRelevances;
 		this.sMarks = sMarks;
-		inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
@@ -53,8 +51,7 @@ public class ViewFachAdapter extends BaseAdapter {
 		tvRight = (TextView) vi.findViewById(R.id.tvRight);
 		tvLeft.setTextColor(Color.parseColor("#8e8e8e"));
 		tvLeft.setText(sDates[arg0]);
-		if (!sRelevances[arg0].contentEquals("1")
-				&& !(sRelevances[arg0].contentEquals("1.0"))) {
+		if (!sRelevances[arg0].contentEquals("1") && !(sRelevances[arg0].contentEquals("1.0"))) {
 			tvRight.setText("(" + sRelevances[arg0] + ") " + sMarks[arg0]);
 		} else {
 			tvRight.setText(sMarks[arg0]);

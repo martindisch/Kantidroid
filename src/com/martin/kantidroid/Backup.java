@@ -100,8 +100,7 @@ public class Backup extends Activity implements OnClickListener {
 		appdir = getFilesDir().getParentFile();
 		databases = new File(appdir + "/databases");
 		preferences = new File(appdir + "/shared_prefs");
-		kdroiddir = new File(Environment.getExternalStorageDirectory(),
-				"/Kantidroid");
+		kdroiddir = new File(Environment.getExternalStorageDirectory(), "/Kantidroid");
 		backupdatabases = new File(kdroiddir + "/backup/databases");
 		backuppreferences = new File(kdroiddir + "/backup/shared_prefs");
 		prefnames = getResources().getStringArray(R.array.prefnames);
@@ -111,8 +110,7 @@ public class Backup extends Activity implements OnClickListener {
 		tvBackup.setTypeface(tf);
 		tvSyncprogress.setTypeface(tf);
 
-		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(),
-				appKey, appSecret);
+		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(), appKey, appSecret);
 
 		if (!mDbxAcctMgr.hasLinkedAccount()) {
 			tvSyncprogress.setVisibility(View.INVISIBLE);
@@ -139,110 +137,70 @@ public class Backup extends Activity implements OnClickListener {
 				delDg.setTitle("Dropbox");
 				delDg.setMessage("Damit werden bereits vorhandene lokale Backups überschrieben.\n\nWillst du fortfahren?\n");
 				delDg.setNegativeButton("Nein", null);
-				delDg.setPositiveButton("Ja",
-						new DialogInterface.OnClickListener() {
+				delDg.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								// Make local backup
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// Make local backup
 
-								localBackup_noDg();
+						localBackup_noDg();
 
-								// Sync to Dropbox
+						// Sync to Dropbox
 
-								// databases
+						// databases
 
-								if (databases.isDirectory()) {
-									files = databases.listFiles();
-									for (int i = 0; i < files.length; i++) {
-										try {
-											if (dbxFs.exists(new DbxPath(
-													databasePath, files[i]
-															.getName()))) {
-												dbxFile = dbxFs.open(new DbxPath(
-														databasePath, files[i]
-																.getName()));
-											} else {
-												dbxFile = dbxFs.create(new DbxPath(
-														databasePath, files[i]
-																.getName()));
-											}
-											dbxFile.writeFromExistingFile(
-													files[i], false);
-											dbxFile.close();
-										} catch (InvalidPathException e) {
-											Toast.makeText(
-													getApplicationContext(),
-													e.getMessage(),
-													Toast.LENGTH_SHORT).show();
-											e.printStackTrace();
-										} catch (DbxException e) {
-											Toast.makeText(
-													getApplicationContext(),
-													e.getMessage(),
-													Toast.LENGTH_SHORT).show();
-											e.printStackTrace();
-										} catch (IOException e) {
-											Toast.makeText(
-													getApplicationContext(),
-													e.getMessage(),
-													Toast.LENGTH_SHORT).show();
-											e.printStackTrace();
-										}
+						if (databases.isDirectory()) {
+							files = databases.listFiles();
+							for (int i = 0; i < files.length; i++) {
+								try {
+									if (dbxFs.exists(new DbxPath(databasePath, files[i].getName()))) {
+										dbxFile = dbxFs.open(new DbxPath(databasePath, files[i].getName()));
+									} else {
+										dbxFile = dbxFs.create(new DbxPath(databasePath, files[i].getName()));
 									}
+									dbxFile.writeFromExistingFile(files[i], false);
+									dbxFile.close();
+								} catch (InvalidPathException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
+								} catch (DbxException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
+								} catch (IOException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
 								}
-
-								// shared_prefs
-
-								if (preferences.isDirectory()) {
-									for (int i1 = 0; i1 < prefnames.length; i1++) {
-										try {
-											if (dbxFs.exists(new DbxPath(
-													prefPath, prefnames[i1]))) {
-												dbxFile = dbxFs
-														.open(new DbxPath(
-																prefPath,
-																prefnames[i1]));
-											} else {
-												dbxFile = dbxFs
-														.create(new DbxPath(
-																prefPath,
-																prefnames[i1]));
-											}
-											dbxFile.writeFromExistingFile(
-													new File(backuppreferences
-															+ "/"
-															+ prefnames[i1]),
-													false);
-											dbxFile.close();
-										} catch (InvalidPathException e) {
-											Toast.makeText(
-													getApplicationContext(),
-													e.getMessage(),
-													Toast.LENGTH_SHORT).show();
-											e.printStackTrace();
-										} catch (DbxException e) {
-											Toast.makeText(
-													getApplicationContext(),
-													e.getMessage(),
-													Toast.LENGTH_SHORT).show();
-											e.printStackTrace();
-										} catch (IOException e) {
-											Toast.makeText(
-													getApplicationContext(),
-													e.getMessage(),
-													Toast.LENGTH_SHORT).show();
-											e.printStackTrace();
-										}
-									}
-								}
-								Toast.makeText(getApplicationContext(),
-										"Daten werden hochgeladen",
-										Toast.LENGTH_SHORT).show();
 							}
+						}
 
-						});
+						// shared_prefs
+
+						if (preferences.isDirectory()) {
+							for (int i1 = 0; i1 < prefnames.length; i1++) {
+								try {
+									if (dbxFs.exists(new DbxPath(prefPath, prefnames[i1]))) {
+										dbxFile = dbxFs.open(new DbxPath(prefPath, prefnames[i1]));
+									} else {
+										dbxFile = dbxFs.create(new DbxPath(prefPath, prefnames[i1]));
+									}
+									dbxFile.writeFromExistingFile(new File(backuppreferences + "/" + prefnames[i1]), false);
+									dbxFile.close();
+								} catch (InvalidPathException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
+								} catch (DbxException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
+								} catch (IOException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
+								}
+							}
+						}
+						Toast.makeText(getApplicationContext(), "Daten werden hochgeladen", Toast.LENGTH_SHORT).show();
+					}
+
+				});
 				delDg.show();
 			}
 			break;
@@ -254,80 +212,62 @@ public class Backup extends Activity implements OnClickListener {
 				delDg.setTitle("Dropbox");
 				delDg.setMessage("Damit werden bereits vorhandene lokale Backups überschrieben.\n\nWillst du fortfahren?\n");
 				delDg.setNegativeButton("Nein", null);
-				delDg.setPositiveButton("Ja",
-						new DialogInterface.OnClickListener() {
+				delDg.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								try {
-									// Delete older backups
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						try {
+							// Delete older backups
 
-									if (backupdatabases.isDirectory()) {
-										files = backupdatabases.listFiles();
-										for (int i = 0; i < files.length; i++) {
-											files[i].delete();
-										}
-									}
-									if (backuppreferences.isDirectory()) {
-										files = backuppreferences.listFiles();
-										for (int i = 0; i < files.length; i++) {
-											files[i].delete();
-										}
-									}
-
-									// Import to local backups
-
-									backupdatabases.mkdirs();
-									if (dbxFs.exists(databasePath)) {
-										List<DbxFileInfo> databaseList = dbxFs
-												.listFolder(databasePath);
-										for (int i = 0; i < databaseList.size(); i++) {
-											dbxFile = dbxFs.open(databaseList
-													.get(i).path);
-											copyDbx(dbxFile.getReadStream(),
-													new File(backupdatabases
-															+ "/"
-															+ dbxFile.getPath()
-																	.getName()));
-											dbxFile.close();
-										}
-									}
-
-									backuppreferences.mkdirs();
-									if (dbxFs.exists(prefPath)) {
-										List<DbxFileInfo> prefList = dbxFs
-												.listFolder(prefPath);
-										for (int i = 0; i < prefList.size(); i++) {
-											dbxFile = dbxFs.open(prefList
-													.get(i).path);
-											copyDbx(dbxFile.getReadStream(),
-													new File(backuppreferences
-															+ "/"
-															+ dbxFile.getPath()
-																	.getName()));
-											dbxFile.close();
-										}
-									}
-
-									// Do local import
-
-									localImport_nodg();
-
-								} catch (DbxException e) {
-									Toast.makeText(getApplicationContext(),
-											e.getMessage(), Toast.LENGTH_SHORT)
-											.show();
-									e.printStackTrace();
-								} catch (IOException e) {
-									Toast.makeText(getApplicationContext(),
-											e.getMessage(), Toast.LENGTH_SHORT)
-											.show();
-									e.printStackTrace();
+							if (backupdatabases.isDirectory()) {
+								files = backupdatabases.listFiles();
+								for (int i = 0; i < files.length; i++) {
+									files[i].delete();
+								}
+							}
+							if (backuppreferences.isDirectory()) {
+								files = backuppreferences.listFiles();
+								for (int i = 0; i < files.length; i++) {
+									files[i].delete();
 								}
 							}
 
-						});
+							// Import to local backups
+
+							backupdatabases.mkdirs();
+							if (dbxFs.exists(databasePath)) {
+								List<DbxFileInfo> databaseList = dbxFs.listFolder(databasePath);
+								for (int i = 0; i < databaseList.size(); i++) {
+									dbxFile = dbxFs.open(databaseList.get(i).path);
+									copyDbx(dbxFile.getReadStream(), new File(backupdatabases + "/" + dbxFile.getPath().getName()));
+									dbxFile.close();
+								}
+							}
+
+							backuppreferences.mkdirs();
+							if (dbxFs.exists(prefPath)) {
+								List<DbxFileInfo> prefList = dbxFs.listFolder(prefPath);
+								for (int i = 0; i < prefList.size(); i++) {
+									dbxFile = dbxFs.open(prefList.get(i).path);
+									copyDbx(dbxFile.getReadStream(), new File(backuppreferences + "/" + dbxFile.getPath().getName()));
+									dbxFile.close();
+								}
+							}
+
+							// Do local import
+
+							localImport_nodg();
+
+						} catch (DbxException e) {
+							Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						} catch (IOException e) {
+							Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						}
+					}
+
+				});
 				delDg.show();
 			}
 			break;
@@ -358,21 +298,18 @@ public class Backup extends Activity implements OnClickListener {
 				backupdatabases.mkdirs();
 				for (int i = 0; i < files.length; i++) {
 					try {
-						copy(files[i], new File(backupdatabases + "/"
-								+ files[i].getName()));
+						copy(files[i], new File(backupdatabases + "/" + files[i].getName()));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
 			}
 			for (int i = 0; i < prefnames.length; i++) {
-				saveSharedPreferencesToFile(prefnames[i], new File(
-						backuppreferences + "/" + prefnames[i]));
+				saveSharedPreferencesToFile(prefnames[i], new File(backuppreferences + "/" + prefnames[i]));
 			}
 			Toast.makeText(this, "Daten gesichert", Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(this, "Dropbox synchronisiert gerade",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Dropbox synchronisiert gerade", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -400,21 +337,18 @@ public class Backup extends Activity implements OnClickListener {
 				backupdatabases.mkdirs();
 				for (int i = 0; i < files.length; i++) {
 					try {
-						copy(files[i], new File(backupdatabases + "/"
-								+ files[i].getName()));
+						copy(files[i], new File(backupdatabases + "/" + files[i].getName()));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
 			}
 			for (int i = 0; i < prefnames.length; i++) {
-				saveSharedPreferencesToFile(prefnames[i], new File(
-						backuppreferences + "/" + prefnames[i]));
+				saveSharedPreferencesToFile(prefnames[i], new File(backuppreferences + "/" + prefnames[i]));
 			}
 			Toast.makeText(this, "Daten gesichert", Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(this, "Dropbox synchronisiert gerade",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Dropbox synchronisiert gerade", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -439,8 +373,7 @@ public class Backup extends Activity implements OnClickListener {
 				if (preferences.isDirectory()) {
 					files = preferences.listFiles();
 					for (int i = 0; i < files.length; i++) {
-						if (!files[i].getName().contentEquals(
-								"dropbox-credentials.xml")) {
+						if (!files[i].getName().contentEquals("dropbox-credentials.xml")) {
 							files[i].delete();
 						}
 					}
@@ -453,9 +386,7 @@ public class Backup extends Activity implements OnClickListener {
 					databases.mkdirs();
 					for (int i = 0; i < files.length; i++) {
 						try {
-							copy(files[i],
-									new File(databases + "/"
-											+ files[i].getName()));
+							copy(files[i], new File(databases + "/" + files[i].getName()));
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -463,11 +394,9 @@ public class Backup extends Activity implements OnClickListener {
 				}
 
 				for (int i = 0; i < prefnames.length; i++) {
-					loadSharedPreferencesFromFile(prefnames[i], new File(
-							backuppreferences + "/" + prefnames[i]));
+					loadSharedPreferencesFromFile(prefnames[i], new File(backuppreferences + "/" + prefnames[i]));
 				}
-				Toast.makeText(getApplicationContext(), "Daten importiert",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Daten importiert", Toast.LENGTH_SHORT).show();
 			}
 
 		});
@@ -486,8 +415,7 @@ public class Backup extends Activity implements OnClickListener {
 		if (preferences.isDirectory()) {
 			files = preferences.listFiles();
 			for (int i = 0; i < files.length; i++) {
-				if (!files[i].getName()
-						.contentEquals("dropbox-credentials.xml")) {
+				if (!files[i].getName().contentEquals("dropbox-credentials.xml")) {
 					files[i].delete();
 				}
 			}
@@ -500,8 +428,7 @@ public class Backup extends Activity implements OnClickListener {
 			databases.mkdirs();
 			for (int i = 0; i < files.length; i++) {
 				try {
-					copy(files[i],
-							new File(databases + "/" + files[i].getName()));
+					copy(files[i], new File(databases + "/" + files[i].getName()));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -509,24 +436,20 @@ public class Backup extends Activity implements OnClickListener {
 		}
 
 		for (int i = 0; i < prefnames.length; i++) {
-			loadSharedPreferencesFromFile(prefnames[i], new File(
-					backuppreferences + "/" + prefnames[i]));
+			loadSharedPreferencesFromFile(prefnames[i], new File(backuppreferences + "/" + prefnames[i]));
 		}
-		Toast.makeText(getApplicationContext(), "Daten importiert",
-				Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "Daten importiert", Toast.LENGTH_SHORT).show();
 	}
 
 	private boolean dbxSynchronizing() {
 		boolean synchronizing = false;
 		if (mDbxAcctMgr.hasLinkedAccount()) {
 			try {
-				if (dbxFs.getSyncStatus().upload.inProgress
-						|| dbxFs.getSyncStatus().download.inProgress) {
+				if (dbxFs.getSyncStatus().upload.inProgress || dbxFs.getSyncStatus().download.inProgress) {
 					synchronizing = true;
 				}
 			} catch (DbxException e) {
-				Toast.makeText(getApplicationContext(), e.getMessage(),
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 				e.printStackTrace();
 			}
 		}
@@ -536,8 +459,7 @@ public class Backup extends Activity implements OnClickListener {
 	private void initFs() {
 		if (mDbxAcctMgr.hasLinkedAccount()) {
 			try {
-				dbxFs = DbxFileSystem
-						.forAccount(mDbxAcctMgr.getLinkedAccount());
+				dbxFs = DbxFileSystem.forAccount(mDbxAcctMgr.getLinkedAccount());
 				dbxFs.addSyncStatusListener(new SyncStatusListener() {
 
 					@Override
@@ -603,8 +525,7 @@ public class Backup extends Activity implements OnClickListener {
 		ObjectOutputStream output = null;
 		try {
 			output = new ObjectOutputStream(new FileOutputStream(dst));
-			SharedPreferences pref = getSharedPreferences(prefName,
-					MODE_PRIVATE);
+			SharedPreferences pref = getSharedPreferences(prefName, MODE_PRIVATE);
 			output.writeObject(pref.getAll());
 
 			res = true;
@@ -631,8 +552,7 @@ public class Backup extends Activity implements OnClickListener {
 		ObjectInputStream input = null;
 		try {
 			input = new ObjectInputStream(new FileInputStream(src));
-			Editor prefEdit = getSharedPreferences(prefName, MODE_PRIVATE)
-					.edit();
+			Editor prefEdit = getSharedPreferences(prefName, MODE_PRIVATE).edit();
 			prefEdit.clear();
 			Map<String, ?> entries = (Map<String, ?>) input.readObject();
 			for (Entry<String, ?> entry : entries.entrySet()) {
@@ -685,12 +605,9 @@ public class Backup extends Activity implements OnClickListener {
 		if (requestCode == REQUEST_LINK_TO_DBX) {
 			if (resultCode == android.app.Activity.RESULT_OK) {
 				initFs();
-				Toast.makeText(this,
-						"Bei Dropbox eingeloggt. Nochmals drücken für Backup",
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "Bei Dropbox eingeloggt. Nochmals drücken für Backup", Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(this, "Login fehlgeschlagen", Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(this, "Login fehlgeschlagen", Toast.LENGTH_SHORT).show();
 			}
 		} else {
 			super.onActivityResult(requestCode, resultCode, data);

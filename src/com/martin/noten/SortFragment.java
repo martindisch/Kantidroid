@@ -18,8 +18,7 @@ public class SortFragment extends DialogFragment implements OnClickListener {
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 		selected = settings.getInt("sorting", 0);
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -33,8 +32,7 @@ public class SortFragment extends DialogFragment implements OnClickListener {
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if (which == -1) {
-			SharedPreferences settings = getSharedPreferences("MarkSettings",
-					Context.MODE_PRIVATE);
+			SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = settings.edit();
 
 			editor.putInt("sorting", selected);

@@ -31,10 +31,7 @@ public class EditLehrer extends Activity implements OnClickListener {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -50,8 +47,7 @@ public class EditLehrer extends Activity implements OnClickListener {
 
 	private void initialize() {
 		getApplicationContext();
-		SharedPreferences spRem = getApplicationContext().getSharedPreferences(
-				"Rem", Context.MODE_PRIVATE);
+		SharedPreferences spRem = getApplicationContext().getSharedPreferences("Rem", Context.MODE_PRIVATE);
 		etName = (EditText) findViewById(R.id.etEditName);
 		tvCount = (TextView) findViewById(R.id.tvEditCount);
 		bSave = (Button) findViewById(R.id.bEditSave);
@@ -73,32 +69,26 @@ public class EditLehrer extends Activity implements OnClickListener {
 		case R.id.bEditSave:
 			if (!etName.getText().toString().contentEquals("")) {
 				getApplicationContext();
-				SharedPreferences spKISS = getApplicationContext()
-						.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+				SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				if (!sName.contentEquals(etName.getText().toString())) {
 					getApplicationContext();
-					SharedPreferences spRem = getApplicationContext()
-							.getSharedPreferences("Rem", Context.MODE_PRIVATE);
+					SharedPreferences spRem = getApplicationContext().getSharedPreferences("Rem", Context.MODE_PRIVATE);
 					SharedPreferences.Editor ed = spRem.edit();
-					ed.putInt(etName.getText().toString(),
-							spRem.getInt(sName, 0));
+					ed.putInt(etName.getText().toString(), spRem.getInt(sName, 0));
 					ed.remove(sName);
 					ed.commit();
 					String sOld_List = spKISS.getString("lehrer", "");
-					String sNew_List = sOld_List.replace(sName, etName
-							.getText().toString());
+					String sNew_List = sOld_List.replace(sName, etName.getText().toString());
 					editor.putString("lehrer", sNew_List);
 					editor.commit();
-					Toast t = Toast.makeText(this, "Person gespeichert",
-							Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(this, "Person gespeichert", Toast.LENGTH_SHORT);
 					t.show();
 				}
 
 				finish();
 			} else {
-				Toast t = Toast.makeText(this, "Gib einen Namen ein",
-						Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Gib einen Namen ein", Toast.LENGTH_SHORT);
 				t.show();
 			}
 			break;

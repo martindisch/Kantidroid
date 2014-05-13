@@ -29,10 +29,7 @@ public class EditEntry extends Activity implements OnClickListener {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -90,8 +87,7 @@ public class EditEntry extends Activity implements OnClickListener {
 
 				finish();
 			} else {
-				Toast t = Toast.makeText(EditEntry.this,
-						"Fülle beide Felder aus", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(EditEntry.this, "Fülle beide Felder aus", Toast.LENGTH_SHORT);
 				t.show();
 			}
 			break;

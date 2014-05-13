@@ -29,8 +29,7 @@ import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class ViewFach extends Activity implements OnClickListener,
-		android.content.DialogInterface.OnClickListener, OnDateSetListener {
+public class ViewFach extends Activity implements OnClickListener, android.content.DialogInterface.OnClickListener, OnDateSetListener {
 
 	TextView tvTitle, tvUsage;
 	ImageButton ibAddKont;
@@ -46,10 +45,7 @@ public class ViewFach extends Activity implements OnClickListener,
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -131,16 +127,14 @@ public class ViewFach extends Activity implements OnClickListener,
 		picked_number = picker.getValue();
 		Calendar c = Calendar.getInstance();
 		DatePickerDialog dg = new DatePickerDialog();
-		dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-				c.get(Calendar.DAY_OF_MONTH));
+		dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 		dg.setOnDateSetListener(this);
 		dg.show(this);
 	}
 
 	private void setKont() {
 		if (date_old.contains(addition)) {
-			Toast t = Toast.makeText(ViewFach.this,
-					"Eintrag bereits vorhanden", Toast.LENGTH_SHORT);
+			Toast t = Toast.makeText(ViewFach.this, "Eintrag bereits vorhanden", Toast.LENGTH_SHORT);
 			t.show();
 		} else {
 			DatabaseHandler db = new DatabaseHandler(this);
@@ -196,8 +190,7 @@ public class ViewFach extends Activity implements OnClickListener,
 				i.putExtras(data);
 				startActivity(i);
 			} else {
-				Toast t = Toast.makeText(this, "Kein Kontingent zu entfernen",
-						Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(this, "Kein Kontingent zu entfernen", Toast.LENGTH_SHORT);
 				t.show();
 			}
 			break;
@@ -215,15 +208,13 @@ public class ViewFach extends Activity implements OnClickListener,
 	}
 
 	@Override
-	public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear,
-			int dayOfMonth) {
+	public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
 		String singularPlural = " Lektion";
 
 		if (picked_number > 1) {
 			singularPlural = " Lektionen";
 		}
-		addition = dayOfMonth + "." + (monthOfYear + 1) + "." + year + " - "
-				+ picked_number + singularPlural + "\n";
+		addition = dayOfMonth + "." + (monthOfYear + 1) + "." + year + " - " + picked_number + singularPlural + "\n";
 
 		if (date_old.contentEquals("empty")) {
 			date_new = addition;

@@ -44,8 +44,7 @@ import com.martin.noten.PromoRes;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	LinearLayout cardKontingent, cardKISS, cardNoten, actioncardNoten,
-			actioncardKontingent;
+	LinearLayout cardKontingent, cardKISS, cardNoten, actioncardNoten, actioncardKontingent;
 	TextView tvSchn, pluspunkte, tvUsage, tvUsage2, tvKISS;
 	double schn = 0;
 	Resources res;
@@ -56,10 +55,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -122,8 +118,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		// done on the main thread, because the downloaded files are extremely
 		// small
 		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-					.permitAll().build();
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
 		Intent service = new Intent(this, Background.class);
@@ -140,8 +135,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		// Noten
 
-		SharedPreferences spNoten = getSharedPreferences("MarkSettings",
-				MODE_PRIVATE);
+		SharedPreferences spNoten = getSharedPreferences("MarkSettings", MODE_PRIVATE);
 		String sAbteilung = spNoten.getString("Abteilung", "Gym");
 		PromoCheck prCheck = new PromoCheck(this);
 		PromoRes prResult = null;
@@ -162,8 +156,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		// Kontingent
 
-		com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(
-				this);
+		com.martin.kontingent.DatabaseHandler dbK = new com.martin.kontingent.DatabaseHandler(this);
 		int countK = dbK.getFachCount();
 
 		int totalK = 0;
@@ -184,16 +177,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				used = used + Integer.parseInt(entry.getKont_us());
 
 				// Check für überzogen
-				if (Integer.parseInt(entry.getKont_us()) > Integer
-						.parseInt(entry.getKont_av())) {
+				if (Integer.parseInt(entry.getKont_us()) > Integer.parseInt(entry.getKont_av())) {
 					überzogen++;
 				}
 			}
 		}
 
 		if (!(totalK == 0)) {
-			dPercentage = (double) Math.round((double) used * 100 / totalK
-					* 100) / 100;
+			dPercentage = (double) Math.round((double) used * 100 / totalK * 100) / 100;
 		}
 		tvUsage2.setText(dPercentage + "% des Kontingents benutzt");
 		tvUsage.setText(used + "/" + totalK);
@@ -211,8 +202,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		// KISS
 
-		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				Context.MODE_PRIVATE);
+		SharedPreferences spKISS = this.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		String sLehrer = spKISS.getString("lehrer", "");
 		String liste = "";
 
@@ -248,8 +238,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(i);
 			break;
 		case R.id.llCardKISS:
-			Intent i2 = new Intent(MainActivity.this,
-					com.martin.kiss.MainActivity.class);
+			Intent i2 = new Intent(MainActivity.this, com.martin.kiss.MainActivity.class);
 			i2.putExtra("Internal_call", true);
 			i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i2);
@@ -261,15 +250,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(i3);
 			break;
 		case R.id.llActioncardNoten:
-			Intent i4 = new Intent(MainActivity.this,
-					com.martin.noten.AddSelect.class);
+			Intent i4 = new Intent(MainActivity.this, com.martin.noten.AddSelect.class);
 			i4.putExtra("Internal_call", true);
 			i4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i4);
 			break;
 		case R.id.llActioncardKontingent:
-			Intent i5 = new Intent(MainActivity.this,
-					com.martin.kontingent.AddSelect.class);
+			Intent i5 = new Intent(MainActivity.this, com.martin.kontingent.AddSelect.class);
 			i5.putExtra("Internal_call", true);
 			i5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i5);
@@ -290,96 +277,62 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.iTimetable:
 			LayoutInflater ttinflater = this.getLayoutInflater();
 			View ttDialog = ttinflater.inflate(R.layout.ttdialog);
-			final Spinner ttsYear = (Spinner) ttDialog
-					.findViewById(R.id.ttsYear);
-			final EditText ttetClass = (EditText) ttDialog
-					.findViewById(R.id.ttetClass);
-			SharedPreferences sp = getApplicationContext()
-					.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+			final Spinner ttsYear = (Spinner) ttDialog.findViewById(R.id.ttsYear);
+			final EditText ttetClass = (EditText) ttDialog.findViewById(R.id.ttetClass);
+			SharedPreferences sp = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
 			ttsYear.setSelection(sp.getInt("yearindex", 0));
 			ttetClass.setText(sp.getString("class", ""));
 			AlertDialog.Builder ttdg = new AlertDialog.Builder(this);
 			ttdg.setTitle("Stundenplan");
 			ttdg.setView(ttDialog);
 			ttdg.setNegativeButton("Abbrechen", null);
-			ttdg.setPositiveButton("Ansehen",
-					new DialogInterface.OnClickListener() {
+			ttdg.setPositiveButton("Ansehen", new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							String sYear = res.getStringArray(R.array.years)[ttsYear
-									.getSelectedItemPosition()];
-							String sClass = ttetClass.getText().toString();
-							getApplicationContext();
-							SharedPreferences sp = getApplicationContext()
-									.getSharedPreferences("Kantidroid",
-											Context.MODE_PRIVATE);
-							SharedPreferences.Editor editor = sp.edit();
-							editor.putInt("yearindex",
-									ttsYear.getSelectedItemPosition());
-							editor.putString("class", sClass);
-							editor.commit();
-							TTManager ttm = new TTManager();
-							sClass = ttm.parseClass(sClass);
-							if (sClass.contentEquals("Error")) {
-								Toast.makeText(
-										getApplicationContext(),
-										"Stundenplan für diese Klasse konnte nicht gefunden werden",
-										Toast.LENGTH_SHORT).show();
-							} else {
-								if (ttm.checkTT(sClass, sYear)) {
-									Toast.makeText(
-											getApplicationContext(),
-											"Stundenplan bereits heruntergeladen, wird geöffnet...",
-											Toast.LENGTH_SHORT).show();
-									File SDCardRoot = new File(Environment
-											.getExternalStorageDirectory(),
-											"/Kantidroid/");
-									File file = new File(SDCardRoot, sYear
-											+ sClass + ".pdf");
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					String sYear = res.getStringArray(R.array.years)[ttsYear.getSelectedItemPosition()];
+					String sClass = ttetClass.getText().toString();
+					getApplicationContext();
+					SharedPreferences sp = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+					SharedPreferences.Editor editor = sp.edit();
+					editor.putInt("yearindex", ttsYear.getSelectedItemPosition());
+					editor.putString("class", sClass);
+					editor.commit();
+					TTManager ttm = new TTManager();
+					sClass = ttm.parseClass(sClass);
+					if (sClass.contentEquals("Error")) {
+						Toast.makeText(getApplicationContext(), "Stundenplan für diese Klasse konnte nicht gefunden werden", Toast.LENGTH_SHORT).show();
+					} else {
+						if (ttm.checkTT(sClass, sYear)) {
+							Toast.makeText(getApplicationContext(), "Stundenplan bereits heruntergeladen, wird geöffnet...", Toast.LENGTH_SHORT).show();
+							File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
+							File file = new File(SDCardRoot, sYear + sClass + ".pdf");
 
-									Intent intent = new Intent(
-											Intent.ACTION_VIEW);
-									intent.setDataAndType(Uri.fromFile(file),
-											"application/pdf");
+							Intent intent = new Intent(Intent.ACTION_VIEW);
+							intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+
+							startActivity(intent);
+						} else {
+							if (isNetworkAvailable()) {
+								if (ttm.downloadTT(sClass, sYear)) {
+									Toast.makeText(getApplicationContext(), "Stundenplan wird heruntergeladen und geöffnet...", Toast.LENGTH_SHORT).show();
+									File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
+									File file = new File(SDCardRoot, sYear + sClass + ".pdf");
+									Intent intent = new Intent(Intent.ACTION_VIEW);
+									intent.setDataAndType(Uri.fromFile(file), "application/pdf");
 
 									startActivity(intent);
 								} else {
-									if (isNetworkAvailable()) {
-										if (ttm.downloadTT(sClass, sYear)) {
-											Toast.makeText(
-													getApplicationContext(),
-													"Stundenplan wird heruntergeladen und geöffnet...",
-													Toast.LENGTH_SHORT).show();
-											File SDCardRoot = new File(
-													Environment
-															.getExternalStorageDirectory(),
-													"/Kantidroid/");
-											File file = new File(SDCardRoot,
-													sYear + sClass + ".pdf");
-											Intent intent = new Intent(
-													Intent.ACTION_VIEW);
-											intent.setDataAndType(
-													Uri.fromFile(file),
-													"application/pdf");
-
-											startActivity(intent);
-										} else {
-											Toast.makeText(
-													getApplicationContext(),
-													"Stundenplan für diese Klasse konnte nicht gefunden werden",
-													Toast.LENGTH_SHORT).show();
-										}
-									} else {
-										Toast.makeText(getApplicationContext(),
-												"Keine Internetverbindung",
-												Toast.LENGTH_SHORT).show();
-									}
+									Toast.makeText(getApplicationContext(), "Stundenplan für diese Klasse konnte nicht gefunden werden", Toast.LENGTH_SHORT).show();
 								}
+							} else {
+								Toast.makeText(getApplicationContext(), "Keine Internetverbindung", Toast.LENGTH_SHORT).show();
 							}
 						}
+					}
+				}
 
-					});
+			});
 			ttdg.show();
 			break;
 		case R.id.iAbout:
@@ -392,18 +345,16 @@ public class MainActivity extends Activity implements OnClickListener {
 			delDg.setTitle("Zurücksetzen");
 			delDg.setMessage("Willst du wirklich alle Daten (Noten, Kontingent, KISS, etc.) löschen?");
 			delDg.setNegativeButton("Nein", null);
-			delDg.setPositiveButton("Ja",
-					new DialogInterface.OnClickListener() {
+			delDg.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							clearApplicationData();
-							Toast t = Toast.makeText(getApplicationContext(),
-									"Alle Daten gelöscht", Toast.LENGTH_SHORT);
-							t.show();
-						}
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					clearApplicationData();
+					Toast t = Toast.makeText(getApplicationContext(), "Alle Daten gelöscht", Toast.LENGTH_SHORT);
+					t.show();
+				}
 
-					});
+			});
 			delDg.show();
 			break;
 		case R.id.iBackup:
@@ -417,8 +368,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				ifo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(ifo);
 			} else {
-				Toast.makeText(getApplicationContext(),
-						"Keine Internetverbindung", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Keine Internetverbindung", Toast.LENGTH_SHORT).show();
 			}
 			break;
 		}
@@ -436,8 +386,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 			}
 		}
-		SharedPreferences sp = getSharedPreferences("KISS",
-				Context.MODE_PRIVATE);
+		SharedPreferences sp = getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		Editor ed = sp.edit();
 		ed.clear();
 		ed.commit();
@@ -460,8 +409,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private boolean isNetworkAvailable() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager
-				.getActiveNetworkInfo();
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 

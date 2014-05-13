@@ -33,8 +33,7 @@ public class SelectEdit extends ListActivity {
 			Fach entry = faecher.get(i);
 			names[i] = entry.getName();
 		}
-		setListAdapter(new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, names));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names));
 	}
 
 	@Override

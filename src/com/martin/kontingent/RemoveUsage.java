@@ -17,8 +17,7 @@ import android.widget.ArrayAdapter;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class RemoveUsage extends ListActivity implements
-		android.content.DialogInterface.OnClickListener {
+public class RemoveUsage extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
 	String name, dates, removable;
 	String entries[], current[];
@@ -29,10 +28,7 @@ public class RemoveUsage extends ListActivity implements
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -64,8 +60,7 @@ public class RemoveUsage extends ListActivity implements
 	}
 
 	private void createList() {
-		setListAdapter(new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, entries));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, entries));
 	}
 
 	@Override
@@ -77,8 +72,7 @@ public class RemoveUsage extends ListActivity implements
 
 		AlertDialog.Builder dg = new AlertDialog.Builder(this);
 		dg.setTitle("Nutzung rückgängig");
-		dg.setMessage("Willst du die " + current[1] + " vom " + current[0]
-				+ " wirklich rückgängig machen?");
+		dg.setMessage("Willst du die " + current[1] + " vom " + current[0] + " wirklich rückgängig machen?");
 		dg.setPositiveButton("Ja", this);
 		dg.setNegativeButton("Nein", null);
 		dg.show();
@@ -99,8 +93,7 @@ public class RemoveUsage extends ListActivity implements
 		updated.setKont_us(Integer.toString(newKont));
 		db.updateFach(updated);
 
-		Toast t = Toast.makeText(RemoveUsage.this, current[1] + " abgezogen",
-				Toast.LENGTH_SHORT);
+		Toast t = Toast.makeText(RemoveUsage.this, current[1] + " abgezogen", Toast.LENGTH_SHORT);
 		t.show();
 
 		finish();

@@ -42,8 +42,7 @@ public class ServiceHandler {
 	 * @method - http request method
 	 * @params - http request params
 	 * */
-	public String makeServiceCall(String url, int method,
-			List<NameValuePair> params) {
+	public String makeServiceCall(String url, int method, List<NameValuePair> params) {
 		try {
 			// http client
 			DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -63,8 +62,7 @@ public class ServiceHandler {
 			} else if (method == GET) {
 				// appending params to url
 				if (params != null) {
-					String paramString = URLEncodedUtils
-							.format(params, "utf-8");
+					String paramString = URLEncodedUtils.format(params, "utf-8");
 					url += "?" + paramString;
 				}
 				HttpGet httpGet = new HttpGet(url);

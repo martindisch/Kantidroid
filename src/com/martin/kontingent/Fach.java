@@ -15,8 +15,7 @@ public class Fach {
 	}
 
 	// constructor mit id
-	public Fach(int id, String name, String kont_av, String kont_us,
-			String dates) {
+	public Fach(int id, String name, String kont_av, String kont_us, String dates) {
 		this._id = id;
 		this._name = name;
 		this._kont_av = kont_av;

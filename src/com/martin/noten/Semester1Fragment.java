@@ -47,8 +47,7 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 	private boolean savedState = false;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		setRetainInstance(true);
 		return inflater.inflate(R.layout.activity_main_noten, container, false);
 	}
@@ -75,8 +74,7 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View view,
-			ContextMenuInfo menuInfo) {
+	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, view, menuInfo);
 		MenuInflater inflater = getSupportActivity().getMenuInflater();
 		inflater.inflate(R.menu.context_menu, menu);
@@ -84,14 +82,11 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-				.getMenuInfo();
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.cmEdit:
-			DatabaseHandler db = new DatabaseHandler(getActivity()
-					.getApplicationContext());
-			List<Fach> faecher = db.getAllFaecher(getActivity()
-					.getApplicationContext(), 1);
+			DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
+			List<Fach> faecher = db.getAllFaecher(getActivity().getApplicationContext(), 1);
 
 			fSelected = db.getFach(faecher.get(info.position).getID());
 
@@ -103,23 +98,19 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 			startActivity(i);
 			break;
 		case R.id.cmDelete:
-			DatabaseHandler db1 = new DatabaseHandler(getActivity()
-					.getApplicationContext());
-			List<Fach> faecher1 = db1.getAllFaecher(getActivity()
-					.getApplicationContext(), 1);
+			DatabaseHandler db1 = new DatabaseHandler(getActivity().getApplicationContext());
+			List<Fach> faecher1 = db1.getAllFaecher(getActivity().getApplicationContext(), 1);
 
 			fSelected = db1.getFach(faecher1.get(info.position).getID());
 
 			AlertDialog.Builder dg = new AlertDialog.Builder(getActivity());
 			dg.setTitle("Fach löschen");
-			dg.setMessage("Willst du das Fach " + fSelected.getName()
-					+ " wirklich löschen?");
+			dg.setMessage("Willst du das Fach " + fSelected.getName() + " wirklich löschen?");
 			dg.setPositiveButton("Ja", new OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					DatabaseHandler db = new DatabaseHandler(getActivity()
-							.getApplicationContext());
+					DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
 					db.deleteFach(fSelected);
 					createList();
 				}
@@ -141,8 +132,7 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 		String[] from = { "fach", "anzahl" };
 		int[] to = { R.id.tvLeft, R.id.tvRight };
 
-		final SimpleAdapter adapter = new MyAdapter(getActivity(), list,
-				R.layout.overview_list_item, from, to);
+		final SimpleAdapter adapter = new MyAdapter(getActivity(), list, R.layout.overview_list_item, from, to);
 		lv.post(new Runnable() {
 
 			@Override
@@ -165,8 +155,7 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 	}
 
 	private void checkPromo() {
-		SharedPreferences spNoten = getActivity().getSharedPreferences(
-				"MarkSettings", Context.MODE_PRIVATE);
+		SharedPreferences spNoten = getActivity().getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 		String sAbteilung = spNoten.getString("Abteilung", "Gym");
 		PromoCheck prCheck = new PromoCheck(getActivity());
 		PromoRes prResult = null;
@@ -201,8 +190,7 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 			if (entry.getMathAverage1().contentEquals("-")) {
 				result = "-";
 			} else {
-				result = String.format("%.2f",
-						Double.parseDouble(entry.getMathAverage1()));
+				result = String.format("%.2f", Double.parseDouble(entry.getMathAverage1()));
 			}
 			list.add(putData(entry.getName(), result));
 		}

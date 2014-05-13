@@ -48,8 +48,7 @@ public class Background extends IntentService {
 				URL urlmotd = new URL("http://androiddev.bplaced.net/motd.txt");
 
 				// KISS
-				HttpURLConnection con = (HttpURLConnection) url
-						.openConnection();
+				HttpURLConnection con = (HttpURLConnection) url.openConnection();
 				InputStream in = con.getInputStream();
 				BufferedReader reader = null;
 				reader = new BufferedReader(new InputStreamReader(in));
@@ -75,12 +74,10 @@ public class Background extends IntentService {
 			}
 			if (!result.contentEquals("")) {
 				getApplicationContext();
-				SharedPreferences spKISS = getApplicationContext()
-						.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+				SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = spKISS.edit();
 				editor.putString("KISS", result);
-				editor.putString("last_refresh", DateFormat
-						.getDateTimeInstance().format(new Date()));
+				editor.putString("last_refresh", DateFormat.getDateTimeInstance().format(new Date()));
 				editor.commit();
 				checkLehrer();
 			}
@@ -93,14 +90,11 @@ public class Background extends IntentService {
 
 	private void checkMOTD(String motd) {
 		String[] lines = motd.split("/");
-		SharedPreferences spKISS = getApplicationContext()
-				.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+		SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		Check check = new Check();
-		if (!check.getSeen(lines[0], this) && !lines[0].contains("html")
-				&& !lines[1].contains("html")) {
+		if (!check.getSeen(lines[0], this) && !lines[0].contains("html") && !lines[1].contains("html")) {
 			int idCounter = spKISS.getInt("idCounter", 0);
-			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-					this);
+			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
 			mBuilder.setSmallIcon(R.drawable.kantidroid_ico);
 			mBuilder.setContentTitle(lines[0]);
 			mBuilder.setContentText(lines[1]);
@@ -117,8 +111,7 @@ public class Background extends IntentService {
 			data.putStringArray("data", lines);
 			iMOTD.putExtras(data);
 			stackBuilder.addNextIntent(iMOTD);
-			PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-					0, PendingIntent.FLAG_UPDATE_CURRENT);
+			PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 			mBuilder.setContentIntent(resultPendingIntent);
 
 			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -135,14 +128,11 @@ public class Background extends IntentService {
 	}
 
 	private void ScheduleNextUpdate() {
-		SharedPreferences spKISS = this.getSharedPreferences("KISS",
-				Context.MODE_PRIVATE);
+		SharedPreferences spKISS = this.getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		Intent intent = new Intent(this, this.getClass());
-		PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent,
-				PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		long currentTimeMillis = System.currentTimeMillis();
-		long nextUpdateTimeMillis = currentTimeMillis
-				+ spKISS.getInt("interval", 40) * DateUtils.MINUTE_IN_MILLIS;
+		long nextUpdateTimeMillis = currentTimeMillis + spKISS.getInt("interval", 40) * DateUtils.MINUTE_IN_MILLIS;
 		Time nextUpdateTime = new Time();
 		nextUpdateTime.set(nextUpdateTimeMillis);
 
@@ -151,8 +141,7 @@ public class Background extends IntentService {
 	}
 
 	private void checkLehrer() {
-		SharedPreferences spKISS = getApplicationContext()
-				.getSharedPreferences("KISS", Context.MODE_PRIVATE);
+		SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 		String sLehrer = spKISS.getString("lehrer", "");
 		String sKISS = spKISS.getString("KISS", "");
 		String sNoti = spKISS.getString("noti", "");
@@ -185,27 +174,22 @@ public class Background extends IntentService {
 			sNoti = spKISS.getString("noti", "");
 			for (int i = 0; i < entries.length; i++) {
 				if (sKISS.contains(entries[i]) && !sNoti.contains(entries[i])) {
-					NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-							this);
+					NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
 					mBuilder.setSmallIcon(R.drawable.kiss_ico);
 					mBuilder.setContentTitle("KISS");
-					mBuilder.setContentText(entries[i]
-							+ " ist im KISS verzeichnet.");
+					mBuilder.setContentText(entries[i] + " ist im KISS verzeichnet.");
 					mBuilder.setAutoCancel(true);
 					long[] pattern = { 0, 300, 200, 300 };
 					mBuilder.setVibrate(pattern);
 					mBuilder.setDefaults(Notification.DEFAULT_LIGHTS);
 					mBuilder.setDefaults(Notification.DEFAULT_SOUND);
-					TaskStackBuilder stackBuilder = TaskStackBuilder
-							.create(this);
+					TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
 					String url = "https://kpf.bks-campus.ch/infoscreen";
 					Intent iKISS = new Intent(Intent.ACTION_VIEW);
 					iKISS.setData(Uri.parse(url));
 					stackBuilder.addNextIntent(iKISS);
-					PendingIntent resultPendingIntent = stackBuilder
-							.getPendingIntent(0,
-									PendingIntent.FLAG_UPDATE_CURRENT);
+					PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 					mBuilder.setContentIntent(resultPendingIntent);
 					NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 					mNotificationManager.notify(idCounter, mBuilder.build());
@@ -223,8 +207,7 @@ public class Background extends IntentService {
 					ieditor.commit();
 					getApplicationContext();
 					// Remember
-					SharedPreferences spRem = getApplicationContext()
-							.getSharedPreferences("Rem", Context.MODE_PRIVATE);
+					SharedPreferences spRem = getApplicationContext().getSharedPreferences("Rem", Context.MODE_PRIVATE);
 					SharedPreferences.Editor RemEdit = spRem.edit();
 					int iAusfaelle = spRem.getInt(entries[i], 0);
 					iAusfaelle++;
@@ -234,10 +217,7 @@ public class Background extends IntentService {
 			}
 			Intent rIntent = new Intent(this, WidgetProvider.class);
 			rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-			int[] ids = AppWidgetManager.getInstance(getApplication())
-					.getAppWidgetIds(
-							new ComponentName(getApplication(),
-									WidgetProvider.class));
+			int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 			rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 			sendBroadcast(rIntent);
 		}
@@ -245,8 +225,7 @@ public class Background extends IntentService {
 
 	private boolean isNetworkAvailable() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager
-				.getActiveNetworkInfo();
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 

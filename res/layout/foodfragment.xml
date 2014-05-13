@@ -95,7 +95,6 @@
             android:layout_below="@id/tvFoodCafemartin"
             android:layout_marginLeft="20dp"
             android:text="Café Martinsplatz Menu" />
-
     </RelativeLayout>
 
 </ScrollView>

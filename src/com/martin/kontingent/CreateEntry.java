@@ -26,8 +26,7 @@ import android.widget.RadioGroup;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class CreateEntry extends Activity implements OnClickListener,
-		OnCheckedChangeListener {
+public class CreateEntry extends Activity implements OnClickListener, OnCheckedChangeListener {
 
 	AutoCompleteTextView fach;
 	Button save, cancel;
@@ -42,10 +41,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -107,19 +103,16 @@ public class CreateEntry extends Activity implements OnClickListener,
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 			}
 
 			@Override
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-					int arg3) {
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 			}
 
 		});
 		String[] names = getResources().getStringArray(R.array.faecher_list);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, names);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names);
 		fach.setAdapter(adapter);
 
 		selectedKont = "0";
@@ -127,8 +120,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 	}
 
 	private void getCheckbox() {
-		SharedPreferences settings = getSharedPreferences("mysettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("mysettings", Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("another", true);
 
 		if (bAnother == true) {
@@ -146,8 +138,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 			String sFach = fach.getText().toString();
 			String sKont_av = selectedKont;
 
-			if (!(sFach.contentEquals("") || selectedKont.contentEquals("") || selectedKont
-					.contentEquals("0"))) {
+			if (!(sFach.contentEquals("") || selectedKont.contentEquals("") || selectedKont.contentEquals("0"))) {
 
 				Fach ffach = new Fach(sFach, sKont_av);
 				DatabaseHandler db = new DatabaseHandler(this);
@@ -164,16 +155,14 @@ public class CreateEntry extends Activity implements OnClickListener,
 					rGroup.clearCheck();
 					selectedKont = "0";
 					textChanged = false;
-					Toast t = Toast.makeText(CreateEntry.this,
-							"Fach gespeichert", Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(CreateEntry.this, "Fach gespeichert", Toast.LENGTH_SHORT);
 					t.show();
 					fach.requestFocus();
 				} else {
 					finish();
 				}
 			} else {
-				Toast t = Toast.makeText(CreateEntry.this,
-						"Gib alle nötigen Daten ein", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(CreateEntry.this, "Gib alle nötigen Daten ein", Toast.LENGTH_SHORT);
 				t.show();
 			}
 
@@ -187,8 +176,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		SharedPreferences settings = getSharedPreferences("mysettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("mysettings", Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = settings.edit();
 		if (another.isChecked()) {

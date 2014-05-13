@@ -22,8 +22,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-public class CreateEntry extends Activity implements OnClickListener,
-		OnCheckedChangeListener {
+public class CreateEntry extends Activity implements OnClickListener, OnCheckedChangeListener {
 
 	AutoCompleteTextView fach;
 	Button save, cancel;
@@ -34,10 +33,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 		super.onStop();
 		Intent rIntent = new Intent(this, WidgetProvider.class);
 		rIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		int[] ids = AppWidgetManager.getInstance(getApplication())
-				.getAppWidgetIds(
-						new ComponentName(getApplication(),
-								WidgetProvider.class));
+		int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
 		rIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		sendBroadcast(rIntent);
 	}
@@ -63,15 +59,13 @@ public class CreateEntry extends Activity implements OnClickListener,
 		another.setOnCheckedChangeListener(this);
 
 		String[] names = getResources().getStringArray(R.array.faecher_list);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, names);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names);
 		fach.setAdapter(adapter);
 	}
 
 	private void getCheckbox() {
 		getApplicationContext();
-		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 		boolean bAnother = settings.getBoolean("anotherFach", true);
 
 		if (bAnother == true) {
@@ -100,16 +94,14 @@ public class CreateEntry extends Activity implements OnClickListener,
 
 				if (another.isChecked()) {
 					fach.setText("");
-					Toast t = Toast.makeText(CreateEntry.this,
-							"Fach gespeichert", Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(CreateEntry.this, "Fach gespeichert", Toast.LENGTH_SHORT);
 					t.show();
 					fach.requestFocus();
 				} else {
 					finish();
 				}
 			} else {
-				Toast t = Toast.makeText(CreateEntry.this, "Leeres Feld",
-						Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(CreateEntry.this, "Leeres Feld", Toast.LENGTH_SHORT);
 				t.show();
 			}
 			break;
@@ -123,8 +115,7 @@ public class CreateEntry extends Activity implements OnClickListener,
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		getApplicationContext();
-		SharedPreferences settings = getSharedPreferences("MarkSettings",
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = settings.edit();
 		if (another.isChecked()) {

@@ -20,8 +20,7 @@ public class MyAdapter extends SimpleAdapter {
 	private final Activity context;
 	List<? extends Map<String, ?>> list;
 
-	public MyAdapter(Context context, List<? extends Map<String, ?>> data,
-			int resource, String[] from, int[] to) {
+	public MyAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
 		super(context, data, resource, from, to);
 		this.context = (Activity) context;
 		this.list = data;
@@ -39,8 +38,7 @@ public class MyAdapter extends SimpleAdapter {
 		left.setText(list.get(position).get("name").toString());
 		right.setText(list.get(position).get("ausfall").toString());
 
-		if (!list.get(position).get("ausfall").toString()
-				.contentEquals("Nicht gelistet")) {
+		if (!list.get(position).get("ausfall").toString().contentEquals("Nicht gelistet")) {
 			left.setTextColor(Color.RED);
 			right.setTextColor(Color.RED);
 		}
