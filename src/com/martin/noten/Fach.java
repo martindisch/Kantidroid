@@ -22,9 +22,7 @@ public class Fach {
 	}
 
 	// constructor mit id
-	public Fach(int id, String name, String noten1, String math_average1,
-			String real_average1, String noten2, String math_average2,
-			String real_average2, String zeugnis, String promotionsrelevant) {
+	public Fach(int id, String name, String noten1, String math_average1, String real_average1, String noten2, String math_average2, String real_average2, String zeugnis, String promotionsrelevant) {
 		this._id = id;
 		this._name = name;
 		this._noten1 = noten1;
@@ -90,23 +88,18 @@ public class Fach {
 	public String getZeugnis() {
 		String schnitt = "-";
 		// Falls beide Semester ausgefüllt
-		if (!this.getRealAverage1().contentEquals("-")
-				&& !this.getRealAverage2().contentEquals("-")) {
-			double RealAverage = 0.25 * Math.round(((Double.parseDouble(this
-					.getRealAverage1()) + Double.parseDouble(this
-					.getRealAverage2())) / 2) / 0.25);
+		if (!this.getRealAverage1().contentEquals("-") && !this.getRealAverage2().contentEquals("-")) {
+			double RealAverage = Math.round((Double.parseDouble(getRealAverage1()) + Double.parseDouble(getRealAverage2())) / 2 * 4) / 4f;
 			schnitt = RealAverage + "";
 		}
 
 		// Falls nur erstes Semester ausgefüllt
-		if (this.getRealAverage2().contentEquals("-")
-				&& !this.getRealAverage1().contentEquals("-")) {
+		if (this.getRealAverage2().contentEquals("-") && !this.getRealAverage1().contentEquals("-")) {
 			schnitt = this.getRealAverage1() + "";
 		}
 
 		// Falls nur zweites Semester ausgefüllt
-		if (!this.getRealAverage2().contentEquals("-")
-				&& this.getRealAverage1().contentEquals("-")) {
+		if (!this.getRealAverage2().contentEquals("-") && this.getRealAverage1().contentEquals("-")) {
 			schnitt = this.getRealAverage2() + "";
 		}
 		String result = "";
@@ -136,15 +129,11 @@ public class Fach {
 
 			for (int i = 0; i < count; i++) {
 				String[] item = entries[i].split(" - ");
-				BigDecimal multiplikator = BigDecimal.valueOf(Double
-						.parseDouble(item[1]));
-				addition = addition
-						.add(multiplikator.multiply(BigDecimal.valueOf(Double
-								.parseDouble(item[0].replace(",", ".")))));
+				BigDecimal multiplikator = BigDecimal.valueOf(Double.parseDouble(item[1]));
+				addition = addition.add(multiplikator.multiply(BigDecimal.valueOf(Double.parseDouble(item[0].replace(",", ".")))));
 				teiler = teiler.add(multiplikator);
 			}
-			BigDecimal MathAverage = addition.divide(teiler, 4,
-					BigDecimal.ROUND_HALF_UP);
+			BigDecimal MathAverage = addition.divide(teiler, 4, BigDecimal.ROUND_HALF_UP);
 			return_value = String.valueOf(MathAverage);
 		} else {
 			return_value = "-";
@@ -166,15 +155,11 @@ public class Fach {
 
 			for (int i = 0; i < count; i++) {
 				String[] item = entries[i].split(" - ");
-				BigDecimal multiplikator = BigDecimal.valueOf(Double
-						.parseDouble(item[1]));
-				addition = addition
-						.add(multiplikator.multiply(BigDecimal.valueOf(Double
-								.parseDouble(item[0].replace(",", ".")))));
+				BigDecimal multiplikator = BigDecimal.valueOf(Double.parseDouble(item[1]));
+				addition = addition.add(multiplikator.multiply(BigDecimal.valueOf(Double.parseDouble(item[0].replace(",", ".")))));
 				teiler = teiler.add(multiplikator);
 			}
-			BigDecimal MathAverage = addition.divide(teiler, 4,
-					BigDecimal.ROUND_HALF_UP);
+			BigDecimal MathAverage = addition.divide(teiler, 4, BigDecimal.ROUND_HALF_UP);
 			return_value = String.valueOf(MathAverage);
 		} else {
 			return_value = "-";
