@@ -17,13 +17,19 @@ import com.martin.kantidroid.R;
 
 public class MyAdapter extends SimpleAdapter {
 
-	private final Activity context;
+	private Activity context;
 	List<? extends Map<String, ?>> list;
 
 	public MyAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
 		super(context, data, resource, from, to);
-		this.context = (Activity) context;
-		this.list = data;
+		
+		// Make compiler happy
+		this.context = null;
+		
+		if (context != null) {
+			this.context = (Activity) context;
+			this.list = data;
+		}
 	}
 
 	@Override
