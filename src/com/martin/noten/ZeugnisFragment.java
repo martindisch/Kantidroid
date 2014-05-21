@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
@@ -45,10 +49,13 @@ public class ZeugnisFragment extends Fragment {
 	private static boolean ASC;
 	private int index, top;
 	private boolean savedState = false;
+	private ExecutorService mExecutor;
+	Future<?> mZeugnisLoader;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		setRetainInstance(true);
+		mExecutor = Executors.newSingleThreadExecutor();
 		return inflater.inflate(R.layout.activity_main_noten, container, false);
 	}
 
@@ -64,13 +71,28 @@ public class ZeugnisFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		new Thread(new Runnable() {
-
+		mZeugnisLoader = mExecutor.submit(new Runnable() {
+			
 			@Override
 			public void run() {
 				createList();
 			}
-		}).start();
+			
+		});
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		try {
+			if (mZeugnisLoader.get() != null) {
+				mZeugnisLoader.cancel(true);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
