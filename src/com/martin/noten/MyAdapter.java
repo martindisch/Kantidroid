@@ -22,14 +22,8 @@ public class MyAdapter extends SimpleAdapter {
 
 	public MyAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
 		super(context, data, resource, from, to);
-		
-		// Make compiler happy
-		this.context = null;
-		
-		if (context != null) {
-			this.context = (Activity) context;
-			this.list = data;
-		}
+		this.context = (Activity) context;
+		this.list = data;
 	}
 
 	@Override
