@@ -28,12 +28,6 @@ public class KissView extends Activity {
 		} else {
 			tvDate.setText("Kein aktuelles KISS verfügbar");
 		}
-		// wvKISS.loadData(spKISS.getString("KISS",
-		// "Internet ist nicht verfügbar und es ist kein Cache vorhanden"),
-		// "text/html", null);
-		// wvKISS.getSettings().setJavaScriptEnabled(true);
-		// wvKISS.getSettings().setAllowFileAccess(true);
-		// wvKISS.getSettings().setBuiltInZoomControls(true);
 		wvKISS.loadDataWithBaseURL(null, spKISS.getString("KISS", "Blook"), "text/html", "utf-8", null);
 	}
 
