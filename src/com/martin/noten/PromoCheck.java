@@ -14,7 +14,7 @@ public class PromoCheck {
 		super();
 		this.context = context;
 	}
-
+	
 	public PromoRes getGym(int iSemester) {
 		Fach entry;
 		double plus = 0;
@@ -37,45 +37,76 @@ public class PromoCheck {
 			entry = faecher.get(i);
 			if (entry.getPromotionsrelevant().contentEquals("true")) {
 
-				// Falls beide Semester ausgefüllt
-				if (!entry.getRealAverage1().contentEquals("-") && !entry.getRealAverage2().contentEquals("-")) {
-					schn = (Double.parseDouble(entry.getRealAverage1()) + Double.parseDouble(entry.getRealAverage2())) / 2;
-					if (schn > 4) {
-						plus += schn - 4;
+				switch (iSemester) {
+				case 1:
+					if (!entry.getRealAverage1().contentEquals("-")) {
+						if (Double.parseDouble(entry.getRealAverage1()) > 4) {
+							plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
+						}
+						if (Double.parseDouble(entry.getRealAverage1()) < 4) {
+							minus += (4 - Double.parseDouble(entry.getRealAverage1()));
+							total_minus++;
+						}
+						total += Double.parseDouble(entry.getMathAverage1());
+						fcount++;
 					}
-					if (schn < 4) {
-						minus += 4 - schn;
-						total_minus++;
+					break;
+				case 2:
+					if (!entry.getRealAverage2().contentEquals("-")) {
+						if (Double.parseDouble(entry.getRealAverage2()) > 4) {
+							plus += Double.parseDouble(entry.getRealAverage2()) - 4;
+						}
+						if (Double.parseDouble(entry.getRealAverage2()) < 4) {
+							minus += 4 - Double.parseDouble(entry.getRealAverage2());
+							total_minus++;
+						}
+						total += Double.parseDouble(entry.getMathAverage2());
+						fcount++;
 					}
-					total += (Double.parseDouble(entry.getMathAverage1()) + Double.parseDouble(entry.getMathAverage2())) / 2;
-					fcount++;
+					break;
+				case 3:
+					// Falls beide Semester ausgefüllt
+					if (!entry.getRealAverage1().contentEquals("-") && !entry.getRealAverage2().contentEquals("-")) {
+						schn = (Double.parseDouble(entry.getRealAverage1()) + Double.parseDouble(entry.getRealAverage2())) / 2;
+						if (schn > 4) {
+							plus += schn - 4;
+						}
+						if (schn < 4) {
+							minus += 4 - schn;
+							total_minus++;
+						}
+						total += (Double.parseDouble(entry.getMathAverage1()) + Double.parseDouble(entry.getMathAverage2())) / 2;
+						fcount++;
+					}
+
+					// Falls nur erstes Semester ausgefüllt
+					if (entry.getRealAverage2().contentEquals("-") && !entry.getRealAverage1().contentEquals("-")) {
+						if (Double.parseDouble(entry.getRealAverage1()) > 4) {
+							plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
+						}
+						if (Double.parseDouble(entry.getRealAverage1()) < 4) {
+							minus += (4 - Double.parseDouble(entry.getRealAverage1()));
+							total_minus++;
+						}
+						total += Double.parseDouble(entry.getMathAverage1());
+						fcount++;
+					}
+
+					// Falls nur zweites Semester ausgefüllt
+					if (!entry.getRealAverage2().contentEquals("-") && entry.getRealAverage1().contentEquals("-")) {
+						if (Double.parseDouble(entry.getRealAverage2()) > 4) {
+							plus += Double.parseDouble(entry.getRealAverage2()) - 4;
+						}
+						if (Double.parseDouble(entry.getRealAverage2()) < 4) {
+							minus += 4 - Double.parseDouble(entry.getRealAverage2());
+							total_minus++;
+						}
+						total += Double.parseDouble(entry.getMathAverage2());
+						fcount++;
+					}
+					break;
 				}
 
-				// Falls nur erstes Semester ausgefüllt
-				if (entry.getRealAverage2().contentEquals("-") && !entry.getRealAverage1().contentEquals("-")) {
-					if (Double.parseDouble(entry.getRealAverage1()) > 4) {
-						plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
-					}
-					if (Double.parseDouble(entry.getRealAverage1()) < 4) {
-						minus += (4 - Double.parseDouble(entry.getRealAverage1()));
-						total_minus++;
-					}
-					total += Double.parseDouble(entry.getMathAverage1());
-					fcount++;
-				}
-
-				// Falls nur zweites Semester ausgefüllt
-				if (!entry.getRealAverage2().contentEquals("-") && entry.getRealAverage1().contentEquals("-")) {
-					if (Double.parseDouble(entry.getRealAverage2()) > 4) {
-						plus += Double.parseDouble(entry.getRealAverage2()) - 4;
-					}
-					if (Double.parseDouble(entry.getRealAverage2()) < 4) {
-						minus += 4 - Double.parseDouble(entry.getRealAverage2());
-						total_minus++;
-					}
-					total += Double.parseDouble(entry.getMathAverage2());
-					fcount++;
-				}
 				mppcount++;
 			}
 		}
@@ -88,8 +119,14 @@ public class PromoCheck {
 				sMessage = "Promoviert falls in OG\n4 ungenügende Noten";
 				iColor = R.color.holo_green_light;
 			}
-			if (total_minus > 4) {
+			
+			// TODO: Ask if that's correct
+			if (total_minus > 4 && iSemester != 3) {
 				sMessage = "Mehr als 4 ungenügende Noten\nIm Endzeugnis darf dies nicht der Fall sein";
+				iColor = R.color.holo_orange_light;
+			}
+			else if (total_minus > 4 && iSemester == 3) {
+				sMessage = "Nicht promoviert\nMehr als 4 ungenügende Noten";
 				iColor = R.color.holo_green_light;
 			}
 

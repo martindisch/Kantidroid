@@ -140,13 +140,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		PromoCheck prCheck = new PromoCheck(this);
 		PromoRes prResult = null;
 		if (sAbteilung.contentEquals("Gym")) {
-			prResult = prCheck.getGym(2);
+			prResult = prCheck.getGym(3);
 		} else if (sAbteilung.contentEquals("HMS")) {
-			prResult = prCheck.getHMS(2);
+			prResult = prCheck.getHMS(3);
 		} else {
-			prResult = prCheck.getFMS(2);
+			prResult = prCheck.getFMS(3);
 		}
-		pluspunkte.setText(prResult.sPP);
+		pluspunkte.setText(prResult.sPP + " im Zeugnis");
 		if (prResult.iColor == R.color.holo_green_light) {
 			pluspunkte.setTextColor(res.getColor(R.color.holo_orange_light));
 		} else {
