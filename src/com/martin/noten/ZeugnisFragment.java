@@ -128,7 +128,7 @@ public class ZeugnisFragment extends Fragment {
 				public void onClick(DialogInterface dialog, int which) {
 					DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
 					db.deleteFach(fSelected);
-					createList();
+					((FragmentHolder) getActivity()).reloadFragments();
 				}
 
 			});

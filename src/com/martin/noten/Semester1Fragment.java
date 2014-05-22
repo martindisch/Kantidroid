@@ -112,7 +112,7 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
 				public void onClick(DialogInterface dialog, int which) {
 					DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
 					db.deleteFach(fSelected);
-					createList();
+					((FragmentHolder) getActivity()).reloadFragments();
 				}
 
 			});

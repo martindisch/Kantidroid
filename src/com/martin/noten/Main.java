@@ -25,7 +25,7 @@ import android.view.View;
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 
-public class Main extends Activity implements OnClickListener {
+public class Main extends Activity implements OnClickListener, FragmentHolder {
 
 	ListView lv;
 	TextView promoviert, pluspunkte;
@@ -295,5 +295,10 @@ public class Main extends Activity implements OnClickListener {
 		} else {
 			mViewPager.setCurrentItem(2);
 		}
+	}
+
+	@Override
+	public void reloadFragments() {
+		mViewPager.setAdapter(mSectionsPagerAdapter);
 	}
 }
