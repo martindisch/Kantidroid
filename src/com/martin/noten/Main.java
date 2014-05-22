@@ -300,5 +300,13 @@ public class Main extends Activity implements OnClickListener, FragmentHolder {
 	@Override
 	public void reloadFragments() {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
+		if (settings.getInt("selected_semester", 1) == 1) {
+			mViewPager.setCurrentItem(0);
+		} else if (settings.getInt("selected_semester", 1) == 2) {
+			mViewPager.setCurrentItem(1);
+		} else {
+			mViewPager.setCurrentItem(2);
+		}
 	}
 }
