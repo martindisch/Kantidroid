@@ -59,11 +59,11 @@ public class WidgetProvider extends AppWidgetProvider {
 			PromoCheck prCheck = new PromoCheck(context);
 			PromoRes prResult = null;
 			if (sAbteilung.contentEquals("Gym")) {
-				prResult = prCheck.getGym(2);
+				prResult = prCheck.getGym(3);
 			} else if (sAbteilung.contentEquals("HMS")) {
-				prResult = prCheck.getHMS(2);
+				prResult = prCheck.getHMS(3);
 			} else {
-				prResult = prCheck.getFMS(2);
+				prResult = prCheck.getFMS(3);
 			}
 			views.setTextViewText(R.id.tvNotBig, "+ " + prResult.sPP.split("/")[0]);
 			/*
