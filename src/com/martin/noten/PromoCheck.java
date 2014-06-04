@@ -120,16 +120,26 @@ public class PromoCheck {
 				iColor = R.color.holo_green_light;
 			}
 			
-			// TODO: Ask if that's correct
-			if (total_minus > 4 && iSemester != 3) {
-				sMessage = "Mehr als 4 ungenügende Noten\nIm Endzeugnis darf dies nicht der Fall sein";
-				iColor = R.color.holo_orange_light;
+			switch (iSemester) {
+			case 1:
+				if (total_minus > 4) {
+					sMessage = "Mehr als 4 ungenügende Noten\nIm 2. Semester darf dies nicht der Fall sein";
+					iColor = R.color.holo_orange_light;
+				}
+				break;
+			case 2:
+				if (total_minus > 4) {
+					sMessage = "Nicht promoviert\nMehr als 4 ungenügende Noten";
+					iColor = R.color.holo_red_light;
+				}
+				break;
+			case 3:
+				if (getGym(1).sMessage.contains("Nicht promoviert") || getGym(2).sMessage.contains("Nicht promoviert")) {
+					sMessage = "Nicht promoviert";
+					iColor = R.color.holo_red_light;
+				}
+				break;
 			}
-			else if (total_minus > 4 && iSemester == 3) {
-				sMessage = "Nicht promoviert\nMehr als 4 ungenügende Noten";
-				iColor = R.color.holo_green_light;
-			}
-
 		} else {
 			sMessage = "Nicht promoviert\nZu wenig Pluspunkte";
 			iColor = R.color.holo_red_light;
