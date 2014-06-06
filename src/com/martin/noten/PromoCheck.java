@@ -14,7 +14,7 @@ public class PromoCheck {
 		super();
 		this.context = context;
 	}
-	
+
 	public PromoRes getGym(int iSemester) {
 		Fach entry;
 		double plus = 0;
@@ -119,7 +119,7 @@ public class PromoCheck {
 				sMessage = "Promoviert falls in OG\n4 ungenügende Noten";
 				iColor = R.color.holo_green_light;
 			}
-			
+
 			switch (iSemester) {
 			case 1:
 				if (total_minus > 4) {

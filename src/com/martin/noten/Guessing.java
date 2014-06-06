@@ -139,14 +139,14 @@ public class Guessing extends Activity implements OnClickListener {
 					tvResult.setText(bd.setScale(2, RoundingMode.HALF_UP).toString());
 					tvMessage.setVisibility(View.VISIBLE);
 					tvResult.setVisibility(View.VISIBLE);
-					
+
 					// Hide the keyboard
 					InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-				    View view = getCurrentFocus();
-				    if(view == null) {
-				        view = new View(this);
-				    }
-				    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+					View view = getCurrentFocus();
+					if (view == null) {
+						view = new View(this);
+					}
+					inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 				} else {
 					Toast t = Toast.makeText(Guessing.this, "Ungültige Note", Toast.LENGTH_SHORT);
 					t.show();

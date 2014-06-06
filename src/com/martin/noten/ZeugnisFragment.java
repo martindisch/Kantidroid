@@ -72,12 +72,12 @@ public class ZeugnisFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		mZeugnisLoader = mExecutor.submit(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				createList();
 			}
-			
+
 		});
 	}
 
