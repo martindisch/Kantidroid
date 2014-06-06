@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="changelog">Version 2.25b\n============\n - Möglicher Fix für NullPointerException</string>
+    <string name="changelog">Version 2.25\n============\n - Zeigt Pluspunkte für jedes Semester einzeln an anstelle von wie bisher immer die Gesamtanzahl wie sie im Zeugnis steht\n - Blendet Tastatur in Notenvorhersage aus\n - Memory leak im Zusammenhang mit Multithreading in Noten behoben\n - Weitere Korrekturen und Verbesserungen</string>
     <string name="app_name">Kantidroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
