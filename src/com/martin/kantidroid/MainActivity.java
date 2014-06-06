@@ -109,6 +109,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			dgc.show();
 			check.setSeen("2.25c", this);
 		}
+		
+		ChangelogFragment changelog = new ChangelogFragment();
+		changelog.show(getSupportFragmentManager(), "changelog");
 
 		// Enable networking without secondary thread
 		// Usually very bad style, but for smaller tasks it doesn't matter that
