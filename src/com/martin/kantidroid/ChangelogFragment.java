@@ -14,14 +14,13 @@ public class ChangelogFragment extends DialogFragment {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle("Changelog");
 		builder.setNeutralButton("Schliessen", null);
-		
+
 		WebView wv = new WebView(getActivity());
 		wv.setWebViewClient(new WebViewClient());
 		wv.loadUrl("file:///android_asset/changelog.html");
-        
+
 		builder.setView(wv);
 		return builder.create();
 	}
-
 
 }

@@ -107,10 +107,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			//dgc.setView(view);
 
 			dgc.show();*/
-			
+
 			ChangelogFragment changelog = new ChangelogFragment();
 			changelog.show(getSupportFragmentManager(), "changelog");
-			
+
 			check.setSeen("2.25d", this);
 		}
 

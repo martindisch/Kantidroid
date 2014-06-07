@@ -38,8 +38,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
-                android:src="@drawable/menu_main_small"
-                android:contentDescription="Picture of how to get to the menuplan via the menu" />
+                android:contentDescription="Picture of how to get to the menuplan via the menu"
+                android:src="@drawable/menu_main_small" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -47,8 +47,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
-                android:src="@drawable/menuplan_small"
-                android:contentDescription="Picture of the menuplan" />
+                android:contentDescription="Picture of the menuplan"
+                android:src="@drawable/menuplan_small" />
         </LinearLayout>
     </RelativeLayout>
 
