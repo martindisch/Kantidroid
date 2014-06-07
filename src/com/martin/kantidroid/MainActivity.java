@@ -93,8 +93,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			dg.show();
 			check.setSeen(getClass().getName(), this);
 		}
-		if (!check.getSeen("2.25c", this)) {
-			AlertDialog.Builder dgc = new AlertDialog.Builder(this);
+		if (!check.getSeen("2.25d", this)) {
+			/*AlertDialog.Builder dgc = new AlertDialog.Builder(this);
 			dgc.setTitle("Changelog");
 			dgc.setNeutralButton("Schliessen", null);
 
@@ -106,12 +106,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			//View view = inflater.inflate(R.layout.changelog, null);
 			//dgc.setView(view);
 
-			dgc.show();
-			check.setSeen("2.25c", this);
+			dgc.show();*/
+			
+			ChangelogFragment changelog = new ChangelogFragment();
+			changelog.show(getSupportFragmentManager(), "changelog");
+			
+			check.setSeen("2.25d", this);
 		}
-		
-		ChangelogFragment changelog = new ChangelogFragment();
-		changelog.show(getSupportFragmentManager(), "changelog");
 
 		// Enable networking without secondary thread
 		// Usually very bad style, but for smaller tasks it doesn't matter that

@@ -17,7 +17,7 @@ public class ChangelogFragment extends DialogFragment {
 		
 		WebView wv = new WebView(getActivity());
 		wv.setWebViewClient(new WebViewClient());
-		wv.loadData(getString(R.string.changelog), "text/html", "UTF-8");
+		wv.loadUrl("file:///android_asset/changelog.html");
         
 		builder.setView(wv);
 		return builder.create();
