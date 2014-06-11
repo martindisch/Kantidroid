@@ -60,6 +60,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		sendBroadcast(rIntent);
 	}
 
+	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
