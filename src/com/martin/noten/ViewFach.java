@@ -17,6 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -121,6 +123,15 @@ public class ViewFach extends Activity {
 				startGuessing();
 			}
 		});
+		
+		lvViewfach.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				
+				
+			}
+		});
 
 		updateText();
 	}
@@ -153,6 +164,9 @@ public class ViewFach extends Activity {
 						mark = entries[i].split(" - ");
 						sMarks[i] = mark[0];
 						sRelevances[i] = mark[1];
+						if (!mark[1].contentEquals("1")) {
+							sRelevances[i] += "x";
+						}
 						sDates[i] = mark[2];
 					}
 				}
@@ -172,6 +186,9 @@ public class ViewFach extends Activity {
 						mark = entries[i].split(" - ");
 						sMarks[i] = mark[0];
 						sRelevances[i] = mark[1];
+						if (!mark[1].contentEquals("1")) {
+							sRelevances[i] += "x";
+						}
 						sDates[i] = mark[2];
 					}
 				}
