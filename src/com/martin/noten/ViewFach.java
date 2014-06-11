@@ -139,7 +139,14 @@ public class ViewFach extends Activity {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						
+						Bundle data = new Bundle();
+						data.putInt("id", mId);
+						data.putInt("semester", iSemester);
+						data.putInt("position", pos);
+						Intent i = new Intent(ViewFach.this, EditMark.class);
+						i.putExtras(data);
+						i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(i);
 					}
 					
 				});

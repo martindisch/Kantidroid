@@ -278,7 +278,6 @@ public class AddMark extends Activity implements OnClickListener, OnCheckedChang
 				Toast t = Toast.makeText(this, "Leeres Feld", Toast.LENGTH_SHORT);
 				t.show();
 			}
-
 			break;
 		case R.id.bAddCancel:
 			finish();

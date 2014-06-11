@@ -307,6 +307,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+         <activity
+            android:name="com.martin.noten.EditMark"
+            android:configChanges="orientation"
+            android:icon="@drawable/noten_ico"
+            android:label="Note bearbeiten" >
+            <intent-filter>
+                <action android:name="com.martin.noten.EDIT_MARK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <!-- KISS -->
 
