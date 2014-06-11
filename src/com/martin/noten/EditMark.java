@@ -124,9 +124,9 @@ public class EditMark extends Activity {
 			if (dMark >= 1 && dMark <= 6.3) {
 				DatabaseHandler db = new DatabaseHandler(this);
 				Fach fach = db.getFach(mId);
-				
+
 				mEntries[mPosition] = mark + " - " + relevance + " - " + date;
-				
+
 				String entries_raw = "";
 				for (int i = 0; i < mEntries.length - 1; i++) {
 					entries_raw += mEntries[i] + "\n";
@@ -140,7 +140,7 @@ public class EditMark extends Activity {
 					fach.setNoten2(entries_raw);
 					db.updateFach(fach);
 				}
-				
+
 				finish();
 			} else {
 				Toast t = Toast.makeText(this, "Ungültige Note", Toast.LENGTH_SHORT);

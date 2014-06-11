@@ -127,7 +127,7 @@ public class ViewFach extends Activity {
 				startGuessing();
 			}
 		});
-		
+
 		lvViewfach.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -148,10 +148,10 @@ public class ViewFach extends Activity {
 						i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(i);
 					}
-					
+
 				});
 				builder.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
-					
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						String[] new_list = entries;
@@ -175,7 +175,7 @@ public class ViewFach extends Activity {
 							updated.setNoten2(newNoten);
 						}
 						db.updateFach(updated);
-						
+
 						getData();
 						initialize();
 
