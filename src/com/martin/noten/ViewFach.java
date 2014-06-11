@@ -9,6 +9,8 @@ import org.holoeverywhere.widget.Toast;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -30,13 +32,14 @@ import com.martin.kantidroid.WidgetProvider;
 public class ViewFach extends Activity {
 
 	TextView name, math_average, real_average, promotionsfach;
-	int id, iSemester;
+	int mId, iSemester;
 	String fname, fnoten, addition, fmath_average, freal_average, fpromotionsfach;
 	String[] entries, mark;
 	Typeface tf;
 	ImageButton ibAddMark, ibMarkRequest;
 	ListView lvViewfach;
 	TextView nextHigher, keepAv;
+	private Context context;
 
 	@Override
 	protected void onStop() {
@@ -70,12 +73,13 @@ public class ViewFach extends Activity {
 	}
 
 	private void getData() {
+		context = this;
 		Bundle received = getIntent().getExtras();
 		DatabaseHandler db = new DatabaseHandler(this);
 
-		id = received.getInt("id");
+		mId = received.getInt("id");
 		iSemester = received.getInt("semester");
-		Fach fach = db.getFach(id);
+		Fach fach = db.getFach(mId);
 
 		fname = fach.getName();
 		if (iSemester == 1) {
@@ -128,8 +132,51 @@ public class ViewFach extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				
-				
+				final int pos = position;
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setMessage("Willst du die Note bearbeiten oder löschen?");
+				builder.setNegativeButton("Bearbeiten", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						
+					}
+					
+				});
+				builder.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String[] new_list = entries;
+						new_list[pos] = "rien";
+						String newNoten = "";
+						for (int i = 0; i < new_list.length; i++) {
+							if (!(new_list[i].contentEquals("rien"))) {
+								newNoten = newNoten + new_list[i] + "\n";
+							}
+						}
+
+						if (newNoten.contentEquals("")) {
+							newNoten = "-";
+						}
+
+						DatabaseHandler db = new DatabaseHandler(context);
+						Fach updated = db.getFach(mId);
+						if (iSemester == 1) {
+							updated.setNoten1(newNoten);
+						} else {
+							updated.setNoten2(newNoten);
+						}
+						db.updateFach(updated);
+						
+						getData();
+						initialize();
+
+						Toast t = Toast.makeText(context, "Note entfernt", Toast.LENGTH_SHORT);
+						t.show();
+					}
+				});
+				builder.show();
 			}
 		});
 
@@ -147,7 +194,7 @@ public class ViewFach extends Activity {
 		real_average.setText(freal_average);
 
 		DatabaseHandler db = new DatabaseHandler(this);
-		Fach checka = db.getFach(id);
+		Fach checka = db.getFach(mId);
 
 		String[] empty = {};
 		ViewFachAdapter adapter = new ViewFachAdapter(this, empty, empty, empty);
@@ -213,7 +260,7 @@ public class ViewFach extends Activity {
 
 	private double getNeeded(double dGoal) {
 		DatabaseHandler db = new DatabaseHandler(this);
-		Fach fach = db.getFach(id);
+		Fach fach = db.getFach(mId);
 
 		double upper_term;
 		double dRelevance = 1;
@@ -281,11 +328,11 @@ public class ViewFach extends Activity {
 
 	private void removeMark() {
 		DatabaseHandler db = new DatabaseHandler(this);
-		Fach check = db.getFach(id);
+		Fach check = db.getFach(mId);
 		if (iSemester == 1) {
 			if (!check.getNoten1().contentEquals("-")) {
 				Bundle data2 = new Bundle();
-				data2.putInt("id", id);
+				data2.putInt("id", mId);
 				data2.putInt("semester", iSemester);
 				Intent i2 = new Intent(ViewFach.this, RemoveMark.class);
 				i2.putExtras(data2);
@@ -298,7 +345,7 @@ public class ViewFach extends Activity {
 		} else {
 			if (!check.getNoten2().contentEquals("-")) {
 				Bundle data2 = new Bundle();
-				data2.putInt("id", id);
+				data2.putInt("id", mId);
 				data2.putInt("semester", iSemester);
 				Intent i2 = new Intent(ViewFach.this, RemoveMark.class);
 				i2.putExtras(data2);
@@ -313,7 +360,7 @@ public class ViewFach extends Activity {
 
 	private void addMark() {
 		Bundle data = new Bundle();
-		data.putInt("id", id);
+		data.putInt("id", mId);
 		data.putInt("semester", iSemester);
 		Intent i = new Intent(ViewFach.this, AddMark.class);
 		i.putExtras(data);
@@ -323,11 +370,11 @@ public class ViewFach extends Activity {
 
 	private void startGuessing() {
 		DatabaseHandler dba = new DatabaseHandler(this);
-		Fach checka = dba.getFach(id);
+		Fach checka = dba.getFach(mId);
 		if (iSemester == 1) {
 			if (!checka.getNoten1().contentEquals("-")) {
 				Bundle data2 = new Bundle();
-				data2.putInt("id", id);
+				data2.putInt("id", mId);
 				data2.putInt("semester", iSemester);
 				Intent i2 = new Intent(ViewFach.this, Guessing.class);
 				i2.putExtras(data2);
@@ -340,7 +387,7 @@ public class ViewFach extends Activity {
 		} else {
 			if (!checka.getNoten2().contentEquals("-")) {
 				Bundle data2 = new Bundle();
-				data2.putInt("id", id);
+				data2.putInt("id", mId);
 				data2.putInt("semester", iSemester);
 				Intent i2 = new Intent(ViewFach.this, Guessing.class);
 				i2.putExtras(data2);
