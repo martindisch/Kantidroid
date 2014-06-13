@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
-    <issue id="HardcodedText">
+    <issue id="HardcodedText" severity="ignore">
         <ignore path="res/layout/add_mark.xml" />
         <ignore path="res/layout/changelog.xml" />
         <ignore path="res/layout/edit_mark.xml" />
+    </issue>
+    <issue id="SimpleDateFormat">
+        <ignore path="src/com/martin/kantidroid/Food.java" />
     </issue>
     <issue id="UselessParent">
         <ignore path="res/layout/edit_mark.xml" />

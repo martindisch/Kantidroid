@@ -1,5 +1,6 @@
 package com.martin.kantidroid;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -33,37 +34,42 @@ public class Food extends Activity implements RestsLoaded {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		pd = new ProgressDialog(this);
-		pd.setMessage("Menuplan wird geladen...");
-		pd.setCancelable(false);
-		pd.setIndeterminate(true);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		}
+		Calendar cal = Calendar.getInstance();
+		if (cal.getTime().after(Date.valueOf("2014-06-28"))) {
+			setContentView(R.layout.food_unavailable);
+		} else {
+			pd = new ProgressDialog(this);
+			pd.setMessage("Menuplan wird geladen...");
+			pd.setCancelable(false);
+			pd.setIndeterminate(true);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+				supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+			}
 
-		setContentView(R.layout.viewpagerlayout_food);
+			setContentView(R.layout.viewpagerlayout_food);
+
+			// PAGER
+
+			// Create the adapter that will return a fragment for each of the three
+			// primary sections of the app.
+			mSectionsPagerAdapter = new FoodPagerAdapter(getSupportFragmentManager());
+
+			// Set up the ViewPager with the sections adapter.
+			mViewPager = (ViewPager) findViewById(R.id.pager);
+
+			getCurrentWeek();
+
+			Check check = new Check();
+			if (!check.getSeen(getClass().getName(), this)) {
+				AlertDialog.Builder dg = new AlertDialog.Builder(this);
+				dg.setTitle("Info");
+				dg.setNeutralButton("Schliessen", null);
+				dg.setMessage(R.string.menuplan);
+				dg.show();
+				check.setSeen(getClass().getName(), this);
+			}
+		}
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-		// PAGER
-
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
-		mSectionsPagerAdapter = new FoodPagerAdapter(getSupportFragmentManager());
-
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-
-		getCurrentWeek();
-
-		Check check = new Check();
-		if (!check.getSeen(getClass().getName(), this)) {
-			AlertDialog.Builder dg = new AlertDialog.Builder(this);
-			dg.setTitle("Info");
-			dg.setNeutralButton("Schliessen", null);
-			dg.setMessage(R.string.menuplan);
-			dg.show();
-			check.setSeen(getClass().getName(), this);
-		}
 	}
 
 	private void getCurrentWeek() {
