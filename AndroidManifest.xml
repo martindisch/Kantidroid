@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martin.kantidroid"
-    android:versionCode="67"
+    android:versionCode="68"
     android:versionName="2.25" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -104,9 +104,9 @@
         </activity>
         <activity
             android:name="com.martin.kantidroid.Food"
+            android:configChanges="orientation|screenSize"
             android:icon="@drawable/kantidroid_ico"
-            android:label="Menuplan"
-            android:configChanges="orientation|screenSize" >
+            android:label="Menuplan" >
             <intent-filter>
                 <action android:name="com.martin.kantidroid.FOOD" />
 
@@ -307,7 +307,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-         <activity
+        <activity
             android:name="com.martin.noten.EditMark"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
