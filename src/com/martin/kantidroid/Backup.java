@@ -70,9 +70,8 @@ public class Backup extends Activity implements OnClickListener {
 	private DbxFileSystem dbxFs;
 
 	private static final int REQUEST_LINK_TO_DBX = 0;
+	DbxPath databasePath, prefPath;
 
-	DbxPath databasePath = new DbxPath("/databases");
-	DbxPath prefPath = new DbxPath("/shared_prefs");
 	DbxFile dbxFile;
 
 	@Override
@@ -459,6 +458,8 @@ public class Backup extends Activity implements OnClickListener {
 	private void initFs() {
 		if (mDbxAcctMgr.hasLinkedAccount()) {
 			try {
+				databasePath = new DbxPath("/databases");
+				prefPath = new DbxPath("/shared_prefs");
 				dbxFs = DbxFileSystem.forAccount(mDbxAcctMgr.getLinkedAccount());
 				dbxFs.addSyncStatusListener(new SyncStatusListener() {
 
