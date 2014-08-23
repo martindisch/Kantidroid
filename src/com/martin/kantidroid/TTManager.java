@@ -17,7 +17,7 @@ public class TTManager {
 			// set the download URL, a url that points to a file on the
 			// internet
 			// this is the file to be downloaded
-			URL url = new URL("http://www.bks-campus.ch/Organisation/klassen/stundenplaene" + sYear + "/" + sClass + ".pdf");
+			URL url = new URL("http://www.bks-campus.ch/Organisation/klassen/sj" + sYear + "/" + sClass + ".pdf");
 
 			// create the new connection
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
