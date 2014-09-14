@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			dg.show();
 			check.setSeen(getClass().getName(), this);
 		}
-		if (!check.getSeen("2.31", this)) {
+		if (!check.getSeen("2.32", this)) {
 			/*AlertDialog.Builder dgc = new AlertDialog.Builder(this);
 			dgc.setTitle("Changelog");
 			dgc.setNeutralButton("Schliessen", null);
@@ -112,7 +112,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			ChangelogFragment changelog = new ChangelogFragment();
 			changelog.show(getSupportFragmentManager(), "changelog");
 
-			check.setSeen("2.31", this);
+			check.setSeen("2.32", this);
 		}
 
 		// Enable networking without secondary thread
