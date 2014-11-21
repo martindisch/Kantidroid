@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -261,7 +262,12 @@ public class ViewFach extends Activity {
 
 		BigDecimal bdHigher = new BigDecimal(dNextHigher);
 		BigDecimal bdKeepAverage = new BigDecimal(dKeepAverage);
-		nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP).toString());
+		if (dCurrentMark < 6) {
+			nextHigher.setText(bdHigher.setScale(2, RoundingMode.HALF_UP).toString());
+		}
+		else {
+			nextHigher.setText("-");
+		}
 		keepAv.setText(bdKeepAverage.setScale(2, RoundingMode.HALF_UP).toString());
 	}
 
