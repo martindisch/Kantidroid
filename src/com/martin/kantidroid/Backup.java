@@ -606,7 +606,7 @@ public class Backup extends Activity implements OnClickListener {
 		if (requestCode == REQUEST_LINK_TO_DBX) {
 			if (resultCode == android.app.Activity.RESULT_OK) {
 				initFs();
-				Toast.makeText(this, "Bei Dropbox eingeloggt. Nochmals drücken für Backup", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "Bei Dropbox eingeloggt. Nochmals drücken für Backup oder Import.", Toast.LENGTH_LONG).show();
 			} else {
 				Toast.makeText(this, "Login fehlgeschlagen", Toast.LENGTH_SHORT).show();
 			}
