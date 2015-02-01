@@ -73,7 +73,7 @@ public class Background extends IntentService {
 
 				// MOTD
 				HttpURLConnection conh = (HttpURLConnection) urlmotd.openConnection();
-				in = con.getInputStream();
+				in = conh.getInputStream();
 				reader = null;
 				reader = new BufferedReader(new InputStreamReader(in));
 				line = "";
