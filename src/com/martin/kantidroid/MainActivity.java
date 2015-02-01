@@ -8,7 +8,6 @@ import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
@@ -282,10 +281,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.iTimetable:
 			LayoutInflater ttinflater = this.getLayoutInflater();
 			View ttDialog = ttinflater.inflate(R.layout.ttdialog);
-			final Spinner ttsYear = (Spinner) ttDialog.findViewById(R.id.ttsYear);
 			final EditText ttetClass = (EditText) ttDialog.findViewById(R.id.ttetClass);
 			SharedPreferences sp = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-			ttsYear.setSelection(sp.getInt("yearindex", 0));
 			ttetClass.setText(sp.getString("class", ""));
 			AlertDialog.Builder ttdg = new AlertDialog.Builder(this);
 			ttdg.setTitle("Stundenplan");
@@ -295,12 +292,10 @@ public class MainActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					String sYear = res.getStringArray(R.array.years)[ttsYear.getSelectedItemPosition()];
 					String sClass = ttetClass.getText().toString();
 					getApplicationContext();
 					SharedPreferences sp = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = sp.edit();
-					editor.putInt("yearindex", ttsYear.getSelectedItemPosition());
 					editor.putString("class", sClass);
 					editor.commit();
 					TTManager ttm = new TTManager();
@@ -308,10 +303,10 @@ public class MainActivity extends Activity implements OnClickListener {
 					if (sClass.contentEquals("Error")) {
 						Toast.makeText(getApplicationContext(), "Stundenplan für diese Klasse konnte nicht gefunden werden", Toast.LENGTH_SHORT).show();
 					} else {
-						if (ttm.checkTT(sClass, sYear)) {
+						if (ttm.checkTT(sClass)) {
 							Toast.makeText(getApplicationContext(), "Stundenplan bereits heruntergeladen, wird geöffnet...", Toast.LENGTH_SHORT).show();
 							File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
-							File file = new File(SDCardRoot, sYear + sClass + ".pdf");
+							File file = new File(SDCardRoot, sClass + ".pdf");
 
 							Intent intent = new Intent(Intent.ACTION_VIEW);
 							intent.setDataAndType(Uri.fromFile(file), "application/pdf");
@@ -319,10 +314,10 @@ public class MainActivity extends Activity implements OnClickListener {
 							startActivity(intent);
 						} else {
 							if (isNetworkAvailable()) {
-								if (ttm.downloadTT(sClass, sYear)) {
+								if (ttm.downloadTT(sClass)) {
 									Toast.makeText(getApplicationContext(), "Stundenplan wird heruntergeladen und geöffnet...", Toast.LENGTH_SHORT).show();
 									File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
-									File file = new File(SDCardRoot, sYear + sClass + ".pdf");
+									File file = new File(SDCardRoot, sClass + ".pdf");
 									Intent intent = new Intent(Intent.ACTION_VIEW);
 									intent.setDataAndType(Uri.fromFile(file), "application/pdf");
 

@@ -9,16 +9,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.os.Environment;
-import android.util.Log;
 
 public class TTManager {
 
-	public boolean downloadTT(String sClass, String sYear) {
+	public boolean downloadTT(String sClass) {
 		try {
 			// set the download URL, a url that points to a file on the
 			// internet
 			// this is the file to be downloaded
-			URL url = new URL("http://www.bks-campus.ch/Organisation/klassen/stdplansj" + sYear + "/" + sClass + ".pdf");
+			URL url = new URL("http://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/bks/dokumentation/klassen/Documents/" + sClass + ".pdf");
 
 			// create the new connection
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -37,7 +36,7 @@ public class TTManager {
 			SDCardRoot.mkdirs();
 			// create a new file, specifying the path, and the filename
 			// which we want to save the file as.
-			File file = new File(SDCardRoot, sYear + sClass + ".pdf");
+			File file = new File(SDCardRoot, sClass + ".pdf");
 
 			// this will be used to write the downloaded data into the file
 			// we created
@@ -78,9 +77,9 @@ public class TTManager {
 		}
 	}
 
-	public boolean checkTT(String sClass, String sYear) {
+	public boolean checkTT(String sClass) {
 		File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
-		File file = new File(SDCardRoot, sYear + sClass + ".pdf");
+		File file = new File(SDCardRoot, sClass + ".pdf");
 		if (file.length() > 0) {
 			return true;
 		} else {
