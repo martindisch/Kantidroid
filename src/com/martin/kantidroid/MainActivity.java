@@ -323,7 +323,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 									startActivity(intent);
 								} else {
-									Toast.makeText(getApplicationContext(), "Stundenplan für diese Klasse konnte nicht gefunden werden", Toast.LENGTH_SHORT).show();
+									Toast.makeText(getApplicationContext(), "Stundenplan konnte nicht gefunden werden.\nEntweder gibt es diese Klasse nicht, oder die Stundenpläne sind nicht mehr am gleichen Ort auf der Webseite der BKS verfügbar.", Toast.LENGTH_LONG).show();
 								}
 							} else {
 								Toast.makeText(getApplicationContext(), "Keine Internetverbindung", Toast.LENGTH_SHORT).show();
