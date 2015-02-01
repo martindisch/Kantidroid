@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ListActivity;
 import org.holoeverywhere.app.ProgressDialog;
@@ -175,8 +179,18 @@ public class MainActivity extends ListActivity {
 						getApplicationContext();
 						SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
 						if (!spKISS.getString("lehrer", "").contentEquals("")) {
-							URL url = new URL("https://kpf.bks-campus.ch/infoscreen");
-							HttpURLConnection con = (HttpURLConnection) url.openConnection();
+							
+							// Why can't they have certificates that are valid for their hostnames?!
+							HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+							    @Override
+							    public boolean verify(String hostname, SSLSession session) {
+							        return true;
+							    }
+							};
+							
+							URL url = new URL("https://thementage.bks-campus.ch/infoscreen");
+							HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+							con.setHostnameVerifier(hostnameVerifier);
 							InputStream in = con.getInputStream();
 							BufferedReader reader = null;
 							reader = new BufferedReader(new InputStreamReader(in));
@@ -218,6 +232,7 @@ public class MainActivity extends ListActivity {
 
 					}
 				} catch (final Exception e) {
+					e.printStackTrace();
 					KISS = "";
 					getApplicationContext();
 					SharedPreferences spKISS = getApplicationContext().getSharedPreferences("KISS", Context.MODE_PRIVATE);
@@ -320,7 +335,7 @@ public class MainActivity extends ListActivity {
 					mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 					TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
-					String url = "https://kpf.bks-campus.ch/infoscreen";
+					String url = "https://thementage.bks-campus.ch/infoscreen";
 					Intent iKISS = new Intent(Intent.ACTION_VIEW);
 					iKISS.setData(Uri.parse(url));
 					stackBuilder.addNextIntent(iKISS);
@@ -446,7 +461,7 @@ public class MainActivity extends ListActivity {
 				public void onClick(DialogInterface dialog, int which) {
 					switch (which) {
 					case 0:
-						String url = "https://kpf.bks-campus.ch/infoscreen";
+						String url = "https://thementage.bks-campus.ch/infoscreen";
 						Intent iKISS = new Intent(Intent.ACTION_VIEW);
 						iKISS.setData(Uri.parse(url));
 						startActivity(iKISS);

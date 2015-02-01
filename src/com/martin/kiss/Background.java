@@ -8,6 +8,10 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.Notification;
@@ -44,11 +48,21 @@ public class Background extends IntentService {
 			String result = "";
 			String motd = "";
 			try {
-				URL url = new URL("https://kpf.bks-campus.ch/infoscreen");
+				URL url = new URL("https://thementage.bks-campus.ch/infoscreen");
 				URL urlmotd = new URL("http://androiddev.bplaced.net/motd.txt");
 
 				// KISS
-				HttpURLConnection con = (HttpURLConnection) url.openConnection();
+				
+				// Why can't they have certificates that are valid for their hostnames?!
+				HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+				    @Override
+				    public boolean verify(String hostname, SSLSession session) {
+				        return true;
+				    }
+				};
+				
+				HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+				con.setHostnameVerifier(hostnameVerifier);
 				InputStream in = con.getInputStream();
 				BufferedReader reader = null;
 				reader = new BufferedReader(new InputStreamReader(in));
@@ -58,7 +72,7 @@ public class Background extends IntentService {
 				}
 
 				// MOTD
-				con = (HttpURLConnection) urlmotd.openConnection();
+				HttpURLConnection conh = (HttpURLConnection) urlmotd.openConnection();
 				in = con.getInputStream();
 				reader = null;
 				reader = new BufferedReader(new InputStreamReader(in));
@@ -185,7 +199,7 @@ public class Background extends IntentService {
 					mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 					TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
-					String url = "https://kpf.bks-campus.ch/infoscreen";
+					String url = "https://thementage.bks-campus.ch/infoscreen";
 					Intent iKISS = new Intent(Intent.ACTION_VIEW);
 					iKISS.setData(Uri.parse(url));
 					stackBuilder.addNextIntent(iKISS);
