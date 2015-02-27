@@ -19,11 +19,14 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.Toast;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,6 +53,7 @@ public class Backup extends Activity implements OnClickListener {
 	Button bDbxBackup, bDbxImport;
 	ProgressBar pbDbx;
 	ImageView ivSuccess;
+	Context context = this;
 
 	File appdir;
 	File databases;
@@ -207,6 +211,7 @@ public class Backup extends Activity implements OnClickListener {
 			if (!mDbxAcctMgr.hasLinkedAccount()) {
 				mDbxAcctMgr.startLink(this, REQUEST_LINK_TO_DBX);
 			} else {
+				final Handler handler = new Handler();
 				AlertDialog.Builder delDg = new AlertDialog.Builder(this);
 				delDg.setTitle("Dropbox");
 				delDg.setMessage("Damit werden bereits vorhandene lokale Backups überschrieben.\n\nWillst du fortfahren?\n");
@@ -215,55 +220,74 @@ public class Backup extends Activity implements OnClickListener {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						try {
-							// Delete older backups
 
-							if (backupdatabases.isDirectory()) {
-								files = backupdatabases.listFiles();
-								for (int i = 0; i < files.length; i++) {
-									files[i].delete();
+						final ProgressDialog pd = new ProgressDialog(context);
+						pd.setMessage("Daten werden importiert...");
+						pd.setCancelable(false);
+						pd.setIndeterminate(true);
+						pd.show();
+
+						new Thread() {
+							@Override
+							public void run() {
+								try {
+									// Delete older backups
+
+									if (backupdatabases.isDirectory()) {
+										files = backupdatabases.listFiles();
+										for (int i = 0; i < files.length; i++) {
+											files[i].delete();
+										}
+									}
+									if (backuppreferences.isDirectory()) {
+										files = backuppreferences.listFiles();
+										for (int i = 0; i < files.length; i++) {
+											files[i].delete();
+										}
+									}
+
+									// Import to local backups
+
+									backupdatabases.mkdirs();
+									if (dbxFs.exists(databasePath)) {
+										List<DbxFileInfo> databaseList = dbxFs.listFolder(databasePath);
+										for (int i = 0; i < databaseList.size(); i++) {
+											dbxFile = dbxFs.open(databaseList.get(i).path);
+											copyDbx(dbxFile.getReadStream(), new File(backupdatabases + "/" + dbxFile.getPath().getName()));
+											dbxFile.close();
+										}
+									}
+
+									backuppreferences.mkdirs();
+									if (dbxFs.exists(prefPath)) {
+										List<DbxFileInfo> prefList = dbxFs.listFolder(prefPath);
+										for (int i = 0; i < prefList.size(); i++) {
+											dbxFile = dbxFs.open(prefList.get(i).path);
+											copyDbx(dbxFile.getReadStream(), new File(backuppreferences + "/" + dbxFile.getPath().getName()));
+											dbxFile.close();
+										}
+									}
+
+									// Do local import
+
+									handler.post(new Runnable() {
+
+										@Override
+										public void run() {
+											localImport_nodg();
+											pd.dismiss();
+										}
+									});
+
+								} catch (DbxException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
+								} catch (IOException e) {
+									Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+									e.printStackTrace();
 								}
 							}
-							if (backuppreferences.isDirectory()) {
-								files = backuppreferences.listFiles();
-								for (int i = 0; i < files.length; i++) {
-									files[i].delete();
-								}
-							}
-
-							// Import to local backups
-
-							backupdatabases.mkdirs();
-							if (dbxFs.exists(databasePath)) {
-								List<DbxFileInfo> databaseList = dbxFs.listFolder(databasePath);
-								for (int i = 0; i < databaseList.size(); i++) {
-									dbxFile = dbxFs.open(databaseList.get(i).path);
-									copyDbx(dbxFile.getReadStream(), new File(backupdatabases + "/" + dbxFile.getPath().getName()));
-									dbxFile.close();
-								}
-							}
-
-							backuppreferences.mkdirs();
-							if (dbxFs.exists(prefPath)) {
-								List<DbxFileInfo> prefList = dbxFs.listFolder(prefPath);
-								for (int i = 0; i < prefList.size(); i++) {
-									dbxFile = dbxFs.open(prefList.get(i).path);
-									copyDbx(dbxFile.getReadStream(), new File(backuppreferences + "/" + dbxFile.getPath().getName()));
-									dbxFile.close();
-								}
-							}
-
-							// Do local import
-
-							localImport_nodg();
-
-						} catch (DbxException e) {
-							Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-							e.printStackTrace();
-						} catch (IOException e) {
-							Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-							e.printStackTrace();
-						}
+						}.start();
 					}
 
 				});
