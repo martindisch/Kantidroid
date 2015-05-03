@@ -1,0 +1,27 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "21.1.2"
+    compileOptions {
+        encoding "ISO-8859-1"
+    }
+
+    defaultConfig {
+        applicationId "com.martin.kantidroid"
+        minSdkVersion 8
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':holoEverywhereAddonPreferences')
+    compile files('libs/dropbox-sync-sdk-android.jar')
+}
