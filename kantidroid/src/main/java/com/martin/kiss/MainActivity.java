@@ -188,7 +188,7 @@ public class MainActivity extends ListActivity {
 							    }
 							};
 							
-							URL url = new URL("https://thementage.bks-campus.ch/infoscreen");
+							URL url = new URL("https://kiss.bks-campus.ch/infoscreen");
 							HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 							con.setHostnameVerifier(hostnameVerifier);
 							InputStream in = con.getInputStream();
@@ -335,7 +335,7 @@ public class MainActivity extends ListActivity {
 					mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 					TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
-					String url = "https://thementage.bks-campus.ch/infoscreen";
+					String url = "https://kiss.bks-campus.ch/infoscreen";
 					Intent iKISS = new Intent(Intent.ACTION_VIEW);
 					iKISS.setData(Uri.parse(url));
 					stackBuilder.addNextIntent(iKISS);
@@ -461,7 +461,7 @@ public class MainActivity extends ListActivity {
 				public void onClick(DialogInterface dialog, int which) {
 					switch (which) {
 					case 0:
-						String url = "https://thementage.bks-campus.ch/infoscreen";
+						String url = "https://kiss.bks-campus.ch/infoscreen";
 						Intent iKISS = new Intent(Intent.ACTION_VIEW);
 						iKISS.setData(Uri.parse(url));
 						startActivity(iKISS);

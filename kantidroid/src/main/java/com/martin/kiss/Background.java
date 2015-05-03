@@ -48,7 +48,7 @@ public class Background extends IntentService {
 			String result = "";
 			String motd = "";
 			try {
-				URL url = new URL("https://thementage.bks-campus.ch/infoscreen");
+				URL url = new URL("https://kiss.bks-campus.ch/infoscreen");
 				URL urlmotd = new URL("http://androiddev.bplaced.net/motd.txt");
 
 				// KISS
@@ -199,7 +199,7 @@ public class Background extends IntentService {
 					mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 					TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 					stackBuilder.addParentStack(MainActivity.class);
-					String url = "https://thementage.bks-campus.ch/infoscreen";
+					String url = "https://kiss.bks-campus.ch/infoscreen";
 					Intent iKISS = new Intent(Intent.ACTION_VIEW);
 					iKISS.setData(Uri.parse(url));
 					stackBuilder.addNextIntent(iKISS);
