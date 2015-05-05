@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martin.kantidroid"
     android:versionCode="74"
-    android:versionName="2.35" >
+    android:versionName="2.35">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -19,8 +19,8 @@
         android:allowBackup="true"
         android:icon="@drawable/kantidroid_ico"
         android:label="@string/app_name"
-        android:theme="@style/Holo.Theme.Light" >
-        <receiver android:name=".WidgetProvider" >
+        android:theme="@style/Holo.Theme.Light">
+        <receiver android:name=".WidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -34,7 +34,7 @@
         <activity android:name="com.dropbox.sync.android.DbxAuthActivity" />
         <activity
             android:name="com.dropbox.client2.android.AuthActivity"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask">
             <intent-filter>
                 <data android:scheme="db-03ktxe8m7s1i0b6" />
 
@@ -55,7 +55,7 @@
         <activity
             android:name="com.martin.kantidroid.MainActivity"
             android:icon="@drawable/kantidroid_ico"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -65,7 +65,7 @@
         <activity
             android:name="com.martin.kantidroid.Backup"
             android:icon="@drawable/kantidroid_ico"
-            android:label="Backup" >
+            android:label="Backup">
             <intent-filter>
                 <action android:name="com.martin.kantidroid.BACKUP" />
 
@@ -75,7 +75,7 @@
         <activity
             android:name="com.martin.kantidroid.MOTD"
             android:icon="@drawable/kantidroid_ico"
-            android:label="MOTD" >
+            android:label="MOTD">
             <intent-filter>
                 <action android:name="com.martin.kantidroid.MOTD" />
 
@@ -85,7 +85,7 @@
         <activity
             android:name="com.martin.kantidroid.About"
             android:icon="@drawable/kantidroid_ico"
-            android:label="Über" >
+            android:label="Über">
             <intent-filter>
                 <action android:name="com.martin.kantidroid.ABOUT" />
 
@@ -95,7 +95,7 @@
         <activity
             android:name="com.martin.kantidroid.Licenses"
             android:icon="@drawable/kantidroid_ico"
-            android:label="Open Source Lizenzen" >
+            android:label="Open Source Lizenzen">
             <intent-filter>
                 <action android:name="com.martin.kantidroid.LICENSES" />
 
@@ -106,7 +106,7 @@
             android:name="com.martin.kantidroid.Food"
             android:configChanges="orientation|screenSize"
             android:icon="@drawable/kantidroid_ico"
-            android:label="Menuplan" >
+            android:label="Menuplan">
             <intent-filter>
                 <action android:name="com.martin.kantidroid.FOOD" />
 
@@ -120,7 +120,7 @@
             android:name="com.martin.kontingent.Overview"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Kontingent" >
+            android:label="Kontingent">
             <intent-filter>
                 <action android:name="com.example.kontingentprototype.OVERVIEW" />
 
@@ -131,7 +131,7 @@
             android:name="com.martin.kontingent.CreateEntry"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Fach hinzufügen" >
+            android:label="Fach hinzufügen">
             <intent-filter>
                 <action android:name="com.example.kontingentprototype.CREATE_ENTRY" />
 
@@ -142,13 +142,12 @@
             android:name="com.martin.kontingent.ViewFach"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Info" >
-        </activity>
+            android:label="Info"></activity>
         <activity
             android:name="com.martin.kontingent.RemoveEntry"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Fach zum entfernen auswählen" >
+            android:label="Fach zum entfernen auswählen">
             <intent-filter>
                 <action android:name="com.example.kontingentprototype.REMOVE_ENTRY" />
 
@@ -159,13 +158,12 @@
             android:name="com.martin.kontingent.RemoveUsage"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Gebrauch zum entfernen auswählen" >
-        </activity>
+            android:label="Gebrauch zum entfernen auswählen"></activity>
         <activity
             android:name="com.martin.kontingent.EditEntry"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Fach bearbeiten" >
+            android:label="Fach bearbeiten">
             <intent-filter>
                 <action android:name="com.example.kontingentprototype.EDIT_ENTRY" />
 
@@ -176,7 +174,7 @@
             android:name="com.martin.kontingent.SelectEdit"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Fach zum Bearbeiten auswählen" >
+            android:label="Fach zum Bearbeiten auswählen">
             <intent-filter>
                 <action android:name="com.example.kontingentprototype.EDIT_SELECT" />
 
@@ -187,7 +185,7 @@
             android:name="com.martin.kontingent.AddSelect"
             android:configChanges="orientation"
             android:icon="@drawable/kontingent_ico"
-            android:label="Fach auswählen" >
+            android:label="Fach auswählen">
             <intent-filter>
                 <action android:name="com.example.kontingentprototype.ADD_SELECT" />
 
@@ -201,7 +199,7 @@
             android:name="com.martin.noten.Main"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Noten" >
+            android:label="Noten">
             <intent-filter>
                 <action android:name="com.martin.noten.MAIN" />
 
@@ -212,7 +210,7 @@
             android:name="com.martin.noten.CreateEntry"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Fach hinzufügen" >
+            android:label="Fach hinzufügen">
             <intent-filter>
                 <action android:name="com.martin.noten.CREATE_ENTRY" />
 
@@ -223,7 +221,7 @@
             android:name="com.martin.noten.ViewFach"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Info" >
+            android:label="Info">
             <intent-filter>
                 <action android:name="com.martin.noten.VIEW_FACH" />
 
@@ -234,7 +232,7 @@
             android:name="com.martin.noten.AddMark"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Note hinzufügen" >
+            android:label="Note hinzufügen">
             <intent-filter>
                 <action android:name="com.martin.noten.ADD_MARK" />
 
@@ -245,7 +243,7 @@
             android:name="com.martin.noten.RemoveEntry"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Fach entfernen" >
+            android:label="Fach entfernen">
             <intent-filter>
                 <action android:name="com.martin.noten.REMOVE_ENTRY" />
 
@@ -256,7 +254,7 @@
             android:name="com.martin.noten.RemoveMark"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Note entfernen" >
+            android:label="Note entfernen">
             <intent-filter>
                 <action android:name="com.martin.noten.REMOVE_MARK" />
 
@@ -267,7 +265,7 @@
             android:name="com.martin.noten.EditSelect"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Fach zum Bearbeiten auswählen" >
+            android:label="Fach zum Bearbeiten auswählen">
             <intent-filter>
                 <action android:name="com.martin.noten.EDIT_SELECT" />
 
@@ -278,7 +276,7 @@
             android:name="com.martin.noten.EditEntry"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Fach bearbeiten" >
+            android:label="Fach bearbeiten">
             <intent-filter>
                 <action android:name="com.martin.noten.EDIT_ENTRY" />
 
@@ -289,7 +287,7 @@
             android:name="com.martin.noten.Guessing"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Notenvorhersage" >
+            android:label="Notenvorhersage">
             <intent-filter>
                 <action android:name="com.martin.noten.GUESSING" />
 
@@ -300,7 +298,7 @@
             android:name="com.martin.noten.AddSelect"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Fach auswählen" >
+            android:label="Fach auswählen">
             <intent-filter>
                 <action android:name="com.martin.noten.ADD_SELECT" />
 
@@ -311,7 +309,7 @@
             android:name="com.martin.noten.EditMark"
             android:configChanges="orientation"
             android:icon="@drawable/noten_ico"
-            android:label="Note bearbeiten" >
+            android:label="Note bearbeiten">
             <intent-filter>
                 <action android:name="com.martin.noten.EDIT_MARK" />
 
@@ -323,14 +321,13 @@
 
         <service
             android:name="com.martin.kiss.Background"
-            android:exported="false" >
-        </service>
+            android:exported="false"></service>
 
         <activity
             android:name="com.martin.kiss.MainActivity"
             android:configChanges="orientation"
             android:icon="@drawable/kiss_ico"
-            android:label="KISS" >
+            android:label="KISS">
             <intent-filter>
                 <action android:name="com.martin.kiss.MAIN_ACTIVITY" />
 
@@ -341,7 +338,7 @@
             android:name="com.martin.kiss.Add_Lehrer"
             android:configChanges="orientation"
             android:icon="@drawable/kiss_ico"
-            android:label="Person hinzufügen" >
+            android:label="Person hinzufügen">
             <intent-filter>
                 <action android:name="com.martin.KISS.ADD_LEHRER" />
 
@@ -352,7 +349,7 @@
             android:name="com.martin.kiss.Remove_Lehrer"
             android:configChanges="orientation"
             android:icon="@drawable/kiss_ico"
-            android:label="Person entfernen" >
+            android:label="Person entfernen">
             <intent-filter>
                 <action android:name="com.martin.KISS.REMOVE_LEHRER" />
 
@@ -363,7 +360,7 @@
             android:name="com.martin.kiss.EditLehrer"
             android:configChanges="orientation"
             android:icon="@drawable/kiss_ico"
-            android:label="Person bearbeiten" >
+            android:label="Person bearbeiten">
             <intent-filter>
                 <action android:name="com.martin.KISS.EDIT_LEHRER" />
 
@@ -374,7 +371,7 @@
             android:name="com.martin.kiss.KissView"
             android:configChanges="orientation"
             android:icon="@drawable/kiss_ico"
-            android:label="KISS" >
+            android:label="KISS">
             <intent-filter>
                 <action android:name="com.martin.KISS.KISS_VIEW" />
 
@@ -387,7 +384,7 @@
             android:excludeFromRecents="true"
             android:icon="@drawable/kiss_ico"
             android:label="KISS anzeigen"
-            android:theme="@style/Holo.Theme.Dialog.Light" >
+            android:theme="@style/Holo.Theme.Dialog.Light">
             <intent-filter>
                 <action android:name="com.martin.KISS.INFOSCREEN_CHOICE" />
 

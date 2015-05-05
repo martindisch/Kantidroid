@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/iTimetable"
         android:showAsAction="never"
-        android:title="Stundenplan"/>
+        android:title="Stundenplan" />
     <item
         android:id="@+id/iFood"
         android:showAsAction="never"
-        android:title="Menuplan"/>
+        android:title="Menuplan" />
     <item
         android:id="@+id/iBackup"
         android:showAsAction="never"
-        android:title="Backup"/>
+        android:title="Backup" />
     <item
         android:id="@+id/iShortcut"
         android:showAsAction="never"
-        android:title="Zurücksetzen">
-    </item>
+        android:title="Zurücksetzen"></item>
     <item
         android:id="@+id/iAbout"
         android:showAsAction="never"
-        android:title="Über"/>
+        android:title="Über" />
 
 </menu>

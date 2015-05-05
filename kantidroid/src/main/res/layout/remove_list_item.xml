@@ -5,7 +5,7 @@
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal"
     android:padding="11dp"
-    android:textAppearance="?textAppearanceListItemSmall" >
+    android:textAppearance="?textAppearanceListItemSmall">
 
     <CheckedTextView
         android:id="@+id/tvLeft"

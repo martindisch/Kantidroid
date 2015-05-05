@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/widget_margin_own" >
+    android:padding="@dimen/widget_margin_own">
 
     <LinearLayout
         android:id="@+id/wLayout"
@@ -10,13 +10,13 @@
         android:layout_height="wrap_content"
         android:background="@drawable/widget_background"
         android:orientation="vertical"
-        android:padding="@dimen/widget_margin" >
+        android:padding="@dimen/widget_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2" >
+            android:weightSum="2">
 
             <LinearLayout
                 android:id="@+id/llCardNoten"
@@ -27,14 +27,14 @@
                 android:background="@drawable/selector_single_red"
                 android:clickable="true"
                 android:orientation="horizontal"
-                android:weightSum="2" >
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvNotBig"
@@ -82,14 +82,14 @@
                 android:background="@drawable/selector_single_green"
                 android:clickable="true"
                 android:orientation="horizontal"
-                android:weightSum="2" >
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvKontBig"
@@ -137,18 +137,18 @@
             android:layout_marginTop="@dimen/widget_margin"
             android:background="@drawable/selector_single_blue"
             android:clickable="true"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="5dp" >
+                android:padding="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tvKISS_1_name"

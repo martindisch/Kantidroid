@@ -1,9 +1,9 @@
 package com.martin.kantidroid;
 
 public interface RestsLoaded {
-	public boolean loaded();
+    public boolean loaded();
 
-	public String[][] getMenus();
+    public String[][] getMenus();
 
-	public String[] getDates();
+    public String[] getDates();
 }

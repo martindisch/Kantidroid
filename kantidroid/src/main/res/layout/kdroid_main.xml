@@ -2,12 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_holo_light" >
+    android:background="@color/background_holo_light">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/llCardNoten"
@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/card_margin"
             android:background="@drawable/selector_multi_red"
             android:clickable="true"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvGSchn"
@@ -70,11 +70,11 @@
             android:layout_marginRight="@dimen/card_margin"
             android:background="@drawable/selector_actioncard_large"
             android:clickable="true"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/ivAddNoten"
@@ -101,7 +101,7 @@
             android:layout_marginRight="@dimen/card_margin"
             android:background="@drawable/selector_multi_green"
             android:clickable="true"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvGT"
@@ -151,11 +151,11 @@
             android:layout_marginRight="@dimen/card_margin"
             android:background="@drawable/selector_actioncard_large"
             android:clickable="true"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/ivAddKontingent"
@@ -184,7 +184,7 @@
             android:layout_marginRight="@dimen/card_margin"
             android:background="@drawable/selector_single_blue"
             android:clickable="true"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp" >
+                android:paddingTop="10dp">
 
                 <TextView
                     android:id="@+id/tvTitle"
