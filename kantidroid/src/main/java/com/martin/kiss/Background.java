@@ -48,6 +48,7 @@ public class Background extends IntentService {
             String result = "";
             String motd = "";
             try {
+				// TODO: Extract url to values
                 URL url = new URL("https://kiss.bks-campus.ch/infoscreen");
                 URL urlmotd = new URL("http://androiddev.bplaced.net/motd.txt");
 
