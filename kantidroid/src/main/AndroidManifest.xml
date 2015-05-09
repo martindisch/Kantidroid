@@ -378,19 +378,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.martin.kiss.InfoscreenChoice"
-            android:configChanges="orientation"
-            android:excludeFromRecents="true"
-            android:icon="@drawable/kiss_ico"
-            android:label="KISS anzeigen"
-            android:theme="@style/Holo.Theme.Dialog.Light">
-            <intent-filter>
-                <action android:name="com.martin.KISS.INFOSCREEN_CHOICE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
