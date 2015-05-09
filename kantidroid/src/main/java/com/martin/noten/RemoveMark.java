@@ -21,9 +21,7 @@ public class RemoveMark extends ListActivity implements android.content.DialogIn
 
     private String noten;
     private String[] entries;
-    String current[];
     private int id;
-    int kont_us;
     private int iSemester;
     private int pos;
 

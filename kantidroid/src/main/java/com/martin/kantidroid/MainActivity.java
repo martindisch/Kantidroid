@@ -53,9 +53,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private TextView tvUsage;
     private TextView tvUsage2;
     private TextView tvKISS;
-    double schn = 0;
     private Resources res;
-    Fach entry;
 
     private static boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {

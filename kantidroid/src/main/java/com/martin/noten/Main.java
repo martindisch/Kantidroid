@@ -27,16 +27,7 @@ import java.util.List;
 
 public class Main extends Activity implements OnClickListener, FragmentHolder {
 
-    ListView lv;
-    TextView promoviert, pluspunkte;
     private int selected;
-    int semester;
-    String result;
-    Fach entry;
-    View separator;
-    double schn = 0;
-    Resources res;
-    int iSemester = 1;
 
     // PAGER
 

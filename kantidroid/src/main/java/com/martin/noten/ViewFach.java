@@ -39,7 +39,6 @@ public class ViewFach extends Activity {
     private int iSemester;
     private String fname;
     private String fnoten;
-    String addition;
     private String fmath_average;
     private String freal_average;
     private String fpromotionsfach;

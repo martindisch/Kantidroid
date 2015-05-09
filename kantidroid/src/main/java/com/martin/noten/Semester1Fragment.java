@@ -37,11 +37,9 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
     private ListView lv;
     private TextView promoviert;
     private TextView pluspunkte;
-    int selected;
     private int semester;
     private String result;
     private Fach entry;
-    double schn = 0;
     private Resources res;
     private Fach fSelected = null;
     private RelativeLayout indicator;

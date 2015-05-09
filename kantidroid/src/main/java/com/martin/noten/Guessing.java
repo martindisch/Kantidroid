@@ -30,7 +30,6 @@ public class Guessing extends Activity implements OnClickListener {
     private Button bOwnRelevance;
     private Spinner sRelevance;
     private EditText etMark;
-    CheckBox cbAnother;
     private TextView tvResult;
     private TextView tvMessage;
     private int id;

@@ -40,12 +40,8 @@ public class ZeugnisFragment extends Fragment {
     private ListView lv;
     private TextView promoviert;
     private TextView pluspunkte;
-    int selected;
     private int semester;
-    String result;
-    Fach entry;
     private RelativeLayout indicator;
-    double schn = 0;
     private Resources res;
     private Fach fSelected = null;
     private Future<?> mZeugnisLoader;

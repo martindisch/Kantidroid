@@ -17,8 +17,6 @@ import java.util.List;
 
 public class WidgetProvider extends AppWidgetProvider {
 
-    double schn = 0;
-    Fach entry;
     private Resources res;
 
     @Override
