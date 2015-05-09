@@ -21,10 +21,11 @@ import org.holoeverywhere.widget.Toast;
 
 public class EditLehrer extends Activity implements OnClickListener {
 
-    String sName;
-    EditText etName;
-    Button bSave, bCancel;
-    TextView tvCount;
+    private String sName;
+    private EditText etName;
+    private Button bSave;
+    private Button bCancel;
+    private TextView tvCount;
 
     @Override
     protected void onStop() {

@@ -49,23 +49,28 @@ import java.util.Map.Entry;
 public class Backup extends Activity implements OnClickListener {
 
     private static final int REQUEST_LINK_TO_DBX = 0;
-    ImageButton bBackup, bImport;
-    TextView tvSync, tvBackup, tvSyncprogress;
-    Button bDbxBackup, bDbxImport;
-    ProgressBar pbDbx;
-    ImageView ivSuccess;
-    Context context = this;
-    File appdir;
-    File databases;
-    File preferences;
-    File kdroiddir;
-    File backupdatabases;
-    File backuppreferences;
-    File[] files;
-    String[] prefnames;
-    Typeface tf;
-    DbxPath databasePath, prefPath;
-    DbxFile dbxFile;
+    private ImageButton bBackup;
+    private ImageButton bImport;
+    private TextView tvSync;
+    private TextView tvBackup;
+    private TextView tvSyncprogress;
+    private Button bDbxBackup;
+    private Button bDbxImport;
+    private ProgressBar pbDbx;
+    private ImageView ivSuccess;
+    private Context context = this;
+    private File appdir;
+    private File databases;
+    private File preferences;
+    private File kdroiddir;
+    private File backupdatabases;
+    private File backuppreferences;
+    private File[] files;
+    private String[] prefnames;
+    private Typeface tf;
+    private DbxPath databasePath;
+    private DbxPath prefPath;
+    private DbxFile dbxFile;
     private String appKey = "03ktxe8m7s1i0b6";
     // Is initialized later on, loaded from credential storage
     private String appSecret;
@@ -511,7 +516,7 @@ public class Backup extends Activity implements OnClickListener {
         }
     }
 
-    public void copy(File src, File dst) throws IOException {
+    private void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
         OutputStream out = new FileOutputStream(dst);
 
@@ -525,7 +530,7 @@ public class Backup extends Activity implements OnClickListener {
         out.close();
     }
 
-    public void copyDbx(InputStream in, File dst) throws IOException {
+    private void copyDbx(InputStream in, File dst) throws IOException {
         OutputStream out = new FileOutputStream(dst);
 
         // Transfer bytes from in to out

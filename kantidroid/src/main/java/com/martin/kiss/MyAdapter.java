@@ -15,10 +15,10 @@ import org.holoeverywhere.widget.TextView;
 import java.util.List;
 import java.util.Map;
 
-public class MyAdapter extends SimpleAdapter {
+class MyAdapter extends SimpleAdapter {
 
     private final Activity context;
-    List<? extends Map<String, ?>> list;
+    private List<? extends Map<String, ?>> list;
 
     public MyAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
         super(context, data, resource, from, to);

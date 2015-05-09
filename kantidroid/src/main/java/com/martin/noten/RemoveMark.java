@@ -19,9 +19,13 @@ import org.holoeverywhere.widget.Toast;
 
 public class RemoveMark extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
-    String noten;
-    String entries[], current[];
-    int id, kont_us, iSemester, pos;
+    private String noten;
+    private String[] entries;
+    String current[];
+    private int id;
+    int kont_us;
+    private int iSemester;
+    private int pos;
 
     @Override
     protected void onStop() {

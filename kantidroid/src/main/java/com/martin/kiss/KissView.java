@@ -12,8 +12,8 @@ import org.holoeverywhere.widget.TextView;
 
 public class KissView extends Activity {
 
-    TextView tvDate;
-    WebView wvKISS;
+    private TextView tvDate;
+    private WebView wvKISS;
 
     @Override
     protected void onCreate(Bundle sSavedInstanceState) {

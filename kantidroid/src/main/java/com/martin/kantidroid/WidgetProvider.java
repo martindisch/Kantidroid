@@ -19,7 +19,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
     double schn = 0;
     Fach entry;
-    Resources res;
+    private Resources res;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {

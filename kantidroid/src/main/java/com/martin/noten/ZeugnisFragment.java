@@ -37,16 +37,18 @@ import java.util.concurrent.Future;
 public class ZeugnisFragment extends Fragment {
 
     private static boolean ASC;
-    ListView lv;
-    TextView promoviert, pluspunkte;
-    int selected, semester;
+    private ListView lv;
+    private TextView promoviert;
+    private TextView pluspunkte;
+    int selected;
+    private int semester;
     String result;
     Fach entry;
-    RelativeLayout indicator;
+    private RelativeLayout indicator;
     double schn = 0;
-    Resources res;
-    Fach fSelected = null;
-    Future<?> mZeugnisLoader;
+    private Resources res;
+    private Fach fSelected = null;
+    private Future<?> mZeugnisLoader;
     private Fach[] toSort;
     private int index, top;
     private boolean savedState = false;
@@ -170,7 +172,7 @@ public class ZeugnisFragment extends Fragment {
         return super.onContextItemSelected(item);
     }
 
-    public void createList() {
+    private void createList() {
         promoviert = (TextView) getView().findViewById(R.id.tvPromoviert);
         pluspunkte = (TextView) getView().findViewById(R.id.tvPlusP);
         lv = (ListView) getView().findViewById(R.id.lvMain_noten);

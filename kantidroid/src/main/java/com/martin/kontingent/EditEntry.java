@@ -18,11 +18,14 @@ import org.holoeverywhere.widget.Toast;
 
 public class EditEntry extends Activity implements OnClickListener {
 
-    EditText etName, etKontingent;
-    Button bSave, bCancel;
-    int id;
-    String fname, fkont;
-    Fach fach;
+    private EditText etName;
+    private EditText etKontingent;
+    private Button bSave;
+    private Button bCancel;
+    private int id;
+    private String fname;
+    private String fkont;
+    private Fach fach;
 
     @Override
     protected void onStop() {

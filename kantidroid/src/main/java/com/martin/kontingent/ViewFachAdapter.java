@@ -11,7 +11,7 @@ import com.martin.kantidroid.R;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.widget.TextView;
 
-public class ViewFachAdapter extends BaseAdapter {
+class ViewFachAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater;
     private String[] sDates;

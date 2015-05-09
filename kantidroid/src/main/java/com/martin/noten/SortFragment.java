@@ -14,7 +14,7 @@ import org.holoeverywhere.app.DialogFragment;
 
 public class SortFragment extends DialogFragment implements OnClickListener {
 
-    int selected;
+    private int selected;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

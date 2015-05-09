@@ -22,7 +22,7 @@ import java.util.List;
 
 public class RemoveEntry extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
-    Fach selected = null;
+    private Fach selected = null;
 
     @Override
     protected void onStop() {

@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class TTManager {
+class TTManager {
 
     public boolean downloadTT(String sClass) {
         try {

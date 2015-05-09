@@ -17,7 +17,7 @@ import java.util.List;
 
 public class EditSelect extends ListActivity {
 
-    Fach selected = null;
+    private Fach selected = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

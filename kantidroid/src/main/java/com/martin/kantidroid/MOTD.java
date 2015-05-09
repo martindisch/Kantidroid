@@ -35,7 +35,7 @@ public class MOTD extends Activity {
         list = received.getStringArray("data");
     }
 
-    String unescape(String s) {
+    private String unescape(String s) {
         return s.replace("*", "\n");
     }
 

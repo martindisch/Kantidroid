@@ -5,16 +5,16 @@ import java.math.BigDecimal;
 public class Fach {
 
     // private Variablen
-    int _id;
-    String _name;
-    String _noten1;
-    String _math_average1;
-    String _real_average1;
-    String _noten2;
-    String _math_average2;
-    String _real_average2;
-    String _zeugnis;
-    String _promotionsrelevant;
+    private int _id;
+    private String _name;
+    private String _noten1;
+    private String _math_average1;
+    private String _real_average1;
+    private String _noten2;
+    private String _math_average2;
+    private String _real_average2;
+    private String _zeugnis;
+    private String _promotionsrelevant;
 
     // leerer constructor
     public Fach() {

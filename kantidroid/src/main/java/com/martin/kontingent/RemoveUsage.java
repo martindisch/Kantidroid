@@ -19,9 +19,13 @@ import org.holoeverywhere.widget.Toast;
 
 public class RemoveUsage extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
-    String name, dates, removable;
-    String entries[], current[];
-    int id, kont_us;
+    private String name;
+    private String dates;
+    private String removable;
+    private String[] entries;
+    private String[] current;
+    private int id;
+    private int kont_us;
 
     @Override
     protected void onStop() {

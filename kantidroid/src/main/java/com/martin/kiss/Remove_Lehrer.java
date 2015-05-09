@@ -20,9 +20,9 @@ import org.holoeverywhere.widget.ListView;
 
 public class Remove_Lehrer extends ListActivity {
 
-    String sList;
-    String old_noti;
-    String[] sNames;
+    private String sList;
+    private String old_noti;
+    private String[] sNames;
 
     @Override
     protected void onStop() {

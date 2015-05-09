@@ -24,9 +24,11 @@ import org.holoeverywhere.widget.Toast;
 
 public class CreateEntry extends Activity implements OnClickListener, OnCheckedChangeListener {
 
-    AutoCompleteTextView fach;
-    Button save, cancel;
-    CheckBox another, promotionsrelevant;
+    private AutoCompleteTextView fach;
+    private Button save;
+    private Button cancel;
+    private CheckBox another;
+    private CheckBox promotionsrelevant;
 
     @Override
     protected void onStop() {

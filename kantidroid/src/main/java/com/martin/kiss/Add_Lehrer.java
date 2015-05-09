@@ -24,9 +24,10 @@ import org.holoeverywhere.widget.Toast;
 
 public class Add_Lehrer extends Activity implements OnClickListener, OnCheckedChangeListener {
 
-    Button bSave, bCancel;
-    AutoCompleteTextView etName;
-    CheckBox cbAnother;
+    private Button bSave;
+    private Button bCancel;
+    private AutoCompleteTextView etName;
+    private CheckBox cbAnother;
 
     @Override
     protected void onStop() {

@@ -31,14 +31,26 @@ import java.math.RoundingMode;
 
 public class ViewFach extends Activity {
 
-    TextView name, math_average, real_average, promotionsfach;
-    int mId, iSemester;
-    String fname, fnoten, addition, fmath_average, freal_average, fpromotionsfach;
-    String[] entries, mark;
-    Typeface tf;
-    ImageButton ibAddMark, ibMarkRequest;
-    ListView lvViewfach;
-    TextView nextHigher, keepAv;
+    private TextView name;
+    private TextView math_average;
+    private TextView real_average;
+    private TextView promotionsfach;
+    private int mId;
+    private int iSemester;
+    private String fname;
+    private String fnoten;
+    String addition;
+    private String fmath_average;
+    private String freal_average;
+    private String fpromotionsfach;
+    private String[] entries;
+    private String[] mark;
+    private Typeface tf;
+    private ImageButton ibAddMark;
+    private ImageButton ibMarkRequest;
+    private ListView lvViewfach;
+    private TextView nextHigher;
+    private TextView keepAv;
     private Context context;
 
     @Override

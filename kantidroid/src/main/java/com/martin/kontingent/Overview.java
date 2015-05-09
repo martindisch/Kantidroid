@@ -36,13 +36,13 @@ import java.util.Map;
 
 public class Overview extends Activity implements OnClickListener, OnItemClickListener {
 
-    int selected = 0;
-    ListView lv;
+    private int selected = 0;
+    private ListView lv;
     // ProgressBar pb;
-    TextView tvUsage;
-    Resources res;
-    Fach fSelected = null;
-    LinearLayout KOverview;
+    private TextView tvUsage;
+    private Resources res;
+    private Fach fSelected = null;
+    private LinearLayout KOverview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -43,13 +43,21 @@ import java.util.List;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-    LinearLayout cardKontingent, cardKISS, cardNoten, actioncardNoten, actioncardKontingent;
-    TextView tvSchn, pluspunkte, tvUsage, tvUsage2, tvKISS;
+    private LinearLayout cardKontingent;
+    private LinearLayout cardKISS;
+    private LinearLayout cardNoten;
+    private LinearLayout actioncardNoten;
+    private LinearLayout actioncardKontingent;
+    private TextView tvSchn;
+    private TextView pluspunkte;
+    private TextView tvUsage;
+    private TextView tvUsage2;
+    private TextView tvKISS;
     double schn = 0;
-    Resources res;
+    private Resources res;
     Fach entry;
 
-    public static boolean deleteDir(File dir) {
+    private static boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();
             for (int i = 0; i < children.length; i++) {
@@ -389,7 +397,7 @@ public class MainActivity extends Activity implements OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    public void clearApplicationData() {
+    private void clearApplicationData() {
         File cache = getCacheDir();
         File appDir = new File(cache.getParent());
         if (appDir.exists()) {

@@ -25,16 +25,19 @@ import java.math.RoundingMode;
 
 public class Guessing extends Activity implements OnClickListener {
 
-    Button bCalc, bCancel, bOwnRelevance;
-    Spinner sRelevance;
-    EditText etMark;
+    private Button bCalc;
+    private Button bCancel;
+    private Button bOwnRelevance;
+    private Spinner sRelevance;
+    private EditText etMark;
     CheckBox cbAnother;
-    TextView tvResult, tvMessage;
-    int id;
-    boolean OwnRelevance = false;
-    double dOwnRelevance;
-    int iSemester;
-    Typeface tf;
+    private TextView tvResult;
+    private TextView tvMessage;
+    private int id;
+    private boolean OwnRelevance = false;
+    private double dOwnRelevance;
+    private int iSemester;
+    private Typeface tf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

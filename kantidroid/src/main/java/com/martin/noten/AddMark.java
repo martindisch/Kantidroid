@@ -41,21 +41,25 @@ import java.util.Calendar;
 
 public class AddMark extends Activity implements OnClickListener, OnCheckedChangeListener {
 
-    Button bSave, bCancel;
-    Spinner sDate;
-    EditText etMark, etOther;
-    CheckBox cbAnother;
-    RadioGroup rgGewichtung;
-    int id;
-    int iSemester;
-    Fach fach;
-    String sSelectedRelevance;
-    DatabaseHandler db;
-    String selectedDate, sMark;
-    ArrayAdapter<String> adapter;
-    boolean textChanged, firsttime;
-    AddMark crap;
-    RadioButton rbGanz;
+    private Button bSave;
+    private Button bCancel;
+    private Spinner sDate;
+    private EditText etMark;
+    private EditText etOther;
+    private CheckBox cbAnother;
+    private RadioGroup rgGewichtung;
+    private int id;
+    private int iSemester;
+    private Fach fach;
+    private String sSelectedRelevance;
+    private DatabaseHandler db;
+    private String selectedDate;
+    private String sMark;
+    private ArrayAdapter<String> adapter;
+    private boolean textChanged;
+    private boolean firsttime;
+    private AddMark crap;
+    private RadioButton rbGanz;
 
     @Override
     protected void onStop() {

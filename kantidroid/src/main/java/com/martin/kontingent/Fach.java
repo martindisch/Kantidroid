@@ -3,11 +3,11 @@ package com.martin.kontingent;
 public class Fach {
 
     // private Variablen
-    int _id;
-    String _name;
-    String _kont_av;
-    String _kont_us;
-    String _dates;
+    private int _id;
+    private String _name;
+    private String _kont_av;
+    private String _kont_us;
+    private String _dates;
 
     // leerer constructor
     public Fach() {

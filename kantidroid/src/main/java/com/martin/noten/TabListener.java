@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar.Tab;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.Fragment;
 
-public class TabListener<T extends Fragment> implements android.support.v7.app.ActionBar.TabListener {
+class TabListener<T extends Fragment> implements android.support.v7.app.ActionBar.TabListener {
     private final Activity mActivity;
     private final String mTag;
     private final Class<T> mClass;

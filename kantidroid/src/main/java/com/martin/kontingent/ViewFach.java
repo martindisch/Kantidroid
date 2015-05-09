@@ -31,14 +31,21 @@ import java.util.Calendar;
 
 public class ViewFach extends Activity implements OnClickListener, android.content.DialogInterface.OnClickListener, OnDateSetListener {
 
-    TextView tvTitle, tvUsage;
-    ImageButton ibAddKont;
-    ListView lvUsage;
-    NumberPicker picker;
-    int id, kont_us, picked_number;
-    boolean invoke;
-    String fname, fkont, date_new, date_old, addition;
-    Typeface tf;
+    private TextView tvTitle;
+    private TextView tvUsage;
+    private ImageButton ibAddKont;
+    private ListView lvUsage;
+    private NumberPicker picker;
+    private int id;
+    private int kont_us;
+    private int picked_number;
+    private boolean invoke;
+    private String fname;
+    private String fkont;
+    private String date_new;
+    private String date_old;
+    private String addition;
+    private Typeface tf;
 
     @Override
     protected void onStop() {
@@ -162,7 +169,7 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void invokedUse() {
+    private void invokedUse() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Anzahl genommenes Kontingent");
         View view = LayoutInflater.inflate(this, R.layout.numberpicker);

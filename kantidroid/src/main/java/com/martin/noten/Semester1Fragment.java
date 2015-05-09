@@ -34,15 +34,17 @@ import java.util.Map;
 
 public class Semester1Fragment extends Fragment implements OnItemClickListener {
 
-    ListView lv;
-    TextView promoviert, pluspunkte;
-    int selected, semester;
-    String result;
-    Fach entry;
+    private ListView lv;
+    private TextView promoviert;
+    private TextView pluspunkte;
+    int selected;
+    private int semester;
+    private String result;
+    private Fach entry;
     double schn = 0;
-    Resources res;
-    Fach fSelected = null;
-    RelativeLayout indicator;
+    private Resources res;
+    private Fach fSelected = null;
+    private RelativeLayout indicator;
     private int index, top;
     private boolean savedState = false;
 
@@ -123,7 +125,7 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
         return super.onContextItemSelected(item);
     }
 
-    public void createList() {
+    private void createList() {
         promoviert = (TextView) getView().findViewById(R.id.tvPromoviert);
         pluspunkte = (TextView) getView().findViewById(R.id.tvPlusP);
         lv = (ListView) getView().findViewById(R.id.lvMain_noten);

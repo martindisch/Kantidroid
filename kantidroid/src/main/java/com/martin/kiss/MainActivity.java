@@ -53,10 +53,10 @@ import javax.net.ssl.SSLSession;
 
 public class MainActivity extends ListActivity {
 
-    String KISS = "";
-    List<String> actualOrder;
-    boolean done;
-    ProgressDialog pd;
+    private String KISS = "";
+    private List<String> actualOrder;
+    private boolean done;
+    private ProgressDialog pd;
 
     @Override
     protected void onStop() {

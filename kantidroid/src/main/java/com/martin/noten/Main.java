@@ -29,7 +29,8 @@ public class Main extends Activity implements OnClickListener, FragmentHolder {
 
     ListView lv;
     TextView promoviert, pluspunkte;
-    int selected, semester;
+    private int selected;
+    int semester;
     String result;
     Fach entry;
     View separator;
@@ -39,8 +40,8 @@ public class Main extends Activity implements OnClickListener, FragmentHolder {
 
     // PAGER
 
-    SectionsPagerAdapter mSectionsPagerAdapter;
-    ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

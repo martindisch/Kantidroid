@@ -15,11 +15,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class ServiceHandler {
+class ServiceHandler {
 
-    public final static int GET = 1;
-    public final static int POST = 2;
-    static String response = null;
+    private final static int GET = 1;
+    private final static int POST = 2;
+    private static String response = null;
 
     public ServiceHandler() {
 
@@ -42,7 +42,7 @@ public class ServiceHandler {
      * @method - http request method
      * @params - http request params
      */
-    public String makeServiceCall(String url, int method, List<NameValuePair> params) {
+    private String makeServiceCall(String url, int method, List<NameValuePair> params) {
         try {
             // http client
             DefaultHttpClient httpClient = new DefaultHttpClient();
