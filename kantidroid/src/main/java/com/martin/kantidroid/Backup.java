@@ -137,7 +137,7 @@ public class Backup extends Activity implements OnClickListener {
                 } else {
                     AlertDialog.Builder delDg = new AlertDialog.Builder(this);
                     delDg.setTitle("Dropbox");
-                    delDg.setMessage("Damit werden bereits vorhandene lokale Backups ï¿½berschrieben.\n\nWillst du fortfahren?\n");
+                    delDg.setMessage("Damit werden bereits vorhandene lokale Backups überschrieben.\n\nWillst du fortfahren?\n");
                     delDg.setNegativeButton("Nein", null);
                     delDg.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 
@@ -213,7 +213,7 @@ public class Backup extends Activity implements OnClickListener {
                     final Handler handler = new Handler();
                     AlertDialog.Builder delDg = new AlertDialog.Builder(this);
                     delDg.setTitle("Dropbox");
-                    delDg.setMessage("Damit werden bereits vorhandene lokale Backups ï¿½berschrieben.\n\nWillst du fortfahren?\n");
+                    delDg.setMessage("Damit werden bereits vorhandene lokale Backups überschrieben.\n\nWillst du fortfahren?\n");
                     delDg.setNegativeButton("Nein", null);
                     delDg.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 
@@ -377,7 +377,7 @@ public class Backup extends Activity implements OnClickListener {
     private void localImport() {
         AlertDialog.Builder delDg = new AlertDialog.Builder(this);
         delDg.setTitle("Import");
-        delDg.setMessage("Stelle sicher, dass du wirklich ein ï¿½lteres Backup im Ordner Kantidroid/Backup auf dem externen Speicher hast, da alle Daten in der App vor dem Import gelï¿½scht werden.\n\nWillst du fortfahren?\n");
+        delDg.setMessage("Stelle sicher, dass du wirklich ein älteres Backup im Ordner Kantidroid/Backup auf dem externen Speicher hast, da alle Daten in der App vor dem Import gelöscht werden.\n\nWillst du fortfahren?\n");
         delDg.setNegativeButton("Nein", null);
         delDg.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 
@@ -622,7 +622,7 @@ public class Backup extends Activity implements OnClickListener {
         if (requestCode == REQUEST_LINK_TO_DBX) {
             if (resultCode == android.app.Activity.RESULT_OK) {
                 initFs();
-                Toast.makeText(this, "Bei Dropbox eingeloggt. Nochmals drï¿½cken fï¿½r Backup oder Import.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Bei Dropbox eingeloggt. Nochmals drücken für Backup oder Import.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Login fehlgeschlagen", Toast.LENGTH_SHORT).show();
             }
