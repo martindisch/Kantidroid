@@ -188,7 +188,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // update entry
-    public int updateFach(Fach fach) {
+    public void updateFach(Fach fach) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -202,9 +202,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_ZEUGNIS, fach.getZeugnis());
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
 
-        int update = db.update(TABLE_MARKS, values, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
+        db.update(TABLE_MARKS, values, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
         db.close();
-        return update;
     }
 
     // delete entry

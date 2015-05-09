@@ -543,16 +543,13 @@ public class Backup extends Activity implements OnClickListener {
         out.close();
     }
 
-    private boolean saveSharedPreferencesToFile(String prefName, File dst) {
+    private void saveSharedPreferencesToFile(String prefName, File dst) {
         backuppreferences.mkdirs();
-        boolean res = false;
         ObjectOutputStream output = null;
         try {
             output = new ObjectOutputStream(new FileOutputStream(dst));
             SharedPreferences pref = getSharedPreferences(prefName, MODE_PRIVATE);
             output.writeObject(pref.getAll());
-
-            res = true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -567,12 +564,10 @@ public class Backup extends Activity implements OnClickListener {
                 ex.printStackTrace();
             }
         }
-        return res;
     }
 
     @SuppressWarnings({"unchecked"})
-    private boolean loadSharedPreferencesFromFile(String prefName, File src) {
-        boolean res = false;
+    private void loadSharedPreferencesFromFile(String prefName, File src) {
         ObjectInputStream input = null;
         try {
             input = new ObjectInputStream(new FileInputStream(src));
@@ -595,7 +590,6 @@ public class Backup extends Activity implements OnClickListener {
                     prefEdit.putString(key, ((String) v));
             }
             prefEdit.commit();
-            res = true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -611,7 +605,6 @@ public class Backup extends Activity implements OnClickListener {
                 ex.printStackTrace();
             }
         }
-        return res;
     }
 
     @Override

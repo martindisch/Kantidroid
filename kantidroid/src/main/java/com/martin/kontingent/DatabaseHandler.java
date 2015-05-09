@@ -140,7 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // update entry
-    public int updateFach(Fach fach) {
+    public void updateFach(Fach fach) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -149,7 +149,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_KONT_US, fach.getKont_us());
         values.put(KEY_DATES, fach.getDates());
 
-        return db.update(TABLE_KONT, values, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
+        db.update(TABLE_KONT, values, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
     }
 
     // delete entry
