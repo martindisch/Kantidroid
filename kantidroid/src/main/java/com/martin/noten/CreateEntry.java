@@ -68,7 +68,7 @@ public class CreateEntry extends Activity implements OnClickListener, OnCheckedC
         SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
         boolean bAnother = settings.getBoolean("anotherFach", true);
 
-        if (bAnother == true) {
+        if (bAnother) {
             another.setChecked(true);
         } else {
             another.setChecked(false);

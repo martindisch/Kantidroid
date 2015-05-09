@@ -217,7 +217,7 @@ public class AddMark extends Activity implements OnClickListener, OnCheckedChang
         SharedPreferences settings = getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
         boolean bAnother = settings.getBoolean("anotherMark", true);
 
-        if (bAnother == true) {
+        if (bAnother) {
             cbAnother.setChecked(true);
         } else {
             cbAnother.setChecked(false);

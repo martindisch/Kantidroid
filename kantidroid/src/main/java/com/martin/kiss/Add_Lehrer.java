@@ -65,7 +65,7 @@ public class Add_Lehrer extends Activity implements OnClickListener, OnCheckedCh
         SharedPreferences settings = getSharedPreferences("KISS", Context.MODE_PRIVATE);
         boolean bAnother = settings.getBoolean("another", true);
 
-        if (bAnother == true) {
+        if (bAnother) {
             cbAnother.setChecked(true);
         } else {
             cbAnother.setChecked(false);
