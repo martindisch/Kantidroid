@@ -225,7 +225,7 @@ public class Main extends Activity implements OnClickListener, FragmentHolder {
 
                     for (int z = 0; z < nFaecher.size(); z++) {
                         entryN = nFaecher.get(z);
-                        if (entryK.getName().contentEquals(entryN.getName().toString())) {
+                        if (entryK.getName().contentEquals(entryN.getName())) {
                             exists = true;
                             break;
                         }

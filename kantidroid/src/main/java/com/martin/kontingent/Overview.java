@@ -289,7 +289,7 @@ public class Overview extends Activity implements OnClickListener, OnItemClickLi
 
                     for (int z = 0; z < kFaecher.size(); z++) {
                         entryK = kFaecher.get(z);
-                        if (entryN.getName().contentEquals(entryK.getName().toString())) {
+                        if (entryN.getName().contentEquals(entryK.getName())) {
                             exists = true;
                             break;
                         }
