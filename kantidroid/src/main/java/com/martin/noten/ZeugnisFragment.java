@@ -74,11 +74,7 @@ public class ZeugnisFragment extends Fragment {
 
     private static boolean check(double a, double b) {
         if (!ASC) {
-            if (a > b) {
-                return true;
-            } else {
-                return false;
-            }
+            return a > b;
         } else {
             if (a < b) {
                 return true;
@@ -240,10 +236,7 @@ public class ZeugnisFragment extends Fragment {
         }
 
         SharedPreferences settings = getActivity().getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
-        ASC = false;
-        if (settings.getInt("sorting", 1) == 2) {
-            ASC = true;
-        }
+        ASC = settings.getInt("sorting", 1) == 2;
 
         shellsort(toSort);
 

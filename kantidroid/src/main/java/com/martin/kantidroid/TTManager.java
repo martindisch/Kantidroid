@@ -80,11 +80,7 @@ public class TTManager {
     public boolean checkTT(String sClass) {
         File SDCardRoot = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/");
         File file = new File(SDCardRoot, sClass + ".pdf");
-        if (file.length() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return file.length() > 0;
     }
 
     public String parseClass(String sClass) {
