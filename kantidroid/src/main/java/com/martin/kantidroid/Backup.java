@@ -65,6 +65,8 @@ public class Backup extends Activity implements OnClickListener {
     private DbxAccountManager mDbxAcctMgr;
     private DbxFileSystem dbxFs;
 
+    // TODO: Look into progress indicator not starting to turn -> Changelog
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
