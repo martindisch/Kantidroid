@@ -24,9 +24,6 @@ import java.math.RoundingMode;
 
 public class Guessing extends Activity implements OnClickListener {
 
-    private Button bCalc;
-    private Button bCancel;
-    private Button bOwnRelevance;
     private Spinner sRelevance;
     private EditText etMark;
     private TextView tvResult;
@@ -35,7 +32,6 @@ public class Guessing extends Activity implements OnClickListener {
     private boolean OwnRelevance = false;
     private double dOwnRelevance;
     private int iSemester;
-    private Typeface tf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +49,10 @@ public class Guessing extends Activity implements OnClickListener {
     }
 
     private void initialize() {
-        tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
-        bCalc = (Button) findViewById(R.id.bGuessingCalculate);
-        bCancel = (Button) findViewById(R.id.bGuessingCancel);
-        bOwnRelevance = (Button) findViewById(R.id.bGuessingOwnRelevance);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        Button bCalc = (Button) findViewById(R.id.bGuessingCalculate);
+        Button bCancel = (Button) findViewById(R.id.bGuessingCancel);
+        Button bOwnRelevance = (Button) findViewById(R.id.bGuessingOwnRelevance);
         sRelevance = (Spinner) findViewById(R.id.sGuessingRelevance);
         etMark = (EditText) findViewById(R.id.etGuessingMark);
         tvResult = (TextView) findViewById(R.id.tvGuessingResult);

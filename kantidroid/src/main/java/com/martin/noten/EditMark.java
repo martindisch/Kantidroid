@@ -21,9 +21,7 @@ import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetL
 public class EditMark extends Activity {
 
     private int mId, mSemester, mPosition;
-    private Button mSave, mCancel;
     private EditText mMark, mRelevance;
-    private Spinner mDate;
     private ArrayAdapter<String> mAdapter;
     private String[] mEntries;
 
@@ -44,11 +42,11 @@ public class EditMark extends Activity {
     }
 
     private void initialize() {
-        mSave = (Button) findViewById(R.id.bAddSave);
-        mCancel = (Button) findViewById(R.id.bAddCancel);
+        Button mSave = (Button) findViewById(R.id.bAddSave);
+        Button mCancel = (Button) findViewById(R.id.bAddCancel);
         mMark = (EditText) findViewById(R.id.etMark);
         mRelevance = (EditText) findViewById(R.id.etAndere);
-        mDate = (Spinner) findViewById(R.id.sDatumMark);
+        Spinner mDate = (Spinner) findViewById(R.id.sDatumMark);
 
         mSave.setOnClickListener(new OnClickListener() {
 

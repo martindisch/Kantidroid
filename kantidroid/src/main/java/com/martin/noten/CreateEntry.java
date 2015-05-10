@@ -25,8 +25,6 @@ import org.holoeverywhere.widget.Toast;
 public class CreateEntry extends Activity implements OnClickListener, OnCheckedChangeListener {
 
     private AutoCompleteTextView fach;
-    private Button save;
-    private Button cancel;
     private CheckBox another;
     private CheckBox promotionsrelevant;
 
@@ -51,8 +49,8 @@ public class CreateEntry extends Activity implements OnClickListener, OnCheckedC
 
     private void initialize() {
         fach = (AutoCompleteTextView) findViewById(R.id.etAddFach);
-        save = (Button) findViewById(R.id.bAddSave);
-        cancel = (Button) findViewById(R.id.bAddCancel);
+        Button save = (Button) findViewById(R.id.bAddSave);
+        Button cancel = (Button) findViewById(R.id.bAddCancel);
         another = (CheckBox) findViewById(R.id.cbAnother);
         promotionsrelevant = (CheckBox) findViewById(R.id.cbPromotionsrelevant);
 

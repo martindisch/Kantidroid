@@ -38,8 +38,6 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
     private TextView promoviert;
     private TextView pluspunkte;
     private int semester;
-    private String result;
-    private Fach entry;
     private Resources res;
     private Fach fSelected = null;
     private RelativeLayout indicator;
@@ -186,7 +184,8 @@ public class Semester1Fragment extends Fragment implements OnItemClickListener {
         int count = db.getFachCount();
         List<Fach> faecher = db.getAllFaecher(getActivity(), 1);
         for (int i = 0; i < count; i++) {
-            entry = faecher.get(i);
+            Fach entry = faecher.get(i);
+            String result;
             if (entry.getMathAverage1().contentEquals("-")) {
                 result = "-";
             } else {

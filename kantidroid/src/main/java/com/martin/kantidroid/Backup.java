@@ -49,31 +49,19 @@ import java.util.Map.Entry;
 public class Backup extends Activity implements OnClickListener {
 
     private static final int REQUEST_LINK_TO_DBX = 0;
-    private ImageButton bBackup;
-    private ImageButton bImport;
-    private TextView tvSync;
-    private TextView tvBackup;
     private TextView tvSyncprogress;
-    private Button bDbxBackup;
-    private Button bDbxImport;
     private ProgressBar pbDbx;
     private ImageView ivSuccess;
     private final Context context = this;
-    private File appdir;
     private File databases;
     private File preferences;
-    private File kdroiddir;
     private File backupdatabases;
     private File backuppreferences;
     private File[] files;
     private String[] prefnames;
-    private Typeface tf;
     private DbxPath databasePath;
     private DbxPath prefPath;
     private DbxFile dbxFile;
-    private final String appKey = "03ktxe8m7s1i0b6";
-    // Is initialized later on, loaded from credential storage
-    private String appSecret;
     private DbxAccountManager mDbxAcctMgr;
     private DbxFileSystem dbxFs;
 
@@ -81,17 +69,17 @@ public class Backup extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        appSecret = getApplicationContext().getString(R.string.appSecret);
+        String appSecret = getApplicationContext().getString(R.string.appSecret);
 
         setContentView(R.layout.backup_combined);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        bBackup = (ImageButton) findViewById(R.id.bBackup);
-        bImport = (ImageButton) findViewById(R.id.bImport);
-        tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
-        tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
+        ImageButton bBackup = (ImageButton) findViewById(R.id.bBackup);
+        ImageButton bImport = (ImageButton) findViewById(R.id.bImport);
+        TextView tvSync = (TextView) findViewById(R.id.tvSyncRoboto);
+        TextView tvBackup = (TextView) findViewById(R.id.tvBackupRoboto);
         tvSyncprogress = (TextView) findViewById(R.id.tvSyncprogressRoboto);
-        bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
-        bDbxImport = (Button) findViewById(R.id.bDbxImport);
+        Button bDbxBackup = (Button) findViewById(R.id.bDbxBackup);
+        Button bDbxImport = (Button) findViewById(R.id.bDbxImport);
         pbDbx = (ProgressBar) findViewById(R.id.pbDbx);
         ivSuccess = (ImageView) findViewById(R.id.ivSuccess);
         bBackup.setOnClickListener(this);
@@ -99,19 +87,20 @@ public class Backup extends Activity implements OnClickListener {
         bDbxBackup.setOnClickListener(this);
         bDbxImport.setOnClickListener(this);
 
-        appdir = getFilesDir().getParentFile();
+        File appdir = getFilesDir().getParentFile();
         databases = new File(appdir + "/databases");
         preferences = new File(appdir + "/shared_prefs");
-        kdroiddir = new File(Environment.getExternalStorageDirectory(), "/Kantidroid");
+        File kdroiddir = new File(Environment.getExternalStorageDirectory(), "/Kantidroid");
         backupdatabases = new File(kdroiddir + "/backup/databases");
         backuppreferences = new File(kdroiddir + "/backup/shared_prefs");
         prefnames = getResources().getStringArray(R.array.prefnames);
 
-        tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         tvSync.setTypeface(tf);
         tvBackup.setTypeface(tf);
         tvSyncprogress.setTypeface(tf);
 
+        String appKey = "03ktxe8m7s1i0b6";
         mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(), appKey, appSecret);
 
         if (!mDbxAcctMgr.hasLinkedAccount()) {

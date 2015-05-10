@@ -17,8 +17,6 @@ import java.util.List;
 
 public class EditSelect extends ListActivity {
 
-    private Fach selected = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +44,7 @@ public class EditSelect extends ListActivity {
         SharedPreferences spNoten = this.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
         List<Fach> faecher = db.getAllFaecher(getApplicationContext(), spNoten.getInt("selected_semester", 1));
 
-        selected = db.getFach(faecher.get(position).getID());
+        Fach selected = db.getFach(faecher.get(position).getID());
 
         Bundle data = new Bundle();
         data.putInt("id", selected.getID());

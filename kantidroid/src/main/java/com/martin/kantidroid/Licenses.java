@@ -9,16 +9,13 @@ import org.holoeverywhere.app.Activity;
 
 public class Licenses extends Activity {
 
-    private Typeface tf;
-    private TextView tvTitle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_dialog);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tvTitle = (TextView) findViewById(R.id.tvAboutTitle);
-        tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        TextView tvTitle = (TextView) findViewById(R.id.tvAboutTitle);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         tvTitle.setTypeface(tf);
     }
 

@@ -16,12 +16,10 @@ import java.util.List;
 
 public class WidgetProvider extends AppWidgetProvider {
 
-    private Resources res;
-
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        res = context.getResources();
+        Resources res = context.getResources();
 
         final int wcount = appWidgetIds.length;
 

@@ -33,7 +33,6 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
 
     private TextView tvTitle;
     private TextView tvUsage;
-    private ImageButton ibAddKont;
     private ListView lvUsage;
     private NumberPicker picker;
     private int id;
@@ -45,7 +44,6 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
     private String date_new;
     private String date_old;
     private String addition;
-    private Typeface tf;
 
     @Override
     protected void onStop() {
@@ -91,11 +89,11 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
     }
 
     private void initialize() {
-        tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 
         tvTitle = (TextView) findViewById(R.id.tvFachTitle);
         tvTitle.setTypeface(tf);
-        ibAddKont = (ImageButton) findViewById(R.id.ibAddKont);
+        ImageButton ibAddKont = (ImageButton) findViewById(R.id.ibAddKont);
         ibAddKont.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

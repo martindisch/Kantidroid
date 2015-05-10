@@ -41,25 +41,19 @@ import java.util.Calendar;
 
 public class AddMark extends Activity implements OnClickListener, OnCheckedChangeListener {
 
-    private Button bSave;
-    private Button bCancel;
-    private Spinner sDate;
     private EditText etMark;
     private EditText etOther;
     private CheckBox cbAnother;
     private RadioGroup rgGewichtung;
     private int id;
     private int iSemester;
-    private Fach fach;
     private String sSelectedRelevance;
-    private DatabaseHandler db;
     private String selectedDate;
     private String sMark;
     private ArrayAdapter<String> adapter;
     private boolean textChanged;
     private boolean firsttime;
     private AddMark crap;
-    private RadioButton rbGanz;
 
     @Override
     protected void onStop() {
@@ -104,10 +98,10 @@ public class AddMark extends Activity implements OnClickListener, OnCheckedChang
         textChanged = false;
         Calendar c = Calendar.getInstance();
         selectedDate = c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR);
-        bSave = (Button) findViewById(R.id.bAddSave);
-        rbGanz = (RadioButton) findViewById(R.id.rbGanz);
-        bCancel = (Button) findViewById(R.id.bAddCancel);
-        sDate = (Spinner) findViewById(R.id.sDatumMark);
+        Button bSave = (Button) findViewById(R.id.bAddSave);
+        RadioButton rbGanz = (RadioButton) findViewById(R.id.rbGanz);
+        Button bCancel = (Button) findViewById(R.id.bAddCancel);
+        Spinner sDate = (Spinner) findViewById(R.id.sDatumMark);
         etOther = (EditText) findViewById(R.id.etAndere);
         rgGewichtung = (RadioGroup) findViewById(R.id.rgGewichtung);
         etMark = (EditText) findViewById(R.id.etMark);
@@ -236,8 +230,8 @@ public class AddMark extends Activity implements OnClickListener, OnCheckedChang
                     double dMark = Double.parseDouble(sMark);
 
                     if (dMark >= 1 && dMark <= 6.3) {
-                        db = new DatabaseHandler(this);
-                        fach = db.getFach(id);
+                        DatabaseHandler db = new DatabaseHandler(this);
+                        Fach fach = db.getFach(id);
 
                         if (iSemester == 1) {
                             String sMarksOld = fach.getNoten1();

@@ -16,7 +16,6 @@ class ViewFachAdapter extends BaseAdapter {
     private static LayoutInflater inflater;
     private final String[] sDates;
     private final String[] sUsages;
-    private TextView tvLeft, tvRight;
 
     public ViewFachAdapter(Context context, String[] sDates, String[] sUsages) {
         super();
@@ -45,8 +44,8 @@ class ViewFachAdapter extends BaseAdapter {
         View vi = arg1;
         if (vi == null)
             vi = inflater.inflate(R.layout.overview_list_item, null);
-        tvLeft = (TextView) vi.findViewById(R.id.tvLeft);
-        tvRight = (TextView) vi.findViewById(R.id.tvRight);
+        TextView tvLeft = (TextView) vi.findViewById(R.id.tvLeft);
+        TextView tvRight = (TextView) vi.findViewById(R.id.tvRight);
         tvLeft.setTextColor(Color.parseColor("#8e8e8e"));
         tvLeft.setText(sDates[arg0]);
         tvRight.setText(sUsages[arg0]);

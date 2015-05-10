@@ -9,19 +9,17 @@ import org.holoeverywhere.app.Activity;
 public class MOTD extends Activity {
 
     private String[] list;
-    private TextView title, message;
-    private Typeface tfT, tfL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getData();
-        tfT = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
-        tfL = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
+        Typeface tfT = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        Typeface tfL = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
         setContentView(R.layout.motd);
 
-        title = (TextView) findViewById(R.id.tvMOTD_title);
-        message = (TextView) findViewById(R.id.tvMOTD_message);
+        TextView title = (TextView) findViewById(R.id.tvMOTD_title);
+        TextView message = (TextView) findViewById(R.id.tvMOTD_message);
         message.setSingleLine(false);
 
         title.setText(list[0]);

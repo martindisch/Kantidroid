@@ -43,10 +43,6 @@ public class ViewFach extends Activity {
     private String freal_average;
     private String fpromotionsfach;
     private String[] entries;
-    private String[] mark;
-    private Typeface tf;
-    private ImageButton ibAddMark;
-    private ImageButton ibMarkRequest;
     private ListView lvViewfach;
     private TextView nextHigher;
     private TextView keepAv;
@@ -79,7 +75,7 @@ public class ViewFach extends Activity {
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         name.setTypeface(tf);
     }
 
@@ -121,8 +117,8 @@ public class ViewFach extends Activity {
         nextHigher = (TextView) findViewById(R.id.tvNextHigherMark);
         keepAv = (TextView) findViewById(R.id.tvKeepAverage);
 
-        ibAddMark = (ImageButton) findViewById(R.id.ibAddMark);
-        ibMarkRequest = (ImageButton) findViewById(R.id.ibMarkRequest);
+        ImageButton ibAddMark = (ImageButton) findViewById(R.id.ibAddMark);
+        ImageButton ibMarkRequest = (ImageButton) findViewById(R.id.ibMarkRequest);
         ibAddMark.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -218,6 +214,7 @@ public class ViewFach extends Activity {
         ViewFachAdapter adapter = new ViewFachAdapter(this, empty, empty, empty);
         lvViewfach.setAdapter(adapter);
 
+        String[] mark;
         if (iSemester == 1) {
             if (!checka.getNoten1().contentEquals("-")) {
                 String[] sDates = new String[entries.length];

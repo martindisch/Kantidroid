@@ -23,9 +23,6 @@ public class EditLehrer extends Activity implements OnClickListener {
 
     private String sName;
     private EditText etName;
-    private Button bSave;
-    private Button bCancel;
-    private TextView tvCount;
 
     @Override
     protected void onStop() {
@@ -50,9 +47,9 @@ public class EditLehrer extends Activity implements OnClickListener {
         getApplicationContext();
         SharedPreferences spRem = getApplicationContext().getSharedPreferences("Rem", Context.MODE_PRIVATE);
         etName = (EditText) findViewById(R.id.etEditName);
-        tvCount = (TextView) findViewById(R.id.tvEditCount);
-        bSave = (Button) findViewById(R.id.bEditSave);
-        bCancel = (Button) findViewById(R.id.bEditCancel);
+        TextView tvCount = (TextView) findViewById(R.id.tvEditCount);
+        Button bSave = (Button) findViewById(R.id.bEditSave);
+        Button bCancel = (Button) findViewById(R.id.bEditCancel);
         bSave.setOnClickListener(this);
         bCancel.setOnClickListener(this);
         etName.setText(sName);

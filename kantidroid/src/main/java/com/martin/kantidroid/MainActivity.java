@@ -42,11 +42,6 @@ import java.util.List;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-    private LinearLayout cardKontingent;
-    private LinearLayout cardKISS;
-    private LinearLayout cardNoten;
-    private LinearLayout actioncardNoten;
-    private LinearLayout actioncardKontingent;
     private TextView tvSchn;
     private TextView pluspunkte;
     private TextView tvUsage;
@@ -86,11 +81,11 @@ public class MainActivity extends Activity implements OnClickListener {
         setContentView(R.layout.kdroid_main);
         // getSupportActionBar().setBackgroundDrawable(new
         // ColorDrawable(getResources().getColor(R.color.holo_purple_light)));
-        cardNoten = (LinearLayout) findViewById(R.id.llCardNoten);
-        cardKontingent = (LinearLayout) findViewById(R.id.llCardKontingent);
-        cardKISS = (LinearLayout) findViewById(R.id.llCardKISS);
-        actioncardNoten = (LinearLayout) findViewById(R.id.llActioncardNoten);
-        actioncardKontingent = (LinearLayout) findViewById(R.id.llActioncardKontingent);
+        LinearLayout cardNoten = (LinearLayout) findViewById(R.id.llCardNoten);
+        LinearLayout cardKontingent = (LinearLayout) findViewById(R.id.llCardKontingent);
+        LinearLayout cardKISS = (LinearLayout) findViewById(R.id.llCardKISS);
+        LinearLayout actioncardNoten = (LinearLayout) findViewById(R.id.llActioncardNoten);
+        LinearLayout actioncardKontingent = (LinearLayout) findViewById(R.id.llActioncardKontingent);
         cardNoten.setOnClickListener(this);
         cardKontingent.setOnClickListener(this);
         cardKISS.setOnClickListener(this);

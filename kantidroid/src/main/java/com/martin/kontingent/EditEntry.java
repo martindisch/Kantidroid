@@ -20,9 +20,6 @@ public class EditEntry extends Activity implements OnClickListener {
 
     private EditText etName;
     private EditText etKontingent;
-    private Button bSave;
-    private Button bCancel;
-    private int id;
     private String fname;
     private String fkont;
     private Fach fach;
@@ -50,7 +47,7 @@ public class EditEntry extends Activity implements OnClickListener {
         Bundle received = getIntent().getExtras();
         DatabaseHandler db = new DatabaseHandler(this);
 
-        id = received.getInt("id");
+        int id = received.getInt("id");
         fach = db.getFach(id);
 
         fname = fach.getName();
@@ -60,8 +57,8 @@ public class EditEntry extends Activity implements OnClickListener {
     private void initialize() {
         etName = (EditText) findViewById(R.id.etEditFach);
         etKontingent = (EditText) findViewById(R.id.etEditKontingent);
-        bSave = (Button) findViewById(R.id.bEditSave);
-        bCancel = (Button) findViewById(R.id.bEditCancel);
+        Button bSave = (Button) findViewById(R.id.bEditSave);
+        Button bCancel = (Button) findViewById(R.id.bEditCancel);
         bSave.setOnClickListener(this);
         bCancel.setOnClickListener(this);
         updateText();

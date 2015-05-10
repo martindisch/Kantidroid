@@ -15,8 +15,6 @@ import java.util.List;
 
 public class AddSelect extends ListActivity {
 
-    private Fach selected = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +40,7 @@ public class AddSelect extends ListActivity {
         DatabaseHandler db = new DatabaseHandler(this);
         List<Fach> faecher = db.getAllFaecher(getApplicationContext());
 
-        selected = db.getFach(faecher.get(position).getID());
+        Fach selected = db.getFach(faecher.get(position).getID());
 
         Bundle data = new Bundle();
         data.putInt("id", selected.getID());

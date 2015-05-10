@@ -12,16 +12,13 @@ import org.holoeverywhere.widget.TextView;
 
 public class KissView extends Activity {
 
-    private TextView tvDate;
-    private WebView wvKISS;
-
     @Override
     protected void onCreate(Bundle sSavedInstanceState) {
         super.onCreate(sSavedInstanceState);
         setContentView(R.layout.kiss_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tvDate = (TextView) findViewById(R.id.kvDate);
-        wvKISS = (WebView) findViewById(R.id.kvWebView);
+        TextView tvDate = (TextView) findViewById(R.id.kvDate);
+        WebView wvKISS = (WebView) findViewById(R.id.kvWebView);
         SharedPreferences spKISS = getSharedPreferences("KISS", MODE_PRIVATE);
         if (!spKISS.getString("last_refresh", "-").contentEquals("-")) {
             tvDate.setText("KISS vom " + spKISS.getString("last_refresh", "KISS nie geladen"));

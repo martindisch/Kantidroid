@@ -19,7 +19,6 @@ import org.holoeverywhere.widget.Toast;
 
 public class RemoveUsage extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
-    private String name;
     private String dates;
     private String removable;
     private String[] entries;
@@ -53,7 +52,7 @@ public class RemoveUsage extends ListActivity implements android.content.DialogI
         id = received.getInt("id");
         Fach fach = db.getFach(id);
 
-        name = fach.getName();
+        String name = fach.getName();
         dates = fach.getDates();
         String sKont_us = fach.getKont_us();
         kont_us = Integer.parseInt(sKont_us);

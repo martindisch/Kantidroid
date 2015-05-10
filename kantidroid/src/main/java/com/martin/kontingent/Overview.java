@@ -40,7 +40,6 @@ public class Overview extends Activity implements OnClickListener, OnItemClickLi
     private ListView lv;
     // ProgressBar pb;
     private TextView tvUsage;
-    private Resources res;
     private Fach fSelected = null;
     private LinearLayout KOverview;
 
@@ -162,7 +161,7 @@ public class Overview extends Activity implements OnClickListener, OnItemClickLi
             dPercentage = (double) Math.round((double) used * 100 / total * 100) / 100;
         }
 
-        res = getResources();
+        Resources res = getResources();
 
         tvUsage.setText(dPercentage + "% des Kontingents benutzt (" + used + "/" + total + ")");
         if (überzogen == 0) {
