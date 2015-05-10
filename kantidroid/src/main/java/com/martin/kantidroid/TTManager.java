@@ -88,8 +88,7 @@ class TTManager {
             char cNumber = sClass.charAt(0);
             char cAbteilung = sClass.charAt(1);
             char cClass = sClass.charAt(2);
-            String sNewClass = (cNumber + "-" + cAbteilung + cClass).toLowerCase();
-            return sNewClass;
+            return (cNumber + "-" + cAbteilung + cClass).toLowerCase();
         } catch (Exception e) {
             return "Error";
         }

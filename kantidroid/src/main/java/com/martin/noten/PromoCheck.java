@@ -154,8 +154,7 @@ public class PromoCheck {
             sSchnitt = ("-");
         }
 
-        PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt);
-        return prResult;
+        return new PromoRes(sMessage, iColor, sPP, sSchnitt);
     }
 
     public PromoRes getHMS(int iSemester) {
@@ -236,8 +235,7 @@ public class PromoCheck {
             sSchnitt = ("-");
         }
 
-        PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt);
-        return prResult;
+        return new PromoRes(sMessage, iColor, sPP, sSchnitt);
     }
 
     public PromoRes getFMS(int iSemester) {
@@ -314,7 +312,6 @@ public class PromoCheck {
             sSchnitt = ("-");
         }
 
-        PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt);
-        return prResult;
+        return new PromoRes(sMessage, iColor, sPP, sSchnitt);
     }
 }

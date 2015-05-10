@@ -317,8 +317,7 @@ public class ViewFach extends Activity {
             upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
         }
 
-        double needed = upper_term / dRelevance;
-        return needed;
+        return upper_term / dRelevance;
     }
 
     @Override

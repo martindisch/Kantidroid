@@ -106,8 +106,7 @@ public class RemoveUsage extends ListActivity implements android.content.DialogI
     private int getNewKont() {
         String[] details = current[1].split(" ");
         int kont_rev = Integer.parseInt(details[0]);
-        int new_kont = kont_us - kont_rev;
-        return new_kont;
+        return kont_us - kont_rev;
     }
 
     @Override
