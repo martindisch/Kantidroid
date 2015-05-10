@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.widget.RemoteViews;
 
-import com.martin.noten.Fach;
 import com.martin.noten.PromoCheck;
 import com.martin.noten.PromoRes;
 

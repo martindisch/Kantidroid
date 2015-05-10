@@ -5,22 +5,18 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.ListView;
-import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
 import java.util.List;

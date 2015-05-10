@@ -25,7 +25,6 @@ import android.view.View.OnClickListener;
 
 import com.martin.kiss.Background;
 import com.martin.kontingent.Overview;
-import com.martin.noten.Fach;
 import com.martin.noten.Main;
 import com.martin.noten.PromoCheck;
 import com.martin.noten.PromoRes;

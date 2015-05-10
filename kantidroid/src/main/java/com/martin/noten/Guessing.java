@@ -15,7 +15,6 @@ import com.martin.kantidroid.R;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.CheckBox;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.Toast;
