@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class PromoCheck {
-    private Context context;
+    private final Context context;
 
     public PromoCheck(Context context) {
         super();

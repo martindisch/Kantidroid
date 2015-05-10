@@ -58,7 +58,7 @@ public class Backup extends Activity implements OnClickListener {
     private Button bDbxImport;
     private ProgressBar pbDbx;
     private ImageView ivSuccess;
-    private Context context = this;
+    private final Context context = this;
     private File appdir;
     private File databases;
     private File preferences;
@@ -71,7 +71,7 @@ public class Backup extends Activity implements OnClickListener {
     private DbxPath databasePath;
     private DbxPath prefPath;
     private DbxFile dbxFile;
-    private String appKey = "03ktxe8m7s1i0b6";
+    private final String appKey = "03ktxe8m7s1i0b6";
     // Is initialized later on, loaded from credential storage
     private String appSecret;
     private DbxAccountManager mDbxAcctMgr;

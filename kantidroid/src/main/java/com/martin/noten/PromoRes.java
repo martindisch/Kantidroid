@@ -6,10 +6,10 @@ package com.martin.noten;
  * @author Martin
  */
 public class PromoRes {
-    public String sMessage;
-    public int iColor;
-    public String sPP;
-    public String sSchnitt;
+    public final String sMessage;
+    public final int iColor;
+    public final String sPP;
+    public final String sSchnitt;
 
     /**
      * The constructor

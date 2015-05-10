@@ -14,8 +14,8 @@ import org.holoeverywhere.widget.TextView;
 class ViewFachAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater;
-    private String[] sDates;
-    private String[] sUsages;
+    private final String[] sDates;
+    private final String[] sUsages;
     private TextView tvLeft, tvRight;
 
     public ViewFachAdapter(Context context, String[] sDates, String[] sUsages) {

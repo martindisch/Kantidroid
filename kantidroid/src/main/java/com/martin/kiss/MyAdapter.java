@@ -18,7 +18,7 @@ import java.util.Map;
 class MyAdapter extends SimpleAdapter {
 
     private final Activity context;
-    private List<? extends Map<String, ?>> list;
+    private final List<? extends Map<String, ?>> list;
 
     public MyAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
         super(context, data, resource, from, to);
