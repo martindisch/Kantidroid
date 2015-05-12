@@ -65,8 +65,6 @@ public class Backup extends Activity implements OnClickListener {
     private DbxAccountManager mDbxAcctMgr;
     private DbxFileSystem dbxFs;
 
-    // TODO: Look into progress indicator not starting to turn -> Changelog
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -191,6 +189,15 @@ public class Backup extends Activity implements OnClickListener {
                                 }
                             }
                             Toast.makeText(getApplicationContext(), "Daten werden hochgeladen", Toast.LENGTH_SHORT).show();
+                            if (dbxSynchronizing()) {
+                                pbDbx.setVisibility(View.VISIBLE);
+                                ivSuccess.setVisibility(View.INVISIBLE);
+                                tvSyncprogress.setText("Synchronisieren");
+                            } else {
+                                pbDbx.setVisibility(View.INVISIBLE);
+                                ivSuccess.setVisibility(View.VISIBLE);
+                                tvSyncprogress.setText("Synchronisiert");
+                            }
                         }
 
                     });
