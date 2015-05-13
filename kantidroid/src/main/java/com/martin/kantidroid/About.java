@@ -7,8 +7,6 @@ import org.holoeverywhere.preference.PreferenceActivity;
 
 public class About extends PreferenceActivity {
 
-    // TODO: Check all files for encoding
-    
     @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

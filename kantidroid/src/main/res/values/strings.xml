@@ -4,6 +4,7 @@
     <string name="app_name">Kantidroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="kiss_url">https://kiss.bks-campus.ch/infoscreen</string>
 
     <string-array name="prefnames">
         <item>check</item>
