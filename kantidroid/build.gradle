@@ -22,6 +22,6 @@ android {
 }
 
 dependencies {
-    compile project(':holoEverywhereAddonPreferences')
     compile files('libs/dropbox-sync-sdk-android.jar')
+    compile "com.android.support:appcompat-v7:22.1.1"
 }

@@ -1,3 +1,1 @@
-include ':holoEverywhereLibrary'
-include ':holoEverywhereAddonPreferences'
 include ':kantidroid'
