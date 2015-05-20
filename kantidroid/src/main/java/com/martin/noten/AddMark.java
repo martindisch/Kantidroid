@@ -1,11 +1,14 @@
 package com.martin.noten;
 
+import android.app.DatePickerDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -14,24 +17,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
-
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.CheckBox;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.Spinner;
-import org.holoeverywhere.widget.Toast;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetListener;
 
 import java.util.Calendar;
 
@@ -39,7 +38,7 @@ import java.util.Calendar;
 // That's because I hate it and absolutely don't want to spend
 // a single second longer working on it.
 
-public class AddMark extends Activity implements OnClickListener, OnCheckedChangeListener {
+public class AddMark extends AppCompatActivity implements OnClickListener, OnCheckedChangeListener {
 
     private EditText etMark;
     private EditText etOther;
@@ -108,8 +107,8 @@ public class AddMark extends Activity implements OnClickListener, OnCheckedChang
         cbAnother = (CheckBox) findViewById(R.id.cbAnotherMark);
         bSave.setOnClickListener(this);
         bCancel.setOnClickListener(this);
-        adapter = new ArrayAdapter<String>(this, R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.add(selectedDate);
         sDate.setAdapter(adapter);
         cbAnother.setOnCheckedChangeListener(this);
@@ -117,24 +116,23 @@ public class AddMark extends Activity implements OnClickListener, OnCheckedChang
         etMark.setText("");
         etOther.setText("");
 
+        final Context context = this;
+
         sDate.setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     Calendar c = Calendar.getInstance();
-                    DatePickerDialog dg = new DatePickerDialog();
-                    dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-                    dg.setOnDateSetListener(new OnDateSetListener() {
-
+                    DatePickerDialog dg = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() { // TODO: Check if also possible with ApplicationContext
                         @Override
-                        public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
+                        public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                             selectedDate = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
                             adapter.clear();
                             adapter.add(selectedDate);
                         }
-                    });
-                    dg.show(crap);
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                    dg.show();
                 }
                 return true;
             }

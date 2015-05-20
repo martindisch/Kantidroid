@@ -17,11 +17,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.martin.kiss.Background;
 import com.martin.kontingent.Overview;
@@ -29,18 +36,10 @@ import com.martin.noten.Main;
 import com.martin.noten.PromoCheck;
 import com.martin.noten.PromoRes;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
-import org.holoeverywhere.widget.Toast;
-
 import java.io.File;
 import java.util.List;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     private TextView tvSchn;
     private TextView pluspunkte;
@@ -109,7 +108,7 @@ public class MainActivity extends Activity implements OnClickListener {
         }
         if (!check.getSeen("2.36", this)) {
             /*AlertDialog.Builder dgc = new AlertDialog.Builder(this);
-			dgc.setTitle("Changelog");
+            dgc.setTitle("Changelog");
 			dgc.setNeutralButton("Schliessen", null);
 
 			// Text only message
@@ -294,7 +293,7 @@ public class MainActivity extends Activity implements OnClickListener {
         switch (item.getItemId()) {
             case R.id.iTimetable:
                 LayoutInflater ttinflater = this.getLayoutInflater();
-                View ttDialog = ttinflater.inflate(R.layout.ttdialog);
+                View ttDialog = ttinflater.inflate(R.layout.ttdialog, null);
                 final EditText ttetClass = (EditText) ttDialog.findViewById(R.id.ttetClass);
                 SharedPreferences sp = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
                 ttetClass.setText(sp.getString("class", ""));

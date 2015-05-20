@@ -1,8 +1,10 @@
 package com.martin.kiss;
 
+import android.app.ListActivity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -18,23 +20,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
-
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.app.ProgressDialog;
-import org.holoeverywhere.widget.ArrayAdapter;
-import org.holoeverywhere.widget.ListView;
-import org.holoeverywhere.widget.NumberPicker;
-import org.holoeverywhere.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -76,7 +75,7 @@ public class MainActivity extends ListActivity {
         pd.setCancelable(false);
         pd.setIndeterminate(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+            requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         }
         Check check = new Check();
         if (!check.getSeen(getClass().getName(), this)) {
@@ -88,7 +87,7 @@ public class MainActivity extends ListActivity {
             check.setSeen(getClass().getName(), this);
         }
         if (getIntent().hasExtra("Internal_call")) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -162,7 +161,7 @@ public class MainActivity extends ListActivity {
         final Handler handler = new Handler();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            setSupportProgressBarIndeterminateVisibility(true);
+            setProgressBarIndeterminateVisibility(true);
         } else {
             pd.show();
         }
@@ -275,7 +274,7 @@ public class MainActivity extends ListActivity {
                     public void run() {
                         startList();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                            setSupportProgressBarIndeterminateVisibility(false);
+                            setProgressBarIndeterminateVisibility(false);
                         } else {
                             pd.hide();
                         }
@@ -444,14 +443,14 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.iShowKISS:
             /*
-			 * Intent iShow = new Intent(MainActivity.this,
+             * Intent iShow = new Intent(MainActivity.this,
 			 * InfoscreenChoice.class);
 			 * iShow.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			 * startActivity(iShow);
 			 */
 
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
-                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1);
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
                 arrayAdapter.add("Im Browser öffnen");
                 arrayAdapter.add("Aus dem Cache anzeigen");
                 builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {

@@ -1,5 +1,6 @@
 package com.martin.kiss;
 
+import android.app.ListActivity;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -7,16 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
-
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.widget.ListView;
 
 public class Remove_Lehrer extends ListActivity {
 
@@ -38,7 +36,8 @@ public class Remove_Lehrer extends ListActivity {
     protected void onCreate(Bundle sSavedInstanceState) {
         super.onCreate(sSavedInstanceState);
         createList();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // TODO: Check if really necessary everywhere
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void createList() {
@@ -46,7 +45,7 @@ public class Remove_Lehrer extends ListActivity {
         sList = spKISS.getString("lehrer", "");
         old_noti = spKISS.getString("noti", "");
         sNames = sList.split("-");
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, sNames));
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sNames));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.martin.noten;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,11 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-
-import com.martin.kantidroid.R;
-
-import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.widget.ListView;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class EditSelect extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createList();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void createList() {
@@ -34,7 +31,7 @@ public class EditSelect extends ListActivity {
             Fach entry = faecher.get(i);
             names[i] = entry.getName();
         }
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names));
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names));
     }
 
     @Override

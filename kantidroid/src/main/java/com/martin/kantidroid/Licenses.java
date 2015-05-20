@@ -2,12 +2,11 @@ package com.martin.kantidroid;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.holoeverywhere.app.Activity;
-
-public class Licenses extends Activity {
+public class Licenses extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,21 +1,19 @@
 package com.martin.noten;
 
+import android.app.ListActivity;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
-
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.widget.ListView;
-import org.holoeverywhere.widget.Toast;
 
 public class RemoveMark extends ListActivity implements android.content.DialogInterface.OnClickListener {
 
@@ -41,7 +39,7 @@ public class RemoveMark extends ListActivity implements android.content.DialogIn
         getData();
         prepareList();
         createList();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void getData() {
@@ -65,7 +63,7 @@ public class RemoveMark extends ListActivity implements android.content.DialogIn
     }
 
     private void createList() {
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, entries));
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, entries));
     }
 
     @Override

@@ -8,20 +8,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Toast;
-
 import java.util.List;
 
-public class Main extends Activity implements OnClickListener, FragmentHolder {
+public class Main extends AppCompatActivity implements OnClickListener, FragmentHolder {
 
     private int selected;
 

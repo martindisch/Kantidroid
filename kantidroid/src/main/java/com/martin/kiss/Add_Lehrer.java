@@ -6,23 +6,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.widget.AutoCompleteTextView;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.CheckBox;
-import org.holoeverywhere.widget.Toast;
-
-public class Add_Lehrer extends Activity implements OnClickListener, OnCheckedChangeListener {
+public class Add_Lehrer extends AppCompatActivity implements OnClickListener, OnCheckedChangeListener {
 
     private AutoCompleteTextView etName;
     private CheckBox cbAnother;
@@ -55,7 +54,7 @@ public class Add_Lehrer extends Activity implements OnClickListener, OnCheckedCh
         bCancel.setOnClickListener(this);
         cbAnother.setOnCheckedChangeListener(this);
         String[] names = getResources().getStringArray(R.array.lehrer_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         etName.setAdapter(adapter);
     }
 

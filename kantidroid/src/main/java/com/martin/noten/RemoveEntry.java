@@ -1,5 +1,6 @@
 package com.martin.noten;
 
+import android.app.ListActivity;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -7,16 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
-
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.widget.ListView;
 
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class RemoveEntry extends ListActivity implements android.content.DialogI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createList();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void createList() {
@@ -51,7 +49,7 @@ public class RemoveEntry extends ListActivity implements android.content.DialogI
             Fach entry = faecher.get(i);
             names[i] = entry.getName();
         }
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names));
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names));
     }
 
     @Override

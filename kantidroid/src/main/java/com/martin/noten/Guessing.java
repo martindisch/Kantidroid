@@ -3,26 +3,25 @@ package com.martin.noten;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
-
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.Spinner;
-import org.holoeverywhere.widget.Toast;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Guessing extends Activity implements OnClickListener {
+public class Guessing extends AppCompatActivity implements OnClickListener {
 
     private Spinner sRelevance;
     private EditText etMark;
@@ -138,7 +137,7 @@ public class Guessing extends Activity implements OnClickListener {
                         tvResult.setVisibility(View.VISIBLE);
 
                         // Hide the keyboard
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE);
                         View view = getCurrentFocus();
                         if (view == null) {
                             view = new View(this);

@@ -6,27 +6,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.widget.AutoCompleteTextView;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.CheckBox;
-import org.holoeverywhere.widget.Toast;
-
-public class CreateEntry extends Activity implements OnClickListener, OnCheckedChangeListener {
+public class CreateEntry extends AppCompatActivity implements OnClickListener, OnCheckedChangeListener {
 
     private AutoCompleteTextView fach;
     private CheckBox another;
@@ -111,7 +110,7 @@ public class CreateEntry extends Activity implements OnClickListener, OnCheckedC
 
         });
         String[] names = getResources().getStringArray(R.array.faecher_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         fach.setAdapter(adapter);
 
         selectedKont = "0";

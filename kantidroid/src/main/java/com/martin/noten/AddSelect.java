@@ -1,22 +1,21 @@
 package com.martin.noten;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.martin.kantidroid.R;
-
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.ListView;
-import org.holoeverywhere.widget.Spinner;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class AddSelect extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createList();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void createList() {
@@ -41,7 +40,7 @@ public class AddSelect extends ListActivity {
             Fach entry = faecher.get(i);
             names[i] = entry.getName();
         }
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, names));
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names));
     }
 
     @Override
@@ -61,7 +60,7 @@ public class AddSelect extends ListActivity {
         AlertDialog.Builder inp = new AlertDialog.Builder(this);
         inp.setTitle("Semester");
         LayoutInflater inflator = this.getLayoutInflater();
-        LinearLayout ll = (LinearLayout) inflator.inflate(R.layout.semester_choice);
+        LinearLayout ll = (LinearLayout) inflator.inflate(R.layout.semester_choice, null);
         final Spinner sem = (Spinner) ll.findViewById(R.id.spSemester);
         sem.setSelection(predictedsem - 1);
         inp.setView(ll);

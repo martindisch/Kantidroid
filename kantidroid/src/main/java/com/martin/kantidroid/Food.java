@@ -1,11 +1,10 @@
 package com.martin.kantidroid;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import org.holoeverywhere.app.Activity;
-
-public class Food extends Activity {
+public class Food extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

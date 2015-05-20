@@ -2,11 +2,10 @@ package com.martin.kantidroid;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import org.holoeverywhere.app.Activity;
-
-public class MOTD extends Activity {
+public class MOTD extends AppCompatActivity {
 
     private String[] list;
 

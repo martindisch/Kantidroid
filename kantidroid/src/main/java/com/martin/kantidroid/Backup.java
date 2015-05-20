@@ -4,10 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dropbox.sync.android.DbxAccountManager;
 import com.dropbox.sync.android.DbxException;
@@ -26,12 +30,6 @@ import com.dropbox.sync.android.DbxFileSystem;
 import com.dropbox.sync.android.DbxFileSystem.SyncStatusListener;
 import com.dropbox.sync.android.DbxPath;
 import com.dropbox.sync.android.DbxPath.InvalidPathException;
-
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.preference.SharedPreferences;
-import org.holoeverywhere.preference.SharedPreferences.Editor;
-import org.holoeverywhere.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,7 +44,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class Backup extends Activity implements OnClickListener {
+public class Backup extends AppCompatActivity implements OnClickListener {
 
     private static final int REQUEST_LINK_TO_DBX = 0;
     private TextView tvSyncprogress;
@@ -569,7 +567,7 @@ public class Backup extends Activity implements OnClickListener {
         ObjectInputStream input = null;
         try {
             input = new ObjectInputStream(new FileInputStream(src));
-            Editor prefEdit = getSharedPreferences(prefName, MODE_PRIVATE).edit();
+            SharedPreferences.Editor prefEdit = getSharedPreferences(prefName, MODE_PRIVATE).edit();
             prefEdit.clear();
             Map<String, ?> entries = (Map<String, ?>) input.readObject();
             for (Entry<String, ?> entry : entries.entrySet()) {

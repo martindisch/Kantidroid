@@ -62,7 +62,7 @@ public class WidgetProvider extends AppWidgetProvider {
             }
             views.setTextViewText(R.id.tvNotBig, "+ " + prResult.sPP.split("/")[0]);
             /*
-			 * if (prResult.iColor == R.color.holo_green_light) {
+             * if (prResult.iColor == R.color.holo_green_light) {
 			 * pluspunkte.setTextColor(res.getColor(R.color.holo_orange_light));
 			 * } else { pluspunkte.setTextColor(res.getColor(prResult.iColor));
 			 * }

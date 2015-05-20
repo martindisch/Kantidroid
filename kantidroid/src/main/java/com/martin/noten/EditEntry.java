@@ -4,20 +4,19 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.CheckBox;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.Toast;
-
-public class EditEntry extends Activity implements OnClickListener {
+public class EditEntry extends AppCompatActivity implements OnClickListener {
 
     private EditText etName;
     private String fname;

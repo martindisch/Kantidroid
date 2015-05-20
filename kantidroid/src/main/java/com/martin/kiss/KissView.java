@@ -2,15 +2,14 @@ package com.martin.kiss;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.martin.kantidroid.R;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.widget.TextView;
-
-public class KissView extends Activity {
+public class KissView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle sSavedInstanceState) {

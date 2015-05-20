@@ -172,7 +172,7 @@ public class Fach {
         if (!this.getMathAverage1().contentEquals("-")) {
             double MathAverage = Double.parseDouble(this.getMathAverage1());
             /*
-			 * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
+             * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
 			 * RealAverage = Double.valueOf(oneDForm.format(MathAverage));
 			 */
             double RealAverage = 0.5 * Math.round(MathAverage / 0.5);

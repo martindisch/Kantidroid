@@ -1,10 +1,9 @@
 package com.martin.noten;
 
+import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar.Tab;
-
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.Fragment;
 
 class TabListener<T extends Fragment> implements android.support.v7.app.ActionBar.TabListener {
     private final Activity mActivity;

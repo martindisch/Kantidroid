@@ -1,24 +1,23 @@
 package com.martin.noten;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.Spinner;
-import org.holoeverywhere.widget.Toast;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetListener;
-
-public class EditMark extends Activity {
+public class EditMark extends AppCompatActivity {
 
     private int mId, mSemester, mPosition;
     private EditText mMark, mRelevance;
@@ -79,8 +78,8 @@ public class EditMark extends Activity {
 
         mMark.setText(mark);
         mRelevance.setText(relevance);
-        mAdapter = new ArrayAdapter<String>(this, R.layout.simple_spinner_item);
-        mAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mAdapter.add(date);
         mDate.setAdapter(mAdapter);
         mDate.setOnTouchListener(new OnTouchListener() {
@@ -95,20 +94,16 @@ public class EditMark extends Activity {
     }
 
     private void setDate(String date) {
-        DatePickerDialog dg = new DatePickerDialog();
         int year = Integer.parseInt(date.split("\\.")[2]);
         int month = Integer.parseInt(date.split("\\.")[1]) - 1;
         int day = Integer.parseInt(date.split("\\.")[0]);
-        dg.setDate(year, month, day);
-        dg.setOnDateSetListener(new OnDateSetListener() {
+        DatePickerDialog dg = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
-                String selectedDate = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
-                mAdapter.clear();
-                mAdapter.add(selectedDate);
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
             }
-        });
-        dg.show(this);
+        }, year, month, day);
+        dg.show();
     }
 
     private void save() {

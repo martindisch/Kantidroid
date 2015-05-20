@@ -1,35 +1,34 @@
 package com.martin.kontingent;
 
+import android.app.DatePickerDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.martin.kantidroid.Check;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.WidgetProvider;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.NumberPicker;
-import org.holoeverywhere.widget.Toast;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog.OnDateSetListener;
-
 import java.util.Calendar;
 
-public class ViewFach extends Activity implements OnClickListener, android.content.DialogInterface.OnClickListener, OnDateSetListener {
+public class ViewFach extends AppCompatActivity implements OnClickListener, android.content.DialogInterface.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private TextView tvTitle;
     private TextView tvUsage;
@@ -70,6 +69,7 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
             dg.show();
             check.setSeen(getClass().getName(), this);
         }
+        // TODO: Check if support is necessary and replace everywhere
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -131,10 +131,8 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
     public void onClick(DialogInterface dialog, int which) {
         picked_number = picker.getValue();
         Calendar c = Calendar.getInstance();
-        DatePickerDialog dg = new DatePickerDialog();
-        dg.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-        dg.setOnDateSetListener(this);
-        dg.show(this);
+        DatePickerDialog dg = new DatePickerDialog(this, this, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+        dg.show();
     }
 
     private void setKont() {
@@ -170,7 +168,7 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
     private void invokedUse() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Anzahl genommenes Kontingent");
-        View view = LayoutInflater.inflate(this, R.layout.numberpicker);
+        View view = LayoutInflater.from(this).inflate(R.layout.numberpicker, null);
         picker = (NumberPicker) view.findViewById(R.id.numberPicker);
         picker.setMinValue(1);
         picker.setMaxValue(4);
@@ -212,8 +210,23 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
 
     }
 
+    private void useKont() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Anzahl genommenes Kontingent");
+        View view = LayoutInflater.from(this).inflate(R.layout.numberpicker, null);
+        picker = (NumberPicker) view.findViewById(R.id.numberPicker);
+        picker.setMinValue(1);
+        picker.setMaxValue(4);
+        picker.setValue(1);
+        builder.setView(view);
+        builder.setNegativeButton("Abbrechen", null);
+        builder.setPositiveButton("OK", this);
+        builder.show();
+    }
+
+    // TODO: Check DatePicker correctness here and in Noten
     @Override
-    public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
+    public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
         String singularPlural = " Lektion";
 
         if (picked_number > 1) {
@@ -227,19 +240,5 @@ public class ViewFach extends Activity implements OnClickListener, android.conte
             date_new = date_old + addition;
         }
         setKont();
-    }
-
-    private void useKont() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Anzahl genommenes Kontingent");
-        View view = LayoutInflater.inflate(this, R.layout.numberpicker);
-        picker = (NumberPicker) view.findViewById(R.id.numberPicker);
-        picker.setMinValue(1);
-        picker.setMaxValue(4);
-        picker.setValue(1);
-        builder.setView(view);
-        builder.setNegativeButton("Abbrechen", null);
-        builder.setPositiveButton("OK", this);
-        builder.show();
     }
 }

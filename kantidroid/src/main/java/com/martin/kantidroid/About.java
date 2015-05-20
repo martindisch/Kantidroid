@@ -1,9 +1,8 @@
 package com.martin.kantidroid;
 
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.view.MenuItem;
-
-import org.holoeverywhere.preference.PreferenceActivity;
 
 public class About extends PreferenceActivity {
 
@@ -11,7 +10,7 @@ public class About extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         addPreferencesFromResource(R.xml.about);
     }
 
