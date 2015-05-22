@@ -70,10 +70,11 @@ public class MainActivity extends ActionBarActivity
             case 4:
                 mTitle = getString(R.string.subjects);
                 break;
-            case 5:
+            // Number 5 is the spacer
+            case 6:
                 mTitle = getString(R.string.feedback);
                 break;
-            case 6:
+            case 7:
                 mTitle = getString(R.string.about);
                 break;
         }
@@ -81,7 +82,6 @@ public class MainActivity extends ActionBarActivity
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
