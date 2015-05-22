@@ -3,3 +3,7 @@ Google
 	http://materialdesignicons.com/icon/calendar-remove
 	http://materialdesignicons.com/icon/content-save
 	http://materialdesignicons.com/icon/information-outline
+	http://materialdesignicons.com/icon/pencil
+	
+Austin Andrews
+	http://materialdesignicons.com/icon/book-open
