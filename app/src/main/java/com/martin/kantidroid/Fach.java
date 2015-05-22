@@ -206,35 +206,35 @@ public class Fach {
         this._real_average2 = String.valueOf(real_average);
     }
 
-    public String get_short() {
+    public String getShort() {
         return _short;
     }
 
-    public void set_short(String _short) {
+    public void setShort(String _short) {
         this._short = _short;
     }
 
-    public String get_color() {
+    public String getColor() {
         return _color;
     }
 
-    public void set_color(String _color) {
+    public void setColor(String _color) {
         this._color = _color;
     }
 
-    public String get_kont1() {
+    public String getKont1() {
         return _kont1;
     }
 
-    public void set_kont1(String _kont1) {
+    public void setKont1(String _kont1) {
         this._kont1 = _kont1;
     }
 
-    public String get_kont2() {
+    public String getKont2() {
         return _kont2;
     }
 
-    public void set_kont2(String _kont2) {
+    public void setKont2(String _kont2) {
         this._kont2 = _kont2;
     }
 
