@@ -28,6 +28,8 @@ import android.widget.Toast;
  */
 public class NavigationDrawerFragment extends Fragment {
 
+    // TODO: Back button should close drawer, not app
+
     /**
      * Remember the position of the selected item.
      */
