@@ -65,15 +65,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_NAME, fach.getName());
         values.put(KEY_SHORT, fach.getShort());
         values.put(KEY_COLOR, fach.getColor());
-        values.put(KEY_NOTEN1, "-");
-        values.put(KEY_MATH_AVERAGE1, "-");
-        values.put(KEY_REAL_AVERAGE1, "-");
-        values.put(KEY_NOTEN2, "-");
-        values.put(KEY_MATH_AVERAGE2, "-");
-        values.put(KEY_REAL_AVERAGE2, "-");
+        values.put(KEY_NOTEN1, "");
+        values.put(KEY_MATH_AVERAGE1, "");
+        values.put(KEY_REAL_AVERAGE1, "");
+        values.put(KEY_NOTEN2, "");
+        values.put(KEY_MATH_AVERAGE2, "");
+        values.put(KEY_REAL_AVERAGE2, "");
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
-        values.put(KEY_KONT1, fach.getKont1());
-        values.put(KEY_KONT2, fach.getKont2());
+        values.put(KEY_KONT1, "");
+        values.put(KEY_KONT2, "");
 
         // inserting
         db.insert(TABLE_SUBJECTS, null, values);

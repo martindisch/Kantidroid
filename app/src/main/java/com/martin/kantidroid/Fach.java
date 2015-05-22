@@ -246,15 +246,26 @@ public class Fach {
         else {
             compact = getNoten2();
         }
-        return compact.split("\n");
+        if (compact != null && !compact.contentEquals("")) {
+            return compact.split("\n");
+        }
+        return new String[] {};
     }
 
     public void addMark(int semester, String entry) {
         if (semester == 1) {
-            setNoten1(getNoten1() + entry + "\n");
+            String before = getNoten1();
+            if (before == null || before.contentEquals("")) {
+                before = "";
+            }
+            setNoten1(before + entry + "\n");
         }
         else {
-            setNoten2(getNoten2() + entry + "\n");
+            String before = getNoten2();
+            if (before == null || before.contentEquals("")) {
+                before = "";
+            }
+            setNoten2(before + entry + "\n");
         }
     }
 
