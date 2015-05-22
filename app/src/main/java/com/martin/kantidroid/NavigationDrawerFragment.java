@@ -97,15 +97,9 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                R.layout.drawer_item,
-                R.id.text1,
-                new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
-                }));
+        NavDrawerItem[] items = {new NavDrawerItem("Home", R.drawable.ic_home_grey600_48dp)};
+        NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(getActivity(), items);
+        mDrawerListView.setAdapter(adapter);
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
