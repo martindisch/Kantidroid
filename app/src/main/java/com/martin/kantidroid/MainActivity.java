@@ -58,23 +58,24 @@ public class MainActivity extends ActionBarActivity
 
     public void onSectionAttached(int number) {
         switch (number) {
-            case 1:
+            // Number 1 is the spacer
+            case 2:
                 mTitle = getString(R.string.overview);
                 break;
-            case 2:
+            case 3:
                 mTitle = getString(R.string.kiss);
                 break;
-            case 3:
+            case 4:
                 mTitle = getString(R.string.backup);
                 break;
-            case 4:
+            case 5:
                 mTitle = getString(R.string.subjects);
                 break;
-            // Number 5 is the spacer
-            case 6:
+            // Number 6 is the divider
+            case 7:
                 mTitle = getString(R.string.feedback);
                 break;
-            case 7:
+            case 8:
                 mTitle = getString(R.string.about);
                 break;
         }

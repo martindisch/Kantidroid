@@ -98,7 +98,9 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        NavDrawerItem[] items = {new NavDrawerItem(getString(R.string.overview), R.drawable.ic_home_grey600_48dp),
+        NavDrawerItem[] items = {
+                new NavDrawerItem("spacer", 0),
+                new NavDrawerItem(getString(R.string.overview), R.drawable.ic_home_grey600_48dp),
                 new NavDrawerItem(getString(R.string.kiss), R.drawable.ic_calendar_remove_grey600_48dp),
                 new NavDrawerItem(getString(R.string.backup), R.drawable.ic_content_save_grey600_48dp),
                 new NavDrawerItem(getString(R.string.subjects), R.drawable.ic_book_open_grey600_48dp),

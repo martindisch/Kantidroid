@@ -25,6 +25,9 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
         if (mItems[position].getText().contentEquals("divider")) {
+            rowView = inflater.inflate(R.layout.drawer_divider, parent, false);
+        }
+        else if (mItems[position].getText().contentEquals("spacer")) {
             rowView = inflater.inflate(R.layout.drawer_spacer, parent, false);
         }
         else {
@@ -47,7 +50,7 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
 
     @Override
     public boolean isEnabled(int position) {
-        return !mItems[position].getText().contentEquals("divider");
+        return !(mItems[position].getText().contentEquals("divider") || mItems[position].getText().contentEquals("spacer"));
     }
 
     public void selectItem(int position) {
