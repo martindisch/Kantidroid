@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -57,6 +56,8 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+
+    private NavigationDrawerAdapter mAdapter;
 
     public NavigationDrawerFragment() {
     }
@@ -97,9 +98,15 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        NavDrawerItem[] items = {new NavDrawerItem("Home", R.drawable.ic_home_grey600_48dp)};
-        NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(getActivity(), items);
-        mDrawerListView.setAdapter(adapter);
+        NavDrawerItem[] items = {new NavDrawerItem(getString(R.string.overview), R.drawable.ic_home_grey600_48dp),
+                new NavDrawerItem(getString(R.string.kiss), R.drawable.ic_calendar_remove_grey600_48dp),
+                new NavDrawerItem(getString(R.string.backup), R.drawable.ic_content_save_grey600_48dp),
+                new NavDrawerItem(getString(R.string.subjects), R.drawable.ic_book_open_grey600_48dp),
+                new NavDrawerItem(getString(R.string.feedback), R.drawable.ic_pencil_grey600_48dp),
+                new NavDrawerItem(getString(R.string.about), R.drawable.ic_information_outline_grey600_48dp)
+        };
+        mAdapter = new NavigationDrawerAdapter(getActivity(), items);
+        mDrawerListView.setAdapter(mAdapter);
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -179,6 +186,9 @@ public class NavigationDrawerFragment extends Fragment {
 
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
+        if (mAdapter != null) {
+            mAdapter.selectItem(position);
+        }
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
         }

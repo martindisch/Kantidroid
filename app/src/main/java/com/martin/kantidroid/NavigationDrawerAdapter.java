@@ -12,6 +12,7 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
 
     private Context mContext;
     private NavDrawerItem[] mItems;
+    private int mSelected = 0;
 
     public NavigationDrawerAdapter(Context context, NavDrawerItem[] items) {
         super(context, R.layout.drawer_item, items);
@@ -27,6 +28,13 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon1);
         textView.setText(mItems[position].getText());
         imageView.setImageResource(mItems[position].getIcon());
+        if (position == mSelected) {
+            rowView.setBackgroundColor(getContext().getResources().getColor(R.color.divider));
+        }
         return rowView;
+    }
+
+    public void selectItem(int position) {
+        mSelected = position;
     }
 }
