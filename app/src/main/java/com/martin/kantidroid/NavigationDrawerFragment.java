@@ -1,6 +1,5 @@
 package com.martin.kantidroid;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -100,7 +99,7 @@ public class NavigationDrawerFragment extends Fragment {
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
-                R.layout.simple_list_item_1,
+                R.layout.drawer_item,
                 R.id.text1,
                 new String[]{
                         getString(R.string.title_section1),
