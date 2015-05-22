@@ -102,6 +102,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new NavDrawerItem(getString(R.string.kiss), R.drawable.ic_calendar_remove_grey600_48dp),
                 new NavDrawerItem(getString(R.string.backup), R.drawable.ic_content_save_grey600_48dp),
                 new NavDrawerItem(getString(R.string.subjects), R.drawable.ic_book_open_grey600_48dp),
+                new NavDrawerItem("divider", 0),
                 new NavDrawerItem(getString(R.string.feedback), R.drawable.ic_pencil_grey600_48dp),
                 new NavDrawerItem(getString(R.string.about), R.drawable.ic_information_outline_grey600_48dp)
         };

@@ -23,15 +23,31 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.drawer_item, parent, false);
-        TextView textView = (TextView) rowView.findViewById(R.id.text1);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon1);
-        textView.setText(mItems[position].getText());
-        imageView.setImageResource(mItems[position].getIcon());
-        if (position == mSelected) {
-            rowView.setBackgroundColor(getContext().getResources().getColor(R.color.divider));
+        View rowView;
+        if (mItems[position].getText().contentEquals("divider")) {
+            rowView = inflater.inflate(R.layout.drawer_spacer, parent, false);
+        }
+        else {
+            rowView = inflater.inflate(R.layout.drawer_item, parent, false);
+            TextView textView = (TextView) rowView.findViewById(R.id.text1);
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon1);
+            textView.setText(mItems[position].getText());
+            imageView.setImageResource(mItems[position].getIcon());
+            if (position == mSelected) {
+                rowView.setBackgroundColor(getContext().getResources().getColor(R.color.divider));
+            }
         }
         return rowView;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return !mItems[position].getText().contentEquals("divider");
     }
 
     public void selectItem(int position) {
