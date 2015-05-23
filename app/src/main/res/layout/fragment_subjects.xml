@@ -32,6 +32,8 @@
         android:layout_alignParentRight="true"
         android:checked="true"/>
 
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +41,24 @@
         android:layout_alignParentRight="true"
         android:id="@+id/bAdd"
         android:text="@string/add"/>
+
+    <View
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:id="@+id/vColor"
+        android:background="@color/c1"
+        android:layout_below="@id/et_subj_short"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:tag="#F44336"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/bAdd"
+        android:layout_toRightOf="@id/vColor"
+        android:text="@string/color"
+        android:layout_marginLeft="@dimen/widget_margin"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="@dimen/widget_margin"

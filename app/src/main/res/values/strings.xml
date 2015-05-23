@@ -25,6 +25,8 @@
     <string name="ask_autosubjects">Du hast im Moment noch keine Fächer.\nSollen automatisch einige häufig benutzte Fächer erstellt werden?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
+    <string name="color">Farbe</string>
+    <string name="cancel">Abbrechen</string>
 
     <string-array name="colors">
         <item>#F44336</item>
@@ -117,4 +119,7 @@
         <item>markManager</item>
         <item>Kantidroid</item>
     </string-array>
+    <string name="title_activity_color_picker_dialog">ColorPickerDialog</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
