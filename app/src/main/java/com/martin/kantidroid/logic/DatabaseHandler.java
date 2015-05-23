@@ -13,7 +13,7 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Kantidorid";
+    private static final String DATABASE_NAME = "Kantidroid";
     private static final String TABLE_SUBJECTS = "subjects";
 
     // Columns
