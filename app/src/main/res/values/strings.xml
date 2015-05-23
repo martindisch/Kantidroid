@@ -27,25 +27,9 @@
     <string name="no">Nein</string>
     <string name="color">Farbe</string>
     <string name="cancel">Abbrechen</string>
-
-    <string-array name="colors">
-        <item>#F44336</item>
-        <item>#E91E63</item>
-        <item>#9C27B0</item>
-        <item>#673AB7</item>
-        <item>#3F51B5</item>
-        <item>#2196F3</item>
-        <item>#03A9F4</item>
-        <item>#00BCD4</item>
-        <item>#009688</item>
-        <item>#4CAF50</item>
-        <item>#8BC34A</item>
-        <item>#CDDC39</item>
-        <item>#FFEB3B</item>
-        <item>#FFC107</item>
-        <item>#FF9800</item>
-        <item>#FF5722</item>
-    </string-array>
+    <string name="enter_name">Gib einen Namen und eine Abkürzung ein</string>
+    <string name="too_long">Abkürzung darf nicht länger als 5 Zeichen sein</string>
+    <string name="save">Änderung speichern</string>
 
     <string-array name="subjects_standard">
         <item>Deutsch</item>
@@ -119,7 +103,24 @@
         <item>markManager</item>
         <item>Kantidroid</item>
     </string-array>
-    <string name="title_activity_color_picker_dialog">ColorPickerDialog</string>
 
-    <string name="hello_world">Hello world!</string>
+    <!-- Don't modify this section -->
+    <string-array name="colors">
+        <item>#F44336</item>
+        <item>#E91E63</item>
+        <item>#9C27B0</item>
+        <item>#673AB7</item>
+        <item>#3F51B5</item>
+        <item>#2196F3</item>
+        <item>#03A9F4</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FFC107</item>
+        <item>#FF9800</item>
+        <item>#FF5722</item>
+    </string-array>
 </resources>

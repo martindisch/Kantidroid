@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Fach;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHolder> {
@@ -39,20 +41,22 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
         holder.ibEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onClick(view, position);
+                view.setTag(1);
+                mCallback.onItemClick(view, position);
             }
         });
         holder.ibDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onClick(view, position);
+                view.setTag(0);
+                mCallback.onItemClick(view, position);
             }
         });
     }
 
     public interface OnClickListener {
-        void onClick(View v, int position);
-        void onLongClick(View v, int position);
+        void onItemClick(View v, int position);
+        void onItemLongClick(View v, int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,5 +69,40 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
             ibEdit = (ImageButton) v.findViewById(R.id.ibEdit);
             ibDelete = (ImageButton) v.findViewById(R.id.ibDelete);
         }
+    }
+
+    public void add(Fach subject) {
+        mEntries.add(subject);
+        sort();
+        int newPos = mEntries.indexOf(subject);
+        notifyItemInserted(newPos);
+    }
+
+    public void update(Fach subject, int oldPos) {
+        sort();
+        int newPos = mEntries.indexOf(subject);
+        if (oldPos != newPos) {
+            notifyItemChanged(oldPos);
+            notifyItemMoved(oldPos, newPos);
+        }
+    }
+
+    public void remove(int pos) {
+        mEntries.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
+    private void sort() {
+        Collections.sort(mEntries, new Comparator<Fach>() {
+
+            @Override
+            public int compare(Fach fach, Fach fach2) {
+                return fach.getName().compareTo(fach2.getName());
+            }
+        });
+    }
+
+    public List<Fach> getData() {
+        return mEntries;
     }
 }

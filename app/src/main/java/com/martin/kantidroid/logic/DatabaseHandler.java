@@ -182,6 +182,88 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return fachList;
     }
 
+    // Get all faecher sorted by parameter
+    public List<Fach> getAllFaecherSorted(Context context, int iSemester, int iSorting) {
+
+        String sorting = null;
+
+        if (iSemester == 1) {
+            switch (iSorting) {
+                case 0:
+                    sorting = " ORDER BY name";
+                    break;
+                case 1:
+                    sorting = " ORDER BY math_average1 DESC";
+                    break;
+                case 2:
+                    sorting = " ORDER BY math_average1 ASC";
+                    break;
+            }
+        } else if (iSemester == 2) {
+            switch (iSorting) {
+                case 0:
+                    sorting = " ORDER BY name";
+                    break;
+                case 1:
+                    sorting = " ORDER BY math_average2 DESC";
+                    break;
+                case 2:
+                    sorting = " ORDER BY math_average2 ASC";
+                    break;
+            }
+        } else {
+            switch (iSorting) {
+                case 0:
+                    sorting = " ORDER BY name";
+                    break;
+                case 1:
+                    sorting = " ORDER BY zeugnis DESC";
+                    break;
+                case 2:
+                    sorting = " ORDER BY zeugnis ASC";
+                    break;
+            }
+        }
+
+        // String sorting = settings.getString("sort_order",
+        // " ORDER BY kont_us DESC");
+
+        // String sorting = " ORDER BY name";
+
+        List<Fach> fachList = new ArrayList<Fach>();
+        String selectQuery = "SELECT  * FROM " + TABLE_SUBJECTS + sorting;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Fach fach = new Fach();
+                fach.setID(Integer.parseInt(cursor.getString(0)));
+                fach.setName(cursor.getString(1));
+                fach.setShort(cursor.getString(2));
+                fach.setColor(cursor.getString(3));
+                fach.setNoten1(cursor.getString(4));
+                fach.setMathAverage1(cursor.getString(5));
+                fach.setRealAverage1(cursor.getString(6));
+                fach.setNoten2(cursor.getString(7));
+                fach.setMathAverage2(cursor.getString(8));
+                fach.setRealAverage2(cursor.getString(9));
+                fach.setPromotionsrelevant(cursor.getString(10));
+                fach.setKont1(cursor.getString(11));
+                fach.setKont2(cursor.getString(12));
+                // adding fach to list
+                fachList.add(fach);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return fachList;
+    }
+
     // get Fach count
     public int getFachCount() {
         String countQuery = "SELECT  * FROM " + TABLE_SUBJECTS;

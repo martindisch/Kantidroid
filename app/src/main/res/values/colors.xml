@@ -7,6 +7,7 @@
     <color name="divider">#e0e0e0</color>
     <color name="drawer_text">#212121</color>
 
+    <!-- Don't modify this section the colors -->
     <color name="c1">#F44336</color>
     <color name="c2">#E91E63</color>
     <color name="c3">#9C27B0</color>

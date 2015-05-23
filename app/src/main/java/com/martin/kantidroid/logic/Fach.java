@@ -41,7 +41,33 @@ public class Fach {
     // constructor for addFach
     public Fach(String name, String promotionsrelevant) {
         this._name = name;
+        this._short = "";
+        this._color = "";
+        this._noten1 = "";
+        this._math_average1 = "";
+        this._real_average1 = "";
+        this._noten2 = "";
+        this._math_average2 = "";
+        this._real_average2 = "";
         this._promotionsrelevant = promotionsrelevant;
+        this._kont1 = "";
+        this._kont2 = "";
+    }
+
+    // New constructor with important properties
+    public Fach(String name, String name_short, String color, String counts) {
+        this._name = name;
+        this._short = name_short;
+        this._color = color;
+        this._noten1 = "";
+        this._math_average1 = "";
+        this._real_average1 = "";
+        this._noten2 = "";
+        this._math_average2 = "";
+        this._real_average2 = "";
+        this._promotionsrelevant = counts;
+        this._kont1 = "";
+        this._kont2 = "";
     }
 
     // getting ID
@@ -89,25 +115,25 @@ public class Fach {
     }
 
     public String getZeugnis() {
-        String schnitt = "-";
+        String schnitt = "";
         // In case both semesters have data
-        if (!this.getRealAverage1().contentEquals("-") && !this.getRealAverage2().contentEquals("-")) {
+        if (!this.getRealAverage1().contentEquals("") && !this.getRealAverage2().contentEquals("")) {
             double RealAverage = Math.round((Double.parseDouble(getRealAverage1()) + Double.parseDouble(getRealAverage2())) / 2 * 4) / 4f;
             schnitt = RealAverage + "";
         }
 
         // In case only first semester has data
-        if (this.getRealAverage2().contentEquals("-") && !this.getRealAverage1().contentEquals("-")) {
+        if (this.getRealAverage2().contentEquals("") && !this.getRealAverage1().contentEquals("")) {
             schnitt = this.getRealAverage1() + "";
         }
 
         // In case only second semester has data
-        if (!this.getRealAverage2().contentEquals("-") && this.getRealAverage1().contentEquals("-")) {
+        if (!this.getRealAverage2().contentEquals("") && this.getRealAverage1().contentEquals("")) {
             schnitt = this.getRealAverage2() + "";
         }
         String result = "";
-        if (schnitt.contentEquals("-")) {
-            result = "-";
+        if (schnitt.contentEquals("")) {
+            result = "";
         } else {
             result = schnitt;
         }
@@ -116,7 +142,7 @@ public class Fach {
 
     public String getMathAverage1() {
         String return_value;
-        if (!this._noten1.contentEquals("-")) {
+        if (!this._noten1.contentEquals("")) {
             String[] entries = this._noten1.split("\n");
             int count = entries.length;
             BigDecimal addition = BigDecimal.valueOf(0);
@@ -131,7 +157,7 @@ public class Fach {
             BigDecimal MathAverage = addition.divide(teiler, 4, BigDecimal.ROUND_HALF_UP);
             return_value = String.valueOf(MathAverage);
         } else {
-            return_value = "-";
+            return_value = "";
         }
         return return_value;
     }
@@ -142,7 +168,7 @@ public class Fach {
 
     public String getMathAverage2() {
         String return_value;
-        if (!this._noten2.contentEquals("-")) {
+        if (!this._noten2.contentEquals("")) {
             String[] entries = this._noten2.split("\n");
             int count = entries.length;
             BigDecimal addition = BigDecimal.valueOf(0);
@@ -157,7 +183,7 @@ public class Fach {
             BigDecimal MathAverage = addition.divide(teiler, 4, BigDecimal.ROUND_HALF_UP);
             return_value = String.valueOf(MathAverage);
         } else {
-            return_value = "-";
+            return_value = "";
         }
         return return_value;
     }
@@ -168,7 +194,7 @@ public class Fach {
 
     public String getRealAverage1() {
         String return_value;
-        if (!this.getMathAverage1().contentEquals("-")) {
+        if (!this.getMathAverage1().contentEquals("")) {
             double MathAverage = Double.parseDouble(this.getMathAverage1());
             /*
              * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
@@ -177,7 +203,7 @@ public class Fach {
             double RealAverage = 0.5 * Math.round(MathAverage / 0.5);
             return_value = String.valueOf(RealAverage);
         } else {
-            return_value = "-";
+            return_value = "";
         }
         return return_value;
     }
@@ -188,7 +214,7 @@ public class Fach {
 
     public String getRealAverage2() {
         String return_value;
-        if (!this.getMathAverage2().contentEquals("-")) {
+        if (!this.getMathAverage2().contentEquals("")) {
             double MathAverage = Double.parseDouble(this.getMathAverage2());
             /*
 			 * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
@@ -197,7 +223,7 @@ public class Fach {
             double RealAverage = 0.5 * Math.round(MathAverage / 0.5);
             return_value = String.valueOf(RealAverage);
         } else {
-            return_value = "-";
+            return_value = "";
         }
         return return_value;
     }
