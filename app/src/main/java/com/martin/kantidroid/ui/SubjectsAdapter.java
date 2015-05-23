@@ -36,20 +36,20 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tvName.setText(mEntries.get(position).getName());
         holder.ibEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.setTag(1);
-                mCallback.onItemClick(view, position);
+                mCallback.onItemClick(view, holder.getAdapterPosition());
             }
         });
         holder.ibDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.setTag(0);
-                mCallback.onItemClick(view, position);
+                mCallback.onItemClick(view, holder.getAdapterPosition());
             }
         });
     }
