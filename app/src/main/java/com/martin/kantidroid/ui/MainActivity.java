@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity
                 mTitle = getString(R.string.about);
                 break;
         }
+        supportInvalidateOptionsMenu();
     }
 
     public void restoreActionBar() {
