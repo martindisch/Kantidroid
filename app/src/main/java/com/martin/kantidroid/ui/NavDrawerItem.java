@@ -1,4 +1,4 @@
-package com.martin.kantidroid;
+package com.martin.kantidroid.ui;
 
 public class NavDrawerItem {
     private String mText;

@@ -2,6 +2,8 @@ package com.martin.kantidroid;
 
 import android.test.AndroidTestCase;
 
+import com.martin.kantidroid.logic.Fach;
+
 public class Fachtest extends AndroidTestCase {
 
     public void testAdd() throws Exception {

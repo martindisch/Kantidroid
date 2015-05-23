@@ -1,4 +1,4 @@
-package com.martin.kantidroid;
+package com.martin.kantidroid.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.martin.kantidroid.R;
 
 public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
 

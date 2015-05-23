@@ -1,4 +1,4 @@
-package com.martin.kantidroid;
+package com.martin.kantidroid.ui;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.martin.kantidroid.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

@@ -1,4 +1,4 @@
-package com.martin.kantidroid;
+package com.martin.kantidroid.logic;
 
 import java.math.BigDecimal;
 
