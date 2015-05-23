@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.Primer;
 
 
 public class MainActivity extends AppCompatActivity
@@ -34,9 +35,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO: Delete old SharedPreferences the first time
-        //       By implementing a Primer class, taking care of all checks on startup
-
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -45,6 +43,8 @@ public class MainActivity extends AppCompatActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        Primer.runOnFirstTime(this);
     }
 
     @Override
