@@ -20,4 +20,8 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="name_short">Abkürzung</string>
+    <string name="promotion">Promotionsfach</string>
+    <string name="add">Hinzufügen</string>
 </resources>

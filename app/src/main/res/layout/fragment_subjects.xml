@@ -1,9 +1,48 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.martin.kantidroid.ui.SubjectsFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.martin.kantidroid.ui.SubjectsFragment"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_subj_name"
+        android:hint="@string/name"
+        android:inputType="textCapSentences"/>
 
-</FrameLayout>
+    <EditText
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_subj_short"
+        android:hint="@string/name_short"
+        android:layout_below="@id/et_subj_name"
+        android:inputType="textCapWords"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_subj_name"
+        android:text="@string/promotion"
+        android:id="@+id/cbPromo"
+        android:layout_alignBaseline="@id/et_subj_short"
+        android:layout_alignParentRight="true"
+        android:checked="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_subj_short"
+        android:layout_alignParentRight="true"
+        android:id="@+id/bAdd"
+        android:text="@string/add"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/widget_margin"
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/bAdd"/>
+
+</RelativeLayout>
