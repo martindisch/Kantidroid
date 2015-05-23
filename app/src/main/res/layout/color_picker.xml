@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c1"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c1" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c2"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c2" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c3"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c3" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c4"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c4" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c5"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c5" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c6"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c6" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c7"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c7" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c8"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c8" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c9"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c9" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c10"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c10" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c11"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c11" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c12"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c12" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c13"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c13" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c14"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c14" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c15"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c15" />
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/c16"
+            android:layout_marginLeft="@dimen/color_picker_margin"
+            android:background="@color/c16" />
+
+    </LinearLayout>
+
+</LinearLayout>
