@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/et_subj_name"
         android:text="@string/promotion"
-        android:id="@+id/cbPromo"
+        android:id="@+id/cbCounts"
         android:layout_alignBaseline="@id/et_subj_short"
         android:layout_alignParentRight="true"
         android:checked="true"/>
@@ -42,7 +42,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="@dimen/widget_margin"
-        android:id="@+id/my_recycler_view"
+        android:id="@+id/rvSubjects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/bAdd"/>
