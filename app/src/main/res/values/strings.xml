@@ -22,6 +22,29 @@
     <string name="name_short">Abkürzung</string>
     <string name="promotion">Promotionsfach</string>
     <string name="add">Hinzufügen</string>
+    <string name="ask_autosubjects">Du hast im Moment noch keine Fächer.\nSollen automatisch einige häufig benutzte Fächer erstellt werden?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+
+    <string-array name="colors">
+        <item>#F44336</item>
+        <item>#E91E63</item>
+        <item>#9C27B0</item>
+        <item>#673AB7</item>
+        <item>#3F51B5</item>
+        <item>#2196F3</item>
+        <item>#03A9F4</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FFC107</item>
+        <item>#FF9800</item>
+        <item>#FF5722</item>
+        <item>#795548</item>
+    </string-array>
 
     <string-array name="subjects_standard">
         <item>Deutsch</item>
@@ -93,5 +116,6 @@
     <string-array name="old_db">
         <item>kontManager</item>
         <item>markManager</item>
+        <item>Kantidroid</item>
     </string-array>
 </resources>

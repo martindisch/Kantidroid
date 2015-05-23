@@ -1,7 +1,9 @@
 package com.martin.kantidroid.logic;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.martin.kantidroid.R;
@@ -19,17 +21,6 @@ public class Primer {
                     // Do stuff on first startup
                     removePrefsDB(context);
 
-                    DatabaseHandler db = new DatabaseHandler(context);
-                    Fach subject;
-                    String[] subjects = context.getResources().getStringArray(R.array.subjects_standard);
-                    String[] subjects_short = context.getResources().getStringArray(R.array.subjects_standard_short);
-                    for (int i = 0; i < subjects.length; i++) {
-                        subject = new Fach(subjects[i], "true");
-                        subject.setShort(subjects_short[i]);
-                        subject.setCol
-                        db.addFach(subject);
-                    }
-
                     // Remember first startup
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putBoolean("opened", true);
@@ -38,6 +29,37 @@ public class Primer {
 
             }
         }).start();
+    }
+
+    public static void runEveryTime(final Context context) {
+        DatabaseHandler db = new DatabaseHandler(context);
+        if (db.getAllFaecher(context, 1).size() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppDialog);
+            builder.setMessage(R.string.ask_autosubjects);
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DatabaseHandler db = new DatabaseHandler(context);
+                            Fach subject;
+                            String[] subjects = context.getResources().getStringArray(R.array.subjects_standard);
+                            String[] subjects_short = context.getResources().getStringArray(R.array.subjects_standard_short);
+                            String[] colors = context.getResources().getStringArray(R.array.colors);
+                            for (int y = 0; y < subjects.length; y++) {
+                                subject = new Fach(subjects[y], "true");
+                                subject.setShort(subjects_short[y]);
+                                subject.setColor(colors[y]);
+                                db.addFach(subject);
+                            }
+                        }
+                    }).start();
+                }
+            });
+            builder.setNegativeButton(R.string.no, null);
+            builder.show();
+        }
     }
 
     private static void removePrefsDB(Context context) {

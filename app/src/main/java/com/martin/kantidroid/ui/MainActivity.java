@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         Primer.runOnFirstTime(this);
+        Primer.runEveryTime(this);
     }
 
     @Override
