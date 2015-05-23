@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_subj_name"
         android:hint="@string/name"
-        android:inputType="textCapSentences"/>
+        android:inputType="textCapSentences"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:layout_width="140dp"
@@ -18,7 +19,8 @@
         android:id="@+id/et_subj_short"
         android:hint="@string/name_short"
         android:layout_below="@id/et_subj_name"
-        android:inputType="textCapWords"/>
+        android:inputType="textCapWords"
+        android:imeOptions="actionDone"/>
 
     <CheckBox
         android:layout_width="wrap_content"
