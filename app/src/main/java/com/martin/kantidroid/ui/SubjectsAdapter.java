@@ -81,8 +81,8 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     public void update(Fach subject, int oldPos) {
         sort();
         int newPos = mEntries.indexOf(subject);
+        notifyItemChanged(oldPos);
         if (oldPos != newPos) {
-            notifyItemChanged(oldPos);
             notifyItemMoved(oldPos, newPos);
         }
     }
