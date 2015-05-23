@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 
 import java.util.ArrayList;
@@ -61,8 +62,9 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         mSubjects.setHasFixedSize(true);
         mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
 
-        List<Fach> entries = new ArrayList<Fach>();
-        mAdapter = new SubjectsAdapter(entries, this);
+        DatabaseHandler db = new DatabaseHandler(getActivity());
+        List<Fach> subjects = db.getAllFaecher(getActivity(), 1);
+        mAdapter = new SubjectsAdapter(subjects, this);
         mSubjects.setAdapter(mAdapter);
         return rootView;
     }

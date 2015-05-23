@@ -18,10 +18,80 @@
     <string name="feedback">Feedback</string>
     <string name="about">Über</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name">Name</string>
     <string name="name_short">Abkürzung</string>
     <string name="promotion">Promotionsfach</string>
     <string name="add">Hinzufügen</string>
+
+    <string-array name="subjects_standard">
+        <item>Deutsch</item>
+        <item>Französisch</item>
+        <item>Englisch</item>
+        <item>Mathematik</item>
+        <item>Biologie</item>
+        <item>Chemie</item>
+        <item>Physik</item>
+        <item>Geografie</item>
+        <item>Geschichte</item>
+        <item>Turnen</item>
+    </string-array>
+    <string-array name="subjects_standard_short">
+        <item>D</item>
+        <item>F</item>
+        <item>E</item>
+        <item>M</item>
+        <item>Bio</item>
+        <item>Ch</item>
+        <item>Ph</item>
+        <item>Gg</item>
+        <item>G</item>
+        <item>T</item>
+    </string-array>
+
+    <string-array name="subjects_all">
+        <item>Deutsch</item>
+        <item>Romanisch</item>
+        <item>Italienisch</item>
+        <item>Französisch</item>
+        <item>Englisch</item>
+        <item>Mathematik</item>
+        <item>Naturlehre</item>
+        <item>Biologie</item>
+        <item>Chemie</item>
+        <item>Physik</item>
+        <item>Geografie</item>
+        <item>Geschichte</item>
+        <item>Wirtschaft und Recht</item>
+        <item>BG</item>
+        <item>Musik</item>
+        <item>Religion</item>
+        <item>Ethik</item>
+        <item>Handarbeit</item>
+        <item>Werken</item>
+        <item>Hauswirtschaft</item>
+        <item>Informatik</item>
+        <item>Tastaturschreiben</item>
+        <item>Turnen</item>
+        <item>Sport</item>
+        <item>Latein</item>
+        <item>Spanisch</item>
+        <item>Russisch</item>
+        <item>PAM</item>
+        <item>PPP</item>
+        <item>PP</item>
+        <item>Philosophie</item>
+    </string-array>
+
+    <string-array name="old_prefs">
+        <item>check</item>
+        <item>MarkSettings</item>
+        <item>KISS</item>
+        <item>Kantidroid</item>
+        <item>Rem</item>
+        <item>mysettings</item>
+    </string-array>
+    <string-array name="old_db">
+        <item>kontManager</item>
+        <item>markManager</item>
+    </string-array>
 </resources>
