@@ -89,7 +89,7 @@ public class ColorPickerDialog extends Activity implements View.OnClickListener 
                 color = colors[9];
                 break;
             case R.id.c11:
-                color = colors[00];
+                color = colors[10];
                 break;
             case R.id.c12:
                 color = colors[11];

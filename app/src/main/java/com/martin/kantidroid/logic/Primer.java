@@ -19,7 +19,7 @@ public class Primer {
                 SharedPreferences sp = context.getSharedPreferences("Primer", Context.MODE_PRIVATE);
                 if (!sp.getBoolean("opened", false)) {
                     // Do stuff on first startup
-                    removePrefsDB(context);
+                    // removePrefsDB(context);
 
                     // Remember first startup
                     SharedPreferences.Editor editor = sp.edit();
