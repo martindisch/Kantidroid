@@ -21,7 +21,7 @@ public class Fachtest extends AndroidTestCase {
         assertTrue("getMarks didn't return as expected for second semester", arraysEqual(returned2, expected2));
 
         fach = new Fach("Deutsch", "true");
-        assertEquals("Not nothing", null, fach.getNoten1());
+        assertEquals("Not nothing", "", fach.getNoten1());
         assertTrue("No empty array", arraysEqual(fach.getMarks(2), new String[] {}));
     }
 
@@ -39,7 +39,7 @@ public class Fachtest extends AndroidTestCase {
     }
 
     public void testCreation() throws Exception {
-        Fach fach = new Fach(0, "Deutsch", "De", "R.color.blue", "", "", "", "3.1 - 0.25 - 20150523\n1.25 - 2 - 20150412\n", "", "", "false", "", "");
+        Fach fach = new Fach(0, "Deutsch", "De", "R.color.blue", "", "", "", "3.1 - 0.25 - 20150523\n1.25 - 2 - 20150412\n", "", "", "false", "", "", "");
         assertEquals("First semester not as expected", "", fach.getNoten1());
         assertEquals("Second semester not as expected", "3.1 - 0.25 - 20150523\n1.25 - 2 - 20150412\n", fach.getNoten2());
         fach.removeMark(2, "1.25 - 2 - 20150412");

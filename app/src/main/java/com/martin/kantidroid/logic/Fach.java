@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Fach {
 
-    private int _id;
+    private long _id;
     private String _name;
     private String _short;
     private String _color;
@@ -75,12 +75,12 @@ public class Fach {
     }
 
     // getting ID
-    public int getID() {
+    public long getID() {
         return this._id;
     }
 
     // setting id
-    public void setID(int id) {
+    public void setID(long id) {
         this._id = id;
     }
 

@@ -8,7 +8,17 @@
     <dimen name="color_picker_margin">2dp</dimen>
     <dimen name="color_picker_size">50dp</dimen>
 
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="button_elevation">4dp</dimen>
+
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <dimen name="btn_flat_corner_radius">1dp</dimen>
+    <dimen name="btn_flat_min_width">88dp</dimen>
+    <dimen name="btn_flat_min_height">36dp</dimen>
+    <dimen name="btn_flat_padding">8dp</dimen>
+    <dimen name="btn_flat_margin">4dp</dimen>
+
 </resources>

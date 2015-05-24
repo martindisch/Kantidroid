@@ -14,7 +14,7 @@
         android:imeOptions="actionNext"/>
 
     <EditText
-        android:layout_width="140dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/et_subj_short"
         android:hint="@string/name_short"
@@ -89,6 +89,7 @@
             android:layout_height="wrap_content"
             android:text="@string/n4"
             android:id="@+id/rb4"
+            android:checked="true"
             android:layout_weight="1"/>
         <RadioButton
             android:layout_width="wrap_content"
@@ -119,12 +120,6 @@
 
     </RadioGroup>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_alignBaseline="@id/rgKont"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -132,6 +127,7 @@
         android:layout_alignParentRight="true"
         android:id="@+id/bAdd"
         android:layout_marginTop="@dimen/widget_margin_large"
-        android:text="@string/add"/>
+        android:text="@string/add"
+        style="@style/AppCompat.Button.Flat.Common"/>
 
 </RelativeLayout>

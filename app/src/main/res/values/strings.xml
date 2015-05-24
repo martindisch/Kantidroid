@@ -21,7 +21,7 @@
     <string name="name">Name</string>
     <string name="name_short">Abkürzung</string>
     <string name="promotion">Promotionsfach</string>
-    <string name="add">Hinzufügen</string>
+    <string name="add">HINZUFÜGEN</string>
     <string name="ask_autosubjects">Du hast im Moment noch keine Fächer.\nSollen automatisch einige häufig benutzte Fächer erstellt werden?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
@@ -29,7 +29,7 @@
     <string name="cancel">Abbrechen</string>
     <string name="enter_name">Gib einen Namen und eine Abkürzung ein</string>
     <string name="too_long">Abkürzung darf nicht länger als 5 Zeichen sein</string>
-    <string name="save">Änderung speichern</string>
+    <string name="save">SPEICHERN</string>
     <string name="n2">2</string>
     <string name="n4">4</string>
     <string name="n6">6</string>

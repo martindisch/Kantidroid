@@ -4,72 +4,27 @@
     android:layout_height="match_parent"
     tools:context="com.martin.kantidroid.ui.subjects.SubjectsFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:id="@+id/rlEdit">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_subj_name"
-            android:hint="@string/name"
-            android:inputType="textCapSentences"
-            android:imeOptions="actionNext"/>
-
-        <EditText
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_subj_short"
-            android:hint="@string/name_short"
-            android:layout_below="@id/et_subj_name"
-            android:inputType="textCapWords"
-            android:imeOptions="actionDone"/>
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/et_subj_name"
-            android:text="@string/promotion"
-            android:id="@+id/cbCounts"
-            android:layout_alignBaseline="@id/et_subj_short"
-            android:layout_alignParentRight="true"
-            android:checked="true"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/et_subj_short"
-            android:layout_alignParentRight="true"
-            android:id="@+id/bAdd"
-            android:text="@string/add"/>
-
-        <View
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:id="@+id/vColor"
-            android:background="@color/c1"
-            android:layout_below="@id/et_subj_short"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:tag="#F44336"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/bAdd"
-            android:layout_toRightOf="@id/vColor"
-            android:text="@string/color"
-            android:layout_marginLeft="@dimen/widget_margin_large"/>
-
-    </RelativeLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvSubjects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rlEdit"
         android:scrollbars="vertical"/>
+
+    <ImageButton
+        android:id="@+id/fab"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/fab_ripple"
+        android:elevation="@dimen/button_elevation"
+        android:padding="16dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_add" />
 
 </RelativeLayout>
