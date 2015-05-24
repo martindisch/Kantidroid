@@ -30,6 +30,10 @@
     <string name="enter_name">Gib einen Namen und eine Abkürzung ein</string>
     <string name="too_long">Abkürzung darf nicht länger als 5 Zeichen sein</string>
     <string name="save">Änderung speichern</string>
+    <string name="n2">2</string>
+    <string name="n4">4</string>
+    <string name="n6">6</string>
+    <string name="n8">8</string>
 
     <string-array name="subjects_standard">
         <item>Deutsch</item>
@@ -123,4 +127,11 @@
         <item>#6f2c17</item>
         <item>#000000</item>
     </string-array>
+    <string name="title_activity_edit_dialog">EditDialog</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="kont">Kontingent</string>
+    <string name="space" />
+    <string name="n10">10</string>
+    <string name="n12">12</string>
 </resources>
