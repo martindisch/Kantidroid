@@ -17,12 +17,13 @@ public class Fach {
     private String _promotionsrelevant;
     private String _kont1;
     private String _kont2;
+    private String _kont;
 
     // empty constructor
     public Fach() {}
 
     // constructor setting everything
-    public Fach(int id, String name, String nameShort, String color, String noten1, String math_average1, String real_average1, String noten2, String math_average2, String real_average2, String promotionsrelevant, String kont1, String kont2) {
+    public Fach(int id, String name, String nameShort, String color, String noten1, String math_average1, String real_average1, String noten2, String math_average2, String real_average2, String promotionsrelevant, String kont1, String kont2, String kont) {
         this._id = id;
         this._name = name;
         this._short = nameShort;
@@ -36,6 +37,7 @@ public class Fach {
         this._promotionsrelevant = promotionsrelevant;
         this._kont1 = kont1;
         this._kont2 = kont2;
+        this._kont = kont;
     }
 
     // constructor for addFach
@@ -52,10 +54,11 @@ public class Fach {
         this._promotionsrelevant = promotionsrelevant;
         this._kont1 = "";
         this._kont2 = "";
+        this._kont = "";
     }
 
     // New constructor with important properties
-    public Fach(String name, String name_short, String color, String counts) {
+    public Fach(String name, String name_short, String color, String counts, String kont) {
         this._name = name;
         this._short = name_short;
         this._color = color;
@@ -68,6 +71,7 @@ public class Fach {
         this._promotionsrelevant = counts;
         this._kont1 = "";
         this._kont2 = "";
+        this._kont = kont;
     }
 
     // getting ID
@@ -262,6 +266,14 @@ public class Fach {
 
     public void setKont2(String _kont2) {
         this._kont2 = _kont2;
+    }
+
+    public String getKont() {
+        return _kont;
+    }
+
+    public void setKont(String kont) {
+        this._kont = kont;
     }
 
     public String[] getMarks(int semester) {

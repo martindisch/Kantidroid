@@ -30,6 +30,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_PROMOTIONSRELEVANT = "promotionsrelevant";
     private static final String KEY_KONT1 = "kont1";
     private static final String KEY_KONT2 = "kont2";
+    private static final String KEY_KONT = "kont";
 
     // constructor
     public DatabaseHandler(Context context) {
@@ -40,7 +41,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_KONT_TABLE = "CREATE TABLE " + TABLE_SUBJECTS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_SHORT + " TEXT," + KEY_COLOR + " TEXT," + KEY_NOTEN1 + " Text," + KEY_MATH_AVERAGE1 + " Text,"
-                + KEY_REAL_AVERAGE1 + " Text," + KEY_NOTEN2 + " Text," + KEY_MATH_AVERAGE2 + " Text," + KEY_REAL_AVERAGE2 + " Text," + KEY_PROMOTIONSRELEVANT + " Text," + KEY_KONT1 + " TEXT," + KEY_KONT2 + " TEXT" + ")";
+                + KEY_REAL_AVERAGE1 + " Text," + KEY_NOTEN2 + " Text," + KEY_MATH_AVERAGE2 + " Text," + KEY_REAL_AVERAGE2 + " Text," + KEY_PROMOTIONSRELEVANT + " Text," + KEY_KONT1 + " TEXT," + KEY_KONT2 + " TEXT," + KEY_KONT + " TEXT" + ")";
         db.execSQL(CREATE_KONT_TABLE);
     }
 
@@ -74,6 +75,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
         values.put(KEY_KONT1, "");
         values.put(KEY_KONT2, "");
+        values.put(KEY_KONT, fach.getKont());
 
         // inserting
         db.insert(TABLE_SUBJECTS, null, values);
@@ -85,13 +87,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_SUBJECTS, new String[]{KEY_ID, KEY_NAME, KEY_SHORT, KEY_COLOR, KEY_NOTEN1, KEY_MATH_AVERAGE1, KEY_REAL_AVERAGE1, KEY_NOTEN2, KEY_MATH_AVERAGE2, KEY_REAL_AVERAGE2,
-                KEY_PROMOTIONSRELEVANT, KEY_KONT1, KEY_KONT2}, KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+                KEY_PROMOTIONSRELEVANT, KEY_KONT1, KEY_KONT2, KEY_KONT}, KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
 
         Fach fach = new Fach(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
-                cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12));
+                cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13));
 
         cursor.close();
         db.close();
@@ -171,6 +173,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 fach.setPromotionsrelevant(cursor.getString(10));
                 fach.setKont1(cursor.getString(11));
                 fach.setKont2(cursor.getString(12));
+                fach.setKont(cursor.getString(13));
                 // adding fach to list
                 fachList.add(fach);
             } while (cursor.moveToNext());
@@ -253,6 +256,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 fach.setPromotionsrelevant(cursor.getString(10));
                 fach.setKont1(cursor.getString(11));
                 fach.setKont2(cursor.getString(12));
+                fach.setKont(cursor.getString(13));
                 // adding fach to list
                 fachList.add(fach);
             } while (cursor.moveToNext());
@@ -295,6 +299,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
         values.put(KEY_KONT1, fach.getKont1());
         values.put(KEY_KONT2, fach.getKont2());
+        values.put(KEY_KONT, fach.getKont());
 
         db.update(TABLE_SUBJECTS, values, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
         db.close();
