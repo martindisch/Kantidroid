@@ -23,7 +23,7 @@
         android:src="@drawable/ic_delete"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:layout_marginLeft="@dimen/widget_margin"/>
+        android:layout_marginLeft="@dimen/widget_margin_large"/>
 
     <ImageButton
         android:id="@+id/ibEdit"

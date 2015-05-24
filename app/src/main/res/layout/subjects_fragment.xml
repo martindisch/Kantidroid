@@ -61,7 +61,7 @@
             android:layout_alignBaseline="@id/bAdd"
             android:layout_toRightOf="@id/vColor"
             android:text="@string/color"
-            android:layout_marginLeft="@dimen/widget_margin"/>
+            android:layout_marginLeft="@dimen/widget_margin_large"/>
 
     </RelativeLayout>
 
