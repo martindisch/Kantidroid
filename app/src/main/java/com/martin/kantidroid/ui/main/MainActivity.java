@@ -1,4 +1,4 @@
-package com.martin.kantidroid.ui;
+package com.martin.kantidroid.ui.main;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Primer;
+import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.overview_fragment, container, false);
             return rootView;
         }
 

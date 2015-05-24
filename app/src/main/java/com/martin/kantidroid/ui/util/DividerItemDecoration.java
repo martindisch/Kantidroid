@@ -1,4 +1,4 @@
-package com.martin.kantidroid.ui;
+package com.martin.kantidroid.ui.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;

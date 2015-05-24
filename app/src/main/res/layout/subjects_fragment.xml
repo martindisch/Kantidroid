@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.martin.kantidroid.ui.SubjectsFragment">
+    tools:context="com.martin.kantidroid.ui.subjects.SubjectsFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,6 +69,7 @@
         android:id="@+id/rvSubjects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rlEdit"/>
+        android:layout_below="@id/rlEdit"
+        android:scrollbars="vertical"/>
 
 </RelativeLayout>

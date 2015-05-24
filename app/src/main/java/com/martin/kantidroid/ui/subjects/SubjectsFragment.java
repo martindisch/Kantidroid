@@ -1,12 +1,10 @@
-package com.martin.kantidroid.ui;
+package com.martin.kantidroid.ui.subjects;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,14 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
+import com.martin.kantidroid.ui.util.DividerItemDecoration;
+import com.martin.kantidroid.ui.main.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClickListener, View.OnClickListener {
@@ -57,7 +55,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_subjects, container, false);
+        View rootView = inflater.inflate(R.layout.subjects_fragment, container, false);
         mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
         mName = (EditText) rootView.findViewById(R.id.et_subj_name);
         mShort = (EditText) rootView.findViewById(R.id.et_subj_short);
@@ -72,8 +70,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         mSubjects.setLayoutManager(layoutManager);
         mSubjects.setHasFixedSize(true);
         mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-
-        // TODO: Request focus on first EditText
+        mName.requestFocus();
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
         List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);

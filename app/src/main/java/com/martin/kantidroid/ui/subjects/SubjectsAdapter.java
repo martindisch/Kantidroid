@@ -1,4 +1,4 @@
-package com.martin.kantidroid.ui;
+package com.martin.kantidroid.ui.subjects;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

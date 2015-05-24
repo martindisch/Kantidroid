@@ -1,4 +1,4 @@
-package com.martin.kantidroid.ui;
+package com.martin.kantidroid.ui.main;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
     private int mSelected = 0;
 
     public NavigationDrawerAdapter(Context context, NavDrawerItem[] items) {
-        super(context, R.layout.drawer_item, items);
+        super(context, R.layout.main_drawer_item, items);
         mContext = context;
         mItems = items;
     }
@@ -27,13 +27,13 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
         if (mItems[position].getText().contentEquals("divider")) {
-            rowView = inflater.inflate(R.layout.drawer_divider, parent, false);
+            rowView = inflater.inflate(R.layout.main_drawer_divider, parent, false);
         }
         else if (mItems[position].getText().contentEquals("spacer")) {
-            rowView = inflater.inflate(R.layout.drawer_spacer, parent, false);
+            rowView = inflater.inflate(R.layout.main_drawer_spacer, parent, false);
         }
         else {
-            rowView = inflater.inflate(R.layout.drawer_item, parent, false);
+            rowView = inflater.inflate(R.layout.main_drawer_item, parent, false);
             TextView textView = (TextView) rowView.findViewById(R.id.text1);
             ImageView imageView = (ImageView) rowView.findViewById(R.id.icon1);
             textView.setText(mItems[position].getText());
