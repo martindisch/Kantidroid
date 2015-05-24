@@ -2,69 +2,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.martin.kantidroid.ui.SubjectsFragment"
-    android:padding="@dimen/activity_horizontal_margin">
+    tools:context="com.martin.kantidroid.ui.SubjectsFragment">
 
-    <EditText
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_subj_name"
-        android:hint="@string/name"
-        android:inputType="textCapSentences"
-        android:imeOptions="actionNext"/>
+        android:padding="@dimen/activity_horizontal_margin"
+        android:id="@+id/rlEdit">
 
-    <EditText
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_subj_short"
-        android:hint="@string/name_short"
-        android:layout_below="@id/et_subj_name"
-        android:inputType="textCapWords"
-        android:imeOptions="actionDone"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_subj_name"
+            android:hint="@string/name"
+            android:inputType="textCapSentences"
+            android:imeOptions="actionNext"/>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/et_subj_name"
-        android:text="@string/promotion"
-        android:id="@+id/cbCounts"
-        android:layout_alignBaseline="@id/et_subj_short"
-        android:layout_alignParentRight="true"
-        android:checked="true"/>
+        <EditText
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_subj_short"
+            android:hint="@string/name_short"
+            android:layout_below="@id/et_subj_name"
+            android:inputType="textCapWords"
+            android:imeOptions="actionDone"/>
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_subj_name"
+            android:text="@string/promotion"
+            android:id="@+id/cbCounts"
+            android:layout_alignBaseline="@id/et_subj_short"
+            android:layout_alignParentRight="true"
+            android:checked="true"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_subj_short"
+            android:layout_alignParentRight="true"
+            android:id="@+id/bAdd"
+            android:text="@string/add"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/et_subj_short"
-        android:layout_alignParentRight="true"
-        android:id="@+id/bAdd"
-        android:text="@string/add"/>
+        <View
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:id="@+id/vColor"
+            android:background="@color/c1"
+            android:layout_below="@id/et_subj_short"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:tag="#F44336"/>
 
-    <View
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:id="@+id/vColor"
-        android:background="@color/c1"
-        android:layout_below="@id/et_subj_short"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:tag="#F44336"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/bAdd"
+            android:layout_toRightOf="@id/vColor"
+            android:text="@string/color"
+            android:layout_marginLeft="@dimen/widget_margin"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/bAdd"
-        android:layout_toRightOf="@id/vColor"
-        android:text="@string/color"
-        android:layout_marginLeft="@dimen/widget_margin"/>
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="@dimen/widget_margin"
         android:id="@+id/rvSubjects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/bAdd"/>
+        android:layout_below="@id/rlEdit"/>
 
 </RelativeLayout>
