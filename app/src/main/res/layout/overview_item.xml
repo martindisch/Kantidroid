@@ -1,75 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="140dp" android:layout_height="140dp"
-    android:background="#ff5757">
+    android:layout_width="150dp"
+    android:layout_height="150dp">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tvSubject"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:background="#a30000"
         android:layout_alignParentBottom="true"
-        android:id="@+id/rlSubject">
+        android:background="#a30000"
+        android:inputType="text"
+        android:padding="@dimen/widget_margin"
+        android:text="Wirtsc..."
+        android:textColor="@color/abc_primary_text_material_dark" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/widget_margin"
-            android:text="Wirtsc..."
-            android:inputType="text"
-            android:textColor="@color/abc_primary_text_material_dark"
-            android:id="@+id/tvSubject"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="35dp"
+    <TextView
+        android:id="@+id/tvGrades"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/tvSubject"
         android:background="#d50000"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/rlSubject"
-        android:id="@+id/rlGrades">
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:padding="@dimen/widget_margin"
+        android:text="5.5"
+        android:textColor="@color/abc_primary_text_material_dark" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/widget_margin"
-            android:layout_marginBottom="@dimen/widget_margin"
-            android:layout_centerHorizontal="true"
-            android:text="5.5"
-            android:inputType="text"
-            android:textColor="@color/abc_primary_text_material_dark"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="35dp"
+    <TextView
+        android:id="@+id/tvKont"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:background="#a30000"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/rlGrades"
-        android:id="@+id/rlKont">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/widget_margin"
-            android:layout_marginBottom="@dimen/widget_margin"
-            android:layout_centerHorizontal="true"
-            android:text="3/4"
-            android:inputType="text"
-            android:textColor="@color/abc_primary_text_material_dark"/>
-    </RelativeLayout>
+        android:layout_toRightOf="@id/tvGrades"
+        android:background="#a30000"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:padding="@dimen/widget_margin"
+        android:text="4/6"
+        android:textColor="@color/abc_primary_text_material_dark" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ff5757"
-        android:layout_above="@id/rlSubject">
+        android:layout_above="@id/tvSubject"
+        android:background="#ff5757">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:text="WR"
             android:textColor="@color/abc_primary_text_material_dark"
-            android:textSize="55sp"
-            android:text="WR"/>
+            android:textSize="55sp" />
     </RelativeLayout>
 
 </RelativeLayout>
