@@ -1,7 +1,6 @@
 package com.martin.kantidroid.ui.overview;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,15 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.ui.main.MainActivity;
-import com.martin.kantidroid.ui.subjects.EditDialog;
-import com.martin.kantidroid.ui.subjects.SubjectsAdapter;
-import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import java.util.List;
 
@@ -65,9 +60,9 @@ public class OverviewFragment extends Fragment implements OverviewAdapter.OnClic
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((MainActivity) getActivity()).updateTitle(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 

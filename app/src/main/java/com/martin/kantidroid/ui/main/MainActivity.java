@@ -54,20 +54,28 @@ public class MainActivity extends AppCompatActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        Fragment newFragment = PlaceholderFragment.newInstance(position + 1);
-        switch (position + 1) {
-            // Number 1 is the spacer
-            case 5:
-                newFragment = SubjectsFragment.newInstance(position + 1);
-                break;
-            // Number 6 is the divider
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(position));
+
+        if (fragment == null) {
+            fragment = PlaceholderFragment.newInstance(position + 1);
+
+            switch (position + 1) {
+                // Number 1 is the spacer
+                case 5:
+                    fragment = SubjectsFragment.newInstance(position + 1);
+                    break;
+                // Number 6 is the divider
+            }
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment, String.valueOf(position))
+                    .commit();
         }
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, newFragment)
-                .commit();
+
+        updateTitle(position + 1);
+
     }
 
-    public void onSectionAttached(int number) {
+    public void updateTitle(int number) {
         switch (number) {
             // Number 1 is the spacer
             case 2:
@@ -161,9 +169,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            ((MainActivity) getActivity()).updateTitle(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
