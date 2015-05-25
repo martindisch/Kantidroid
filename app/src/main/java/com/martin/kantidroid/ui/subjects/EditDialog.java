@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDialog;
+import android.support.v7.internal.widget.AppCompatPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
@@ -19,7 +22,7 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 
-public class EditDialog extends Activity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class EditDialog extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     public RecyclerView mSubjects;
     private SubjectsAdapter mAdapter;
@@ -30,12 +33,10 @@ public class EditDialog extends Activity implements View.OnClickListener, Compou
     private SwitchCompat mSwitch;
     private RadioGroup mKontSelection;
     private boolean newSubject = false;
-    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.subjects_edit_dialog);
 
         mName = (EditText) findViewById(R.id.et_subj_name);
