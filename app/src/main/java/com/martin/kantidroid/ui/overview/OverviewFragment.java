@@ -47,17 +47,10 @@ public class OverviewFragment extends Fragment implements OverviewAdapter.OnClic
         View rootView = inflater.inflate(R.layout.overview_fragment, container, false);
         mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
 
-        /*GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mSubjects.setLayoutManager(layoutManager);*/
         mSubjects.addItemDecoration(new MarginDecoration(getActivity()));
         mSubjects.setHasFixedSize(true);
 
-        DatabaseHandler db = new DatabaseHandler(getActivity());
-        // TODO: Enable sorting
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);
-        mAdapter = new OverviewAdapter(subjects, this);
-        mSubjects.setAdapter(mAdapter);
+        loadData();
         return rootView;
     }
 
@@ -74,5 +67,13 @@ public class OverviewFragment extends Fragment implements OverviewAdapter.OnClic
 
     @Override
     public void onItemLongClick(View v, int position) {
+    }
+
+    public void loadData() {
+        DatabaseHandler db = new DatabaseHandler(getActivity());
+        // TODO: Enable sorting
+        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);
+        mAdapter = new OverviewAdapter(subjects, this);
+        mSubjects.setAdapter(mAdapter);
     }
 }

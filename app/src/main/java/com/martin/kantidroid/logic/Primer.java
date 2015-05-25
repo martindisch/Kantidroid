@@ -3,10 +3,14 @@ package com.martin.kantidroid.logic;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.ui.main.MainActivity;
+import com.martin.kantidroid.ui.overview.OverviewFragment;
 
 public class Primer {
 
@@ -43,7 +47,7 @@ public class Primer {
                         @Override
                         public void run() {
 
-                            // TODO: Maybe set Kontingent as well
+                            // TODO: Maybe set kont_av as well
 
                             DatabaseHandler db = new DatabaseHandler(context);
                             Fach subject;
@@ -56,6 +60,15 @@ public class Primer {
                                 subject.setColor(colors[y]);
                                 db.addFach(subject);
                             }
+
+                            // Let MainActivity reload the data after we've created new subjects
+                            final FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
+                            ((MainActivity) context).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ((OverviewFragment) fragmentManager.findFragmentByTag(String.valueOf(1))).loadData();
+                                }
+                            });
                         }
                     }).start();
                 }

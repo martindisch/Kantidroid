@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(position));
+        Fragment fragment = fragmentManager.findFragmentByTag(String.valueOf(position));
 
         if (fragment == null) {
             fragment = PlaceholderFragment.newInstance(position + 1);
