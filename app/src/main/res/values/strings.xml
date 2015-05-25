@@ -125,7 +125,7 @@
         <item>#f9ce1d</item>
         <item>#ff9100</item>
         <item>#6f2c17</item>
-        <item>#000000</item>
+        <item>#010000</item>
     </string-array>
     <string name="title_activity_edit_dialog">EditDialog</string>
 

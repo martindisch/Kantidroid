@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="150dp"
-    android:layout_height="150dp">
+    android:layout_height="150dp"
+    android:id="@+id/rlItem">
 
     <TextView
         android:id="@+id/tvSubject"
@@ -9,9 +10,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#a30000"
+        android:ellipsize="marquee"
         android:inputType="text"
         android:padding="@dimen/widget_margin"
-        android:text="Wirtsc..."
+        android:singleLine="true"
+        android:text="Wirtschaft"
         android:textColor="@color/abc_primary_text_material_dark" />
 
     <TextView
@@ -41,12 +44,14 @@
         android:textColor="@color/abc_primary_text_material_dark" />
 
     <RelativeLayout
+        android:id="@+id/rlPic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/tvSubject"
         android:background="#ff5757">
 
         <TextView
+            android:id="@+id/tvPic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
