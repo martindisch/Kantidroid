@@ -12,3 +12,6 @@ Austin Andrews
 Chiu-Ki Chan
 	https://github.com/chiuki/android-recyclerview
 	General advice such as navigation drawer reloading the same fragment even when selection hasn't changed
+	
+Pirdad Sakhizada on Stack Overflow
+	http://stackoverflow.com/a/29905000

@@ -10,11 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="#a30000"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:padding="@dimen/widget_margin"
-        android:text="4/6"
         android:textColor="@color/abc_primary_text_material_dark" />
 
     <TextView
@@ -23,11 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/tvKont"
-        android:background="#d50000"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:padding="@dimen/widget_margin"
-        android:text="5.5"
         android:textColor="@color/abc_primary_text_material_dark" />
 
     <TextView
@@ -36,11 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/tvGrades"
-        android:background="#a30000"
         android:ellipsize="end"
         android:padding="@dimen/widget_margin"
         android:singleLine="true"
-        android:text="Wirtschaft"
         android:textColor="@color/abc_primary_text_material_dark" />
 
 
@@ -48,15 +42,13 @@
         android:id="@+id/rlPic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tvName"
-        android:background="#ff5757">
+        android:layout_above="@id/tvName">
 
         <TextView
             android:id="@+id/tvPic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="WR"
             android:textColor="@color/abc_primary_text_material_dark"
             android:textSize="55sp" />
     </RelativeLayout>
