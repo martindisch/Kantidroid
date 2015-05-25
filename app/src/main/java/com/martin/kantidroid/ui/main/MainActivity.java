@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Primer;
+import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 
 
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity
 
             switch (position + 1) {
                 // Number 1 is the spacer
+                case 2:
+                    fragment = OverviewFragment.newInstance(position + 1);
+                    break;
                 case 5:
                     fragment = SubjectsFragment.newInstance(position + 1);
                     break;

@@ -3,6 +3,7 @@ package com.martin.kantidroid.ui.overview;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,9 +47,10 @@ public class OverviewFragment extends Fragment implements OverviewAdapter.OnClic
         View rootView = inflater.inflate(R.layout.overview_fragment, container, false);
         mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        /*GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mSubjects.setLayoutManager(layoutManager);
+        mSubjects.setLayoutManager(layoutManager);*/
+        mSubjects.addItemDecoration(new MarginDecoration(getActivity()));
         mSubjects.setHasFixedSize(true);
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
