@@ -7,3 +7,7 @@ Google
 	
 Austin Andrews
 	http://materialdesignicons.com/icon/book-open
+	
+Chiu-Ki Chan
+	https://github.com/chiuki/android-recyclerview
+	General advice such as navigation drawer reloading the same fragment even when selection hasn't changed

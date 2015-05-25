@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,8 +20,10 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     private List<Fach> mEntries;
     private OnClickListener mCallback;
-    private Fach mTempfach;
+    private Fach mTempFach;
     private int mTempColor;
+    private String mTempGrades, mTempKontUs, mTempKontAv;
+    private int mTempSemester;
 
     public OverviewAdapter(List<Fach> entries, OnClickListener callback) {
         mEntries = entries;
@@ -42,13 +43,35 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        mTempfach = mEntries.get(position);
-        holder.tvName.setText(mTempfach.getName());
+        mTempFach = mEntries.get(position);
+
         // TODO: Ask user for semester, save it in SharedPreferences and load accordingly for kont and grades
-        holder.tvKont.setText(mTempfach.getKont1());
-        holder.tvGrades.setText(mTempfach.getMathAverage1());
-        holder.tvPic.setText(mTempfach.getShort());
-        mTempColor = Color.parseColor(mTempfach.getColor());
+        mTempSemester = 1;
+        if (mTempSemester == 1) {
+            mTempGrades = mTempFach.getMathAverage1();
+            mTempKontUs = mTempFach.getKont1();
+        }
+        else {
+            mTempGrades = mTempFach.getMathAverage2();
+            mTempKontUs = mTempFach.getKont2();
+        }
+        mTempKontAv = mTempFach.getKont();
+
+        if (mTempGrades.contentEquals("")) {
+            mTempGrades = "-";
+        }
+        if (mTempKontUs.contentEquals("")) {
+            mTempKontUs = "0";
+        }
+        if (mTempKontAv.contentEquals("")) {
+            mTempKontAv = "0";
+        }
+
+        holder.tvName.setText(mTempFach.getName());
+        holder.tvKont.setText(mTempKontUs + "/" + mTempKontAv);
+        holder.tvGrades.setText(mTempGrades);
+        holder.tvPic.setText(mTempFach.getShort());
+        mTempColor = Color.parseColor(mTempFach.getColor());
         holder.tvGrades.setBackgroundColor(mTempColor);
         holder.tvName.setBackgroundColor(Util.getDark(mTempColor));
         holder.tvKont.setBackgroundColor(Util.getDark(mTempColor));
