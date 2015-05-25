@@ -4,6 +4,7 @@ Google
 	http://materialdesignicons.com/icon/content-save
 	http://materialdesignicons.com/icon/information-outline
 	http://materialdesignicons.com/icon/pencil
+	Android Open Source Project, Support Library (Apache)
 	
 Austin Andrews
 	http://materialdesignicons.com/icon/book-open
