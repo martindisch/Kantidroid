@@ -40,7 +40,7 @@
         android:layout_below="@id/et_subj_short"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
-        android:tag="#F44336"
+        android:tag="#d50000"
         android:layout_marginBottom="@dimen/widget_margin_large"/>
 
     <TextView

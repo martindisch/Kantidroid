@@ -24,8 +24,6 @@ import com.martin.kantidroid.logic.Fach;
 
 public class EditDialog extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    public RecyclerView mSubjects;
-    private SubjectsAdapter mAdapter;
     private EditText mName, mShort;
     private CheckBox mCounts;
     private Button mAdd;
@@ -60,6 +58,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
             }
             mCounts.setChecked(counts);
             mColor.setBackgroundColor(Color.parseColor(data.getStringExtra("color")));
+            mColor.setTag(data.getStringExtra("color"));
             selectKont(data.getStringExtra("kontAv"));
             mAdd.setText(R.string.save);
         }
