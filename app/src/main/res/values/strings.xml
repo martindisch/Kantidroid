@@ -134,4 +134,5 @@
     <string name="space" />
     <string name="n10">10</string>
     <string name="n12">12</string>
+    <string name="title_activity_fach_view">FachView</string>
 </resources>

@@ -7,6 +7,7 @@ Google
 	http://materialdesignicons.com/icon/school
 	http://materialdesignicons.com/icon/calculator
 	Android Open Source Project, Support Library (Apache)
+	iosched 14 SlidingTabs (Apache, included in source)
 	
 Austin Andrews
 	http://materialdesignicons.com/icon/book-open
