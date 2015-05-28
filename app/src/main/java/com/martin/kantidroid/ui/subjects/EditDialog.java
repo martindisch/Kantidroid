@@ -29,7 +29,6 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
 
     private EditText mName, mShort;
     private CheckBox mCounts;
-    private Button mDelete;
     private View mColor;
     private SwitchCompat mSwitch;
     private RadioGroup mKontSelection;
@@ -46,8 +45,6 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         mSwitch = (SwitchCompat) findViewById(R.id.scCounts);
         mSwitch.setOnCheckedChangeListener(this);
         mKontSelection = (RadioGroup) findViewById(R.id.rgKont);
-        mDelete = (Button) findViewById(R.id.bDelete);
-        mDelete.setOnClickListener(this);
         mColor = findViewById(R.id.vColor);
         mColor.setOnClickListener(this);
 
@@ -79,10 +76,6 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bDelete:
-                setResult(3);
-                finish();
-                break;
             case R.id.vColor:
                 Intent i = new Intent(this, ColorPickerDialog.class);
                 startActivityForResult(i, 2);
@@ -204,6 +197,10 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
                 else {
                     Toast.makeText(this, R.string.enter_name, Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.action_delete:
+                setResult(3);
+                finish();
                 break;
         }
         return(super.onOptionsItemSelected(item));
