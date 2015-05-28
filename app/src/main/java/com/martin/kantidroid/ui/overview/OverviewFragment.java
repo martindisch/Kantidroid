@@ -73,7 +73,7 @@ public class OverviewFragment extends Fragment implements OverviewAdapter.OnClic
         DatabaseHandler db = new DatabaseHandler(getActivity());
         // TODO: Enable sorting
         List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);
-        mAdapter = new OverviewAdapter(subjects, this);
+        mAdapter = new OverviewAdapter(getActivity(), subjects, this);
         mSubjects.setAdapter(mAdapter);
     }
 }

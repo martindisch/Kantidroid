@@ -55,61 +55,8 @@ public class ColorPickerDialog extends Activity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        String[] colors = getResources().getStringArray(R.array.colors);
-        String color = colors[0];
-        switch (view.getId()) {
-            case R.id.c1:
-                color = colors[0];
-                break;
-            case R.id.c2:
-                color = colors[1];
-                break;
-            case R.id.c3:
-                color = colors[2];
-                break;
-            case R.id.c4:
-                color = colors[3];
-                break;
-            case R.id.c5:
-                color = colors[4];
-                break;
-            case R.id.c6:
-                color = colors[5];
-                break;
-            case R.id.c7:
-                color = colors[6];
-                break;
-            case R.id.c8:
-                color = colors[7];
-                break;
-            case R.id.c9:
-                color = colors[8];
-                break;
-            case R.id.c10:
-                color = colors[9];
-                break;
-            case R.id.c11:
-                color = colors[10];
-                break;
-            case R.id.c12:
-                color = colors[11];
-                break;
-            case R.id.c13:
-                color = colors[12];
-                break;
-            case R.id.c14:
-                color = colors[13];
-                break;
-            case R.id.c15:
-                color = colors[14];
-                break;
-            case R.id.c16:
-                color = colors[15];
-                break;
-        }
-
         Intent i = new Intent();
-        i.putExtra("color", color);
+        i.putExtra("color", view.getTag().toString());
         setResult(1, i);
         finish();
     }

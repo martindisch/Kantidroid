@@ -16,7 +16,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c1" />
+            android:background="@color/c1"
+            android:tag="0"/>
 
         <View
             android:id="@+id/c2"
@@ -24,7 +25,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c2" />
+            android:background="@color/c2"
+            android:tag="1"/>
 
         <View
             android:id="@+id/c3"
@@ -32,7 +34,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c3" />
+            android:background="@color/c3"
+            android:tag="2"/>
 
         <View
             android:id="@+id/c4"
@@ -40,7 +43,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c4" />
+            android:background="@color/c4"
+            android:tag="3"/>
 
     </LinearLayout>
 
@@ -55,7 +59,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c5" />
+            android:background="@color/c5"
+            android:tag="4"/>
 
         <View
             android:id="@+id/c6"
@@ -63,7 +68,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c6" />
+            android:background="@color/c6"
+            android:tag="5"/>
 
         <View
             android:id="@+id/c7"
@@ -71,7 +77,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c7" />
+            android:background="@color/c7"
+            android:tag="6"/>
 
         <View
             android:id="@+id/c8"
@@ -79,7 +86,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c8" />
+            android:background="@color/c8"
+            android:tag="7"/>
 
     </LinearLayout>
 
@@ -94,7 +102,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c9" />
+            android:background="@color/c9"
+            android:tag="8"/>
 
         <View
             android:id="@+id/c10"
@@ -102,7 +111,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c10" />
+            android:background="@color/c10"
+            android:tag="9"/>
 
         <View
             android:id="@+id/c11"
@@ -110,7 +120,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c11" />
+            android:background="@color/c11"
+            android:tag="10"/>
 
         <View
             android:id="@+id/c12"
@@ -118,7 +129,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c12" />
+            android:background="@color/c12"
+            android:tag="11"/>
 
     </LinearLayout>
 
@@ -134,7 +146,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c13" />
+            android:background="@color/c13"
+            android:tag="12"/>
 
         <View
             android:id="@+id/c14"
@@ -142,7 +155,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c14" />
+            android:background="@color/c14"
+            android:tag="13"/>
 
         <View
             android:id="@+id/c15"
@@ -150,7 +164,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c15" />
+            android:background="@color/c15"
+            android:tag="14"/>
 
         <View
             android:id="@+id/c16"
@@ -158,7 +173,8 @@
             android:layout_height="@dimen/color_picker_size"
             android:layout_marginLeft="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
-            android:background="@color/c16" />
+            android:background="@color/c16"
+            android:tag="15"/>
 
     </LinearLayout>
 
