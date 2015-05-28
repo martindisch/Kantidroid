@@ -22,19 +22,14 @@
         </activity>
         <activity
             android:name=".ui.subjects.EditDialog"
-            android:theme="@style/AppDialog" >
-        </activity>
-        <activity
-            android:name=".ui.fachview.FachView"
-            android:label="@string/title_activity_fach_view"
-            android:parentActivityName=".ui.main.MainActivity" >
+            android:label="@string/title_activity_edit_dialog"
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martin.kantidroid.ui.main.MainActivity" />
         </activity>
         <activity
             android:name=".ui.fachview.FachViewActivity"
-            android:label="@string/title_activity_fach_view"
             android:parentActivityName=".ui.main.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

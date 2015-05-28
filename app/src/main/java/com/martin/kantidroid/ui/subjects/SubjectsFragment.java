@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,9 +103,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
     }
 
     @Override
-    public void onItemLongClick(View v, int position) {
-
-    }
+    public void onItemLongClick(View v, int position) {}
 
     @Override
     public void onClick(View view) {
@@ -137,6 +136,10 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
                     changed.setKont(data.getStringExtra("kontAv"));
                     db.updateFach(changed);
                     mAdapter.update(changed, mEditingIndex);
+                    break;
+                case 3:
+                    db.deleteFach(mAdapter.getData().get(mEditingIndex));
+                    mAdapter.remove(mEditingIndex);
                     break;
             }
             mEditingIndex = -1;

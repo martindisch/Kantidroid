@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatDialog;
 import android.support.v7.internal.widget.AppCompatPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -27,7 +29,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
 
     private EditText mName, mShort;
     private CheckBox mCounts;
-    private Button mAdd;
+    private Button mDelete;
     private View mColor;
     private SwitchCompat mSwitch;
     private RadioGroup mKontSelection;
@@ -44,8 +46,8 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         mSwitch = (SwitchCompat) findViewById(R.id.scCounts);
         mSwitch.setOnCheckedChangeListener(this);
         mKontSelection = (RadioGroup) findViewById(R.id.rgKont);
-        mAdd = (Button) findViewById(R.id.bAdd);
-        mAdd.setOnClickListener(this);
+        mDelete = (Button) findViewById(R.id.bDelete);
+        mDelete.setOnClickListener(this);
         mColor = findViewById(R.id.vColor);
         mColor.setOnClickListener(this);
 
@@ -61,7 +63,6 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
             mColor.setBackgroundColor(Util.getNormal(this, data.getStringExtra("color")));
             mColor.setTag(data.getStringExtra("color"));
             selectKont(data.getStringExtra("kontAv"));
-            mAdd.setText(R.string.save);
         }
         else {
             newSubject = true;
@@ -78,36 +79,9 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bAdd:
-                String sName = mName.getText().toString();
-                String sShort = mShort.getText().toString();
-                if (sName.length() > 0 && sShort.length() > 0) {
-                    if (sShort.length() <= 5) {
-                        String counts = "false";
-                        if (mCounts.isChecked()) {
-                            counts = "true";
-                        }
-                        Intent data = new Intent();
-                        data.putExtra("name", sName);
-                        data.putExtra("short", sShort);
-                        data.putExtra("color", mColor.getTag().toString());
-                        data.putExtra("counts", counts);
-                        data.putExtra("kontAv", getKontAv());
-                        if (newSubject) {
-                            setResult(1, data);
-                        }
-                        else {
-                            setResult(2, data);
-                        }
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(this, R.string.too_long, Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else {
-                    Toast.makeText(this, R.string.enter_name, Toast.LENGTH_SHORT).show();
-                }
+            case R.id.bDelete:
+                setResult(3);
+                finish();
                 break;
             case R.id.vColor:
                 Intent i = new Intent(this, ColorPickerDialog.class);
@@ -192,5 +166,52 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("color", mColor.getTag().toString());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.action_save:
+                String sName = mName.getText().toString();
+                String sShort = mShort.getText().toString();
+                if (sName.length() > 0 && sShort.length() > 0) {
+                    if (sShort.length() <= 5) {
+                        String counts = "false";
+                        if (mCounts.isChecked()) {
+                            counts = "true";
+                        }
+                        Intent data = new Intent();
+                        data.putExtra("name", sName);
+                        data.putExtra("short", sShort);
+                        data.putExtra("color", mColor.getTag().toString());
+                        data.putExtra("counts", counts);
+                        data.putExtra("kontAv", getKontAv());
+                        if (newSubject) {
+                            setResult(1, data);
+                        }
+                        else {
+                            setResult(2, data);
+                        }
+                        finish();
+                    }
+                    else {
+                        Toast.makeText(this, R.string.too_long, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(this, R.string.enter_name, Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.subjects_edit_menu, menu);
+        return true;
     }
 }

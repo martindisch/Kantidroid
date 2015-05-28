@@ -6,12 +6,16 @@ Google
 	http://materialdesignicons.com/icon/pencil
 	http://materialdesignicons.com/icon/school
 	http://materialdesignicons.com/icon/calculator
+	http://materialdesignicons.com/icon/close
+	http://materialdesignicons.com/icon/alert
+	http://materialdesignicons.com/icon/palette
 	Android Open Source Project, Support Library (Apache)
 	iosched 14 SlidingTabs (Apache, included in source)
 	
 Austin Andrews
 	http://materialdesignicons.com/icon/book-open
 	http://materialdesignicons.com/icon/timetable
+	http://materialdesignicons.com/icon/alphabetical
 	
 Chiu-Ki Chan
 	https://github.com/chiuki/android-recyclerview

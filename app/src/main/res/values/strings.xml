@@ -163,7 +163,7 @@
         <item>#4e4e4e</item>
     </string-array>
 
-    <string name="title_activity_edit_dialog">EditDialog</string>
+    <string name="title_activity_edit_dialog">Fach hinz./bearb.</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="kont">Kontingent</string>
@@ -171,4 +171,5 @@
     <string name="n10">10</string>
     <string name="n12">12</string>
     <string name="title_activity_fach_view">FachView</string>
+    <string name="delete">Fach löschen</string>
 </resources>
