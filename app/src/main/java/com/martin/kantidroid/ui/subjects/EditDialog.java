@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
+import com.martin.kantidroid.logic.Util;
 
 public class EditDialog extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
@@ -57,7 +58,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
                 counts = true;
             }
             mCounts.setChecked(counts);
-            mColor.setBackgroundColor(Color.parseColor(data.getStringExtra("color")));
+            mColor.setBackgroundColor(Util.getNormal(this, data.getStringExtra("color")));
             mColor.setTag(data.getStringExtra("color"));
             selectKont(data.getStringExtra("kontAv"));
             mAdd.setText(R.string.save);
@@ -115,7 +116,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == 1) {
             mColor.setTag(data.getStringExtra("color"));
-            mColor.setBackgroundColor(Color.parseColor(data.getStringExtra("color")));
+            mColor.setBackgroundColor(Util.getNormal(this, data.getStringExtra("color")));
         }
     }
 
