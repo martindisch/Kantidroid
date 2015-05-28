@@ -37,7 +37,6 @@
         android:singleLine="true"
         android:textColor="@color/abc_primary_text_material_dark" />
 
-
     <RelativeLayout
         android:id="@+id/rlPic"
         android:layout_width="match_parent"

@@ -12,7 +12,7 @@ public class FachViewActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fach_view);
+        setContentView(R.layout.fachview_activity);
     }
 
     @Override
