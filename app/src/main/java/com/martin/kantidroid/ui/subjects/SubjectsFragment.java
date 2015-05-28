@@ -42,6 +42,15 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            mEditingIndex = savedInstanceState.getInt("mEditingIndex");
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt("mEditingIndex", mEditingIndex);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

@@ -67,6 +67,11 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
             newSubject = true;
         }
 
+        if (savedInstanceState != null) {
+            mColor.setBackgroundColor(Util.getNormal(this, savedInstanceState.getString("color")));
+            mColor.setTag(savedInstanceState.getString("color"));
+        }
+
         mName.requestFocus();
     }
 
@@ -181,5 +186,11 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
             }
             mKontSelection.check(id);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("color", mColor.getTag().toString());
+        super.onSaveInstanceState(outState);
     }
 }
