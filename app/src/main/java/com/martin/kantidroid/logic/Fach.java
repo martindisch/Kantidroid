@@ -248,8 +248,8 @@ public class Fach {
         return _color;
     }
 
-    public void setColor(String _color) {
-        this._color = _color;
+    public void setColor(String _index) {
+        this._color = _index;
     }
 
     public String getKont1() {

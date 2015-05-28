@@ -53,11 +53,10 @@ public class Primer {
                             Fach subject;
                             String[] subjects = context.getResources().getStringArray(R.array.subjects_standard);
                             String[] subjects_short = context.getResources().getStringArray(R.array.subjects_standard_short);
-                            String[] colors = context.getResources().getStringArray(R.array.colors);
                             for (int y = 0; y < subjects.length; y++) {
                                 subject = new Fach(subjects[y], "true");
                                 subject.setShort(subjects_short[y]);
-                                subject.setColor(colors[y]);
+                                subject.setColor(y + "");
                                 db.addFach(subject);
                             }
 
