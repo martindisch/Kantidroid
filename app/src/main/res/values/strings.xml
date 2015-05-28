@@ -173,4 +173,5 @@
     <string name="title_activity_fach_view">FachView</string>
     <string name="delete">Fach löschen</string>
     <string name="delete_question">Willst du dieses Fach endgültig löschen?</string>
+    <string name="no_delete">Neues Fach kann nicht gelöscht werden</string>
 </resources>

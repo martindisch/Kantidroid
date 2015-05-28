@@ -1,11 +1,12 @@
 package com.martin.kantidroid.ui.subjects;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,8 @@ import android.widget.ImageButton;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
-import com.martin.kantidroid.ui.util.DividerItemDecoration;
 import com.martin.kantidroid.ui.main.MainActivity;
+import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import java.util.List;
 
@@ -83,27 +84,33 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
     }
 
     @Override
-    public void onItemClick(View v, int position) {
-        if (v.getTag() == 1) {
-            mEditingIndex = position;
-            Fach current = mAdapter.getData().get(position);
-            Intent i = new Intent(getActivity(), EditDialog.class);
-            i.putExtra("name", current.getName());
-            i.putExtra("short", current.getShort());
-            i.putExtra("color", current.getColor());
-            i.putExtra("counts", current.getPromotionsrelevant());
-            i.putExtra("kontAv", current.getKont());
-            startActivityForResult(i, 1);
-        }
-        else if (v.getTag() == 0) {
-            DatabaseHandler db = new DatabaseHandler(getActivity());
-            db.deleteFach(mAdapter.getData().get(position));
-            mAdapter.remove(position);
-        }
+    public void onItemClick(View v, final int position) {
+        mEditingIndex = position;
+        Fach current = mAdapter.getData().get(position);
+        Intent i = new Intent(getActivity(), EditDialog.class);
+        i.putExtra("name", current.getName());
+        i.putExtra("short", current.getShort());
+        i.putExtra("color", current.getColor());
+        i.putExtra("counts", current.getPromotionsrelevant());
+        i.putExtra("kontAv", current.getKont());
+        startActivityForResult(i, 1);
     }
 
     @Override
-    public void onItemLongClick(View v, int position) {}
+    public void onItemLongClick(View v, final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.delete_question);
+        builder.setNegativeButton(R.string.no, null);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                db.deleteFach(mAdapter.getData().get(position));
+                mAdapter.remove(position);
+            }
+        });
+        builder.show();
+    }
 
     @Override
     public void onClick(View view) {

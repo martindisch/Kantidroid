@@ -1,22 +1,14 @@
 package com.martin.kantidroid.ui.subjects;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
-import android.support.v7.internal.view.ContextThemeWrapper;
-import android.support.v7.internal.widget.AppCompatPopupWindow;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -24,8 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.martin.kantidroid.R;
-import com.martin.kantidroid.logic.DatabaseHandler;
-import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
 
 public class EditDialog extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -63,8 +53,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
             mColor.setBackgroundColor(Util.getNormal(this, data.getStringExtra("color")));
             mColor.setTag(data.getStringExtra("color"));
             selectKont(data.getStringExtra("kontAv"));
-        }
-        else {
+        } else {
             newSubject = true;
         }
 
@@ -137,10 +126,9 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         int kont = Integer.parseInt(kontAv);
         if (kont == 0) {
             mSwitch.setChecked(false);
-        }
-        else {
-            int[] kontList = new int[] {2, 4, 6, 8, 10, 12};
-            int[] ids = new int[] {
+        } else {
+            int[] kontList = new int[]{2, 4, 6, 8, 10, 12};
+            int[] ids = new int[]{
                     R.id.rb2,
                     R.id.rb4,
                     R.id.rb6,
@@ -187,35 +175,36 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
                         data.putExtra("kontAv", getKontAv());
                         if (newSubject) {
                             setResult(1, data);
-                        }
-                        else {
+                        } else {
                             setResult(2, data);
                         }
                         finish();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(this, R.string.too_long, Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(this, R.string.enter_name, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.action_delete:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.delete_question);
-                builder.setNegativeButton(R.string.no, null);
-                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        setResult(3);
-                        finish();
-                    }
-                });
-               builder.show();
+                if (!newSubject) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage(R.string.delete_question);
+                    builder.setNegativeButton(R.string.no, null);
+                    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            setResult(3);
+                            finish();
+                        }
+                    });
+                    builder.show();
+                } else {
+                    Toast.makeText(this, R.string.no_delete, Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 
     @Override

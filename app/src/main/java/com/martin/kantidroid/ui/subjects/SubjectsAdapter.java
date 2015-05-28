@@ -47,15 +47,21 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
         holder.rlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.setTag(1);
                 mCallback.onItemClick(view, holder.getAdapterPosition());
+            }
+        });
+        holder.rlRoot.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mCallback.onItemLongClick(view, holder.getAdapterPosition());
+                return false;
             }
         });
     }
 
     public interface OnClickListener {
-        void onItemClick(View v, int position);
-        void onItemLongClick(View v, int position);
+        void onItemClick(View v, final int position);
+        void onItemLongClick(View v, final int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
