@@ -1,21 +1,17 @@
 package com.martin.kantidroid.logic;
 
+import android.content.Context;
 import android.graphics.Color;
+
+import com.martin.kantidroid.R;
 
 public class Util {
 
-    private static float[] mTempColor = new float[3];
-
-    public static int getDark(int original) {
-        Color.colorToHSV(original, mTempColor);
-        mTempColor[2] = mTempColor[2] - (float) 0.2;
-        return Color.HSVToColor(mTempColor);
+    public static int getDark(Context context, int index) {
+        return Color.parseColor(context.getResources().getStringArray(R.array.colors_dark)[index]);
     }
 
-    public static int getLight(int original) {
-        Color.colorToHSV(original, mTempColor);
-        mTempColor[2] = 1;
-        mTempColor[1] = mTempColor[1] - (float) 0.35;
-        return Color.HSVToColor(mTempColor);
+    public static int getLight(Context context, int index) {
+        return Color.parseColor(context.getResources().getStringArray(R.array.colors_light)[index]);
     }
 }

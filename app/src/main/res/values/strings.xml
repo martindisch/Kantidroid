@@ -107,7 +107,7 @@
         <item>markManager</item>
         <item>Kantidroid</item>
     </string-array>
-    
+
     <string-array name="colors">
         <item>#d50000</item>
         <item>#c51162</item>
