@@ -1,14 +1,16 @@
 package com.martin.kantidroid.ui.subjects;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Fach;
+import com.martin.kantidroid.logic.Util;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,8 +20,10 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
     private List<Fach> mEntries;
     private OnClickListener mCallback;
+    private Context mContext;
 
-    public SubjectsAdapter(List<Fach> entries, OnClickListener callback) {
+    public SubjectsAdapter(Context context, List<Fach> entries, OnClickListener callback) {
+        mContext = context;
         mEntries = entries;
         mCallback = callback;
     }
@@ -38,17 +42,12 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tvName.setText(mEntries.get(position).getName());
-        holder.ibEdit.setOnClickListener(new View.OnClickListener() {
+        holder.tvPic.getBackground().setColorFilter(Util.getNormal(mContext, mEntries.get(position).getColor()), PorterDuff.Mode.SRC_ATOP);
+        holder.tvPic.setText(mEntries.get(position).getShort().substring(0, 1));
+        holder.rlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.setTag(1);
-                mCallback.onItemClick(view, holder.getAdapterPosition());
-            }
-        });
-        holder.ibDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.setTag(0);
                 mCallback.onItemClick(view, holder.getAdapterPosition());
             }
         });
@@ -60,14 +59,14 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName;
-        public ImageButton ibEdit, ibDelete;
+        public TextView tvName, tvPic;
+        public View rlRoot;
 
         public ViewHolder(View v) {
             super(v);
             tvName = (TextView) v.findViewById(R.id.tvName);
-            ibEdit = (ImageButton) v.findViewById(R.id.ibEdit);
-            ibDelete = (ImageButton) v.findViewById(R.id.ibDelete);
+            tvPic = (TextView) v.findViewById(R.id.tvPic);
+            rlRoot = v.findViewById(R.id.rlRoot);
         }
     }
 

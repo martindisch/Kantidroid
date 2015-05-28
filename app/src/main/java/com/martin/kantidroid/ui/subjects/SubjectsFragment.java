@@ -70,7 +70,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
         List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);
-        mAdapter = new SubjectsAdapter(subjects, this);
+        mAdapter = new SubjectsAdapter(getActivity(), subjects, this);
         mSubjects.setAdapter(mAdapter);
         return rootView;
     }
