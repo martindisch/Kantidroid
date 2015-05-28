@@ -172,4 +172,5 @@
     <string name="n12">12</string>
     <string name="title_activity_fach_view">FachView</string>
     <string name="delete">Fach löschen</string>
+    <string name="delete_question">Willst du dieses Fach endgültig löschen?</string>
 </resources>

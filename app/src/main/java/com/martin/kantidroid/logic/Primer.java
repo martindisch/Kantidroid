@@ -38,7 +38,7 @@ public class Primer {
     public static void runEveryTime(final Context context) {
         DatabaseHandler db = new DatabaseHandler(context);
         if (db.getAllFaecher(context, 1).size() == 0) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppDialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage(R.string.ask_autosubjects);
             builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                 @Override

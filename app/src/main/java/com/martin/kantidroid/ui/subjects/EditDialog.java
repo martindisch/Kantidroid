@@ -1,11 +1,14 @@
 package com.martin.kantidroid.ui.subjects;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
+import android.support.v7.internal.view.ContextThemeWrapper;
 import android.support.v7.internal.widget.AppCompatPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
@@ -199,8 +202,17 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
                 }
                 break;
             case R.id.action_delete:
-                setResult(3);
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.delete_question);
+                builder.setNegativeButton(R.string.no, null);
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        setResult(3);
+                        finish();
+                    }
+                });
+               builder.show();
                 break;
         }
         return(super.onOptionsItemSelected(item));
