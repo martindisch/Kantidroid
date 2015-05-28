@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.overview;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,11 +22,12 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     private List<Fach> mEntries;
     private OnClickListener mCallback;
     private Fach mTempFach;
-    private int mTempColor;
     private String mTempGrades, mTempKontUs, mTempKontAv;
     private int mTempSemester;
+    private Context mContext;
 
-    public OverviewAdapter(List<Fach> entries, OnClickListener callback) {
+    public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback) {
+        mContext = context;
         mEntries = entries;
         mCallback = callback;
     }
@@ -71,11 +73,10 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         holder.tvKont.setText(mTempKontUs + "/" + mTempKontAv);
         holder.tvGrades.setText(mTempGrades);
         holder.tvPic.setText(mTempFach.getShort());
-        mTempColor = Color.parseColor(mTempFach.getColor());
-        holder.tvGrades.setBackgroundColor(mTempColor);
-        holder.tvName.setBackgroundColor(Util.getDark(mTempColor));
-        holder.tvKont.setBackgroundColor(Util.getDark(mTempColor));
-        holder.rlPic.setBackgroundColor(Util.getLight(mTempColor));
+        holder.tvGrades.setBackgroundColor(Util.getNormal(mContext, mTempFach.getColor()));
+        holder.tvName.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
+        holder.tvKont.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
+        holder.rlPic.setBackgroundColor(Util.getLight(mContext, mTempFach.getColor()));
 
         holder.rlItem.setOnClickListener(new View.OnClickListener() {
             @Override
