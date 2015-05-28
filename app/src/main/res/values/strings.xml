@@ -107,8 +107,7 @@
         <item>markManager</item>
         <item>Kantidroid</item>
     </string-array>
-
-    <!-- Don't modify this section -->
+    
     <string-array name="colors">
         <item>#d50000</item>
         <item>#c51162</item>
@@ -124,9 +123,46 @@
         <item>#866e0d</item>
         <item>#f9ce1d</item>
         <item>#ff9100</item>
-        <item>#8e3317</item>
-        <item>#4c1504</item>
+        <item>#6f2c17</item>
+        <item>#000000</item>
     </string-array>
+    <string-array name="colors_dark">
+        <item>#a30000</item>
+        <item>#910d49</item>
+        <item>#8800cc</item>
+        <item>#4d00b8</item>
+        <item>#263fc9</item>
+        <item>#0071b8</item>
+        <item>#008ba1</item>
+        <item>#008c7a</item>
+        <item>#00943e</item>
+        <item>#658f36</item>
+        <item>#7f821f</item>
+        <item>#544508</item>
+        <item>#c7a418</item>
+        <item>#cc7400</item>
+        <item>#3d180d</item>
+        <item>#000000</item>
+    </string-array>
+    <string-array name="colors_light">
+        <item>#be4c4c</item>
+        <item>#ae4474</item>
+        <item>#af4ee0</item>
+        <item>#834bcf</item>
+        <item>#5467d3</item>
+        <item>#2f8ac2</item>
+        <item>#3da8b8</item>
+        <item>#48a195</item>
+        <item>#47ad71</item>
+        <item>#87ab5e</item>
+        <item>#929543</item>
+        <item>#8a7c41</item>
+        <item>#c8b155</item>
+        <item>#ca8e3f</item>
+        <item>#844733</item>
+        <item>#4e4e4e</item>
+    </string-array>
+
     <string name="title_activity_edit_dialog">EditDialog</string>
 
     <string name="hello_world">Hello world!</string>
