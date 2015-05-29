@@ -93,7 +93,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName, tvPic, tvGrades, tvKont;
-        public RelativeLayout rlPic, rlItem;
+        public View rlPic, rlItem;
 
         public ViewHolder(View v) {
             super(v);
@@ -101,8 +101,8 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             tvPic = (TextView) v.findViewById(R.id.tvPic);
             tvGrades = (TextView) v.findViewById(R.id.tvGrades);
             tvKont = (TextView) v.findViewById(R.id.tvKont);
-            rlPic = (RelativeLayout) v.findViewById(R.id.rlPic);
-            rlItem = (RelativeLayout) v.findViewById(R.id.rlItem);
+            rlPic = v.findViewById(R.id.rlPic);
+            rlItem = v.findViewById(R.id.rlItem);
         }
     }
 
