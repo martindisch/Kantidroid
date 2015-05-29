@@ -104,9 +104,6 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
                 case R.id.rb10:
                     kontAv = "10";
                     break;
-                case R.id.rb12:
-                    kontAv = "12";
-                    break;
             }
         }
         return kontAv;
@@ -128,14 +125,13 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         if (kont == 0) {
             mSwitch.setChecked(false);
         } else {
-            int[] kontList = new int[]{2, 4, 6, 8, 10, 12};
+            int[] kontList = new int[]{2, 4, 6, 8, 10};
             int[] ids = new int[]{
                     R.id.rb2,
                     R.id.rb4,
                     R.id.rb6,
                     R.id.rb8,
-                    R.id.rb10,
-                    R.id.rb12
+                    R.id.rb10
             };
             int id = R.id.rb4;
             for (int i = 0; i < kontList.length; i++) {

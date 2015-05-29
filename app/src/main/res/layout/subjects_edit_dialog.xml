@@ -118,7 +118,7 @@
             android:layout_marginTop="@dimen/widget_margin"
             android:layout_toRightOf="@id/ivKont"
             android:orientation="horizontal"
-            android:weightSum="6">
+            android:weightSum="5">
 
             <RadioButton
                 android:id="@+id/rb2"
@@ -155,13 +155,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/n10" />
-
-            <RadioButton
-                android:id="@+id/rb12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/n12" />
 
         </RadioGroup>
 
