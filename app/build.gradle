@@ -8,7 +8,7 @@ android {
         applicationId "com.martin.kantidroid"
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 86
+        versionCode 87
         versionName "3.0"
     }
     buildTypes {
@@ -21,8 +21,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.android.support:support-v4:22.1.1'
-    compile 'com.android.support:cardview-v7:22.1.1'
-    compile 'com.android.support:recyclerview-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
 }

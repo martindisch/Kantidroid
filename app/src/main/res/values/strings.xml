@@ -124,7 +124,7 @@
         <item>#f9ce1d</item>
         <item>#ff9100</item>
         <item>#6f2c17</item>
-        <item>#000000</item>
+        <item>#333333</item>
     </string-array>
     <string-array name="colors_dark">
         <item>#a30000</item>
@@ -148,9 +148,9 @@
         <item>#be4c4c</item>
         <item>#ae4474</item>
         <item>#af4ee0</item>
-        <item>#834bcf</item>
+        <item>#6632ac</item>
         <item>#5467d3</item>
-        <item>#2f8ac2</item>
+        <item>#4b9fd3</item>
         <item>#3da8b8</item>
         <item>#48a195</item>
         <item>#47ad71</item>
