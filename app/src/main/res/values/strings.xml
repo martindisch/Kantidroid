@@ -163,8 +163,6 @@
         <item>#4e4e4e</item>
     </string-array>
 
-    <string name="title_activity_edit_dialog">Fach hinz./bearb.</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="kont">Kontingent</string>
     <string name="space" />
@@ -174,4 +172,6 @@
     <string name="delete">Fach löschen</string>
     <string name="delete_question">Willst du dieses Fach endgültig löschen?</string>
     <string name="no_delete">Neues Fach kann nicht gelöscht werden</string>
+    <string name="subject_add">Fach hinzufügen</string>
+    <string name="subject_edit">Fach bearbeiten</string>
 </resources>

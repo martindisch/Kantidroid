@@ -55,6 +55,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
             selectKont(data.getStringExtra("kontAv"));
         } else {
             newSubject = true;
+            setTitle(R.string.subject_add);
         }
 
         if (savedInstanceState != null) {

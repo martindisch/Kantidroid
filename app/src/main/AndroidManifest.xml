@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".ui.subjects.EditDialog"
-            android:label="@string/title_activity_edit_dialog"
+            android:label="@string/subject_edit"
             android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
