@@ -9,6 +9,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
 
         Intent data = getIntent();
         if (data.hasExtra("name")) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
             mName.setText(data.getStringExtra("name"));
             mShort.setText(data.getStringExtra("short"));
             boolean counts = false;
@@ -62,8 +64,6 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
             mColor.setBackgroundColor(Util.getNormal(this, savedInstanceState.getString("color")));
             mColor.setTag(savedInstanceState.getString("color"));
         }
-
-        mName.requestFocus();
     }
 
     @Override
