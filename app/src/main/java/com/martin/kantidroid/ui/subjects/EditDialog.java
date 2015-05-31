@@ -33,6 +33,8 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subjects_edit_dialog);
 
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+
         mName = (EditText) findViewById(R.id.et_subj_name);
         mShort = (EditText) findViewById(R.id.et_subj_short);
         mCounts = (CheckBox) findViewById(R.id.cbCounts);
