@@ -3,9 +3,11 @@ package com.martin.kantidroid.ui.subjects;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +35,12 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subjects_edit_dialog);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_close);
+        ab.setDisplayHomeAsUpEnabled(true);
 
         mName = (EditText) findViewById(R.id.et_subj_name);
         mShort = (EditText) findViewById(R.id.et_subj_short);

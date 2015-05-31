@@ -63,7 +63,7 @@ public class Primer {
                             ((MainActivity) context).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ((OverviewFragment) fragmentManager.findFragmentByTag(String.valueOf(1))).loadData();
+                                    ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
                                 }
                             });
                         }

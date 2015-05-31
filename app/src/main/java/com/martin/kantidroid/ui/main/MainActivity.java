@@ -1,5 +1,7 @@
 package com.martin.kantidroid.ui.main;
 
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,125 +20,142 @@ import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends AppCompatActivity {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
-    private CharSequence mTitle;
+    private DrawerLayout mDrawerLayout;
+    private int mSelected, mCurrent;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+        if (savedInstanceState != null) {
+            mSelected = savedInstanceState.getInt("mSelected");
+            mCurrent = savedInstanceState.getInt("mCurrent");
+        } else {
+            mCurrent = -1;
+            mSelected = 0;
+        }
 
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        Primer.runOnFirstTime(this);
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                updateContainer();
+            }
+        });
+
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (mNavigationView != null) {
+            setupDrawerContent(mNavigationView);
+        }
+
+        selectDrawerItem(mSelected);
+
         Primer.runEveryTime(this);
+        Primer.runOnFirstTime(this);
     }
 
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
+    private void selectDrawerItem(int i) {
+        mNavigationView.getMenu().getItem(i).setChecked(true);
+        updateContainer();
+    }
+
+    private void updateContainer() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-        Fragment fragment = fragmentManager.findFragmentByTag(String.valueOf(position));
-
-        if (fragment == null) {
-            fragment = PlaceholderFragment.newInstance(position + 1);
-
-            switch (position + 1) {
-                // Number 1 is the spacer
-                case 2:
-                    fragment = OverviewFragment.newInstance(position + 1);
+        Fragment fragment = null;
+        String tag = "";
+        if (mSelected != mCurrent) {
+            switch (mSelected) {
+                case 0:
+                    fragment = OverviewFragment.newInstance();
+                    tag = "overview";
                     break;
-                case 5:
-                    fragment = SubjectsFragment.newInstance(position + 1);
+                case 3:
+                    fragment = SubjectsFragment.newInstance();
+                    tag = "subjects";
                     break;
-                // Number 6 is the divider
+                default:
+                    fragment = PlaceholderFragment.newInstance(mSelected);
+                    tag = "placeholder";
+                    break;
             }
+            mCurrent = mSelected;
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment, String.valueOf(position))
+                    .replace(R.id.container, fragment, tag)
                     .commit();
         }
-
-        updateTitle(position + 1);
-
     }
 
-    public void updateTitle(int number) {
-        switch (number) {
-            // Number 1 is the spacer
-            case 2:
-                mTitle = getString(R.string.overview);
-                break;
-            case 3:
-                mTitle = getString(R.string.kiss);
-                break;
-            case 4:
-                mTitle = getString(R.string.backup);
-                break;
-            case 5:
-                mTitle = getString(R.string.subjects);
-                break;
-            // Number 6 is the divider
-            case 7:
-                mTitle = getString(R.string.feedback);
-                break;
-            case 8:
-                mTitle = getString(R.string.about);
-                break;
-        }
-        supportInvalidateOptionsMenu();
+    private void setupDrawerContent(final NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_overview:
+                                mSelected = 0;
+                                break;
+                            case R.id.nav_kiss:
+                                mSelected = 1;
+                                break;
+                            case R.id.nav_backup:
+                                mSelected = 2;
+                                break;
+                            case R.id.nav_subjects:
+                                mSelected = 3;
+                                break;
+                            case R.id.nav_feedback:
+                                mSelected = 4;
+                                break;
+                            case R.id.nav_about:
+                                mSelected = 5;
+                                break;
+                        }
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
     }
-
-    public void restoreActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("mSelected", mSelected);
+        outState.putInt("mCurrent", mCurrent);
+        super.onSaveInstanceState(outState);
     }
 
     /**
@@ -171,12 +190,6 @@ public class MainActivity extends AppCompatActivity
             return rootView;
         }
 
-        @Override
-        public void onActivityCreated(Bundle savedInstanceState) {
-            super.onActivityCreated(savedInstanceState);
-            ((MainActivity) getActivity()).updateTitle(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
     }
 
 }

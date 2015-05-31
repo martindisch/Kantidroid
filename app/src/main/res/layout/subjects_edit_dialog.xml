@@ -1,163 +1,184 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/rlEdit"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <ImageView
-            android:id="@+id/ivName"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginRight="@dimen/widget_margin_large"
-            android:layout_marginTop="7dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_alphabetical" />
-
-        <EditText
-            android:id="@+id/et_subj_name"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ivName"
-            android:hint="@string/name"
-            android:imeOptions="actionNext"
-            android:inputType="textCapSentences" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
 
-        <EditText
-            android:id="@+id/et_subj_short"
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rlEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/et_subj_name"
-            android:layout_toRightOf="@id/ivName"
-            android:hint="@string/name_short"
-            android:imeOptions="actionDone"
-            android:inputType="textCapWords" />
+            android:layout_height="match_parent"
+            android:padding="@dimen/activity_horizontal_margin">
 
-        <ImageView
-            android:id="@+id/ivCounts"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@id/et_subj_short"
-            android:layout_marginRight="@dimen/widget_margin_large"
-            android:layout_marginTop="@dimen/widget_margin_large"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_alert" />
+            <ImageView
+                android:id="@+id/ivName"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/widget_margin_large"
+                android:layout_marginTop="7dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_alphabetical" />
 
-        <CheckBox
-            android:id="@+id/cbCounts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/et_subj_short"
-            android:layout_marginTop="@dimen/widget_margin_large"
-            android:layout_toRightOf="@id/ivCounts"
-            android:checked="true"
-            android:text="@string/promotion" />
+            <EditText
+                android:id="@+id/et_subj_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ivName"
+                android:hint="@string/name"
+                android:imeOptions="actionNext"
+                android:inputType="textCapSentences" />
 
-        <ImageView
-            android:id="@+id/ivColor"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@id/cbCounts"
-            android:layout_marginRight="@dimen/widget_margin_large"
-            android:layout_marginTop="@dimen/widget_margin_large"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_palette" />
+            <EditText
+                android:id="@+id/et_subj_short"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_subj_name"
+                android:layout_toRightOf="@id/ivName"
+                android:hint="@string/name_short"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords" />
 
-        <View
-            android:id="@+id/vColor"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_below="@id/cbCounts"
-            android:layout_marginBottom="@dimen/widget_margin"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="22dp"
-            android:layout_toRightOf="@id/ivColor"
-            android:background="@color/c1"
-            android:tag="0" />
+            <ImageView
+                android:id="@+id/ivCounts"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/et_subj_short"
+                android:layout_marginRight="@dimen/widget_margin_large"
+                android:layout_marginTop="@dimen/widget_margin_large"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_alert" />
 
-        <ImageView
-            android:id="@+id/ivKont"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@id/vColor"
-            android:layout_marginRight="@dimen/widget_margin_large"
-            android:layout_marginTop="@dimen/widget_margin_large"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_timetable" />
-
-        <TextView
-            android:id="@+id/tvKont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/vColor"
-            android:layout_marginTop="@dimen/widget_margin_large"
-            android:layout_toRightOf="@id/ivKont"
-            android:text="@string/kont" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/scCounts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/tvKont"
-            android:layout_alignParentRight="true"
-            android:checked="true" />
-
-        <RadioGroup
-            android:id="@+id/rgKont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ivKont"
-            android:layout_marginTop="@dimen/widget_margin"
-            android:layout_toRightOf="@id/ivKont"
-            android:orientation="horizontal"
-            android:weightSum="5">
-
-            <RadioButton
-                android:id="@+id/rb2"
+            <CheckBox
+                android:id="@+id/cbCounts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/n2" />
-
-            <RadioButton
-                android:id="@+id/rb4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_below="@id/et_subj_short"
+                android:layout_marginTop="@dimen/widget_margin_large"
+                android:layout_toRightOf="@id/ivCounts"
                 android:checked="true"
-                android:text="@string/n4" />
+                android:text="@string/promotion" />
 
-            <RadioButton
-                android:id="@+id/rb6"
+            <ImageView
+                android:id="@+id/ivColor"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/cbCounts"
+                android:layout_marginRight="@dimen/widget_margin_large"
+                android:layout_marginTop="@dimen/widget_margin_large"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_palette" />
+
+            <View
+                android:id="@+id/vColor"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/cbCounts"
+                android:layout_marginBottom="@dimen/widget_margin"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="22dp"
+                android:layout_toRightOf="@id/ivColor"
+                android:background="@color/c1"
+                android:tag="0" />
+
+            <ImageView
+                android:id="@+id/ivKont"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/vColor"
+                android:layout_marginRight="@dimen/widget_margin_large"
+                android:layout_marginTop="@dimen/widget_margin_large"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_timetable" />
+
+            <TextView
+                android:id="@+id/tvKont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/n6" />
+                android:layout_below="@id/vColor"
+                android:layout_marginTop="@dimen/widget_margin_large"
+                android:layout_toRightOf="@id/ivKont"
+                android:text="@string/kont" />
 
-            <RadioButton
-                android:id="@+id/rb8"
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/scCounts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/n8" />
+                android:layout_alignBaseline="@id/tvKont"
+                android:layout_alignParentRight="true"
+                android:checked="true" />
 
-            <RadioButton
-                android:id="@+id/rb10"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/rgKont"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/n10" />
+                android:layout_below="@id/ivKont"
+                android:layout_marginTop="@dimen/widget_margin"
+                android:layout_toRightOf="@id/ivKont"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/rb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/n2" />
 
-    </RelativeLayout>
-</ScrollView>
+                <RadioButton
+                    android:id="@+id/rb4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/n4" />
+
+                <RadioButton
+                    android:id="@+id/rb6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/n6" />
+
+                <RadioButton
+                    android:id="@+id/rb8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/n8" />
+
+                <RadioButton
+                    android:id="@+id/rb10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/n10" />
+
+            </RadioGroup>
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
+
+
 

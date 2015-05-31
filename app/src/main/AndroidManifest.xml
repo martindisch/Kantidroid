@@ -22,6 +22,7 @@
         <activity
             android:name="com.martin.kantidroid.ui.subjects.EditDialog"
             android:label="@string/subject_edit"
+            android:theme="@style/AppTheme.Base"
             android:parentActivityName="com.martin.kantidroid.ui.main.MainActivity">
             <!-- TODO: Check if back button appears on pre v16 -->
             <meta-data

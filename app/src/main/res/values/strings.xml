@@ -174,4 +174,9 @@
     <string name="no_delete">Neues Fach kann nicht gelöscht werden</string>
     <string name="subject_add">Fach hinzufügen</string>
     <string name="subject_edit">Fach bearbeiten</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_semester">1. Semester</string>
+    <string name="second_semester">2. Semester</string>
 </resources>

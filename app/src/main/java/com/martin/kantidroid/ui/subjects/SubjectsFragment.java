@@ -3,10 +3,14 @@ package com.martin.kantidroid.ui.subjects;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,19 +26,13 @@ import java.util.List;
 
 public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClickListener, View.OnClickListener {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
     private RecyclerView mSubjects;
     private SubjectsAdapter mAdapter;
-    private ImageButton mFab;
+    private FloatingActionButton mFab;
     private int mEditingIndex = -1;
 
-    public static SubjectsFragment newInstance(int sectionNumber) {
-        SubjectsFragment fragment = new SubjectsFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static SubjectsFragment newInstance() {
+        return new SubjectsFragment();
     }
 
     public SubjectsFragment() {
@@ -59,8 +57,16 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.subjects_fragment, container, false);
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+
         mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
-        mFab = (ImageButton) rootView.findViewById(R.id.fab);
+        mFab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         mFab.setOnClickListener(this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -74,13 +80,6 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         mAdapter = new SubjectsAdapter(getActivity(), subjects, this);
         mSubjects.setAdapter(mAdapter);
         return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        ((MainActivity) getActivity()).updateTitle(
-                getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
     @Override
