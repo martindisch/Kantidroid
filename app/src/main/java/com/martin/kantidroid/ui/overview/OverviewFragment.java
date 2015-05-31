@@ -46,6 +46,7 @@ public class OverviewFragment extends Fragment {
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(R.string.overview);
 
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         if (viewPager != null) {

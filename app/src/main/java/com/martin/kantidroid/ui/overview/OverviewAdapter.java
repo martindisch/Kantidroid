@@ -50,8 +50,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         if (mTempSemester == 1) {
             mTempGrades = mTempFach.getMathAverage1();
             mTempKontUs = mTempFach.getKont1();
-        }
-        else {
+        } else {
             mTempGrades = mTempFach.getMathAverage2();
             mTempKontUs = mTempFach.getKont2();
         }
@@ -86,6 +85,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     public interface OnClickListener {
         void onItemClick(View v, int position);
+
         void onItemLongClick(View v, int position);
     }
 

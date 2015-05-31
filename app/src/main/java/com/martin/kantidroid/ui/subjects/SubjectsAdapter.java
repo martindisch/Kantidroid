@@ -62,6 +62,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
     public interface OnClickListener {
         void onItemClick(View v, final int position);
+
         void onItemLongClick(View v, final int position);
     }
 

@@ -14,12 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
-import com.martin.kantidroid.ui.main.MainActivity;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import java.util.List;
@@ -64,6 +62,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(R.string.subjects);
 
         mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
         mFab = (FloatingActionButton) rootView.findViewById(R.id.fab);

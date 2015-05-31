@@ -20,7 +20,8 @@ public class Fach {
     private String _kont;
 
     // empty constructor
-    public Fach() {}
+    public Fach() {
+    }
 
     // constructor setting everything
     public Fach(int id, String name, String nameShort, String color, String noten1, String math_average1, String real_average1, String noten2, String math_average2, String real_average2, String promotionsrelevant, String kont1, String kont2, String kont) {
@@ -221,7 +222,7 @@ public class Fach {
         if (!this.getMathAverage2().contentEquals("")) {
             double MathAverage = Double.parseDouble(this.getMathAverage2());
             /*
-			 * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
+             * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
 			 * RealAverage = Double.valueOf(oneDForm.format(MathAverage));
 			 */
             double RealAverage = 0.5 * Math.round(MathAverage / 0.5);
@@ -280,14 +281,13 @@ public class Fach {
         String compact;
         if (semester == 1) {
             compact = getNoten1();
-        }
-        else {
+        } else {
             compact = getNoten2();
         }
         if (compact != null && !compact.contentEquals("")) {
             return compact.split("\n");
         }
-        return new String[] {};
+        return new String[]{};
     }
 
     public void addMark(int semester, String entry) {
@@ -297,8 +297,7 @@ public class Fach {
                 before = "";
             }
             setNoten1(before + entry + "\n");
-        }
-        else {
+        } else {
             String before = getNoten2();
             if (before == null || before.contentEquals("")) {
                 before = "";
@@ -310,8 +309,7 @@ public class Fach {
     public void removeMark(int semester, String entry) {
         if (semester == 1) {
             setNoten1(getNoten1().replace(entry + "\n", ""));
-        }
-        else {
+        } else {
             setNoten2(getNoten2().replace(entry + "\n", ""));
         }
     }
