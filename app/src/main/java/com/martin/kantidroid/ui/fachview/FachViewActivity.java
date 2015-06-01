@@ -1,39 +1,98 @@
 package com.martin.kantidroid.ui.fachview;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 
 import com.martin.kantidroid.R;
 
-public class FachViewActivity extends ActionBarActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class FachviewActivity extends AppCompatActivity {
+
+    private Adapter mAdapter;
+    private int mSemester;
+    private int mId;
+    private int mEdited = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fachview_activity);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_fach_view, menu);
-        return true;
-    }
+        mSemester = getIntent().getIntExtra("semester", 1);
+        mId = getIntent().getIntExtra("id", 0);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(R.string.overview);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        if (viewPager != null) {
+            setupViewPager(viewPager);
         }
 
-        return super.onOptionsItemSelected(item);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+
+
+    private void setupViewPager(ViewPager viewPager) {
+        mAdapter = new Adapter(getSupportFragmentManager());
+        mAdapter.addFragment(FachviewFragment.newInstance(mId, 1), getString(R.string.first_semester));
+        mAdapter.addFragment(FachviewFragment.newInstance(mId, 2), getString(R.string.second_semester));
+        viewPager.setAdapter(mAdapter);
+    }
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
+
+    }
+
+    public void setEdited() {
+        mEdited = 1;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        setResult(mEdited);
     }
 }

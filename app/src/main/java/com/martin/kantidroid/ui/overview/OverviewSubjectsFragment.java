@@ -1,6 +1,7 @@
 package com.martin.kantidroid.ui.overview;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
+import com.martin.kantidroid.ui.fachview.FachviewActivity;
 
 import java.util.List;
 
@@ -67,10 +69,21 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
 
     @Override
     public void onItemClick(View v, int position) {
+        Intent i = new Intent(getActivity(), FachviewActivity.class);
+        i.putExtra("semester", mSemester);
+        i.putExtra("id", mAdapter.getData().get(position).getID());
+        startActivityForResult(i, 1);
     }
 
     @Override
     public void onItemLongClick(View v, int position) {
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 1) {
+            loadData();
+        }
+    }
 }

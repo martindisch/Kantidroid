@@ -20,7 +20,7 @@ import java.util.List;
 
 public class OverviewFragment extends Fragment {
 
-    private Adapter adapter;
+    private Adapter mAdapter;
 
     public static OverviewFragment newInstance() {
         return new OverviewFragment();
@@ -60,14 +60,14 @@ public class OverviewFragment extends Fragment {
     }
 
     public void loadData() {
-        adapter.loadData();
+        mAdapter.loadData();
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(OverviewSubjectsFragment.newInstance(1), getString(R.string.first_semester));
-        adapter.addFragment(OverviewSubjectsFragment.newInstance(2), getString(R.string.second_semester));
-        viewPager.setAdapter(adapter);
+        mAdapter = new Adapter(getChildFragmentManager());
+        mAdapter.addFragment(OverviewSubjectsFragment.newInstance(1), getString(R.string.first_semester));
+        mAdapter.addFragment(OverviewSubjectsFragment.newInstance(2), getString(R.string.second_semester));
+        viewPager.setAdapter(mAdapter);
     }
 
     static class Adapter extends FragmentPagerAdapter {

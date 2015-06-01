@@ -120,6 +120,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         }
     }
 
+    // TODO: Test this with destroy activities
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
