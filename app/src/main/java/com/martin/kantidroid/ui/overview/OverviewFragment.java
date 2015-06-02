@@ -51,6 +51,22 @@ public class OverviewFragment extends Fragment {
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
+            viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    // TODO: Load current semester data in infostrip
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
         }
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
