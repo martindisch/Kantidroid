@@ -22,6 +22,10 @@
     <color name="red_dark">#B71C1C</color>
     <color name="red_light">#F44336</color>
 
+    <color name="promo_orange">#FF9800</color>
+    <color name="promo_white">@color/abc_primary_text_material_dark</color>
+    <color name="promo_red">#F44336</color>
+
     <!-- Don't modify this section the colors -->
     <color name="c1">#d50000</color>
     <color name="c2">#c51162</color>
