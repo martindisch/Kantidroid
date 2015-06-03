@@ -21,7 +21,7 @@
 
     <group>
         <!-- Test without title -->
-        <item android:title="Extra">
+        <item android:title="@string/extra">
             <menu>
                 <item
                     android:id="@+id/nav_feedback"
