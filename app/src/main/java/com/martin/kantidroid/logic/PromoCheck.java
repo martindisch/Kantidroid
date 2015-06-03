@@ -26,7 +26,7 @@ public class PromoCheck {
 		int mppcount = 0;
 
 		String sMessage = "Promoviert";
-		int iColor = R.color.primary_text_default_material_dark;
+		int iColor = R.color.promo_white;
 		String sPP = "0.0";
 		String sSchnitt = "5.0000";
 
@@ -146,7 +146,7 @@ public class PromoCheck {
 		}
 
 		double PP_result = plus - (2 * minus);
-		sPP = PP_result + "/" + (mppcount * 2) + " Pluspunkte";
+		sPP = PP_result + "/" + (mppcount * 2);
 
 		if (fcount > 0) {
 			sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));

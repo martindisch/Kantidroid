@@ -12,8 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.PromoCheck;
+import com.martin.kantidroid.logic.PromoRes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.List;
 public class OverviewFragment extends Fragment {
 
     private Adapter mAdapter;
+    private TextView mPromo, mPP, mKont;
 
     public static OverviewFragment newInstance() {
         return new OverviewFragment();
@@ -48,6 +52,10 @@ public class OverviewFragment extends Fragment {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle(R.string.overview);
 
+        mPromo = (TextView) rootView.findViewById(R.id.tvMadeIt);
+        mPP = (TextView) rootView.findViewById(R.id.tvPP);
+        mKont = (TextView) rootView.findViewById(R.id.tvKont);
+
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
@@ -59,7 +67,10 @@ public class OverviewFragment extends Fragment {
 
                 @Override
                 public void onPageSelected(int position) {
-                    // TODO: Load current semester data in infostrip
+                    PromoRes promo = new PromoCheck(getActivity()).getGym(position + 1);
+                    mPromo.setText(promo.sMessage);
+                    mPromo.setTextColor(getResources().getColor(promo.iColor));
+                    mPP.setText(promo.sPP);
                 }
 
                 @Override
