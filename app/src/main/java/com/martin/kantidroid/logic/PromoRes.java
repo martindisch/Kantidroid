@@ -11,6 +11,7 @@ public class PromoRes {
 	public int iColor;
 	public String sPP;
 	public String sSchnitt;
+	public String sKont;
 
 	/**
 	 * The constructor
@@ -24,11 +25,12 @@ public class PromoRes {
 	 * @param sSchnitt
 	 *            The user's average marks
 	 */
-	public PromoRes(String sMessage, int iColor, String sPP, String sSchnitt) {
+	public PromoRes(String sMessage, int iColor, String sPP, String sSchnitt, String sKont) {
 		super();
 		this.sMessage = sMessage;
 		this.iColor = iColor;
 		this.sPP = sPP;
 		this.sSchnitt = sSchnitt;
+		this.sKont = sKont;
 	}
 }

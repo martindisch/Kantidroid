@@ -154,7 +154,7 @@ public class PromoCheck {
 			sSchnitt = ("-");
 		}
 
-		PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt);
+		PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
 		return prResult;
 	}
 
@@ -236,7 +236,7 @@ public class PromoCheck {
 			sSchnitt = ("-");
 		}
 
-		PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt);
+		PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
 		return prResult;
 	}
 
@@ -314,7 +314,44 @@ public class PromoCheck {
 			sSchnitt = ("-");
 		}
 
-		PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt);
+		PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
 		return prResult;
+	}
+
+	private String getKont(List<Fach> subjects, int semester) {
+		int totalK = 0;
+		int used = 0;
+		double dPercentage = 0;
+
+		Fach entry = null;
+		String kontUsed = null;
+
+		int überzogen = 0;
+
+		for (int i = 0; i < subjects.size(); i++) {
+			entry = subjects.get(i);
+			if (semester == 1) {
+				kontUsed = entry.getKont1();
+			}
+			else {
+				kontUsed = entry.getKont2();
+			}
+			if (!entry.getKont().contentEquals("")) {
+				totalK = totalK + Integer.parseInt(entry.getKont());
+			}
+            if (!kontUsed.contentEquals("-")) {
+				used = used + Integer.parseInt(kontUsed);
+
+				// Check für überzogen
+				if (Integer.parseInt(kontUsed) > Integer.parseInt(kontUsed)) {
+					überzogen++;
+				}
+			}
+		}
+
+		if (!(totalK == 0)) {
+			dPercentage = (double) Math.round((double) used * 100 / totalK * 100) / 100;
+		}
+		return (used + "/" + totalK);
 	}
 }
