@@ -38,7 +38,6 @@
                 android:background="@color/highlight_dark"
                 android:gravity="center_vertical"
                 android:padding="@dimen/widget_margin"
-                android:text="Nicht promoviert"
                 android:textColor="@color/primary_text_default_material_dark"
                 android:textSize="16sp" />
 
@@ -50,7 +49,6 @@
                 android:background="@color/highlight_light"
                 android:gravity="center"
                 android:padding="@dimen/widget_margin"
-                android:text="13.75/22"
                 android:textColor="@color/primary_text_default_material_dark"
                 android:textSize="16sp" />
 
@@ -62,7 +60,6 @@
                 android:background="@color/highlight_dark"
                 android:gravity="center"
                 android:padding="@dimen/widget_margin"
-                android:text="14/50"
                 android:textColor="@color/primary_text_default_material_dark"
                 android:textSize="16sp" />
         </LinearLayout>

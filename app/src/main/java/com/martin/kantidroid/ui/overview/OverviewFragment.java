@@ -67,10 +67,7 @@ public class OverviewFragment extends Fragment {
 
                 @Override
                 public void onPageSelected(int position) {
-                    PromoRes promo = new PromoCheck(getActivity()).getGym(position + 1);
-                    mPromo.setText(promo.sMessage);
-                    mPromo.setTextColor(getResources().getColor(promo.iColor));
-                    mPP.setText(promo.sPP);
+                    showInfo(position + 1);
                 }
 
                 @Override
@@ -83,11 +80,22 @@ public class OverviewFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        // TODO: Display last used tab & show according info
+        showInfo(1);
+
         return rootView;
     }
 
     public void loadData() {
         mAdapter.loadData();
+    }
+
+    private void showInfo(int semester) {
+        PromoRes promo = new PromoCheck(getActivity()).getGym(semester);
+        mPromo.setText(promo.sMessage);
+        mPromo.setTextColor(getResources().getColor(promo.iColor));
+        mPP.setText(promo.sPP);
+        mKont.setText(promo.sKont);
     }
 
     private void setupViewPager(ViewPager viewPager) {

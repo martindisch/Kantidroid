@@ -339,7 +339,7 @@ public class PromoCheck {
 			if (!entry.getKont().contentEquals("")) {
 				totalK = totalK + Integer.parseInt(entry.getKont());
 			}
-            if (!kontUsed.contentEquals("-")) {
+            if (!kontUsed.contentEquals("")) {
 				used = used + Integer.parseInt(kontUsed);
 
 				// Check für überzogen
