@@ -20,7 +20,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     private List<Fach> mEntries;
     private OnClickListener mCallback;
     private Fach mTempFach;
-    private String mTempGrades, mTempKontUs, mTempKontAv;
+    private String mTempGrades, mTempKontUs, mTempKontAv, mTempKontString;
     private int mTempSemester;
     private Context mContext;
 
@@ -63,11 +63,14 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             mTempKontUs = "0";
         }
         if (mTempKontAv.contentEquals("")) {
-            mTempKontAv = "0";
+            mTempKontString = "-";
+        }
+        else {
+            mTempKontString = mTempKontUs + "/" + mTempKontAv;
         }
 
         holder.tvName.setText(mTempFach.getName());
-        holder.tvKont.setText(mTempKontUs + "/" + mTempKontAv);
+        holder.tvKont.setText(mTempKontString);
         holder.tvGrades.setText(mTempGrades);
         holder.tvPic.setText(mTempFach.getShort());
         holder.tvGrades.setBackgroundColor(Util.getNormal(mContext, mTempFach.getColor()));
