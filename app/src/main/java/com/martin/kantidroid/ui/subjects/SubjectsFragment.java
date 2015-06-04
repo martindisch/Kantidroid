@@ -129,7 +129,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
             switch (resultCode) {
                 case 1:
                     Fach subject = new Fach(data.getStringExtra("name"), data.getStringExtra("short"), data.getStringExtra("color"), data.getStringExtra("counts"), data.getStringExtra("kontAv"));
-                    long id = db.addFach(subject);
+                    int id = db.addFach(subject);
                     subject.setID(id);
                     mAdapter.add(subject);
                     break;

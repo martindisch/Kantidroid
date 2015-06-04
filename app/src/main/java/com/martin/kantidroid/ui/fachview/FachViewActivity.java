@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.DatabaseHandler;
+import com.martin.kantidroid.logic.Fach;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ public class FachviewActivity extends AppCompatActivity {
     private int mSemester;
     private int mId;
     private int mEdited = 0;
+    private Fach mFach;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +33,15 @@ public class FachviewActivity extends AppCompatActivity {
         mSemester = getIntent().getIntExtra("semester", 1);
         mId = getIntent().getIntExtra("id", 0);
 
+        DatabaseHandler db = new DatabaseHandler(this);
+        mFach = db.getFach(mId);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(R.string.overview);
+        ab.setTitle(mFach.getName());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {

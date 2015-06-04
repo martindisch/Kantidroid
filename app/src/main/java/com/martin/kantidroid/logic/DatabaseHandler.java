@@ -59,7 +59,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
 
     // Add Fach
-    public long addFach(Fach fach) {
+    public int addFach(Fach fach) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -78,7 +78,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_KONT, fach.getKont());
 
         // inserting
-        long id = db.insert(TABLE_SUBJECTS, null, values);
+        int id = (int) db.insert(TABLE_SUBJECTS, null, values);
         db.close();
         return id;
     }
