@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
@@ -99,5 +100,12 @@ public class FachviewActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         setResult(mEdited);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Let's not reload the main activity
+        onBackPressed();
+        return true;
     }
 }
