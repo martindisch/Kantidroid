@@ -132,8 +132,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="4dp">
+        android:layout_marginTop="@dimen/widget_margin"
+        card_view:cardCornerRadius="0dp">
+        <RelativeLayout
+            android:id="@+id/rlShowKont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_horizontal_margin">
 
+            <TextView
+                android:id="@+id/tvKont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Kontingent"
+                android:textColor="@color/green_dark"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/ivTimetable"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/widget_margin_large"
+                android:layout_marginTop="7dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_timetable"
+                android:tint="@color/green_dark"
+                android:layout_below="@id/tvKont"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/ivTimetable"
+                android:layout_toRightOf="@id/ivTimetable"
+                android:text="Nutzung"
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="18sp"
+                android:layout_below="@id/tvKont"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:id="@+id/tvKontUsage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/ivTimetable"
+                android:text="6/6"
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="18sp"
+                android:layout_below="@id/tvKont"
+                android:layout_marginTop="3dp"/>
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
