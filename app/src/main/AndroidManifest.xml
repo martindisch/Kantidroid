@@ -32,7 +32,8 @@
         </activity>
         <activity
             android:name=".ui.fachview.DetailActivity"
-            android:parentActivityName=".ui.main.MainActivity" >
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.Base">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martin.kantidroid.ui.main.MainActivity" />
@@ -40,7 +41,8 @@
         <activity
             android:name=".ui.fachview.FachviewActivity"
             android:label="@string/title_activity_fachview"
-            android:parentActivityName=".ui.main.MainActivity" >
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.Base">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martin.kantidroid.ui.main.MainActivity" />
