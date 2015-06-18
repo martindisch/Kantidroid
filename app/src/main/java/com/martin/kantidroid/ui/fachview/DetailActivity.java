@@ -21,7 +21,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_close);
+        //ab.setHomeAsUpIndicator(R.drawable.ic_close);
         ab.setDisplayHomeAsUpEnabled(true);
 
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);

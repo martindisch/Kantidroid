@@ -1,6 +1,7 @@
 package com.martin.kantidroid.ui.fachview;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -25,6 +26,7 @@ public class FachviewFragment extends Fragment {
     private int mSemester;
 
     private TextView mPromo, mRealAverage, mMathAverage, mKont;
+    private View mShowMarks, mShowKont;
     private Fach mFach;
 
     public static FachviewFragment newInstance(int id, int semester) {
@@ -57,6 +59,28 @@ public class FachviewFragment extends Fragment {
         mRealAverage = (TextView) rootView.findViewById(R.id.tvZeugnis);
         mMathAverage = (TextView) rootView.findViewById(R.id.tvSchnitt);
         mKont = (TextView) rootView.findViewById(R.id.tvKontUsage);
+
+        mShowMarks = rootView.findViewById(R.id.rlShowMarks);
+        mShowMarks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), DetailActivity.class);
+                i.putExtra("id", mId);
+                i.putExtra("semester", mSemester);
+                startActivityForResult(i, 1);
+            }
+        });
+        mShowKont = rootView.findViewById(R.id.rlShowKont);
+        mShowKont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), DetailActivity.class);
+                i.putExtra("id", mId);
+                i.putExtra("semester", mSemester);
+                startActivityForResult(i, 1);
+            }
+        });
+
         updateData();
         return rootView;
     }
