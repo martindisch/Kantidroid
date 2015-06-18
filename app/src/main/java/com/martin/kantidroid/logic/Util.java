@@ -18,4 +18,20 @@ public class Util {
     public static int getNormal(Context context, String index) {
         return Color.parseColor(context.getResources().getStringArray(R.array.colors)[Integer.parseInt(index)]);
     }
+
+    public static String formatKont(String used, String available) {
+        String formatted;
+        if (available.contentEquals("")) {
+            formatted = "-";
+        }
+        else {
+            if (used.contentEquals("")) {
+                formatted = "0/" + available;
+            }
+            else {
+                formatted = used + "/" + available;
+            }
+        }
+        return formatted;
+    }
 }

@@ -179,4 +179,5 @@
     <string name="arithmetic">Arithmetisches Mittel</string>
     <string name="grade_mark">Zeugnisnote</string>
     <string name="grades">Noten</string>
+    <string name="no_promotion">Kein Promotionsfach</string>
 </resources>
