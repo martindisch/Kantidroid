@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -29,154 +29,86 @@
             android:layout_height="match_parent"
             android:padding="@dimen/activity_horizontal_margin">
 
-            <ImageView
-                android:id="@+id/ivName"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginRight="@dimen/widget_margin_large"
-                android:layout_marginTop="7dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_alphabetical" />
-
             <EditText
-                android:id="@+id/et_subj_name"
+                android:id="@+id/etMark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/ivName"
-                android:hint="@string/name"
-                android:imeOptions="actionNext"
-                android:inputType="textCapSentences" />
-
-            <EditText
-                android:id="@+id/et_subj_short"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_subj_name"
-                android:layout_toRightOf="@id/ivName"
-                android:hint="@string/name_short"
+                android:hint="@string/mark"
                 android:imeOptions="actionDone"
-                android:inputType="textCapWords" />
-
-            <ImageView
-                android:id="@+id/ivCounts"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@id/et_subj_short"
-                android:layout_marginRight="@dimen/widget_margin_large"
-                android:layout_marginTop="@dimen/widget_margin_large"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_alert" />
-
-            <CheckBox
-                android:id="@+id/cbCounts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_subj_short"
-                android:layout_marginTop="@dimen/widget_margin_large"
-                android:layout_toRightOf="@id/ivCounts"
-                android:checked="true"
-                android:text="@string/promotion" />
-
-            <ImageView
-                android:id="@+id/ivColor"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@id/cbCounts"
-                android:layout_marginRight="@dimen/widget_margin_large"
-                android:layout_marginTop="@dimen/widget_margin_large"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_palette" />
+                android:inputType="numberDecimal" />
 
             <View
-                android:id="@+id/vColor"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/cbCounts"
-                android:layout_marginBottom="@dimen/widget_margin"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="22dp"
-                android:layout_toRightOf="@id/ivColor"
-                android:background="@color/c1"
-                android:tag="0" />
+                android:id="@+id/vDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/etMark"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:background="@color/divider" />
 
             <ImageView
-                android:id="@+id/ivKont"
+                android:id="@+id/ivWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_below="@id/vColor"
+                android:layout_below="@id/vDivider"
                 android:layout_marginRight="@dimen/widget_margin_large"
-                android:layout_marginTop="@dimen/widget_margin_large"
+                android:layout_marginTop="9dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_timetable" />
+                android:src="@drawable/ic_timetable"
+                android:tint="@color/red_dark" />
 
-            <TextView
-                android:id="@+id/tvKont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/vColor"
-                android:layout_marginTop="@dimen/widget_margin_large"
-                android:layout_toRightOf="@id/ivKont"
-                android:text="@string/kont" />
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/scCounts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tvKont"
-                android:layout_alignParentRight="true"
-                android:checked="true" />
-
-            <RadioGroup
-                android:id="@+id/rgKont"
+            <EditText
+                android:id="@+id/etWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ivKont"
+                android:layout_below="@id/vDivider"
+                android:layout_toRightOf="@id/ivWeight"
+                android:hint="@string/weighting"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:text="1.0" />
+
+            <View
+                android:id="@+id/vDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/etWeight"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@id/ivName"
+                android:background="@color/divider" />
+
+            <ImageView
+                android:id="@+id/ivDate"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/vDivider2"
+                android:layout_marginRight="@dimen/widget_margin_large"
+                android:layout_marginTop="9dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_timetable"
+                android:tint="@color/red_dark" />
+
+            <EditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vDivider2"
+                android:layout_toRightOf="@id/ivDate"
+                android:hint="@string/date"
+                android:imeOptions="actionDone"
+                android:inputType="date" />
+
+            <TextView
+                android:id="@+id/tvSem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etDate"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="@dimen/widget_margin"
-                android:layout_toRightOf="@id/ivKont"
-                android:orientation="horizontal"
-                android:weightSum="5">
-
-                <RadioButton
-                    android:id="@+id/rb2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/n2" />
-
-                <RadioButton
-                    android:id="@+id/rb4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/n4" />
-
-                <RadioButton
-                    android:id="@+id/rb6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/n6" />
-
-                <RadioButton
-                    android:id="@+id/rb8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/n8" />
-
-                <RadioButton
-                    android:id="@+id/rb10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/n10" />
-
-            </RadioGroup>
+                android:layout_toRightOf="@id/ivDate" />
 
         </RelativeLayout>
     </ScrollView>

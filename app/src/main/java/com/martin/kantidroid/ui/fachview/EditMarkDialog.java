@@ -19,7 +19,7 @@ public class EditMarkDialog extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.subjects_edit_dialog);
+        setContentView(R.layout.fachview_edit_mark_dialog);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

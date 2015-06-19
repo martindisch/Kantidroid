@@ -183,4 +183,7 @@
     <string name="n_semester">. Semester</string>
     <string name="title_activity_edit_mark_dialog">EditMarkDialog</string>
     <string name="delete_mark">Note löschen</string>
+    <string name="mark">Note</string>
+    <string name="weighting">Gewichtung</string>
+    <string name="date">Datum</string>
 </resources>
