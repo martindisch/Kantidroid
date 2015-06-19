@@ -66,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
             backdrop.setImageResource(R.drawable.ic_timetable);
             findViewById(R.id.llBackground).setBackgroundColor(getResources().getColor(R.color.green_dark));
             mData.setBackgroundColor(getResources().getColor(R.color.green_light));
-            
+
             if (mSemester == 1) {
                 mData.setText(Util.formatKont(fach.getKont1(), fach.getKont()));
             } else {
@@ -76,24 +76,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.fachview_detailactivity, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        // Let's not go back to the the main activity
+        onBackPressed();
+        return true;
     }
 }
