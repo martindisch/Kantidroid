@@ -32,6 +32,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
     private Fach fach;
     private TextView mData;
     private RecyclerView mItems;
+    private GradesAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,15 +96,16 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             String real;
             if (mSemester == 1) {
                 real = fach.getMathAverage1();
-                mItems.setAdapter(new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten1().split("\n"))), this));
+                mAdapter = new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten1().split("\n"))), this);
             } else {
                 real = fach.getMathAverage2();
-                mItems.setAdapter(new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten2().split("\n"))), this));
+                mAdapter = new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten2().split("\n"))), this);
             }
             if (real.contentEquals("")) {
                 real = "-";
             }
             mData.setText(real);
+            mItems.setAdapter(mAdapter);
         }
         else {
             if (mSemester == 1) {
@@ -133,7 +135,11 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
 
     @Override
     public void onItemClick(View v, int position) {
-
+        Intent i = new Intent(DetailActivity.this, EditMarkDialog.class);
+        i.putExtra("id", mId);
+        i.putExtra("semester", mSemester);
+        i.putExtra("entry", mAdapter.getData().get(position));
+        startActivityForResult(i, 1);
     }
 
     @Override

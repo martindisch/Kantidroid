@@ -27,6 +27,7 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
         mContext = context;
         mEntries = entries;
         mCallback = callback;
+        sort();
     }
 
     @Override
@@ -102,6 +103,7 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
     }
 
     private void sort() {
+        // TODO: This needs to properly sort dates
         Collections.sort(mEntries, new Comparator<String>() {
             @Override
             public int compare(String first, String second) {
