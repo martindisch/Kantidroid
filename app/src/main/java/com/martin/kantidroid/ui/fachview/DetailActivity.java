@@ -6,6 +6,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,12 +19,19 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
+import com.martin.kantidroid.ui.subjects.SubjectsAdapter;
+import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
-public class DetailActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class DetailActivity extends AppCompatActivity implements GradesAdapter.OnClickListener {
 
     private int mId, mSemester, mType;
     private Fach fach;
     private TextView mData;
+    private RecyclerView mItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,13 @@ public class DetailActivity extends AppCompatActivity {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         ctl.setTitle(fach.getName());
         ctl.setBackgroundColor(Util.getLight(this, fach.getColor()));
+
+        mItems = (RecyclerView) findViewById(R.id.rvContents);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mItems.setLayoutManager(layoutManager);
+        mItems.setHasFixedSize(true);
+        mItems.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
         mData = (TextView) findViewById(R.id.tvData);
         ((TextView) findViewById(R.id.tvSem)).setText(mSemester + getString(R.string.n_semester));
@@ -79,8 +95,10 @@ public class DetailActivity extends AppCompatActivity {
             String real;
             if (mSemester == 1) {
                 real = fach.getMathAverage1();
+                mItems.setAdapter(new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten1().split("\n"))), this));
             } else {
                 real = fach.getMathAverage2();
+                mItems.setAdapter(new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten2().split("\n"))), this));
             }
             if (real.contentEquals("")) {
                 real = "-";
@@ -111,5 +129,15 @@ public class DetailActivity extends AppCompatActivity {
             updateInfo();
             setResult(1);
         }
+    }
+
+    @Override
+    public void onItemClick(View v, int position) {
+
+    }
+
+    @Override
+    public void onItemLongClick(View v, int position) {
+
     }
 }
