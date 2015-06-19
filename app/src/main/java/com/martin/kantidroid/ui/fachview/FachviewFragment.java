@@ -4,17 +4,14 @@ package com.martin.kantidroid.ui.fachview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
-import com.martin.kantidroid.logic.PromoCheck;
 import com.martin.kantidroid.logic.Util;
 
 public class FachviewFragment extends Fragment {
@@ -67,7 +64,7 @@ public class FachviewFragment extends Fragment {
                 Intent i = new Intent(getActivity(), DetailActivity.class);
                 i.putExtra("id", mId);
                 i.putExtra("semester", mSemester);
-                i.putExtra("content", "grades");
+                i.putExtra("type", 1);
                 startActivityForResult(i, 1);
             }
         });
@@ -78,7 +75,7 @@ public class FachviewFragment extends Fragment {
                 Intent i = new Intent(getActivity(), DetailActivity.class);
                 i.putExtra("id", mId);
                 i.putExtra("semester", mSemester);
-                i.putExtra("content", "kont");
+                i.putExtra("type", 2);
                 startActivityForResult(i, 1);
             }
         });
@@ -93,19 +90,29 @@ public class FachviewFragment extends Fragment {
 
         if (mFach.getPromotionsrelevant().contentEquals("true")) {
             mPromo.setText(getString(R.string.promotion));
-        }
-        else {
+        } else {
             mPromo.setText(getString(R.string.no_promotion));
         }
 
         if (mSemester == 1) {
-            mRealAverage.setText(mFach.getRealAverage1());
-            mMathAverage.setText(mFach.getMathAverage1());
+            String real = mFach.getRealAverage1();
+            String math = mFach.getMathAverage1();
+            if (real.contentEquals("")) {
+                real = "-";
+                math = "-";
+            }
+            mRealAverage.setText(real);
+            mMathAverage.setText(math);
             mKont.setText(Util.formatKont(mFach.getKont1(), mFach.getKont()));
-        }
-        else if (mSemester == 2) {
-            mRealAverage.setText(mFach.getRealAverage2());
-            mMathAverage.setText(mFach.getMathAverage2());
+        } else if (mSemester == 2) {
+            String real = mFach.getRealAverage2();
+            String math = mFach.getMathAverage2();
+            if (real.contentEquals("")) {
+                real = "-";
+                math = "-";
+            }
+            mRealAverage.setText(real);
+            mMathAverage.setText(math);
             mKont.setText(Util.formatKont(mFach.getKont1(), mFach.getKont()));
         }
     }

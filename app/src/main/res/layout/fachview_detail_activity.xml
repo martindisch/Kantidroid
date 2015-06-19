@@ -50,9 +50,9 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/llBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/green_dark"
             android:orientation="horizontal">
 
             <TextView
@@ -69,7 +69,6 @@
                 android:id="@+id/tvData"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
-                android:background="@color/green_light"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
