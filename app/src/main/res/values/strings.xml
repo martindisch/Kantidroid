@@ -182,4 +182,5 @@
     <string name="no_promotion">Kein Promotionsfach</string>
     <string name="n_semester">. Semester</string>
     <string name="title_activity_edit_mark_dialog">EditMarkDialog</string>
+    <string name="delete_mark">Note löschen</string>
 </resources>

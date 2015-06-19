@@ -3,11 +3,12 @@ package com.martin.kantidroid.ui.fachview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +32,6 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
-        //ab.setHomeAsUpIndicator(R.drawable.ic_close);
         ab.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -73,6 +73,19 @@ public class DetailActivity extends AppCompatActivity {
                 mData.setText(Util.formatKont(fach.getKont2(), fach.getKont()));
             }
         }
+
+        FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mType == 1) {
+                    Intent i = new Intent(DetailActivity.this, EditMarkDialog.class);
+                    i.putExtra("id", mId);
+                    i.putExtra("semester", mSemester);
+                    startActivityForResult(i, 1);
+                }
+            }
+        });
     }
 
     @Override
