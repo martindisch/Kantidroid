@@ -1,6 +1,5 @@
 package com.martin.kantidroid.ui.fachview;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -84,7 +83,15 @@ public class FachviewFragment extends Fragment {
         return rootView;
     }
 
-    // TODO: Update on coming back
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 1) {
+            updateData();
+            ((FachviewActivity) getActivity()).setEdited();
+        }
+    }
+
     private void updateData() {
         mFach = new DatabaseHandler(getActivity()).getFach(mId);
 

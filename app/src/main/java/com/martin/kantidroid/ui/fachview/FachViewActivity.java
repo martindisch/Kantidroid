@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.fachview;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.martin.kantidroid.R;
@@ -23,7 +25,6 @@ public class FachviewActivity extends AppCompatActivity {
     private Adapter mAdapter;
     private int mSemester;
     private int mId;
-    private int mEdited = 0;
     private Fach mFach;
 
     @Override
@@ -52,8 +53,6 @@ public class FachviewActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
-
-
 
     private void setupViewPager(ViewPager viewPager) {
         mAdapter = new Adapter(getSupportFragmentManager());
@@ -92,20 +91,15 @@ public class FachviewActivity extends AppCompatActivity {
 
     }
 
-    public void setEdited() {
-        mEdited = 1;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        setResult(mEdited);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Let's not reload the main activity
         onBackPressed();
         return true;
+    }
+
+    public void setEdited() {
+        Log.e("FFF", "Setting result");
+        setResult(1);
     }
 }

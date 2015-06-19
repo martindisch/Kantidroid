@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.overview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,6 +105,14 @@ public class OverviewFragment extends Fragment {
         mAdapter.addFragment(OverviewSubjectsFragment.newInstance(1), getString(R.string.first_semester));
         mAdapter.addFragment(OverviewSubjectsFragment.newInstance(2), getString(R.string.second_semester));
         viewPager.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 1) {
+            mAdapter.loadData();
+        }
     }
 
     static class Adapter extends FragmentPagerAdapter {

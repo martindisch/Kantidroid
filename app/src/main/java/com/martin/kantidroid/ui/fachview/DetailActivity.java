@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -51,28 +52,13 @@ public class DetailActivity extends AppCompatActivity {
             backdrop.setImageResource(R.drawable.ic_school);
             findViewById(R.id.llBackground).setBackgroundColor(getResources().getColor(R.color.red_dark));
             mData.setBackgroundColor(getResources().getColor(R.color.red_light));
-
-            String real;
-            if (mSemester == 1) {
-                real = fach.getMathAverage1();
-            } else {
-                real = fach.getMathAverage2();
-            }
-            if (real.contentEquals("")) {
-                real = "-";
-            }
-            mData.setText(real);
         } else {
             backdrop.setImageResource(R.drawable.ic_timetable);
             findViewById(R.id.llBackground).setBackgroundColor(getResources().getColor(R.color.green_dark));
             mData.setBackgroundColor(getResources().getColor(R.color.green_light));
-
-            if (mSemester == 1) {
-                mData.setText(Util.formatKont(fach.getKont1(), fach.getKont()));
-            } else {
-                mData.setText(Util.formatKont(fach.getKont2(), fach.getKont()));
-            }
         }
+
+        updateInfo();
 
         FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -88,10 +74,42 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
+    private void updateInfo() {
+        if (mType == 1) {
+            String real;
+            if (mSemester == 1) {
+                real = fach.getMathAverage1();
+            } else {
+                real = fach.getMathAverage2();
+            }
+            if (real.contentEquals("")) {
+                real = "-";
+            }
+            mData.setText(real);
+        }
+        else {
+            if (mSemester == 1) {
+                mData.setText(Util.formatKont(fach.getKont1(), fach.getKont()));
+            } else {
+                mData.setText(Util.formatKont(fach.getKont2(), fach.getKont()));
+            }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Let's not go back to the the main activity
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 1) {
+            fach = new DatabaseHandler(this).getFach(mId);
+            updateInfo();
+            setResult(1);
+        }
     }
 }
