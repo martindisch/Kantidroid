@@ -1,15 +1,16 @@
 package com.martin.kantidroid.ui.fachview;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,12 +20,10 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
-import com.martin.kantidroid.ui.subjects.SubjectsAdapter;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class DetailActivity extends AppCompatActivity implements GradesAdapter.OnClickListener {
 
@@ -106,8 +105,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             }
             mData.setText(real);
             mItems.setAdapter(mAdapter);
-        }
-        else {
+        } else {
             if (mSemester == 1) {
                 mData.setText(Util.formatKont(fach.getKont1(), fach.getKont()));
             } else {
@@ -143,7 +141,19 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
     }
 
     @Override
-    public void onItemLongClick(View v, int position) {
-
+    public void onItemLongClick(View v, final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_question_mark);
+        builder.setNegativeButton(R.string.no, null);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DatabaseHandler db = new DatabaseHandler(DetailActivity.this);
+                fach.removeMark(mSemester, mAdapter.getData().get(position));
+                db.updateFach(fach);
+                mAdapter.remove(position);
+            }
+        });
+        builder.show();
     }
 }
