@@ -67,6 +67,7 @@ public class FachviewFragment extends Fragment {
                 Intent i = new Intent(getActivity(), DetailActivity.class);
                 i.putExtra("id", mId);
                 i.putExtra("semester", mSemester);
+                i.putExtra("content", "grades");
                 startActivityForResult(i, 1);
             }
         });
@@ -77,6 +78,7 @@ public class FachviewFragment extends Fragment {
                 Intent i = new Intent(getActivity(), DetailActivity.class);
                 i.putExtra("id", mId);
                 i.putExtra("semester", mSemester);
+                i.putExtra("content", "kont");
                 startActivityForResult(i, 1);
             }
         });
@@ -85,6 +87,7 @@ public class FachviewFragment extends Fragment {
         return rootView;
     }
 
+    // TODO: Update on coming back
     private void updateData() {
         mFach = new DatabaseHandler(getActivity()).getFach(mId);
 
