@@ -159,7 +159,7 @@ public class Fach {
                 addition = addition.add(multiplikator.multiply(BigDecimal.valueOf(Double.parseDouble(item[0].replace(",", ".")))));
                 teiler = teiler.add(multiplikator);
             }
-            BigDecimal MathAverage = addition.divide(teiler, 4, BigDecimal.ROUND_HALF_UP);
+            BigDecimal MathAverage = addition.divide(teiler, 2, BigDecimal.ROUND_HALF_UP);
             return_value = String.valueOf(MathAverage);
         } else {
             return_value = "";
@@ -185,7 +185,7 @@ public class Fach {
                 addition = addition.add(multiplikator.multiply(BigDecimal.valueOf(Double.parseDouble(item[0].replace(",", ".")))));
                 teiler = teiler.add(multiplikator);
             }
-            BigDecimal MathAverage = addition.divide(teiler, 4, BigDecimal.ROUND_HALF_UP);
+            BigDecimal MathAverage = addition.divide(teiler, 2, BigDecimal.ROUND_HALF_UP);
             return_value = String.valueOf(MathAverage);
         } else {
             return_value = "";

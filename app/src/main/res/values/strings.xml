@@ -164,7 +164,8 @@
     <string name="n10">10</string>
     <string name="delete">Fach löschen</string>
     <string name="delete_question">Willst du dieses Fach endgültig löschen?</string>
-    <string name="no_delete">Neues Fach kann nicht gelöscht werden</string>
+    <string name="delete_question_mark">Willst du diese Note löschen?</string>
+    <string name="no_delete">Neues Element kann nicht gelöscht werden</string>
     <string name="subject_add">Fach hinzufügen</string>
     <string name="subject_edit">Fach bearbeiten</string>
     <string name="first_semester">1. Semester</string>
@@ -186,4 +187,7 @@
     <string name="mark">Note</string>
     <string name="weighting">Gewichtung</string>
     <string name="date">Datum</string>
+    <string name="new_mark">Neue Note</string>
+    <string name="edit_mark">Note bearbeiten</string>
+    <string name="input_sucks">Fülle alle Felder richtig aus</string>
 </resources>
