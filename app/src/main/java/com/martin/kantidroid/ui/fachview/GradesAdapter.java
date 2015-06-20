@@ -43,23 +43,23 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.tvGrade.setText(mEntries.get(position).split(" - ")[0]);
-        holder.tvWeight.setText(mEntries.get(position).split(" - ")[1]);
-        holder.tvDate.setText(mEntries.get(position).split(" - ")[2]);
-        holder.rlRoot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCallback.onItemClick(view, holder.getAdapterPosition());
-            }
-        });
-        holder.rlRoot.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                mCallback.onItemLongClick(view, holder.getAdapterPosition());
-                return false;
-            }
-        });
-        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
+            holder.tvGrade.setText(mEntries.get(position).split(" - ")[0]);
+            holder.tvWeight.setText(mEntries.get(position).split(" - ")[1]);
+            holder.tvDate.setText(mEntries.get(position).split(" - ")[2]);
+            holder.rlRoot.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.onItemClick(view, holder.getAdapterPosition());
+                }
+            });
+            holder.rlRoot.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    mCallback.onItemLongClick(view, holder.getAdapterPosition());
+                    return false;
+                }
+            });
+            holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public interface OnClickListener {

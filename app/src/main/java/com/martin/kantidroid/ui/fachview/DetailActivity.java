@@ -101,11 +101,10 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             String real;
             if (mSemester == 1) {
                 real = fach.getMathAverage1();
-                mAdapter = new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten1().split("\n"))), this);
             } else {
                 real = fach.getMathAverage2();
-                mAdapter = new GradesAdapter(this, new ArrayList<String>(Arrays.asList(fach.getNoten2().split("\n"))), this);
             }
+            mAdapter = new GradesAdapter(this, new ArrayList<>(Arrays.asList(fach.getMarks(mSemester))), this);
             if (real.contentEquals("")) {
                 real = "-";
             }

@@ -78,7 +78,7 @@ public class EditKontDialog extends AppCompatActivity {
                     if (!newItem) {
                         fach.removeMark(mSemester, mEntry);
                     }
-                    fach.addMark(mSemester, mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString());
+                    //fach.addMark(mSemester, mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString());
                     db.updateFach(fach);
                     setResult(1);
                     finish();
@@ -118,16 +118,11 @@ public class EditKontDialog extends AppCompatActivity {
     }
 
     private boolean saveToSave() {
-        String mark = mMark.getText().toString();
-        String weight = mWeight.getText().toString();
         String date = mDate.getText().toString();
-        if (mark.contentEquals("") || weight.contentEquals("") || date.contentEquals("")) {
+        if (date.contentEquals("")) {
             return false;
         }
-        if (mark.contentEquals("0") || weight.contentEquals("0") || date.contentEquals("0")) {
-            return false;
-        }
-        if (Double.parseDouble(mark) <= 1 || Double.parseDouble(mark) >= 6.2) {
+        if (date.contentEquals("0")) {
             return false;
         }
         return true;
