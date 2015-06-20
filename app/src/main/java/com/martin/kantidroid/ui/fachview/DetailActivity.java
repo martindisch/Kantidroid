@@ -86,6 +86,12 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
                     i.putExtra("semester", mSemester);
                     startActivityForResult(i, 1);
                 }
+                else {
+                    Intent i = new Intent(DetailActivity.this, EditKontDialog.class);
+                    i.putExtra("id", mId);
+                    i.putExtra("semester", mSemester);
+                    startActivityForResult(i, 1);
+                }
             }
         });
     }
@@ -133,27 +139,36 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
 
     @Override
     public void onItemClick(View v, int position) {
-        Intent i = new Intent(DetailActivity.this, EditMarkDialog.class);
-        i.putExtra("id", mId);
-        i.putExtra("semester", mSemester);
-        i.putExtra("entry", mAdapter.getData().get(position));
-        startActivityForResult(i, 1);
+        if (mType == 1) {
+            Intent i = new Intent(DetailActivity.this, EditMarkDialog.class);
+            i.putExtra("id", mId);
+            i.putExtra("semester", mSemester);
+            i.putExtra("entry", mAdapter.getData().get(position));
+            startActivityForResult(i, 1);
+        } else {
+
+        }
     }
 
     @Override
     public void onItemLongClick(View v, final int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.delete_question_mark);
-        builder.setNegativeButton(R.string.no, null);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                DatabaseHandler db = new DatabaseHandler(DetailActivity.this);
-                fach.removeMark(mSemester, mAdapter.getData().get(position));
-                db.updateFach(fach);
-                mAdapter.remove(position);
-            }
-        });
-        builder.show();
+        if (mType == 1) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.delete_question_mark);
+            builder.setNegativeButton(R.string.no, null);
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    DatabaseHandler db = new DatabaseHandler(DetailActivity.this);
+                    fach.removeMark(mSemester, mAdapter.getData().get(position));
+                    db.updateFach(fach);
+                    mAdapter.remove(position);
+                }
+            });
+            builder.show();
+        } else {
+
+        }
+
     }
 }

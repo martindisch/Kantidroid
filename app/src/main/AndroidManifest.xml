@@ -50,6 +50,11 @@
         <activity
             android:name=".ui.fachview.EditMarkDialog"
             android:label="@string/title_activity_edit_mark_dialog"
+            android:theme="@style/AppTheme.Base" >
+        </activity>
+        <activity
+            android:name=".ui.fachview.EditKontDialog"
+            android:label="@string/title_activity_edit_kont_dialog"
             android:theme="@style/AppTheme.Base">
         </activity>
     </application>

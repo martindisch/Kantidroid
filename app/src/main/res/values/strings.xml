@@ -190,4 +190,5 @@
     <string name="new_mark">Neue Note</string>
     <string name="edit_mark">Note bearbeiten</string>
     <string name="input_sucks">Fülle alle Felder richtig aus</string>
+    <string name="title_activity_edit_kont_dialog">EditKontDialog</string>
 </resources>
