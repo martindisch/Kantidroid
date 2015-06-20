@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,8 @@ public class EditKontDialog extends AppCompatActivity {
     private boolean newItem = false;
     private int mId, mSemester;
     private String mEntry;
-    private EditText mMark, mWeight, mDate;
+    private EditText mDate;
+    private RadioGroup mAmount;
     private TextView mSemesterInfo;
 
     @Override
@@ -40,8 +42,7 @@ public class EditKontDialog extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_close);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        mMark = (EditText) findViewById(R.id.etMark);
-        mWeight = (EditText) findViewById(R.id.etWeight);
+        mAmount = (RadioGroup) findViewById(R.id.rgKont);
         mDate = (EditText) findViewById(R.id.etDate);
         mSemesterInfo = (TextView) findViewById(R.id.tvSem);
 
@@ -51,15 +52,12 @@ public class EditKontDialog extends AppCompatActivity {
 
         if (i.hasExtra("entry")) {
             mEntry = i.getStringExtra("entry");
-            ab.setTitle(getString(R.string.edit_mark));
+            ab.setTitle(getString(R.string.edit_kont));
             String[] single = mEntry.split(" - ");
-            mMark.setText(single[0]);
-            mWeight.setText(single[1]);
             mDate.setText(single[2]);
         } else {
             newItem = true;
-            ab.setTitle(getString(R.string.new_mark));
-            mWeight.setText("1.0");
+            ab.setTitle(getString(R.string.new_kont));
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
             mDate.setText(df.format(c.getTime()));
