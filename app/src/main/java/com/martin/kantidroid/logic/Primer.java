@@ -18,7 +18,7 @@ public class Primer {
             @Override
             public void run() {
 
-                SharedPreferences sp = context.getSharedPreferences("Primer", Context.MODE_PRIVATE);
+                SharedPreferences sp = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
                 if (!sp.getBoolean("opened", false)) {
                     // Do stuff on first startup
                     // removePrefsDB(context);

@@ -104,7 +104,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Get all faecher
     public List<Fach> getAllFaecher(Context context, int iSemester) {
-        SharedPreferences settings = context.getSharedPreferences("MarkSettings", Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
 
         String sorting = null;
 
