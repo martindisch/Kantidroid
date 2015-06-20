@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,9 +79,9 @@ public class EditKontDialog extends AppCompatActivity {
                     DatabaseHandler db = new DatabaseHandler(this);
                     Fach fach = db.getFach(mId);
                     if (!newItem) {
-                        fach.removeMark(mSemester, mEntry);
+                        fach.removeKont(mSemester, mEntry);
                     }
-                    //fach.addMark(mSemester, mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString());
+                    fach.addKont(mSemester, mDate.getText().toString() + " - " + mAmount.indexOfChild((RadioButton) findViewById(mAmount.getCheckedRadioButtonId())) + 1);
                     db.updateFach(fach);
                     setResult(1);
                     finish();
@@ -91,14 +92,14 @@ public class EditKontDialog extends AppCompatActivity {
             case R.id.action_delete:
                 if (!newItem) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage(R.string.delete_question_mark);
+                    builder.setMessage(R.string.delete_question_kont);
                     builder.setNegativeButton(R.string.no, null);
                     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             DatabaseHandler db = new DatabaseHandler(EditKontDialog.this);
                             Fach fach = db.getFach(mId);
-                            fach.removeMark(mSemester, mEntry);
+                            fach.removeKont(mSemester, mEntry);
                             db.updateFach(fach);
                             setResult(1);
                             finish();

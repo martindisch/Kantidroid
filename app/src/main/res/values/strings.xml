@@ -194,4 +194,5 @@
     <string name="edit_kont">Kontingent bearbeiten</string>
     <string name="new_kont">Neues Kontingent</string>
     <string name="delete_kont">Kontingent löschen</string>
+    <string name="delete_question_kont">Willst du dieses Kontingent löschen?</string>
 </resources>
