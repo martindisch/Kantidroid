@@ -314,6 +314,19 @@ public class Fach {
         }
     }
 
+    public String[] getKont(int semester) {
+        String compact;
+        if (semester == 1) {
+            compact = getKont1();
+        } else {
+            compact = getKont2();
+        }
+        if (compact != null && !compact.contentEquals("")) {
+            return compact.split("\n");
+        }
+        return new String[]{};
+    }
+
     public void addKont(int semester, String entry) {
         if (semester == 1) {
             String before = getKont1();
