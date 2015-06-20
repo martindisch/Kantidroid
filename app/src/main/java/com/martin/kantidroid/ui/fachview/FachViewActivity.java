@@ -52,6 +52,8 @@ public class FachviewActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        viewPager.setCurrentItem(mSemester - 1);
     }
 
     private void setupViewPager(ViewPager viewPager) {

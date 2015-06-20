@@ -1,6 +1,8 @@
 package com.martin.kantidroid.ui.overview;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class OverviewFragment extends Fragment {
 
     private Adapter mAdapter;
     private TextView mPromo, mPP, mKont;
+    private SharedPreferences mPrefs;
+    private SharedPreferences.Editor mEditor;
 
     public static OverviewFragment newInstance() {
         return new OverviewFragment();
@@ -58,18 +61,22 @@ public class OverviewFragment extends Fragment {
         mPP = (TextView) rootView.findViewById(R.id.tvPP);
         mKont = (TextView) rootView.findViewById(R.id.tvKont);
 
+        mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        mEditor = mPrefs.edit();
+
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
             viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
                 }
 
                 @Override
                 public void onPageSelected(int position) {
                     showInfo(position + 1);
+                    mEditor.putInt("semester", position);
+                    mEditor.commit();
                 }
 
                 @Override
@@ -83,7 +90,8 @@ public class OverviewFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
         // TODO: Display last used tab & show according info
-        showInfo(1);
+        viewPager.setCurrentItem(mPrefs.getInt("semester", 0));
+        showInfo(mPrefs.getInt("semester", 0) + 1);
 
         return rootView;
     }
