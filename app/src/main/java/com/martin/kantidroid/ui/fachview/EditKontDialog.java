@@ -57,7 +57,7 @@ public class EditKontDialog extends AppCompatActivity {
             ab.setTitle(getString(R.string.edit_kont));
             String[] single = mEntry.split(" - ");
             mDate.setText(single[0]);
-            mAmount.getChildAt(Integer.parseInt(single[1]) - 1).setSelected(true);
+            ((RadioButton) mAmount.getChildAt(Integer.parseInt(single[1]) - 1)).setChecked(true);
         } else {
             newItem = true;
             ab.setTitle(getString(R.string.new_kont));
@@ -81,7 +81,7 @@ public class EditKontDialog extends AppCompatActivity {
                     if (!newItem) {
                         fach.removeKont(mSemester, mEntry);
                     }
-                    fach.addKont(mSemester, mDate.getText().toString() + " - " + mAmount.indexOfChild((RadioButton) findViewById(mAmount.getCheckedRadioButtonId())) + 1);
+                    fach.addKont(mSemester, mDate.getText().toString() + " - " + (mAmount.indexOfChild(findViewById(mAmount.getCheckedRadioButtonId())) + 1));
                     db.updateFach(fach);
                     setResult(1);
                     finish();

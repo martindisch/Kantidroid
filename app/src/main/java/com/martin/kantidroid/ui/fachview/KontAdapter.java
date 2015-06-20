@@ -35,7 +35,7 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fachview_grades_item, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fachview_kont_item, viewGroup, false);
         return new ViewHolder(v);
     }
 
@@ -104,7 +104,7 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
         Collections.sort(mEntries, new Comparator<String>() {
             @Override
             public int compare(String first, String second) {
-                return first.split(" - ")[2].compareTo(second.split(" - ")[2]);
+                return first.split(" - ")[0].compareTo(second.split(" - ")[0]);
             }
         });
     }

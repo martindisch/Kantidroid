@@ -25,13 +25,14 @@ import com.martin.kantidroid.ui.util.DividerItemDecoration;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DetailActivity extends AppCompatActivity implements GradesAdapter.OnClickListener {
+public class DetailActivity extends AppCompatActivity implements GradesAdapter.OnClickListener, KontAdapter.OnClickListener {
 
     private int mId, mSemester, mType;
     private Fach fach;
     private TextView mData;
     private RecyclerView mItems;
-    private GradesAdapter mAdapter;
+    private GradesAdapter mGradesAdapter;
+    private KontAdapter mKontAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +86,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
                     i.putExtra("id", mId);
                     i.putExtra("semester", mSemester);
                     startActivityForResult(i, 1);
-                }
-                else {
+                } else {
                     Intent i = new Intent(DetailActivity.this, EditKontDialog.class);
                     i.putExtra("id", mId);
                     i.putExtra("semester", mSemester);
@@ -104,18 +104,20 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             } else {
                 real = fach.getMathAverage2();
             }
-            mAdapter = new GradesAdapter(this, new ArrayList<>(Arrays.asList(fach.getMarks(mSemester))), this);
+            mGradesAdapter = new GradesAdapter(this, new ArrayList<>(Arrays.asList(fach.getMarks(mSemester))), this);
             if (real.contentEquals("")) {
                 real = "-";
             }
             mData.setText(real);
-            mItems.setAdapter(mAdapter);
+            mItems.setAdapter(mGradesAdapter);
         } else {
             if (mSemester == 1) {
                 mData.setText(Util.formatKont(fach.getKont1(), fach.getKont()));
             } else {
                 mData.setText(Util.formatKont(fach.getKont2(), fach.getKont()));
             }
+            mKontAdapter = new KontAdapter(this, new ArrayList<>(Arrays.asList(fach.getKont(mSemester))), this);
+            mItems.setAdapter(mKontAdapter);
         }
     }
 
@@ -142,10 +144,14 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             Intent i = new Intent(DetailActivity.this, EditMarkDialog.class);
             i.putExtra("id", mId);
             i.putExtra("semester", mSemester);
-            i.putExtra("entry", mAdapter.getData().get(position));
+            i.putExtra("entry", mGradesAdapter.getData().get(position));
             startActivityForResult(i, 1);
         } else {
-
+            Intent i = new Intent(DetailActivity.this, EditKontDialog.class);
+            i.putExtra("id", mId);
+            i.putExtra("semester", mSemester);
+            i.putExtra("entry", mKontAdapter.getData().get(position));
+            startActivityForResult(i, 1);
         }
     }
 
@@ -159,14 +165,26 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     DatabaseHandler db = new DatabaseHandler(DetailActivity.this);
-                    fach.removeMark(mSemester, mAdapter.getData().get(position));
+                    fach.removeMark(mSemester, mGradesAdapter.getData().get(position));
                     db.updateFach(fach);
-                    mAdapter.remove(position);
+                    mGradesAdapter.remove(position);
                 }
             });
             builder.show();
         } else {
-
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.delete_question_kont);
+            builder.setNegativeButton(R.string.no, null);
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    DatabaseHandler db = new DatabaseHandler(DetailActivity.this);
+                    fach.removeKont(mSemester, mKontAdapter.getData().get(position));
+                    db.updateFach(fach);
+                    mKontAdapter.remove(position);
+                }
+            });
+            builder.show();
         }
 
     }
