@@ -29,10 +29,21 @@
             android:layout_height="match_parent"
             android:padding="@dimen/activity_horizontal_margin">
 
+            <ImageView
+                android:id="@+id/ivNumeric"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/widget_margin_large"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_numeric"
+                android:tint="@color/green_dark" />
+
             <RadioGroup
                 android:id="@+id/rgKont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ivNumeric"
                 android:orientation="horizontal"
                 android:weightSum="4">
 
@@ -73,6 +84,7 @@
                 android:layout_below="@id/rgKont"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@id/ivNumeric"
                 android:background="@color/divider" />
 
             <ImageView
@@ -84,8 +96,8 @@
                 android:layout_marginTop="9dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_timetable"
-                android:tint="@color/red_dark" />
+                android:src="@drawable/ic_calendar"
+                android:tint="@color/green_dark" />
 
             <EditText
                 android:id="@+id/etDate"

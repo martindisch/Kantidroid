@@ -9,6 +9,9 @@ Google
 	http://materialdesignicons.com/icon/close
 	http://materialdesignicons.com/icon/alert
 	http://materialdesignicons.com/icon/palette
+	https://materialdesignicons.com/icon/weight
+	https://materialdesignicons.com/icon/numeric
+	https://materialdesignicons.com/icon/calendar
 	Android Open Source Project, Support Library (Apache)
 	iosched 14 SlidingTabs (Apache, included in source)
 	
