@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -51,6 +52,8 @@ public class EditKontDialog extends AppCompatActivity {
         Intent i = getIntent();
         mId = i.getIntExtra("id", -1);
         mSemester = i.getIntExtra("semester", -1);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         if (i.hasExtra("entry")) {
             mEntry = i.getStringExtra("entry");
