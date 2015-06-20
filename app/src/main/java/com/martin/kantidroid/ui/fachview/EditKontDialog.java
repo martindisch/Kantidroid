@@ -31,7 +31,7 @@ public class EditKontDialog extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fachview_edit_mark_dialog);
+        setContentView(R.layout.fachview_edit_kont_dialog);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

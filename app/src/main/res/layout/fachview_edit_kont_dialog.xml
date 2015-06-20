@@ -29,61 +29,56 @@
             android:layout_height="match_parent"
             android:padding="@dimen/activity_horizontal_margin">
 
-            <EditText
-                android:id="@+id/etMark"
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/mark"
-                android:imeOptions="actionDone"
-                android:inputType="numberDecimal" />
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:id="@+id/rgKont">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:id="@+id/rb1"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:id="@+id/rb2"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3"
+                    android:id="@+id/rb3"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4"
+                    android:id="@+id/rb4"/>
+            </RadioGroup>
 
             <View
                 android:id="@+id/vDivider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/etMark"
+                android:layout_below="@id/rgKont"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:background="@color/divider" />
-
-            <ImageView
-                android:id="@+id/ivWeight"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@id/vDivider"
-                android:layout_marginRight="@dimen/widget_margin_large"
-                android:layout_marginTop="9dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_timetable"
-                android:tint="@color/red_dark" />
-
-            <EditText
-                android:id="@+id/etWeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/vDivider"
-                android:layout_toRightOf="@id/ivWeight"
-                android:hint="@string/weighting"
-                android:imeOptions="actionDone"
-                android:inputType="numberDecimal"
-                android:text="1.0" />
-
-            <View
-                android:id="@+id/vDivider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/etWeight"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_toRightOf="@id/ivWeight"
                 android:background="@color/divider" />
 
             <ImageView
                 android:id="@+id/ivDate"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_below="@id/vDivider2"
+                android:layout_below="@id/vDivider"
                 android:layout_marginRight="@dimen/widget_margin_large"
                 android:layout_marginTop="9dp"
                 android:adjustViewBounds="true"
@@ -95,7 +90,7 @@
                 android:id="@+id/etDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/vDivider2"
+                android:layout_below="@id/vDivider"
                 android:layout_toRightOf="@id/ivDate"
                 android:hint="@string/date"
                 android:imeOptions="actionDone"
