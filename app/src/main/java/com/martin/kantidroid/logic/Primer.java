@@ -65,6 +65,7 @@ public class Primer {
                                 @Override
                                 public void run() {
                                     ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
+
                                 }
                             });
                         }

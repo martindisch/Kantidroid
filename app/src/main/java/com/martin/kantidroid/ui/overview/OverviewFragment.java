@@ -30,6 +30,7 @@ public class OverviewFragment extends Fragment {
     private TextView mPromo, mPP, mKont;
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mEditor;
+    private ViewPager mViewPager;
 
     public static OverviewFragment newInstance() {
         return new OverviewFragment();
@@ -64,10 +65,10 @@ public class OverviewFragment extends Fragment {
         mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         mEditor = mPrefs.edit();
 
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        if (viewPager != null) {
-            setupViewPager(viewPager);
-            viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        if (mViewPager != null) {
+            setupViewPager(mViewPager);
+            mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 }
@@ -87,10 +88,10 @@ public class OverviewFragment extends Fragment {
         }
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(mViewPager);
 
         // TODO: Display last used tab & show according info
-        viewPager.setCurrentItem(mPrefs.getInt("semester", 0));
+        mViewPager.setCurrentItem(mPrefs.getInt("semester", 0));
         showInfo(mPrefs.getInt("semester", 0) + 1);
 
         return rootView;
@@ -98,6 +99,7 @@ public class OverviewFragment extends Fragment {
 
     public void loadData() {
         mAdapter.loadData();
+        showInfo(mViewPager.getCurrentItem() + 1);
     }
 
     private void showInfo(int semester) {
