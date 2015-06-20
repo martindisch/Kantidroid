@@ -195,4 +195,6 @@
     <string name="new_kont">Neues Kontingent</string>
     <string name="delete_kont">Kontingent löschen</string>
     <string name="delete_question_kont">Willst du dieses Kontingent löschen?</string>
+    <string name="duplicate">Eintrag existiert bereits</string>
+    <string name="impossible">Diese Note sollte es nicht geben</string>
 </resources>

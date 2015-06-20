@@ -88,8 +88,6 @@ public class EditKontDialog extends AppCompatActivity {
                     db.updateFach(fach);
                     setResult(1);
                     finish();
-                } else {
-                    Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.action_delete:
@@ -126,10 +124,26 @@ public class EditKontDialog extends AppCompatActivity {
     private boolean saveToSave() {
         String date = mDate.getText().toString();
         if (date.contentEquals("")) {
+            Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (date.contentEquals("0")) {
+            Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
             return false;
+        }
+
+        Fach fach = new DatabaseHandler(this).getFach(mId);
+        if (mSemester == 1) {
+            if (fach.getKont1().contains(mDate.getText().toString() + " - " + (mAmount.indexOfChild(findViewById(mAmount.getCheckedRadioButtonId())) + 1))) {
+                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        else {
+            if (fach.getKont2().contains(mDate.getText().toString() + " - " + (mAmount.indexOfChild(findViewById(mAmount.getCheckedRadioButtonId())) + 1))) {
+                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }
         return true;
     }

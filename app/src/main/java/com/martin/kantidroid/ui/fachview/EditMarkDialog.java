@@ -84,8 +84,6 @@ public class EditMarkDialog extends AppCompatActivity {
                     db.updateFach(fach);
                     setResult(1);
                     finish();
-                } else {
-                    Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.action_delete:
@@ -124,14 +122,32 @@ public class EditMarkDialog extends AppCompatActivity {
         String weight = mWeight.getText().toString();
         String date = mDate.getText().toString();
         if (mark.contentEquals("") || weight.contentEquals("") || date.contentEquals("")) {
+            Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (mark.contentEquals("0") || weight.contentEquals("0") || date.contentEquals("0")) {
+            Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (Double.parseDouble(mark) <= 1 || Double.parseDouble(mark) >= 6.2) {
+            Toast.makeText(this, R.string.impossible, Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        Fach fach = new DatabaseHandler(this).getFach(mId);
+        if (mSemester == 1) {
+            if (fach.getNoten1().contains(mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString())) {
+                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        else {
+            if (fach.getNoten2().contains(mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString())) {
+                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
         return true;
     }
 }
