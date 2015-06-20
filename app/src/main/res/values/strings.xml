@@ -193,4 +193,5 @@
     <string name="title_activity_edit_kont_dialog">EditKontDialog</string>
     <string name="edit_kont">Kontingent bearbeiten</string>
     <string name="new_kont">Neues Kontingent</string>
+    <string name="delete_kont">Kontingent löschen</string>
 </resources>

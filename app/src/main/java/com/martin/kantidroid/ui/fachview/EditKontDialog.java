@@ -45,6 +45,7 @@ public class EditKontDialog extends AppCompatActivity {
         mAmount = (RadioGroup) findViewById(R.id.rgKont);
         mDate = (EditText) findViewById(R.id.etDate);
         mSemesterInfo = (TextView) findViewById(R.id.tvSem);
+        mAmount = (RadioGroup) findViewById(R.id.rgKont);
 
         Intent i = getIntent();
         mId = i.getIntExtra("id", -1);
@@ -54,7 +55,8 @@ public class EditKontDialog extends AppCompatActivity {
             mEntry = i.getStringExtra("entry");
             ab.setTitle(getString(R.string.edit_kont));
             String[] single = mEntry.split(" - ");
-            mDate.setText(single[2]);
+            mDate.setText(single[0]);
+            mAmount.getChildAt(Integer.parseInt(single[1]) - 1).setSelected(true);
         } else {
             newItem = true;
             ab.setTitle(getString(R.string.new_kont));
@@ -113,7 +115,7 @@ public class EditKontDialog extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.fachview_edit_mark_menu, menu);
+        getMenuInflater().inflate(R.menu.fachview_edit_kont_menu, menu);
         return true;
     }
 

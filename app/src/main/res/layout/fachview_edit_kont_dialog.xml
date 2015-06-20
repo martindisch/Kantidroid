@@ -30,39 +30,40 @@
             android:padding="@dimen/activity_horizontal_margin">
 
             <RadioGroup
+                android:id="@+id/rgKont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="4"
-                android:id="@+id/rgKont">
+                android:weightSum="4">
 
                 <RadioButton
+                    android:id="@+id/rb1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="1"
-                    android:id="@+id/rb1"/>
+                    android:checked="true"
+                    android:text="1" />
 
                 <RadioButton
+                    android:id="@+id/rb2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="2"
-                    android:id="@+id/rb2"/>
+                    android:text="2" />
 
                 <RadioButton
+                    android:id="@+id/rb3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="3"
-                    android:id="@+id/rb3"/>
+                    android:text="3" />
 
                 <RadioButton
+                    android:id="@+id/rb4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="4"
-                    android:id="@+id/rb4"/>
+                    android:text="4" />
             </RadioGroup>
 
             <View
