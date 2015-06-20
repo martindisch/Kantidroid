@@ -29,9 +29,18 @@ public class Util {
                 formatted = "0/" + available;
             }
             else {
-                formatted = used + "/" + available;
+                formatted = getAmoutUsed(used) + "/" + available;
             }
         }
         return formatted;
+    }
+
+    public static int getAmoutUsed(String kontSemester) {
+        int used = 0;
+        String[] used_splitted = kontSemester.split("\n");
+        for (int i = 0; i < used_splitted.length; i++) {
+            used += Integer.parseInt(used_splitted[i].split(" - ")[1]);
+        }
+        return used;
     }
 }

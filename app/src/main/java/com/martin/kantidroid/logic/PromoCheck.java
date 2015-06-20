@@ -326,8 +326,6 @@ public class PromoCheck {
 		Fach entry = null;
 		String kontUsed = null;
 
-		int überzogen = 0;
-
 		for (int i = 0; i < subjects.size(); i++) {
 			entry = subjects.get(i);
 			if (semester == 1) {
@@ -340,12 +338,7 @@ public class PromoCheck {
 				totalK = totalK + Integer.parseInt(entry.getKont());
 			}
             if (!kontUsed.contentEquals("")) {
-				used = used + Integer.parseInt(kontUsed);
-
-				// Check für überzogen
-				if (Integer.parseInt(kontUsed) > Integer.parseInt(kontUsed)) {
-					überzogen++;
-				}
+				used += Util.getAmoutUsed(kontUsed);
 			}
 		}
 
