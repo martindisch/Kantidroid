@@ -314,4 +314,28 @@ public class Fach {
         }
     }
 
+    public void addKont(int semester, String entry) {
+        if (semester == 1) {
+            String before = getKont1();
+            if (before == null || before.contentEquals("")) {
+                before = "";
+            }
+            setKont1(before + entry + "\n");
+        } else {
+            String before = getKont2();
+            if (before == null || before.contentEquals("")) {
+                before = "";
+            }
+            setKont2(before + entry + "\n");
+        }
+    }
+
+    public void removeKont(int semester, String entry) {
+        if (semester == 1) {
+            setKont1(getKont1().replace(entry + "\n", ""));
+        } else {
+            setKont2(getKont2().replace(entry + "\n", ""));
+        }
+    }
+
 }
