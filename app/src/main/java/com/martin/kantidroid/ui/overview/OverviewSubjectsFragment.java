@@ -55,7 +55,10 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         mSubjects.addItemDecoration(new MarginDecoration(getActivity()));
         mSubjects.setHasFixedSize(true);
 
-        loadData();
+        DatabaseHandler db = new DatabaseHandler(getActivity());
+        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
+        mAdapter = new OverviewAdapter(getActivity(), subjects, this, mSemester);
+        mSubjects.setAdapter(mAdapter);
 
         return rootView;
     }
@@ -64,8 +67,8 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         DatabaseHandler db = new DatabaseHandler(getActivity());
         // TODO: Enable sorting
         List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
-        mAdapter = new OverviewAdapter(getActivity(), subjects, this);
-        mSubjects.setAdapter(mAdapter);
+        mAdapter.setData(subjects);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -73,7 +76,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         Intent i = new Intent(getActivity(), FachviewActivity.class);
         i.putExtra("semester", mSemester);
         i.putExtra("id", mAdapter.getData().get(position).getID());
-        startActivityForResult(i, 1);
+        startActivity(i);
     }
 
     @Override

@@ -24,10 +24,11 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     private int mTempSemester;
     private Context mContext;
 
-    public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback) {
+    public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback, int semester) {
         mContext = context;
         mEntries = entries;
         mCallback = callback;
+        mTempSemester = semester;
     }
 
     @Override
@@ -45,8 +46,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         mTempFach = mEntries.get(position);
 
-        // TODO: Ask user for semester, save it in SharedPreferences and load accordingly for kont and grades
-        mTempSemester = 1;
         if (mTempSemester == 1) {
             mTempGrades = mTempFach.getMathAverage1();
             mTempKontUs = mTempFach.getKont1();
@@ -119,5 +118,9 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     public List<Fach> getData() {
         return mEntries;
+    }
+
+    public void setData(List<Fach> faecher) {
+        mEntries = faecher;
     }
 }

@@ -1,7 +1,6 @@
 package com.martin.kantidroid.ui.overview;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -31,6 +30,7 @@ public class OverviewFragment extends Fragment {
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mEditor;
     private ViewPager mViewPager;
+    private boolean mFirsttime = false;
 
     public static OverviewFragment newInstance() {
         return new OverviewFragment();
@@ -94,6 +94,8 @@ public class OverviewFragment extends Fragment {
         mViewPager.setCurrentItem(mPrefs.getInt("semester", 0));
         showInfo(mPrefs.getInt("semester", 0) + 1);
 
+        mFirsttime = true;
+
         return rootView;
     }
 
@@ -118,9 +120,12 @@ public class OverviewFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == 1) {
+    public void onResume() {
+        super.onResume();
+        if (mFirsttime) {
+            mFirsttime = false;
+        }
+        else {
             mAdapter.loadData();
             showInfo(mViewPager.getCurrentItem() + 1);
         }
