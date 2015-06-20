@@ -55,6 +55,7 @@ public class Primer {
                                 subject = new Fach(subjects[y], "true");
                                 subject.setShort(subjects_short[y]);
                                 subject.setColor(y + "");
+                                subject.setKont("4");
                                 db.addFach(subject);
                             }
 
