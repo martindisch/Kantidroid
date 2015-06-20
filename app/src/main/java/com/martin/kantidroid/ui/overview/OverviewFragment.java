@@ -122,6 +122,7 @@ public class OverviewFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 1) {
             mAdapter.loadData();
+            showInfo(mViewPager.getCurrentItem() + 1);
         }
     }
 
@@ -155,7 +156,6 @@ public class OverviewFragment extends Fragment {
 
         // TODO: Maybe do this off-thread?
         public void loadData() {
-            // TODO: Also do showInfo to update general information
             for (int i = 0; i < mFragments.size(); i++) {
                 ((OverviewSubjectsFragment) mFragments.get(i)).loadData();
             }

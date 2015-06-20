@@ -59,18 +59,9 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         if (mTempGrades.contentEquals("")) {
             mTempGrades = "-";
         }
-        if (mTempKontUs.contentEquals("")) {
-            mTempKontUs = "0";
-        }
-        if (mTempKontAv.contentEquals("")) {
-            mTempKontString = "-";
-        }
-        else {
-            mTempKontString = mTempKontUs + "/" + mTempKontAv;
-        }
 
         holder.tvName.setText(mTempFach.getName());
-        holder.tvKont.setText(mTempKontString);
+        holder.tvKont.setText(Util.formatKont(mTempKontUs, mTempKontAv));
         holder.tvGrades.setText(mTempGrades);
         holder.tvPic.setText(mTempFach.getShort());
         holder.tvGrades.setBackgroundColor(Util.getNormal(mContext, mTempFach.getColor()));

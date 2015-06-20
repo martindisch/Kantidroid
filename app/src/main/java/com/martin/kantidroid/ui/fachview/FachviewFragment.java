@@ -120,7 +120,7 @@ public class FachviewFragment extends Fragment {
             }
             mRealAverage.setText(real);
             mMathAverage.setText(math);
-            mKont.setText(Util.formatKont(mFach.getKont1(), mFach.getKont()));
+            mKont.setText(Util.formatKont(mFach.getKont2(), mFach.getKont()));
         }
     }
 

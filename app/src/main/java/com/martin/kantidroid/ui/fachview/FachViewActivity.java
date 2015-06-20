@@ -101,7 +101,6 @@ public class FachviewActivity extends AppCompatActivity {
     }
 
     public void setEdited() {
-        Log.e("FFF", "Setting result");
         setResult(1);
     }
 }
