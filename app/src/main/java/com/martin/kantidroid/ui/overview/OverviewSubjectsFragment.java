@@ -54,20 +54,40 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         mSubjects.addItemDecoration(new MarginDecoration(getActivity()));
         mSubjects.setHasFixedSize(true);
 
-        DatabaseHandler db = new DatabaseHandler(getActivity());
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
-        mAdapter = new OverviewAdapter(getActivity(), subjects, this, mSemester);
-        mSubjects.setAdapter(mAdapter);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
+                mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSubjects.setAdapter(mAdapter);
+                    }
+                });
+            }
+        }).start();
 
         return rootView;
     }
 
     public void loadData() {
-        DatabaseHandler db = new DatabaseHandler(getActivity());
-        // TODO: Enable sorting
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
-        mAdapter.setData(subjects);
-        mAdapter.notifyDataSetChanged();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                // TODO: Enable sorting
+                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
+                mAdapter.setData(subjects);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        }).start();
     }
 
     @Override

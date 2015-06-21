@@ -44,9 +44,6 @@ public class Primer {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-
-                            // TODO: Maybe set kont_av as well
-
                             DatabaseHandler db = new DatabaseHandler(context);
                             Fach subject;
                             String[] subjects = context.getResources().getStringArray(R.array.subjects_standard);

@@ -176,7 +176,6 @@ public class OverviewFragment extends Fragment {
             return mFragmentTitles.get(position);
         }
 
-        // TODO: Maybe do this off-thread?
         public void loadData() {
             for (int i = 0; i < mFragments.size(); i++) {
                 ((OverviewSubjectsFragment) mFragments.get(i)).loadData();
