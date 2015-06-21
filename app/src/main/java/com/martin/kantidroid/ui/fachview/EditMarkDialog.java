@@ -129,7 +129,7 @@ public class EditMarkDialog extends AppCompatActivity {
             Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (Double.parseDouble(mark) <= 1 || Double.parseDouble(mark) >= 6.2) {
+        if (Double.parseDouble(mark) < 1 || Double.parseDouble(mark) > 6.2) {
             Toast.makeText(this, R.string.impossible, Toast.LENGTH_SHORT).show();
             return false;
         }
