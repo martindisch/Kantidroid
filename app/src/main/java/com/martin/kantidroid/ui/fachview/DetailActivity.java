@@ -75,7 +75,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             mData.setBackgroundColor(getResources().getColor(R.color.green_light));
         }
 
-        updateInfo();
+        showInfo();
 
         FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +96,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
         });
     }
 
-    private void updateInfo() {
+    private void showInfo() {
         if (mType == 1) {
             String real;
             if (mSemester == 1) {
@@ -121,6 +121,31 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
         }
     }
 
+    private void updateInfo() {
+        if (mType == 1) {
+            mGradesAdapter.setData(new ArrayList<>(Arrays.asList(fach.getMarks(mSemester))));
+            mGradesAdapter.notifyDataSetChanged();
+            String real;
+            if (mSemester == 1) {
+                real = fach.getMathAverage1();
+            } else {
+                real = fach.getMathAverage2();
+            }
+            if (real.contentEquals("")) {
+                real = "-";
+            }
+            mData.setText(real);
+        } else {
+            mKontAdapter.setData(new ArrayList<>(Arrays.asList(fach.getKont(mSemester))));
+            mKontAdapter.notifyDataSetChanged();
+            if (mSemester == 1) {
+                mData.setText(Util.formatKont(fach.getKont1(), fach.getKont()));
+            } else {
+                mData.setText(Util.formatKont(fach.getKont2(), fach.getKont()));
+            }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Let's not go back to the the main activity
@@ -133,7 +158,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 1) {
             fach = new DatabaseHandler(this).getFach(mId);
-            updateInfo();
+            showInfo();
             setResult(1);
         }
     }

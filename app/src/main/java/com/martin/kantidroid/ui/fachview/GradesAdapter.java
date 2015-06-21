@@ -115,4 +115,8 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
     public ArrayList<String> getData() {
         return mEntries;
     }
+
+    public void setData(ArrayList<String> newData) {
+        mEntries = newData;
+    }
 }
