@@ -1,6 +1,8 @@
 package com.martin.kantidroid.logic;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Fach {
 
@@ -307,11 +309,23 @@ public class Fach {
     }
 
     public void removeMark(int semester, String entry) {
+        ArrayList<String> oldEntries = new ArrayList<>(Arrays.asList(getMarks(semester)));
+        int deletedIndex = oldEntries.indexOf(entry);
         if (semester == 1) {
-            setNoten1(getNoten1().replace(entry + "\n", ""));
+            setNoten1(arrayToString(oldEntries, deletedIndex));
         } else {
-            setNoten2(getNoten2().replace(entry + "\n", ""));
+            setNoten2(arrayToString(oldEntries, deletedIndex));
         }
+    }
+
+    private String arrayToString(ArrayList<String> entries, int notIncludedIndex) {
+        String newContent = "";
+        for (int i = 0; i < entries.size(); i++) {
+            if (i != notIncludedIndex) {
+                newContent += entries.get(i) + "\n";
+            }
+        }
+        return newContent;
     }
 
     public String[] getKont(int semester) {
@@ -344,10 +358,12 @@ public class Fach {
     }
 
     public void removeKont(int semester, String entry) {
+        ArrayList<String> oldEntries = new ArrayList<>(Arrays.asList(getKont(semester)));
+        int deletedIndex = oldEntries.indexOf(entry);
         if (semester == 1) {
-            setKont1(getKont1().replace(entry + "\n", ""));
+            setKont1(arrayToString(oldEntries, deletedIndex));
         } else {
-            setKont2(getKont2().replace(entry + "\n", ""));
+            setKont2(arrayToString(oldEntries, deletedIndex));
         }
     }
 
