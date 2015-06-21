@@ -18,6 +18,8 @@ import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class EditMarkDialog extends AppCompatActivity {
@@ -135,18 +137,12 @@ public class EditMarkDialog extends AppCompatActivity {
         }
 
         Fach fach = new DatabaseHandler(this).getFach(mId);
-        if (mSemester == 1) {
-            if (fach.getNoten1().contains(mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString())) {
-                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        } else {
-            if (fach.getNoten2().contains(mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString())) {
-                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
-                return false;
-            }
+        String entry = mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString();
+        ArrayList<String> existingEntries = new ArrayList<>(Arrays.asList(fach.getMarks(mSemester)));
+        if (existingEntries.contains(entry)) {
+            Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
+            return false;
         }
-
         return true;
     }
 }
