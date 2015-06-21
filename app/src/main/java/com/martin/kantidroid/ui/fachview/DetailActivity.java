@@ -2,6 +2,7 @@ package com.martin.kantidroid.ui.fachview;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +57,13 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         ctl.setTitle(fach.getName());
         ctl.setBackgroundColor(Util.getLight(this, fach.getColor()));
+        ctl.setContentScrimColor(Util.getLight(this, fach.getColor()));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Util.getDark(this, fach.getColor()));
+        }
 
         mItems = (RecyclerView) findViewById(R.id.rvContents);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
