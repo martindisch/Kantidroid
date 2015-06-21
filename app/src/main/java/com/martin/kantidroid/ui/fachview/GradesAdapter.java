@@ -22,6 +22,8 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
     private ArrayList<String> mEntries;
     private OnClickListener mCallback;
     private Context mContext;
+    private String[] mTempSplit;
+    private String mDiff1, mDiff2;
 
     public GradesAdapter(Context context, ArrayList<String> entries, OnClickListener callback) {
         mContext = context;
@@ -103,11 +105,14 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
     }
 
     private void sort() {
-        // TODO: This needs to properly sort dates
         Collections.sort(mEntries, new Comparator<String>() {
             @Override
             public int compare(String first, String second) {
-                return first.split(" - ")[2].compareTo(second.split(" - ")[2]);
+                mTempSplit = first.split(" - ")[2].split("\\.");
+                mDiff1 = mTempSplit[2] + mTempSplit[1] + mTempSplit[0];
+                mTempSplit = second.split(" - ")[2].split("\\.");
+                mDiff2 = mTempSplit[2] + mTempSplit[1] + mTempSplit[0];
+                return mDiff1.compareTo(mDiff2);
             }
         });
     }
