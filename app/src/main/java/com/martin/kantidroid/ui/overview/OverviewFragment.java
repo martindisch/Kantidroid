@@ -74,14 +74,22 @@ public class OverviewFragment extends Fragment {
                 }
 
                 @Override
-                public void onPageSelected(int position) {
-                    showInfo(position + 1);
-                    mEditor.putInt("semester", position);
-                    mEditor.commit();
+                public void onPageSelected(final int position) {
                 }
 
                 @Override
                 public void onPageScrollStateChanged(int state) {
+                    if (state == ViewPager.SCROLL_STATE_IDLE) {
+                        final int position = mViewPager.getCurrentItem();
+                        showInfo(position + 1);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mEditor.putInt("semester", position);
+                                mEditor.commit();
+                            }
+                        }).start();
+                    }
 
                 }
             });
@@ -104,12 +112,22 @@ public class OverviewFragment extends Fragment {
         showInfo(mViewPager.getCurrentItem() + 1);
     }
 
-    private void showInfo(int semester) {
-        PromoRes promo = new PromoCheck(getActivity()).getGym(semester);
-        mPromo.setText(promo.sMessage);
-        mPromo.setTextColor(getResources().getColor(promo.iColor));
-        mPP.setText(promo.sPP);
-        mKont.setText(promo.sKont);
+    private void showInfo(final int semester) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final PromoRes promo = new PromoCheck(getActivity()).getGym(semester);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPromo.setText(promo.sMessage);
+                        mPromo.setTextColor(getResources().getColor(promo.iColor));
+                        mPP.setText(promo.sPP);
+                        mKont.setText(promo.sKont);
+                    }
+                });
+            }
+        }).start();
     }
 
     private void setupViewPager(ViewPager viewPager) {
