@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
 
-
     <com.martin.kantidroid.ui.overview.AutofitRecyclerView
         android:id="@+id/rvSubjects"
         android:layout_width="match_parent"

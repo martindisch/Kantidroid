@@ -124,8 +124,7 @@ public class OverviewFragment extends Fragment {
         super.onResume();
         if (mFirsttime) {
             mFirsttime = false;
-        }
-        else {
+        } else {
             mAdapter.loadData();
             showInfo(mViewPager.getCurrentItem() + 1);
         }

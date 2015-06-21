@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.martin.kantidroid" >
+    package="com.martin.kantidroid">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
             android:name=".ui.subjects.EditDialog"
             android:label="@string/subject_edit"
             android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
 
             <!-- TODO: Check if back button appears on pre v16 // remove parent meta -->
             <meta-data
@@ -33,7 +33,7 @@
         <activity
             android:name=".ui.fachview.DetailActivity"
             android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martin.kantidroid.ui.main.MainActivity" />
@@ -42,7 +42,7 @@
             android:name=".ui.fachview.FachviewActivity"
             android:label="@string/title_activity_fachview"
             android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martin.kantidroid.ui.main.MainActivity" />
@@ -50,13 +50,11 @@
         <activity
             android:name=".ui.fachview.EditMarkDialog"
             android:label="@string/title_activity_edit_mark_dialog"
-            android:theme="@style/AppTheme.Base" >
-        </activity>
+            android:theme="@style/AppTheme.Base"></activity>
         <activity
             android:name=".ui.fachview.EditKontDialog"
             android:label="@string/title_activity_edit_kont_dialog"
-            android:theme="@style/AppTheme.Base">
-        </activity>
+            android:theme="@style/AppTheme.Base"></activity>
     </application>
 
 </manifest>

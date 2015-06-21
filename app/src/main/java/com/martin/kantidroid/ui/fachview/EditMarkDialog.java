@@ -140,8 +140,7 @@ public class EditMarkDialog extends AppCompatActivity {
                 Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
                 return false;
             }
-        }
-        else {
+        } else {
             if (fach.getNoten2().contains(mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString())) {
                 Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
                 return false;

@@ -1,7 +1,6 @@
 package com.martin.kantidroid.ui.fachview;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.martin.kantidroid.R;
-import com.martin.kantidroid.logic.Fach;
-import com.martin.kantidroid.logic.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder> {
 
@@ -45,23 +41,23 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-            holder.tvGrade.setText(mEntries.get(position).split(" - ")[0]);
-            holder.tvWeight.setText(mEntries.get(position).split(" - ")[1]);
-            holder.tvDate.setText(mEntries.get(position).split(" - ")[2]);
-            holder.rlRoot.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.onItemClick(view, holder.getAdapterPosition());
-                }
-            });
-            holder.rlRoot.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    mCallback.onItemLongClick(view, holder.getAdapterPosition());
-                    return false;
-                }
-            });
-            holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
+        holder.tvGrade.setText(mEntries.get(position).split(" - ")[0]);
+        holder.tvWeight.setText(mEntries.get(position).split(" - ")[1]);
+        holder.tvDate.setText(mEntries.get(position).split(" - ")[2]);
+        holder.rlRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallback.onItemClick(view, holder.getAdapterPosition());
+            }
+        });
+        holder.rlRoot.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mCallback.onItemLongClick(view, holder.getAdapterPosition());
+                return false;
+            }
+        });
+        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public interface OnClickListener {

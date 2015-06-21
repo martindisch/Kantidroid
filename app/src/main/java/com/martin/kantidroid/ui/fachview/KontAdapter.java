@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.martin.kantidroid.R;
-import com.martin.kantidroid.logic.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;

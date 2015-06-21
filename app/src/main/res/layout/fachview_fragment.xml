@@ -132,6 +132,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/widget_margin"
         card_view:cardCornerRadius="0dp">
+
         <RelativeLayout
             android:id="@+id/rlShowKont"
             android:layout_width="match_parent"
@@ -157,7 +158,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_timetable"
                 android:tint="@color/green_dark"
-                android:layout_below="@id/tvKont"/>
+                android:layout_below="@id/tvKont" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,7 +169,7 @@
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="18sp"
                 android:layout_below="@id/tvKont"
-                android:layout_marginTop="3dp"/>
+                android:layout_marginTop="3dp" />
 
             <TextView
                 android:id="@+id/tvKontUsage"
@@ -179,7 +180,7 @@
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="18sp"
                 android:layout_below="@id/tvKont"
-                android:layout_marginTop="3dp"/>
+                android:layout_marginTop="3dp" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

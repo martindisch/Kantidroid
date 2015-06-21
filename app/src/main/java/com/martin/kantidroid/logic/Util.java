@@ -23,12 +23,10 @@ public class Util {
         String formatted;
         if (available.contentEquals("")) {
             formatted = "-";
-        }
-        else {
+        } else {
             if (used.contentEquals("")) {
                 formatted = "0/" + available;
-            }
-            else {
+            } else {
                 formatted = getAmoutUsed(used) + "/" + available;
             }
         }

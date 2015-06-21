@@ -138,8 +138,7 @@ public class EditKontDialog extends AppCompatActivity {
                 Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
                 return false;
             }
-        }
-        else {
+        } else {
             if (fach.getKont2().contains(mDate.getText().toString() + " - " + (mAmount.indexOfChild(findViewById(mAmount.getCheckedRadioButtonId())) + 1))) {
                 Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
                 return false;
