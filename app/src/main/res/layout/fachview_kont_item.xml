@@ -15,7 +15,7 @@
         android:layout_centerVertical="true"
         android:background="@drawable/subjects_circle"
         android:textSize="20sp"
-        android:textColor="@color/abc_primary_text_material_dark"
+        android:textColor="@color/primary_text_default_material_dark"
         android:gravity="center" />
 
     <TextView

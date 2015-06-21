@@ -23,7 +23,7 @@
     <color name="red_light">#F44336</color>
 
     <color name="promo_orange">#FF9800</color>
-    <color name="promo_white">@color/abc_primary_text_material_dark</color>
+    <color name="promo_white">@color/primary_text_default_material_dark</color>
     <color name="promo_red">#F44336</color>
 
     <!-- Don't modify this section the colors -->
