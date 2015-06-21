@@ -113,21 +113,21 @@ public class OverviewFragment extends Fragment {
     }
 
     private void showInfo(final int semester) {
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             @Override
-            public void run() {
+            public void run() {*/
                 final PromoRes promo = new PromoCheck(getActivity()).getGym(semester);
-                getActivity().runOnUiThread(new Runnable() {
+                /*getActivity().runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
+                    public void run() {*/
                         mPromo.setText(promo.sMessage);
                         mPromo.setTextColor(getResources().getColor(promo.iColor));
                         mPP.setText(promo.sPP);
                         mKont.setText(promo.sKont);
-                    }
+                    /*}
                 });
             }
-        }).start();
+        }).start();*/
     }
 
     private void setupViewPager(ViewPager viewPager) {

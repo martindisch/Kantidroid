@@ -54,20 +54,20 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         mSubjects.addItemDecoration(new MarginDecoration(getActivity()));
         mSubjects.setHasFixedSize(true);
 
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             @Override
-            public void run() {
+            public void run() {*/
                 DatabaseHandler db = new DatabaseHandler(getActivity());
                 List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
                 mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
-                getActivity().runOnUiThread(new Runnable() {
+                /*getActivity().runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
+                    public void run() {*/
                         mSubjects.setAdapter(mAdapter);
-                    }
+                    /*}
                 });
             }
-        }).start();
+        }).start();*/
 
         return rootView;
     }
