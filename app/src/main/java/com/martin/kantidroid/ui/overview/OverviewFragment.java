@@ -98,7 +98,6 @@ public class OverviewFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        // TODO: Display last used tab & show according info
         mViewPager.setCurrentItem(mPrefs.getInt("semester", 0));
         showInfo(mPrefs.getInt("semester", 0) + 1);
 

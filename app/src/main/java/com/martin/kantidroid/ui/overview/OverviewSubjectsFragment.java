@@ -78,7 +78,6 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
             @Override
             public void run() {
                 DatabaseHandler db = new DatabaseHandler(getActivity());
-                // TODO: Enable sorting
                 List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
                 mAdapter.setData(subjects);
                 getActivity().runOnUiThread(new Runnable() {
