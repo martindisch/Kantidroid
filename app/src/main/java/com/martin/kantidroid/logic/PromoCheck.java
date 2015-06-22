@@ -124,25 +124,25 @@ public class PromoCheck {
                 case 1:
                     if (total_minus > 4) {
                         sMessage = "Mehr als 4 ungenügende Noten\nIm 2. Semester darf dies nicht der Fall sein";
-                        iColor = R.color.promo_orange;
+                        iColor = R.color.promo_black;
                     }
                     break;
                 case 2:
                     if (total_minus > 4) {
                         sMessage = "Nicht promoviert\nMehr als 4 ungenügende Noten";
-                        iColor = R.color.promo_red;
+                        iColor = R.color.promo_black;
                     }
                     break;
                 case 3:
                     if (getGym(1).sMessage.contains("Nicht promoviert") || getGym(2).sMessage.contains("Nicht promoviert")) {
                         sMessage = "Nicht promoviert";
-                        iColor = R.color.promo_red;
+                        iColor = R.color.promo_black;
                     }
                     break;
             }
         } else {
             sMessage = "Nicht promoviert\nZu wenig Pluspunkte";
-            iColor = R.color.promo_red;
+            iColor = R.color.promo_black;
         }
 
         double PP_result = plus - (2 * minus);
@@ -216,15 +216,15 @@ public class PromoCheck {
                 iColor = R.color.promo_white;
             } else {
                 sMessage = "Nicht promoviert\nMehr als 3 Ungenügende";
-                iColor = R.color.promo_red;
+                iColor = R.color.promo_black;
             }
             if (minus > 2.5) {
                 sMessage = "Nicht Promoviert\nMehr als 2.5 Minuspunkte";
-                iColor = R.color.promo_red;
+                iColor = R.color.promo_black;
             }
         } else {
             sMessage = "Nicht promoviert\nGesamtschnitt unter 4";
-            iColor = R.color.promo_red;
+            iColor = R.color.promo_black;
         }
 
         // HMS, also keine Pluspunkte anzeigen
@@ -298,11 +298,11 @@ public class PromoCheck {
                 iColor = R.color.promo_white;
             } else {
                 sMessage = "Nicht Promoviert\nPromotionsschnitt unter 4";
-                iColor = R.color.promo_red;
+                iColor = R.color.promo_black;
             }
         } else {
             sMessage = "Nicht promoviert\nMehr als 2.5 Minuspunkte";
-            iColor = R.color.promo_red;
+            iColor = R.color.promo_black;
         }
 
         // FMS, also keine Pluspunkte anzeigen

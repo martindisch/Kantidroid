@@ -112,21 +112,19 @@ public class OverviewFragment extends Fragment {
     }
 
     private void showInfo(final int semester) {
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {*/
-                final PromoRes promo = new PromoCheck(getActivity()).getGym(semester);
-                /*getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {*/
-                        mPromo.setText(promo.sMessage);
-                        mPromo.setTextColor(getResources().getColor(promo.iColor));
-                        mPP.setText(promo.sPP);
-                        mKont.setText(promo.sKont);
-                    /*}
-                });
-            }
-        }).start();*/
+        final PromoRes promo = new PromoCheck(getActivity()).getGym(semester);
+        mPromo.setText(promo.sMessage);
+        mPromo.setTextColor(getResources().getColor(promo.iColor));
+        if (promo.iColor == R.color.promo_black) {
+            mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
+            mPP.setBackgroundColor(getResources().getColor(R.color.promo_black));
+        }
+        else {
+            mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
+            mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
+        }
+        mPP.setText(promo.sPP);
+        mKont.setText(promo.sKont);
     }
 
     private void setupViewPager(ViewPager viewPager) {

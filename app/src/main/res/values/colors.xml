@@ -25,6 +25,8 @@
     <color name="promo_orange">#FF9800</color>
     <color name="promo_white">@color/primary_text_default_material_dark</color>
     <color name="promo_red">#F44336</color>
+    <color name="promo_black">@color/primary_text_default_material_light</color>
+    <color name="promo_grey">#424242</color>
 
     <!-- Don't modify this section the colors -->
     <color name="c1">#d50000</color>
