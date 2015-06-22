@@ -77,11 +77,11 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
         ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
         if (mType == 1) {
             backdrop.setImageResource(R.drawable.ic_school);
-            findViewById(R.id.llBackground).setBackgroundColor(getResources().getColor(R.color.red_dark));
+            findViewById(R.id.rlBackground).setBackgroundColor(getResources().getColor(R.color.red_dark));
             mData.setBackgroundColor(getResources().getColor(R.color.red_light));
         } else {
             backdrop.setImageResource(R.drawable.ic_timetable);
-            findViewById(R.id.llBackground).setBackgroundColor(getResources().getColor(R.color.green_dark));
+            findViewById(R.id.rlBackground).setBackgroundColor(getResources().getColor(R.color.green_dark));
             mData.setBackgroundColor(getResources().getColor(R.color.green_light));
         }
 

@@ -119,6 +119,7 @@ public class OverviewFragment extends Fragment {
         if (promo.iColor == R.color.promo_black) {
             mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
             mPP.setBackgroundColor(getResources().getColor(R.color.promo_black));
+            // TODO: Test with all possible messages on different devices
             mPromo.setTextSize(14);
         }
         else {
