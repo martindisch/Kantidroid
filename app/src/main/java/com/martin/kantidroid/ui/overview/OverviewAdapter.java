@@ -23,6 +23,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     private String mTempGrades, mTempKontUs, mTempKontAv, mTempKontString;
     private int mTempSemester;
     private Context mContext;
+    private boolean mBad;
 
     public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback, int semester) {
         mContext = context;
@@ -45,6 +46,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         mTempFach = mEntries.get(position);
+        mBad = false;
 
         if (mTempSemester == 1) {
             mTempGrades = mTempFach.getMathAverage1();
@@ -57,16 +59,31 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
         if (mTempGrades.contentEquals("")) {
             mTempGrades = "-";
+        } else if (Double.parseDouble(mTempGrades) < 3.75) {
+            mBad = true;
         }
 
         holder.tvName.setText(mTempFach.getName());
         holder.tvKont.setText(Util.formatKont(mTempKontUs, mTempKontAv));
         holder.tvGrades.setText(mTempGrades);
         holder.tvPic.setText(mTempFach.getShort());
-        holder.tvGrades.setBackgroundColor(Util.getNormal(mContext, mTempFach.getColor()));
-        holder.tvName.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
-        holder.tvKont.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
-        holder.rlPic.setBackgroundColor(Util.getLight(mContext, mTempFach.getColor()));
+        if (mBad) {
+            holder.tvGrades.setBackgroundColor(mContext.getResources().getColor(R.color.red_dark));
+            holder.tvName.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
+            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.promo_black));
+            holder.tvKont.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
+            holder.tvKont.setTextColor(mContext.getResources().getColor(R.color.promo_black));
+            holder.rlPic.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
+            holder.tvPic.setTextColor(mContext.getResources().getColor(R.color.promo_black));
+        } else {
+            holder.tvGrades.setBackgroundColor(Util.getNormal(mContext, mTempFach.getColor()));
+            holder.tvName.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
+            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.promo_white));
+            holder.tvKont.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
+            holder.tvKont.setTextColor(mContext.getResources().getColor(R.color.promo_white));
+            holder.rlPic.setBackgroundColor(Util.getLight(mContext, mTempFach.getColor()));
+            holder.tvPic.setTextColor(mContext.getResources().getColor(R.color.promo_white));
+        }
 
         holder.rlItem.setOnClickListener(new View.OnClickListener() {
             @Override
