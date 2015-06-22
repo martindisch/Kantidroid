@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,10 +119,12 @@ public class OverviewFragment extends Fragment {
         if (promo.iColor == R.color.promo_black) {
             mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
             mPP.setBackgroundColor(getResources().getColor(R.color.promo_black));
+            mPromo.setTextSize(14);
         }
         else {
             mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
             mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
+            mPromo.setTextSize(16);
         }
         mPP.setText(promo.sPP);
         mKont.setText(promo.sKont);
