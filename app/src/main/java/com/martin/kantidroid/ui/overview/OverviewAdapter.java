@@ -53,7 +53,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             mTempGrades = mTempFach.getMathAverage2();
             mTempKontUs = mTempFach.getKont2();
         }
-        mTempKontAv = mTempFach.getKont();
+        mTempKontAv = mTempFach.getKontAvailable();
 
         if (mTempGrades.contentEquals("")) {
             mTempGrades = "-";

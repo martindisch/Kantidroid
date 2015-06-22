@@ -13,16 +13,16 @@ public class Fachtest extends AndroidTestCase {
         fach.addMark(2, "3.1 - 0.25 - 20150523");
         assertEquals("First semester not as expected", fach.getNoten1(), "5.2 - 1.0 - 20150521\n6 - 0.5 - 20150522\n");
         assertEquals("Second semester not as expected", fach.getNoten2(), "3.1 - 0.25 - 20150523\n");
-        String[] returned1 = fach.getMarks(1);
+        String[] returned1 = fach.getNotenEntries(1);
         String[] expected1 = new String[] {"5.2 - 1.0 - 20150521", "6 - 0.5 - 20150522"};
-        assertTrue("getMarks didn't return as expected for first semester", arraysEqual(returned1, expected1));
-        String[] returned2 = fach.getMarks(2);
+        assertTrue("getNotenEntries didn't return as expected for first semester", arraysEqual(returned1, expected1));
+        String[] returned2 = fach.getNotenEntries(2);
         String[] expected2 =  new String[] {"3.1 - 0.25 - 20150523"};
-        assertTrue("getMarks didn't return as expected for second semester", arraysEqual(returned2, expected2));
+        assertTrue("getNotenEntries didn't return as expected for second semester", arraysEqual(returned2, expected2));
 
         fach = new Fach("Deutsch", "true");
         assertEquals("Not nothing", "", fach.getNoten1());
-        assertTrue("No empty array", arraysEqual(fach.getMarks(2), new String[] {}));
+        assertTrue("No empty array", arraysEqual(fach.getNotenEntries(2), new String[] {}));
     }
 
     public void testRemove() throws Exception {
@@ -35,7 +35,7 @@ public class Fachtest extends AndroidTestCase {
         fach.removeMark(1, "6 - 0.5 - 20150522");
         assertEquals("Not the same", "", fach.getNoten1());
         fach.removeMark(2, "3.1 - 0.25 - 20150523");
-        assertTrue("Array not empty", arraysEqual(fach.getMarks(2), new String[] {}));
+        assertTrue("Array not empty", arraysEqual(fach.getNotenEntries(2), new String[] {}));
     }
 
     public void testCreation() throws Exception {
@@ -44,7 +44,7 @@ public class Fachtest extends AndroidTestCase {
         assertEquals("Second semester not as expected", "3.1 - 0.25 - 20150523\n1.25 - 2 - 20150412\n", fach.getNoten2());
         fach.removeMark(2, "1.25 - 2 - 20150412");
         assertEquals("Second semester not as expected after removal", "3.1 - 0.25 - 20150523\n", fach.getNoten2());
-        assertTrue("Array not as expected", arraysEqual(new String[]{"3.1 - 0.25 - 20150523"}, fach.getMarks(2)));
+        assertTrue("Array not as expected", arraysEqual(new String[]{"3.1 - 0.25 - 20150523"}, fach.getNotenEntries(2)));
     }
 
     public void testCalculation() throws Exception {

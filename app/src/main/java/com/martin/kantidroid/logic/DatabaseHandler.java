@@ -75,7 +75,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
         values.put(KEY_KONT1, "");
         values.put(KEY_KONT2, "");
-        values.put(KEY_KONT, fach.getKont());
+        values.put(KEY_KONT, fach.getKontAvailable());
 
         // inserting
         int id = (int) db.insert(TABLE_SUBJECTS, null, values);
@@ -174,7 +174,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 fach.setPromotionsrelevant(cursor.getString(10));
                 fach.setKont1(cursor.getString(11));
                 fach.setKont2(cursor.getString(12));
-                fach.setKont(cursor.getString(13));
+                fach.setKontAvailable(cursor.getString(13));
                 // adding fach to list
                 fachList.add(fach);
             } while (cursor.moveToNext());
@@ -257,7 +257,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 fach.setPromotionsrelevant(cursor.getString(10));
                 fach.setKont1(cursor.getString(11));
                 fach.setKont2(cursor.getString(12));
-                fach.setKont(cursor.getString(13));
+                fach.setKontAvailable(cursor.getString(13));
                 // adding fach to list
                 fachList.add(fach);
             } while (cursor.moveToNext());
@@ -300,7 +300,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
         values.put(KEY_KONT1, fach.getKont1());
         values.put(KEY_KONT2, fach.getKont2());
-        values.put(KEY_KONT, fach.getKont());
+        values.put(KEY_KONT, fach.getKontAvailable());
 
         db.update(TABLE_SUBJECTS, values, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
         db.close();

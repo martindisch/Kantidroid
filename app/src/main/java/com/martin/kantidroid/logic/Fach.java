@@ -271,15 +271,15 @@ public class Fach {
         this._kont2 = _kont2;
     }
 
-    public String getKont() {
+    public String getKontAvailable() {
         return _kont;
     }
 
-    public void setKont(String kont) {
+    public void setKontAvailable(String kont) {
         this._kont = kont;
     }
 
-    public String[] getMarks(int semester) {
+    public String[] getNotenEntries(int semester) {
         String compact;
         if (semester == 1) {
             compact = getNoten1();
@@ -309,7 +309,7 @@ public class Fach {
     }
 
     public void removeMark(int semester, String entry) {
-        ArrayList<String> oldEntries = new ArrayList<>(Arrays.asList(getMarks(semester)));
+        ArrayList<String> oldEntries = new ArrayList<>(Arrays.asList(getNotenEntries(semester)));
         int deletedIndex = oldEntries.indexOf(entry);
         if (semester == 1) {
             setNoten1(arrayToString(oldEntries, deletedIndex));
@@ -328,7 +328,7 @@ public class Fach {
         return newContent;
     }
 
-    public String[] getKont(int semester) {
+    public String[] getKontEntries(int semester) {
         String compact;
         if (semester == 1) {
             compact = getKont1();
@@ -358,7 +358,7 @@ public class Fach {
     }
 
     public void removeKont(int semester, String entry) {
-        ArrayList<String> oldEntries = new ArrayList<>(Arrays.asList(getKont(semester)));
+        ArrayList<String> oldEntries = new ArrayList<>(Arrays.asList(getKontEntries(semester)));
         int deletedIndex = oldEntries.indexOf(entry);
         if (semester == 1) {
             setKont1(arrayToString(oldEntries, deletedIndex));

@@ -110,7 +110,7 @@ public class FachviewFragment extends Fragment {
             }
             mRealAverage.setText(real);
             mMathAverage.setText(math);
-            mKont.setText(Util.formatKont(mFach.getKont1(), mFach.getKont()));
+            mKont.setText(Util.formatKont(mFach.getKont1(), mFach.getKontAvailable()));
         } else if (mSemester == 2) {
             String real = mFach.getRealAverage2();
             String math = mFach.getMathAverage2();
@@ -120,7 +120,7 @@ public class FachviewFragment extends Fragment {
             }
             mRealAverage.setText(real);
             mMathAverage.setText(math);
-            mKont.setText(Util.formatKont(mFach.getKont2(), mFach.getKont()));
+            mKont.setText(Util.formatKont(mFach.getKont2(), mFach.getKontAvailable()));
         }
     }
 

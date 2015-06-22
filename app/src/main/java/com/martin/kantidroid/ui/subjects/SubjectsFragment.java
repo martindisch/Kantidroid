@@ -90,7 +90,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         i.putExtra("short", current.getShort());
         i.putExtra("color", current.getColor());
         i.putExtra("counts", current.getPromotionsrelevant());
-        i.putExtra("kontAv", current.getKont());
+        i.putExtra("kontAv", current.getKontAvailable());
         startActivityForResult(i, 1);
     }
 
@@ -138,7 +138,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
                     changed.setShort(data.getStringExtra("short"));
                     changed.setColor(data.getStringExtra("color"));
                     changed.setPromotionsrelevant(data.getStringExtra("counts"));
-                    changed.setKont(data.getStringExtra("kontAv"));
+                    changed.setKontAvailable(data.getStringExtra("kontAv"));
                     db.updateFach(changed);
                     mAdapter.update(changed, mEditingIndex);
                     break;
