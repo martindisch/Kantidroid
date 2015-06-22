@@ -136,6 +136,15 @@ public class EditMarkDialog extends AppCompatActivity {
             return false;
         }
 
+        int count = 0;
+        for (int i = 0; i < date.length(); i++)
+            if (date.charAt(i) == '.' && date.length() - 1 > i)
+                count++;
+        if (count < 2) {
+            Toast.makeText(this, R.string.date_format, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         Fach fach = new DatabaseHandler(this).getFach(mId);
         String entry = mMark.getText().toString() + " - " + mWeight.getText().toString() + " - " + mDate.getText().toString();
         ArrayList<String> existingEntries = new ArrayList<>(Arrays.asList(fach.getNotenEntries(mSemester)));

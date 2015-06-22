@@ -200,4 +200,5 @@
     <string name="sort">Sortieren nach</string>
     <string name="reset">Jahr abschliessen</string>
     <string name="department">Abteilung wechseln</string>
+    <string name="date_format">Gib das Datum bitte im Format dd.MM.yyyy ein</string>
 </resources>

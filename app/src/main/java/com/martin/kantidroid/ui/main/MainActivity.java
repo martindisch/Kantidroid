@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.main;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private int mSelected, mCurrent;
     private NavigationView mNavigationView;
+    private SharedPreferences mSp;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
 
         Primer.runEveryTime(this);
         Primer.runOnFirstTime(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mSp = getSharedPreferences("Kantidroid", MODE_PRIVATE);
+                mEditor = mSp.edit();
+            }
+        }).start();
     }
 
     private void selectDrawerItem(int i) {
@@ -146,6 +157,15 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.action_sort:
+
+                break;
+            case R.id.action_reset:
+
+                break;
+            case R.id.action_department:
+
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
