@@ -3,12 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/action_example"
-        android:title="@string/action_example"
-        app:showAsAction="withText|ifRoom" />
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:id="@+id/action_sort"
+        android:title="@string/sort"
         android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_reset"
+        android:title="@string/reset"
+        android:orderInCategory="200"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_department"
+        android:title="@string/department"
+        android:orderInCategory="300"
         app:showAsAction="never" />
 </menu>

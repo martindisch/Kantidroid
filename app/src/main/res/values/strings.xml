@@ -197,4 +197,7 @@
     <string name="delete_question_kont">Willst du dieses Kontingent löschen?</string>
     <string name="duplicate">Eintrag existiert bereits</string>
     <string name="impossible">Diese Note sollte es nicht geben</string>
+    <string name="sort">Sortieren nach</string>
+    <string name="reset">Jahr abschliessen</string>
+    <string name="department">Abteilung wechseln</string>
 </resources>
