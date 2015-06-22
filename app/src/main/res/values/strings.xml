@@ -201,4 +201,11 @@
     <string name="reset">Jahr abschliessen</string>
     <string name="department">Abteilung wechseln</string>
     <string name="date_format">Gib das Datum bitte im Format dd.MM.yyyy ein</string>
+    <string name="ok">OK</string>
+
+    <string-array name="sorting_entries">
+        <item id="@+id/iSortName">Nach Namen sortieren</item>
+        <item id="@+id/iSortMarkDesc">Absteigend sortieren</item>
+        <item id="@+id/iSortMarkAsc">Aufsteigend sortieren</item>
+    </string-array>
 </resources>

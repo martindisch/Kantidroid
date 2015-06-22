@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.main;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private SharedPreferences mSp;
     private SharedPreferences.Editor mEditor;
+    private int mSelectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +161,30 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             case R.id.action_sort:
+                mSelectedItem = mSp.getInt("sorting", 0);
 
+                AlertDialog.Builder dee = new AlertDialog.Builder(this);
+                dee.setTitle(R.string.sort);
+                dee.setNeutralButton(R.string.cancel, null);
+                dee.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mEditor.putInt("sorting", mSelectedItem);
+                        mEditor.commit();
+                        // Let MainActivity reload the data after we've created new subjects
+                        final FragmentManager fragmentManager = getSupportFragmentManager();
+                        ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
+                    }
+                });
+                dee.setSingleChoiceItems(R.array.sorting_entries, mSelectedItem, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mSelectedItem = which;
+                    }
+                });
+                dee.show();
                 break;
             case R.id.action_reset:
 

@@ -1,6 +1,7 @@
 package com.martin.kantidroid.ui.overview;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -58,7 +59,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
             @Override
             public void run() {*/
                 DatabaseHandler db = new DatabaseHandler(getActivity());
-                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
+                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
                 mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
                 /*getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -78,7 +79,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
             public void run() {
                 DatabaseHandler db = new DatabaseHandler(getActivity());
                 // TODO: Enable sorting
-                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, 0);
+                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
                 mAdapter.setData(subjects);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
