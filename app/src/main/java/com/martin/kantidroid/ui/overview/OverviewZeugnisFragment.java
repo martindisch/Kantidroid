@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,26 +15,27 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.ui.fachview.FachviewActivity;
+import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import java.util.List;
 
-public class OverviewSubjectsFragment extends Fragment implements OverviewAdapter.OnClickListener {
+public class OverviewZeugnisFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "semester";
     private int mSemester;
 
     private RecyclerView mSubjects;
-    private OverviewAdapter mAdapter;
+    private ZeugnisAdapter mAdapter;
 
-    public static OverviewSubjectsFragment newInstance(int semester) {
-        OverviewSubjectsFragment fragment = new OverviewSubjectsFragment();
+    public static OverviewZeugnisFragment newInstance(int semester) {
+        OverviewZeugnisFragment fragment = new OverviewZeugnisFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, semester);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public OverviewSubjectsFragment() {
+    public OverviewZeugnisFragment() {
         // Required empty public constructor
     }
 
@@ -48,16 +50,19 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.overview_subjectsfragment, container, false);
+        View rootView = inflater.inflate(R.layout.overview_zeugnisfragment, container, false);
 
         mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
 
-        mSubjects.addItemDecoration(new MarginDecoration(getActivity()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mSubjects.setLayoutManager(layoutManager);
+        mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mSubjects.setHasFixedSize(true);
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
         List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
-        mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
+        mAdapter = new ZeugnisAdapter(getActivity(), subjects);
         mSubjects.setAdapter(mAdapter);
 
         return rootView;
@@ -78,17 +83,5 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
                 });
             }
         }).start();
-    }
-
-    @Override
-    public void onItemClick(View v, int position) {
-        Intent i = new Intent(getActivity(), FachviewActivity.class);
-        i.putExtra("semester", mSemester);
-        i.putExtra("id", mAdapter.getData().get(position).getID());
-        startActivity(i);
-    }
-
-    @Override
-    public void onItemLongClick(View v, int position) {
     }
 }

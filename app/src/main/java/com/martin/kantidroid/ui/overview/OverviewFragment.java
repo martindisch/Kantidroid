@@ -177,10 +177,12 @@ public class OverviewFragment extends Fragment {
             return mFragmentTitles.get(position);
         }
 
+        // TODO: Reconsider loading all data in children off-thread
         public void loadData() {
-            for (int i = 0; i < mFragments.size(); i++) {
+            for (int i = 0; i < 2; i++) {
                 ((OverviewSubjectsFragment) mFragments.get(i)).loadData();
             }
+            // TODO: Reload ZeugnisFragment
         }
     }
 }
