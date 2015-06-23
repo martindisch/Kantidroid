@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,28 +112,39 @@ public class OverviewFragment extends Fragment {
     }
 
     private void showInfo(final int semester) {
-        final PromoRes promo = new PromoCheck(getActivity()).getPromo(semester);
-        mPromo.setText(promo.sMessage);
-        mPromo.setTextColor(getResources().getColor(promo.iColor));
-        if (promo.iColor == R.color.promo_black) {
-            mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
-            mPP.setBackgroundColor(getResources().getColor(R.color.promo_black));
-            // TODO: Test with all possible messages on different devices
-            mPromo.setTextSize(14);
-        }
-        else {
-            mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
-            mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
+        if (semester != 3) {
+            final PromoRes promo = new PromoCheck(getActivity()).getPromo(semester);
+            mPromo.setText(promo.sMessage);
+            mPromo.setTextColor(getResources().getColor(promo.iColor));
+            if (promo.iColor == R.color.promo_black) {
+                mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
+                mPP.setBackgroundColor(getResources().getColor(R.color.promo_black));
+                // TODO: Test with all possible messages on different devices
+                mPromo.setTextSize(14);
+            } else {
+                mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
+                mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
+                mPromo.setTextSize(16);
+            }
+            mPP.setText(promo.sPP);
+            mKont.setText(promo.sKont);
+        } else {
+            mPromo.setTextColor(getResources().getColor(R.color.promo_white));
             mPromo.setTextSize(16);
+            mPromo.setText("-");
+            mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
+            mPP.setText("-");
+            mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
+            mKont.setText("-");
+            mKont.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
         }
-        mPP.setText(promo.sPP);
-        mKont.setText(promo.sKont);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         mAdapter = new Adapter(getChildFragmentManager());
         mAdapter.addFragment(OverviewSubjectsFragment.newInstance(1), getString(R.string.first_semester));
         mAdapter.addFragment(OverviewSubjectsFragment.newInstance(2), getString(R.string.second_semester));
+        mAdapter.addFragment(OverviewZeugnisFragment.newInstance(), getString(R.string.zeugnis));
         viewPager.setAdapter(mAdapter);
     }
 
@@ -182,7 +192,7 @@ public class OverviewFragment extends Fragment {
             for (int i = 0; i < 2; i++) {
                 ((OverviewSubjectsFragment) mFragments.get(i)).loadData();
             }
-            // TODO: Reload ZeugnisFragment
+            ((OverviewZeugnisFragment) mFragments.get(2)).loadData();
         }
     }
 }

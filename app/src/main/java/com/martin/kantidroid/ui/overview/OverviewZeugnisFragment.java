@@ -2,7 +2,6 @@ package com.martin.kantidroid.ui.overview;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,37 +13,22 @@ import android.view.ViewGroup;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
-import com.martin.kantidroid.ui.fachview.FachviewActivity;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import java.util.List;
 
 public class OverviewZeugnisFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "semester";
-    private int mSemester;
-
     private RecyclerView mSubjects;
     private ZeugnisAdapter mAdapter;
 
-    public static OverviewZeugnisFragment newInstance(int semester) {
+    public static OverviewZeugnisFragment newInstance() {
         OverviewZeugnisFragment fragment = new OverviewZeugnisFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, semester);
-        fragment.setArguments(args);
         return fragment;
     }
 
     public OverviewZeugnisFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mSemester = getArguments().getInt(ARG_PARAM1);
-        }
     }
 
     @Override
@@ -61,8 +45,8 @@ public class OverviewZeugnisFragment extends Fragment {
         mSubjects.setHasFixedSize(true);
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
-        mAdapter = new ZeugnisAdapter(getActivity(), subjects);
+        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
+        mAdapter = new ZeugnisAdapter(subjects);
         mSubjects.setAdapter(mAdapter);
 
         return rootView;
@@ -73,7 +57,7 @@ public class OverviewZeugnisFragment extends Fragment {
             @Override
             public void run() {
                 DatabaseHandler db = new DatabaseHandler(getActivity());
-                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
+                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
                 mAdapter.setData(subjects);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
