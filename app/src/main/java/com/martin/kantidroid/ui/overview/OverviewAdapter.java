@@ -114,25 +114,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         }
     }
 
-    public void update(Fach subject, int oldPos) {
-        sort();
-        int newPos = mEntries.indexOf(subject);
-        notifyItemChanged(oldPos);
-        if (oldPos != newPos) {
-            notifyItemMoved(oldPos, newPos);
-        }
-    }
-
-    private void sort() {
-        Collections.sort(mEntries, new Comparator<Fach>() {
-
-            @Override
-            public int compare(Fach fach, Fach fach2) {
-                return fach.getName().compareTo(fach2.getName());
-            }
-        });
-    }
-
     public List<Fach> getData() {
         return mEntries;
     }
