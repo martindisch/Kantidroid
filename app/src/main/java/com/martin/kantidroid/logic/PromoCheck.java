@@ -15,6 +15,17 @@ public class PromoCheck {
         this.context = context;
     }
 
+    public PromoRes getPromo(int semester) {
+        int department = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("department", 0);
+        switch (department) {
+            case 1:
+                return getHMS(semester);
+            case 2:
+                return getFMS(semester);
+        }
+        return getGym(semester);
+    }
+
     public PromoRes getGym(int iSemester) {
         Fach entry;
         double plus = 0;

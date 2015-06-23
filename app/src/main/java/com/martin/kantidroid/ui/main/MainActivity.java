@@ -190,7 +190,30 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.action_department:
+                mSelectedItem = mSp.getInt("department", 0);
 
+                AlertDialog.Builder fee = new AlertDialog.Builder(this);
+                fee.setTitle(R.string.department);
+                fee.setNeutralButton(R.string.cancel, null);
+                fee.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mEditor.putInt("department", mSelectedItem);
+                        mEditor.commit();
+                        // Let MainActivity reload the data after we've created new subjects
+                        final FragmentManager fragmentManager = getSupportFragmentManager();
+                        ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
+                    }
+                });
+                fee.setSingleChoiceItems(R.array.departments, mSelectedItem, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mSelectedItem = which;
+                    }
+                });
+                fee.show();
                 break;
         }
         return super.onOptionsItemSelected(item);

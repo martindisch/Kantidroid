@@ -206,4 +206,10 @@
         <item id="@+id/iSortMarkDesc">Absteigend sortieren</item>
         <item id="@+id/iSortMarkAsc">Aufsteigend sortieren</item>
     </string-array>
+
+    <string-array name="departments">
+        <item id="@+id/iAbtGym">Gymnasium</item>
+        <item id="@+id/iAbtHMS">Handelsmittelschule</item>
+        <item id="@+id/iAbtFMS">Fachmittelschule</item>
+    </string-array>
 </resources>

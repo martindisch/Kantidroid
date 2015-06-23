@@ -113,7 +113,7 @@ public class OverviewFragment extends Fragment {
     }
 
     private void showInfo(final int semester) {
-        final PromoRes promo = new PromoCheck(getActivity()).getGym(semester);
+        final PromoRes promo = new PromoCheck(getActivity()).getPromo(semester);
         mPromo.setText(promo.sMessage);
         mPromo.setTextColor(getResources().getColor(promo.iColor));
         if (promo.iColor == R.color.promo_black) {
