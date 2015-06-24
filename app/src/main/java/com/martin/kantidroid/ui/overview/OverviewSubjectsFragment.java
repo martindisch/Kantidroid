@@ -1,6 +1,7 @@
 package com.martin.kantidroid.ui.overview;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +28,6 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
     private OverviewAdapter mAdapter;
 
     private SharedPreferences mPrefs;
-    private Context mAppContext;
 
     public static OverviewSubjectsFragment newInstance(int semester) {
         OverviewSubjectsFragment fragment = new OverviewSubjectsFragment();
@@ -48,7 +48,6 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
             mSemester = getArguments().getInt(ARG_PARAM1);
         }
         mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-        mAppContext = getActivity().getApplicationContext();
     }
 
     @Override
@@ -69,14 +68,14 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         return rootView;
     }
 
-    public void loadData() {
+    public void loadData(final Activity c) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DatabaseHandler db = new DatabaseHandler(mAppContext);
-                List<Fach> subjects = db.getAllFaecherSorted(mAppContext, mSemester, mPrefs.getInt("sorting", 0));
+                DatabaseHandler db = new DatabaseHandler(c);
+                List<Fach> subjects = db.getAllFaecherSorted(c, mSemester, mPrefs.getInt("sorting", 0));
                 mAdapter.setData(subjects);
-                getActivity().runOnUiThread(new Runnable() {
+                c.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mAdapter.notifyDataSetChanged();

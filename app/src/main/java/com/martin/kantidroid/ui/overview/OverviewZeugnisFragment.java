@@ -1,6 +1,7 @@
 package com.martin.kantidroid.ui.overview;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,8 +22,6 @@ public class OverviewZeugnisFragment extends Fragment {
 
     private RecyclerView mSubjects;
     private ZeugnisAdapter mAdapter;
-
-    private Context mAppContext;
 
     public static OverviewZeugnisFragment newInstance() {
         OverviewZeugnisFragment fragment = new OverviewZeugnisFragment();
@@ -51,24 +50,24 @@ public class OverviewZeugnisFragment extends Fragment {
         mAdapter = new ZeugnisAdapter(subjects);
         mSubjects.setAdapter(mAdapter);
 
-        mAppContext = getActivity().getApplicationContext();
-
         return rootView;
     }
 
-    public void loadData() {
+    public void loadData(final Activity c) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DatabaseHandler db = new DatabaseHandler(mAppContext);
-                List<Fach> subjects = db.getAllFaecherSorted(mAppContext, 1, mAppContext.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
-                mAdapter.setData(subjects);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.notifyDataSetChanged();
-                    }
-                });
+                if (mAdapter != null) {
+                    DatabaseHandler db = new DatabaseHandler(c);
+                    List<Fach> subjects = db.getAllFaecherSorted(c, 1, c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
+                    mAdapter.setData(subjects);
+                    c.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
             }
         }).start();
     }

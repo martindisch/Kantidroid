@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.overview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -107,7 +108,7 @@ public class OverviewFragment extends Fragment {
     }
 
     public void loadData() {
-        mAdapter.loadData();
+        mAdapter.loadData(getActivity());
         showInfo(mViewPager.getCurrentItem() + 1);
     }
 
@@ -134,8 +135,7 @@ public class OverviewFragment extends Fragment {
                 mPromo.setTextSize(16);
                 mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
                 mPromo.setTextColor(getResources().getColor(R.color.promo_white));
-            }
-            else {
+            } else {
                 mPromo.setTextSize(14);
                 mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
                 mPromo.setTextColor(getResources().getColor(R.color.promo_black));
@@ -162,7 +162,7 @@ public class OverviewFragment extends Fragment {
         if (mFirsttime) {
             mFirsttime = false;
         } else {
-            mAdapter.loadData();
+            mAdapter.loadData(getActivity());
             showInfo(mViewPager.getCurrentItem() + 1);
         }
     }
@@ -196,11 +196,11 @@ public class OverviewFragment extends Fragment {
         }
 
         // TODO: Reconsider loading all data in children off-thread
-        public void loadData() {
+        public void loadData(Activity c) {
             for (int i = 0; i < 2; i++) {
-                ((OverviewSubjectsFragment) mFragments.get(i)).loadData();
+                ((OverviewSubjectsFragment) mFragments.get(i)).loadData(c);
             }
-            ((OverviewZeugnisFragment) mFragments.get(2)).loadData();
+            ((OverviewZeugnisFragment) mFragments.get(2)).loadData(c);
         }
     }
 }
