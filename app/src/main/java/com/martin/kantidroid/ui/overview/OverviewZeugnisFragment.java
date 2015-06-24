@@ -22,6 +22,8 @@ public class OverviewZeugnisFragment extends Fragment {
     private RecyclerView mSubjects;
     private ZeugnisAdapter mAdapter;
 
+    private Context mAppContext;
+
     public static OverviewZeugnisFragment newInstance() {
         OverviewZeugnisFragment fragment = new OverviewZeugnisFragment();
         return fragment;
@@ -49,6 +51,8 @@ public class OverviewZeugnisFragment extends Fragment {
         mAdapter = new ZeugnisAdapter(subjects);
         mSubjects.setAdapter(mAdapter);
 
+        mAppContext = getActivity().getApplicationContext();
+
         return rootView;
     }
 
@@ -56,8 +60,8 @@ public class OverviewZeugnisFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DatabaseHandler db = new DatabaseHandler(getActivity());
-                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
+                DatabaseHandler db = new DatabaseHandler(mAppContext);
+                List<Fach> subjects = db.getAllFaecherSorted(mAppContext, 1, mAppContext.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
                 mAdapter.setData(subjects);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
