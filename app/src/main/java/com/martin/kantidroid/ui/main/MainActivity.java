@@ -17,9 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.DatabaseHandler;
+import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Primer;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -172,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         mEditor.putInt("sorting", mSelectedItem);
                         mEditor.commit();
-                        // Let MainActivity reload the data after we've created new subjects
                         final FragmentManager fragmentManager = getSupportFragmentManager();
                         ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
                     }
@@ -187,7 +190,44 @@ public class MainActivity extends AppCompatActivity {
                 dee.show();
                 break;
             case R.id.action_reset:
+                AlertDialog.Builder dg = new AlertDialog.Builder(this);
+                dg.setTitle(getString(R.string.finish_year));
+                dg.setMessage(getString(R.string.finish_question));
+                dg.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+                                List<Fach> faecher = db.getAllFaecher(getApplicationContext(), 1);
+                                Fach selected;
+                                for (int z = 0; z < db.getFachCount(); z++) {
+                                    selected = db.getFach(faecher.get(z).getID());
+                                    selected.setMathAverage1("");
+                                    selected.setNoten1("");
+                                    selected.setRealAverage1("");
+                                    selected.setMathAverage2("");
+                                    selected.setNoten2("");
+                                    selected.setRealAverage2("");
+                                    selected.setKont1("");
+                                    selected.setKont2("");
+                                    db.updateFach(selected);
+                                }
 
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        final FragmentManager fragmentManager = getSupportFragmentManager();
+                                        ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
+                });
+                dg.setNegativeButton("Nein", null);
+                dg.show();
                 break;
             case R.id.action_department:
                 mSelectedItem = mSp.getInt("department", 0);
