@@ -129,13 +129,21 @@ public class OverviewFragment extends Fragment {
             mPP.setText(promo.sPP);
             mKont.setText(promo.sKont);
         } else {
-            mPromo.setTextColor(getResources().getColor(R.color.promo_white));
-            mPromo.setTextSize(16);
-            mPromo.setText("-");
-            mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
-            mPP.setText("-");
+            String[] finalResult = new PromoCheck(getActivity()).getPromoFinal();
+            if (finalResult[0].contentEquals("Bestanden")) {
+                mPromo.setTextSize(16);
+                mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
+                mPromo.setTextColor(getResources().getColor(R.color.promo_white));
+            }
+            else {
+                mPromo.setTextSize(14);
+                mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
+                mPromo.setTextColor(getResources().getColor(R.color.promo_black));
+            }
+            mPromo.setText(finalResult[0]);
+            mPP.setText(finalResult[1]);
             mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
-            mKont.setText("-");
+            mKont.setText(finalResult[2]);
             mKont.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
         }
     }

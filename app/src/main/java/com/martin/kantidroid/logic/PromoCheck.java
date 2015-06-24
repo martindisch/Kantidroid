@@ -26,6 +26,67 @@ public class PromoCheck {
         return getGym(semester);
     }
 
+    public String[] getPromoFinal() {
+        Fach entry;
+        double plus = 0;
+        double minus = 0;
+        int total_minus = 0;
+        double schn = 0;
+        double total = 0;
+        int fcount = 0;
+        int mppcount = 0;
+
+        String sMessage = "Bestanden";
+        String sPP;
+        String sSchnitt;
+
+        DatabaseHandler db = new DatabaseHandler(context);
+        int count = db.getFachCount();
+        List<Fach> faecher = db.getAllFaecher(context, 1);
+        for (int i = 0; i < count; i++) {
+            entry = faecher.get(i);
+            if (entry.getPromotionsrelevant().contentEquals("true")) {
+                if (!entry.getZeugnis().contentEquals("")) {
+                    schn = (Double.parseDouble(entry.getZeugnis()));
+                    if (schn > 4) {
+                        plus += schn - 4;
+                    }
+                    if (schn < 4) {
+                        minus += 4 - schn;
+                        total_minus++;
+                    }
+                    total += (Double.parseDouble(entry.getZeugnis()));
+                    fcount++;
+                }
+
+                mppcount++;
+            }
+        }
+        if (!((minus * 2) > plus)) {
+            if (total_minus <= 3) {
+                sMessage = "Bestanden";
+            }
+            if (total_minus == 4) {
+                sMessage = "Bestanden falls in OG\n4 ungenügende Noten";
+            }
+            if (total_minus > 4) {
+                sMessage = "Nicht bestanden\nMehr als 4 Ungenügende";
+            }
+        } else {
+            sMessage = "Nicht bestanden\nZu wenig Pluspunkte";
+        }
+
+        double PP_result = plus - (2 * minus);
+        sPP = PP_result + "/" + (mppcount * 2);
+
+        if (fcount > 0) {
+            sSchnitt = "Ø " + (String.format(Locale.getDefault(), "%.2f", total / fcount));
+        } else {
+            sSchnitt = ("-");
+        }
+        return new String[]{sMessage, sPP, sSchnitt};
+    }
+
     public PromoRes getGym(int iSemester) {
         Fach entry;
         double plus = 0;
@@ -128,19 +189,19 @@ public class PromoCheck {
             }
             if (total_minus == 4) {
                 sMessage = "Promoviert falls in OG\n4 ungenügende Noten";
-                iColor = R.color.promo_white;
+                iColor = R.color.promo_black;
             }
 
             switch (iSemester) {
                 case 1:
                     if (total_minus > 4) {
-                        sMessage = "Mehr als 4 ungenügende Noten\nIm 2. Semester darf dies nicht der Fall sein";
+                        sMessage = "Mehr als 4 Ungenügende\nVorsicht 2. Semester";
                         iColor = R.color.promo_black;
                     }
                     break;
                 case 2:
                     if (total_minus > 4) {
-                        sMessage = "Nicht promoviert\nMehr als 4 ungenügende Noten";
+                        sMessage = "Nicht promoviert\nMehr als 4 Ungenügende";
                         iColor = R.color.promo_black;
                     }
                     break;
