@@ -26,7 +26,7 @@ public class ZeugnisAdapter extends RecyclerView.Adapter<ZeugnisAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.zeugnis_item, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.overview_zeugnis_item, viewGroup, false);
         return new ViewHolder(v);
     }
 
