@@ -3,6 +3,7 @@ package com.martin.kantidroid.ui.overview;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,9 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
     private RecyclerView mSubjects;
     private OverviewAdapter mAdapter;
 
+    private SharedPreferences mPrefs;
+    private Context mAppContext;
+
     public static OverviewSubjectsFragment newInstance(int semester) {
         OverviewSubjectsFragment fragment = new OverviewSubjectsFragment();
         Bundle args = new Bundle();
@@ -43,6 +47,8 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         if (getArguments() != null) {
             mSemester = getArguments().getInt(ARG_PARAM1);
         }
+        mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        mAppContext = getActivity().getApplicationContext();
     }
 
     @Override
@@ -56,7 +62,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         mSubjects.setHasFixedSize(true);
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
+        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, mPrefs.getInt("sorting", 0));
         mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
         mSubjects.setAdapter(mAdapter);
 
@@ -67,8 +73,8 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DatabaseHandler db = new DatabaseHandler(getActivity());
-                List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getInt("sorting", 0));
+                DatabaseHandler db = new DatabaseHandler(mAppContext);
+                List<Fach> subjects = db.getAllFaecherSorted(mAppContext, mSemester, mPrefs.getInt("sorting", 0));
                 mAdapter.setData(subjects);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
