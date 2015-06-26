@@ -215,5 +215,8 @@
         <item id="@+id/iAbtHMS">Handelsmittelschule</item>
         <item id="@+id/iAbtFMS">Fachmittelschule</item>
     </string-array>
+
     <string name="title_activity_calc">Nächste Note</string>
+    <string name="preview">Vorschau Zeugnisnote</string>
+    <string name="info_weight">Gewichtung nächste Prüfung</string>
 </resources>
