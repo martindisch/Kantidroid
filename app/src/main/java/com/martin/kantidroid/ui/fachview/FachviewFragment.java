@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
@@ -82,10 +83,15 @@ public class FachviewFragment extends Fragment {
         mShowEstimate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), CalcActivity.class);
-                i.putExtra("id", mId);
-                i.putExtra("semester", mSemester);
-                startActivity(i);
+                if (mFach.getNotenEntries(mSemester).length > 0) {
+                    Intent i = new Intent(getActivity(), CalcActivity.class);
+                    i.putExtra("id", mId);
+                    i.putExtra("semester", mSemester);
+                    startActivity(i);
+                }
+                else {
+                    Toast.makeText(getActivity(), R.string.no_marks, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

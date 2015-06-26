@@ -219,4 +219,7 @@
     <string name="title_activity_calc">Nächste Note</string>
     <string name="preview">Vorschau Zeugnisnote</string>
     <string name="info_weight">Gewichtung nächste Prüfung</string>
+    <string name="no_marks">Noch keine Noten im Semester</string>
+    <string name="needed">Benötigte Note</string>
+    <string name="actual">Aktuelle Zeugnisnote</string>
 </resources>
