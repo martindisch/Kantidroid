@@ -22,7 +22,7 @@ public class FachviewFragment extends Fragment {
     private int mSemester;
 
     private TextView mPromo, mRealAverage, mMathAverage, mKont;
-    private View mShowMarks, mShowKont;
+    private View mShowMarks, mShowKont, mShowEstimate;
     private Fach mFach;
 
     public static FachviewFragment newInstance(int id, int semester) {
@@ -76,6 +76,16 @@ public class FachviewFragment extends Fragment {
                 i.putExtra("semester", mSemester);
                 i.putExtra("type", 2);
                 startActivityForResult(i, 1);
+            }
+        });
+        mShowEstimate = rootView.findViewById(R.id.rlCalculator);
+        mShowEstimate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), CalcActivity.class);
+                i.putExtra("id", mId);
+                i.putExtra("semester", mSemester);
+                startActivity(i);
             }
         });
 

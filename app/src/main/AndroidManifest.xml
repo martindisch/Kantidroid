@@ -56,8 +56,8 @@
             android:label="@string/title_activity_edit_kont_dialog"
             android:theme="@style/AppTheme.Base" />
         <activity
-            android:name=".ui.fachview.EstimateActivity"
-            android:label="@string/title_activity_estimate"
+            android:name=".ui.fachview.CalcActivity"
+            android:label="@string/title_activity_calc"
             android:theme="@style/AppTheme.Base">
         </activity>
     </application>

@@ -215,5 +215,5 @@
         <item id="@+id/iAbtHMS">Handelsmittelschule</item>
         <item id="@+id/iAbtFMS">Fachmittelschule</item>
     </string-array>
-    <string name="title_activity_estimate">EstimateActivity</string>
+    <string name="title_activity_calc">Nächste Note</string>
 </resources>
