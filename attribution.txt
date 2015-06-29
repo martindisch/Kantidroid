@@ -31,3 +31,6 @@ Chris Banes
 	Cheesesquare reference app https://github.com/chrisbanes/cheesesquare (Apache)
 	
 Hochbauamt Graubünden, Andrea Ruisi, Leiterin Dienste für Aufnahme Kanti
+
+serso
+	https://github.com/serso/android-linear-layout-manager
