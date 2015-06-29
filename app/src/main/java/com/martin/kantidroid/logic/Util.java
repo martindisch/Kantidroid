@@ -5,6 +5,9 @@ import android.graphics.Color;
 
 import com.martin.kantidroid.R;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Util {
 
     public static int getDark(Context context, String index) {
@@ -40,5 +43,49 @@ public class Util {
             used += Integer.parseInt(used_splitted[i].split(" - ")[1]);
         }
         return used;
+    }
+
+    public static String getRequired(Context context, int id, int semester, String relevance, String goal) {
+        DatabaseHandler db = new DatabaseHandler(context);
+        Fach fach = db.getFach(id);
+
+        double upper_term;
+        double dRelevance = Double.parseDouble(relevance);
+        double dGoal = Double.parseDouble(goal);
+
+        if (semester == 1) {
+            String sMarks = fach.getNoten1();
+
+            String[] entries = sMarks.split("\n");
+            int count = entries.length;
+            double subtraktion = 0;
+            double multiplikatoren = 0;
+
+            for (int i = 0; i < count; i++) {
+                String[] item = entries[i].split(" - ");
+                subtraktion = subtraktion + (Double.parseDouble(item[0].replace(",", ".")) * Double.parseDouble(item[1].replace(",", ".")));
+                multiplikatoren = multiplikatoren + Double.parseDouble(item[1].replace(",", "."));
+            }
+            upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
+        } else {
+            String sMarks = fach.getNoten2();
+
+            String[] entries = sMarks.split("\n");
+            int count = entries.length;
+            double subtraktion = 0;
+            double multiplikatoren = 0;
+
+            for (int i = 0; i < count; i++) {
+                String[] item = entries[i].split(" - ");
+                subtraktion = subtraktion + (Double.parseDouble(item[0].replace(",", ".")) * Double.parseDouble(item[1].replace(",", ".")));
+                multiplikatoren = multiplikatoren + Double.parseDouble(item[1].replace(",", "."));
+            }
+            upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
+        }
+
+        double needed = upper_term / dRelevance;
+
+        BigDecimal bd = new BigDecimal(needed);
+        return bd.setScale(2, RoundingMode.HALF_UP).toString();
     }
 }

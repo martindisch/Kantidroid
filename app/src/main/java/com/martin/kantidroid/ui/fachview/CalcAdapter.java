@@ -63,6 +63,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             holder.tvName.setText(R.string.actual);
         }
         holder.tvPic.setText(mPicGrades[position]);
+        holder.tvMark.setText(Util.getRequired(mContext, mFach.getID(), mSemester, "1", Double.parseDouble(mPicGrades[position]) - 0.25 + ""));
         holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
