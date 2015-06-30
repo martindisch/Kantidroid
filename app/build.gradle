@@ -7,7 +7,7 @@ android {
         applicationId 'com.martin.kantidroid'
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 97
+        versionCode 98
         versionName "3.0"
     }
     buildTypes {
