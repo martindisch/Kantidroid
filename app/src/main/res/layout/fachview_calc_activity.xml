@@ -67,6 +67,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignTop="@id/sRelevance"
                             android:layout_alignParentRight="true"
+                            android:layout_marginTop="3dp"
                             android:text="@string/info_weight" />
 
                         <android.support.v7.widget.RecyclerView
