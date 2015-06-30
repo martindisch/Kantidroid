@@ -23,6 +23,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
     private String mZeugnis;
     private final String[] mPicGrades = { "6", "5.5", "5", "4.5", "4"};
     private Context mContext;
+    private String mWeight = "1";
 
     public CalcAdapter(Context context, Fach fach, int semester) {
         mFach = fach;
@@ -63,7 +64,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             holder.tvName.setText(R.string.actual);
         }
         holder.tvPic.setText(mPicGrades[position]);
-        holder.tvMark.setText(Util.getRequired(mContext, mFach.getID(), mSemester, "1", Double.parseDouble(mPicGrades[position]) - 0.25 + ""));
+        holder.tvMark.setText(Util.getRequired(mContext, mFach.getID(), mSemester, mWeight, Double.parseDouble(mPicGrades[position]) - 0.25 + ""));
         holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
@@ -78,5 +79,9 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             tvMark = (TextView) v.findViewById(R.id.tvMark);
             rlRoot = v.findViewById(R.id.rlRoot);
         }
+    }
+
+    public void changeWeight(String weight) {
+        mWeight = weight;
     }
 }

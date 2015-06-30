@@ -55,29 +55,26 @@
                             android:textColor="@color/red_dark"
                             android:textSize="16sp" />
 
-                        <EditText android:layout_width="50dp"
+                        <Spinner
+                            android:id="@+id/sRelevance"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/etWeight"
-                            android:hint="@string/weighting"
-                            android:text="1.0"
-                            android:layout_below="@id/tvGrades"
-                            android:inputType="numberDecimal"
-                            android:gravity="center"
-                            android:layout_marginLeft="40dp"/>
+                            android:entries="@array/weights"
+                            android:layout_below="@id/tvGrades" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/info_weight"
-                            android:layout_alignBaseline="@id/etWeight"
-                            android:layout_alignParentRight="true"/>
+                            android:layout_alignTop="@id/sRelevance"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/info_weight" />
 
                         <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvMarks"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/etWeight"
-                            android:id="@+id/rvMarks"
-                            android:layout_marginTop="@dimen/widget_margin"/>
+                            android:layout_below="@id/sRelevance"
+                            android:layout_marginTop="@dimen/widget_margin" />
 
                     </RelativeLayout>
                 </LinearLayout>
