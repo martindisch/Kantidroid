@@ -70,7 +70,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mItems.setLayoutManager(layoutManager);
         mItems.setHasFixedSize(true);
-        mItems.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        mItems.addItemDecoration(new DividerItemDecoration(this, null, true));
 
         mData = (TextView) findViewById(R.id.tvData);
         ((TextView) findViewById(R.id.tvSem)).setText(mSemester + getString(R.string.n_semester));

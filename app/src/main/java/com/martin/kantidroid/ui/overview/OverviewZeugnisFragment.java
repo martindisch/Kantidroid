@@ -42,7 +42,7 @@ public class OverviewZeugnisFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mSubjects.setLayoutManager(layoutManager);
-        mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
         mSubjects.setHasFixedSize(true);
 
         DatabaseHandler db = new DatabaseHandler(getActivity());

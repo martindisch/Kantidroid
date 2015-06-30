@@ -53,7 +53,7 @@ public class CalcActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mMarks.setLayoutManager(layoutManager);
         mMarks.setHasFixedSize(true);
-        mMarks.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        mMarks.addItemDecoration(new DividerItemDecoration(this, null, false));
 
         mSemester = getIntent().getIntExtra("semester", -1);
         mId = getIntent().getIntExtra("id", -1);

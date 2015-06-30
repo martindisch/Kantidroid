@@ -72,7 +72,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mSubjects.setLayoutManager(layoutManager);
         mSubjects.setHasFixedSize(true);
-        mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
         List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);
