@@ -61,6 +61,9 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         mSubjects.setHasFixedSize(true);
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
+        if (mPrefs == null) {
+            mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        }
         List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, mPrefs.getInt("sorting", 0));
         mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
         mSubjects.setAdapter(mAdapter);
@@ -72,15 +75,20 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DatabaseHandler db = new DatabaseHandler(c);
-                List<Fach> subjects = db.getAllFaecherSorted(c, mSemester, mPrefs.getInt("sorting", 0));
-                mAdapter.setData(subjects);
-                c.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.notifyDataSetChanged();
+                if (mSemester != 0) {
+                    DatabaseHandler db = new DatabaseHandler(c);
+                    if (mPrefs == null) {
+                        mPrefs = c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
                     }
-                });
+                    List<Fach> subjects = db.getAllFaecherSorted(c, mSemester, mPrefs.getInt("sorting", 0));
+                    mAdapter.setData(subjects);
+                    c.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
             }
         }).start();
     }
