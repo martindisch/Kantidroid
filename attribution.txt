@@ -32,5 +32,8 @@ Chris Banes
 	
 Hochbauamt Graubünden, Andrea Ruisi, Leiterin Dienste für Aufnahme Kanti
 
-serso
+serso	LinearLayoutManager for RecyclerView wrap_content
 	https://github.com/serso/android-linear-layout-manager
+	
+lapastillaroja	DividerItemDecoration with configurable start/end divider
+	https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36

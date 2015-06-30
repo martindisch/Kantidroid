@@ -45,7 +45,7 @@ public class Util {
         return used;
     }
 
-    public static String getRequired(Context context, int id, int semester, String relevance, String goal) {
+    public static double getRequired(Context context, int id, int semester, String relevance, String goal) {
         DatabaseHandler db = new DatabaseHandler(context);
         Fach fach = db.getFach(id);
 
@@ -86,7 +86,7 @@ public class Util {
         double needed = upper_term / dRelevance;
 
         BigDecimal bd = new BigDecimal(needed);
-        return bd.setScale(2, RoundingMode.HALF_UP).toString();
+        return Double.parseDouble(bd.setScale(2, RoundingMode.HALF_UP).toString());
     }
 
     public static void setSeen(Context c, String key) {

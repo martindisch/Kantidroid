@@ -1,6 +1,7 @@
 package com.martin.kantidroid.ui.fachview;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,18 +13,16 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
 
     private Fach mFach;
     private int mSemester;
     private String mZeugnis;
-    private final String[] mPicGrades = { "6", "5.5", "5", "4.5", "4"};
+    private final String[] mPicGrades = {"6", "5.5", "5", "4.5", "4"};
     private Context mContext;
     private String mWeight = "1";
+    private double mRequired;
+    private Resources mRes;
 
     public CalcAdapter(Context context, Fach fach, int semester) {
         mFach = fach;
@@ -31,10 +30,10 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
         mContext = context;
         if (mSemester == 1) {
             mZeugnis = fach.getRealAverage1();
-        }
-        else {
+        } else {
             mZeugnis = fach.getRealAverage2();
         }
+        mRes = context.getResources();
     }
 
     @Override
@@ -51,23 +50,29 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         if (Double.parseDouble(mZeugnis) < Double.parseDouble(mPicGrades[position])) {
-            holder.tvPic.getBackground().setColorFilter(mContext.getResources().getColor(R.color.red_dark), PorterDuff.Mode.SRC_ATOP);
+            holder.tvPic.getBackground().setColorFilter(mRes.getColor(R.color.red_dark), PorterDuff.Mode.SRC_ATOP);
             holder.tvName.setText(R.string.needed);
-            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.secondary_text_default_material_light));
-        }
-        else if (Double.parseDouble(mZeugnis) > Double.parseDouble(mPicGrades[position])) {
-            holder.tvPic.getBackground().setColorFilter(mContext.getResources().getColor(R.color.promo_black), PorterDuff.Mode.SRC_ATOP);
+            holder.tvName.setTextColor(mRes.getColor(R.color.secondary_text_default_material_light));
+        } else if (Double.parseDouble(mZeugnis) > Double.parseDouble(mPicGrades[position])) {
+            holder.tvPic.getBackground().setColorFilter(mRes.getColor(R.color.promo_black), PorterDuff.Mode.SRC_ATOP);
             holder.tvName.setText(R.string.needed);
-            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.secondary_text_default_material_light));
-        }
-        else {
-            holder.tvPic.getBackground().setColorFilter(mContext.getResources().getColor(R.color.highlight_light), PorterDuff.Mode.SRC_ATOP);
-            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.highlight_light));
+            holder.tvName.setTextColor(mRes.getColor(R.color.secondary_text_default_material_light));
+        } else {
+            holder.tvPic.getBackground().setColorFilter(mRes.getColor(R.color.highlight_light), PorterDuff.Mode.SRC_ATOP);
+            holder.tvName.setTextColor(mRes.getColor(R.color.highlight_light));
             holder.tvName.setText(R.string.actual);
         }
         holder.tvPic.setText(mPicGrades[position]);
-        holder.tvMark.setText(Util.getRequired(mContext, mFach.getID(), mSemester, mWeight, Double.parseDouble(mPicGrades[position]) - 0.25 + ""));
-        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
+        mRequired = Util.getRequired(mContext, mFach.getID(), mSemester, mWeight, Double.parseDouble(mPicGrades[position]) - 0.25 + "");
+        holder.tvMark.setText(mRequired + "");
+        if (mRequired > 6) {
+            holder.tvMark.setTextColor(mRes.getColor(R.color.red_dark));
+        } else {
+            holder.tvMark.setTextColor(mRes.getColor(R.color.primary_text_default_material_light));
+        }
+
+        // TODO: Why won't it work inside cards?!
+        //holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
