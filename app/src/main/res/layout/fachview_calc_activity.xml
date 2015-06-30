@@ -59,16 +59,9 @@
                             android:id="@+id/sRelevance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/weights"
-                            android:layout_below="@id/tvGrades" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/sRelevance"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="3dp"
-                            android:text="@string/info_weight" />
+                            android:layout_below="@id/tvGrades"
+                            android:layout_marginLeft="65dp"
+                            android:entries="@array/weights" />
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvMarks"

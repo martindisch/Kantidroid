@@ -226,8 +226,8 @@
     <string name="close">Schliessen</string>
 
     <string-array name="weights">
-        <item>1.0 - Ganz</item>
-        <item>0.5 - Halb</item>
-        <item>2.0 - Doppelt</item>
+        <item>1.0 Ganz</item>
+        <item>0.5 Halb</item>
+        <item>2.0 Doppelt</item>
     </string-array>
 </resources>
