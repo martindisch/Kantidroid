@@ -84,8 +84,7 @@ public class Primer {
                         if (!Util.getSeen(context, versionCode + "")) {
                             ChangelogFragment changelog = new ChangelogFragment();
                             changelog.show(((MainActivity) context).getSupportFragmentManager(), "changelog");
-
-                            //Util.setSeen(context, versionCode + "");
+                            Util.setSeen(context, versionCode + "");
                         }
                     } catch (PackageManager.NameNotFoundException e) {
                         e.printStackTrace();

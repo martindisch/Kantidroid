@@ -222,6 +222,8 @@
     <string name="no_marks">Noch keine Noten im Semester</string>
     <string name="needed">Benötigte Note</string>
     <string name="actual">Aktuelle Zeugnisnote</string>
+    <string name="changelog">Changelog</string>
+    <string name="close">Schliessen</string>
 
     <string-array name="weights">
         <item>1.0 - Ganz</item>
