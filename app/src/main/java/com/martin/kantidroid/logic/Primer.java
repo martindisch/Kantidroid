@@ -1,14 +1,17 @@
 package com.martin.kantidroid.logic;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
+import com.martin.kantidroid.ui.util.ChangelogFragment;
 
 public class Primer {
 
@@ -72,25 +75,23 @@ public class Primer {
             builder.setNegativeButton(R.string.no, null);
             builder.show();
         }
-    }
+        else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        int versionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+                        if (!Util.getSeen(context, versionCode + "")) {
+                            ChangelogFragment changelog = new ChangelogFragment();
+                            changelog.show(((MainActivity) context).getSupportFragmentManager(), "changelog");
 
-    private static void removePrefsDB(Context context) {
-        String[] prefs = context.getResources().getStringArray(R.array.old_prefs);
-        String[] db = context.getResources().getStringArray(R.array.old_db);
-
-        SharedPreferences sp;
-        SharedPreferences.Editor editor;
-        for (int i = 0; i < prefs.length; i++) {
-            sp = context.getSharedPreferences(prefs[i], Context.MODE_PRIVATE);
-            editor = sp.edit();
-            editor.clear();
-            editor.commit();
+                            //Util.setSeen(context, versionCode + "");
+                        }
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
         }
-
-        for (int i = 0; i < db.length; i++) {
-            context.deleteDatabase(db[i]);
-        }
     }
-
-    // TODO: Add getSeen/setSeen here
 }

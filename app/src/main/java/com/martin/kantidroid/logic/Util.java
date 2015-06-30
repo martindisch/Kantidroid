@@ -88,4 +88,12 @@ public class Util {
         BigDecimal bd = new BigDecimal(needed);
         return bd.setScale(2, RoundingMode.HALF_UP).toString();
     }
+
+    public static void setSeen(Context c, String key) {
+        c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit().putBoolean("key", true).commit();
+    }
+
+    public static boolean getSeen(Context c, String key) {
+        return c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getBoolean("key", false);
+    }
 }
