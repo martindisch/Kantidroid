@@ -90,10 +90,10 @@ public class Util {
     }
 
     public static void setSeen(Context c, String key) {
-        c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit().putBoolean("key", true).commit();
+        c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit().putBoolean(key, true).commit();
     }
 
     public static boolean getSeen(Context c, String key) {
-        return c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).getBoolean("key", false);
+        return c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).contains(key);
     }
 }
