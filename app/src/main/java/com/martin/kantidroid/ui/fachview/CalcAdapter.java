@@ -53,10 +53,12 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
         if (Double.parseDouble(mZeugnis) < Double.parseDouble(mPicGrades[position])) {
             holder.tvPic.getBackground().setColorFilter(mContext.getResources().getColor(R.color.red_dark), PorterDuff.Mode.SRC_ATOP);
             holder.tvName.setText(R.string.needed);
+            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.secondary_text_default_material_light));
         }
         else if (Double.parseDouble(mZeugnis) > Double.parseDouble(mPicGrades[position])) {
             holder.tvPic.getBackground().setColorFilter(mContext.getResources().getColor(R.color.promo_black), PorterDuff.Mode.SRC_ATOP);
             holder.tvName.setText(R.string.needed);
+            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.secondary_text_default_material_light));
         }
         else {
             holder.tvPic.getBackground().setColorFilter(mContext.getResources().getColor(R.color.highlight_light), PorterDuff.Mode.SRC_ATOP);
