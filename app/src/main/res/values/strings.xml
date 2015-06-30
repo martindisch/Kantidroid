@@ -205,9 +205,9 @@
     <string name="finish_question">Willst du Noten und Kontingent endgültig zurücksetzen?</string>
 
     <string-array name="sorting_entries">
-        <item id="@+id/iSortName">Nach Namen sortieren</item>
-        <item id="@+id/iSortMarkDesc">Absteigend sortieren</item>
-        <item id="@+id/iSortMarkAsc">Aufsteigend sortieren</item>
+        <item id="@+id/iSortName">Namen</item>
+        <item id="@+id/iSortMarkDesc">Noten absteigend</item>
+        <item id="@+id/iSortMarkAsc">Noten aufsteigend</item>
     </string-array>
 
     <string-array name="departments">

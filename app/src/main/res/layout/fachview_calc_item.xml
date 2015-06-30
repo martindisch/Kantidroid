@@ -32,6 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@color/primary_text_default_material_light"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
