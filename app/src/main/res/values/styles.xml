@@ -30,4 +30,9 @@
         <item name="android:layout_marginRight">@dimen/btn_flat_margin</item>
     </style>
 
+    <style name="AppCompat.Button.Flat.Red" parent="AppCompat.Button.Flat.Common">
+        <item name="android:textColor">@color/red_dark</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 </resources>

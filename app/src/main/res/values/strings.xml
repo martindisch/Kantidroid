@@ -224,6 +224,9 @@
     <string name="actual">Aktuelle Zeugnisnote</string>
     <string name="changelog">Changelog</string>
     <string name="close">Schliessen</string>
+    <string name="calculator">Rechner</string>
+    <string name="goal">Gewünschte Note</string>
+    <string name="calculate">Berechnen</string>
 
     <string-array name="weights">
         <item>1.0 Ganz</item>
