@@ -65,7 +65,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
         holder.tvPic.setText(mPicGrades[position]);
         mRequired = Util.getRequired(mContext, mFach.getID(), mSemester, mWeight, Double.parseDouble(mPicGrades[position]) - 0.25 + "");
         holder.tvMark.setText(mRequired + "");
-        if (mRequired > 6) {
+        if (mRequired > 6 || mRequired < 1) {
             holder.tvMark.setTextColor(mRes.getColor(R.color.red_dark));
         } else {
             holder.tvMark.setTextColor(mRes.getColor(R.color.primary_text_default_material_light));

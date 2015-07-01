@@ -56,7 +56,7 @@ public class CalcActivity extends AppCompatActivity {
                     if (goal <= 6 && goal >= 1) {
                         double required = Util.getRequired(CalcActivity.this, mId, mSemester, mWeights[mWeight2.getSelectedItemPosition()], mGoal.getText().toString());
                         mRequired.setText(required + "");
-                        if (required > 6) {
+                        if (required > 6 || required < 1) {
                             mRequired.setTextColor(getResources().getColor(R.color.red_dark));
                         } else {
                             mRequired.setTextColor(getResources().getColor(R.color.primary_text_default_material_light));
