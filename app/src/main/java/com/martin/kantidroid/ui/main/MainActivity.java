@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private SharedPreferences mSp;
     private SharedPreferences.Editor mEditor;
-    private int mSelectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,109 +151,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.action_sort:
-                mSelectedItem = mSp.getInt("sorting", 0);
-
-                AlertDialog.Builder dee = new AlertDialog.Builder(this);
-                dee.setTitle(R.string.sort);
-                dee.setNeutralButton(R.string.cancel, null);
-                dee.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mEditor.putInt("sorting", mSelectedItem);
-                        mEditor.commit();
-                        final FragmentManager fragmentManager = getSupportFragmentManager();
-                        ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
-                    }
-                });
-                dee.setSingleChoiceItems(R.array.sorting_entries, mSelectedItem, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mSelectedItem = which;
-                    }
-                });
-                dee.show();
-                break;
-            case R.id.action_reset:
-                AlertDialog.Builder dg = new AlertDialog.Builder(this);
-                dg.setTitle(getString(R.string.finish_year));
-                dg.setMessage(getString(R.string.finish_question));
-                dg.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                DatabaseHandler db = new DatabaseHandler(MainActivity.this);
-                                List<Fach> faecher = db.getAllFaecher(getApplicationContext(), 1);
-                                Fach selected;
-                                for (int z = 0; z < db.getFachCount(); z++) {
-                                    selected = db.getFach(faecher.get(z).getID());
-                                    selected.setMathAverage1("");
-                                    selected.setNoten1("");
-                                    selected.setRealAverage1("");
-                                    selected.setMathAverage2("");
-                                    selected.setNoten2("");
-                                    selected.setRealAverage2("");
-                                    selected.setKont1("");
-                                    selected.setKont2("");
-                                    db.updateFach(selected);
-                                }
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        final FragmentManager fragmentManager = getSupportFragmentManager();
-                                        ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
-                                    }
-                                });
-                            }
-                        }).start();
-                    }
-                });
-                dg.setNegativeButton("Nein", null);
-                dg.show();
-                break;
-            case R.id.action_department:
-                mSelectedItem = mSp.getInt("department", 0);
-
-                AlertDialog.Builder fee = new AlertDialog.Builder(this);
-                fee.setTitle(R.string.department);
-                fee.setNeutralButton(R.string.cancel, null);
-                fee.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mEditor.putInt("department", mSelectedItem);
-                        mEditor.commit();
-                        // Let MainActivity reload the data after we've created new subjects
-                        final FragmentManager fragmentManager = getSupportFragmentManager();
-                        ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
-                    }
-                });
-                fee.setSingleChoiceItems(R.array.departments, mSelectedItem, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mSelectedItem = which;
-                    }
-                });
-                fee.show();
-                break;
         }
         return super.onOptionsItemSelected(item);
     }
