@@ -27,7 +27,6 @@
             android:id="@+id/tvGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5.25"
             android:textColor="@color/primary_text_default_material_light"
             android:textSize="20sp" />
 
@@ -35,8 +34,7 @@
             android:id="@+id/tvWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvGrade"
-            android:text="1.0" />
+            android:layout_below="@id/tvGrade" />
     </LinearLayout>
 
     <TextView
@@ -44,7 +42,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="16.09.2015"
         android:id="@+id/tvDate"
         android:textSize="18dp" />
 

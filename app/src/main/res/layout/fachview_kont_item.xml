@@ -23,7 +23,6 @@
         android:layout_toRightOf="@id/tvPic"
         android:layout_centerVertical="true"
         android:layout_marginLeft="32dp"
-        android:text="16.09.2015"
         android:id="@+id/tvDate"
         android:textSize="18dp" />
 
