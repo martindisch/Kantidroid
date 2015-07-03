@@ -1,6 +1,5 @@
 package com.martin.kantidroid.logic;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;

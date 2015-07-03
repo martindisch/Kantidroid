@@ -138,7 +138,7 @@ public class Fach {
         if (!this.getRealAverage2().contentEquals("") && this.getRealAverage1().contentEquals("")) {
             schnitt = this.getRealAverage2() + "";
         }
-        String result = "";
+        String result;
         if (schnitt.contentEquals("")) {
             result = "";
         } else {

@@ -31,7 +31,7 @@ public class PromoCheck {
         double plus = 0;
         double minus = 0;
         int total_minus = 0;
-        double schn = 0;
+        double schn;
         double total = 0;
         int fcount = 0;
         int mppcount = 0;
@@ -92,15 +92,15 @@ public class PromoCheck {
         double plus = 0;
         double minus = 0;
         int total_minus = 0;
-        double schn = 0;
+        double schn;
         double total = 0;
         int fcount = 0;
         int mppcount = 0;
 
         String sMessage = "Promoviert";
         int iColor = R.color.promo_white;
-        String sPP = "0.0";
-        String sSchnitt = "5.0000";
+        String sPP;
+        String sSchnitt;
 
         DatabaseHandler db = new DatabaseHandler(context);
         int count = db.getFachCount();
@@ -233,14 +233,14 @@ public class PromoCheck {
         Fach entry;
         double minus = 0;
         int total_minus = 0;
-        double schn = 0;
+        double schn;
         double total = 0;
         int fcount = 0;
 
-        String sMessage = "Promoviert";
-        int iColor = R.color.promo_white;
-        String sPP = "0.0";
-        String sSchnitt = "5.0000";
+        String sMessage;
+        int iColor;
+        String sPP;
+        String sSchnitt;
 
         DatabaseHandler db = new DatabaseHandler(context);
         int count = db.getFachCount();
@@ -313,15 +313,15 @@ public class PromoCheck {
     private PromoRes getFMS(int iSemester) {
         Fach entry;
         double minus = 0;
-        double schn = 0;
+        double schn;
         double total = 0;
         double total_real = 0;
         int fcount = 0;
 
-        String sMessage = "Promoviert";
-        int iColor = R.color.promo_white;
-        String sPP = "0.0";
-        String sSchnitt = "5.0000";
+        String sMessage;
+        int iColor;
+        String sPP;
+        String sSchnitt;
 
         DatabaseHandler db = new DatabaseHandler(context);
         int count = db.getFachCount();
@@ -392,8 +392,8 @@ public class PromoCheck {
         int used = 0;
         double dPercentage = 0;
 
-        Fach entry = null;
-        String kontUsed = null;
+        Fach entry;
+        String kontUsed;
 
         for (int i = 0; i < subjects.size(); i++) {
             entry = subjects.get(i);

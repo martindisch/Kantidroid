@@ -1,6 +1,5 @@
 package com.martin.kantidroid.ui.main;
 
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,22 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.martin.kantidroid.R;
-import com.martin.kantidroid.logic.DatabaseHandler;
-import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Primer;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
-
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -84,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateContainer() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = null;
-        String tag = "";
+        Fragment fragment;
+        String tag;
         if (mSelected != mCurrent) {
             switch (mSelected) {
                 case 0:
