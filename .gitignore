@@ -39,3 +39,6 @@ Thumbs.db
 
 # Credentials storage
 creds.xml
+
+#captures
+/captures/
