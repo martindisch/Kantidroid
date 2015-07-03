@@ -59,7 +59,7 @@
         <activity
             android:name=".ui.fachview.CalcActivity"
             android:label="@string/title_activity_calc"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base"/>
     </application>
 
 </manifest>

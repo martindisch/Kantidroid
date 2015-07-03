@@ -114,7 +114,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             } else {
                 real = fach.getMathAverage2();
             }
-            mGradesAdapter = new GradesAdapter(this, new ArrayList<>(Arrays.asList(fach.getNotenEntries(mSemester))), this);
+            mGradesAdapter = new GradesAdapter(new ArrayList<>(Arrays.asList(fach.getNotenEntries(mSemester))), this);
             if (real.contentEquals("")) {
                 real = "-";
             }
@@ -128,31 +128,6 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             }
             mKontAdapter = new KontAdapter(this, new ArrayList<>(Arrays.asList(fach.getKontEntries(mSemester))), this);
             mItems.setAdapter(mKontAdapter);
-        }
-    }
-
-    private void updateInfo() {
-        if (mType == 1) {
-            mGradesAdapter.setData(new ArrayList<>(Arrays.asList(fach.getNotenEntries(mSemester))));
-            mGradesAdapter.notifyDataSetChanged();
-            String real;
-            if (mSemester == 1) {
-                real = fach.getMathAverage1();
-            } else {
-                real = fach.getMathAverage2();
-            }
-            if (real.contentEquals("")) {
-                real = "-";
-            }
-            mData.setText(real);
-        } else {
-            mKontAdapter.setData(new ArrayList<>(Arrays.asList(fach.getKontEntries(mSemester))));
-            mKontAdapter.notifyDataSetChanged();
-            if (mSemester == 1) {
-                mData.setText(Util.formatKont(fach.getKont1(), fach.getKontAvailable()));
-            } else {
-                mData.setText(Util.formatKont(fach.getKont2(), fach.getKontAvailable()));
-            }
         }
     }
 

@@ -20,8 +20,7 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
     private String[] mTempSplit;
     private String mDiff1, mDiff2;
 
-    public GradesAdapter(Context context, ArrayList<String> entries, OnClickListener callback) {
-        Context mContext = context;
+    public GradesAdapter(ArrayList<String> entries, OnClickListener callback) {
         mEntries = entries;
         mCallback = callback;
         sort();
@@ -100,9 +99,5 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
 
     public ArrayList<String> getData() {
         return mEntries;
-    }
-
-    public void setData(ArrayList<String> newData) {
-        mEntries = newData;
     }
 }

@@ -101,8 +101,4 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
     public ArrayList<String> getData() {
         return mEntries;
     }
-
-    public void setData(ArrayList<String> newData) {
-        mEntries = newData;
-    }
 }
