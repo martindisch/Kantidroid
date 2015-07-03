@@ -11,8 +11,6 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
@@ -87,13 +85,13 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         holder.rlItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onItemClick(view, holder.getAdapterPosition());
+                mCallback.onItemClick(holder.getAdapterPosition());
             }
         });
     }
 
     public interface OnClickListener {
-        void onItemClick(View v, int position);
+        void onItemClick(int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

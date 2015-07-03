@@ -187,7 +187,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Get all faecher sorted by parameter
-    public List<Fach> getAllFaecherSorted(Context context, int iSemester, int iSorting) {
+    public List<Fach> getAllFaecherSorted(int iSemester, int iSorting) {
 
         String sorting = null;
 

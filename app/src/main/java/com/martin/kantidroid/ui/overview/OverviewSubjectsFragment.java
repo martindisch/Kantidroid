@@ -63,7 +63,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         if (mPrefs == null) {
             mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         }
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), mSemester, mPrefs.getInt("sorting", 0));
+        List<Fach> subjects = db.getAllFaecherSorted(mSemester, mPrefs.getInt("sorting", 0));
         mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
         mSubjects.setAdapter(mAdapter);
 
@@ -79,7 +79,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
                     if (mPrefs == null) {
                         mPrefs = c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
                     }
-                    List<Fach> subjects = db.getAllFaecherSorted(c, mSemester, mPrefs.getInt("sorting", 0));
+                    List<Fach> subjects = db.getAllFaecherSorted(mSemester, mPrefs.getInt("sorting", 0));
                     mAdapter.setData(subjects);
                     c.runOnUiThread(new Runnable() {
                         @Override
@@ -93,7 +93,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
     }
 
     @Override
-    public void onItemClick(View v, int position) {
+    public void onItemClick(int position) {
         Intent i = new Intent(getActivity(), FachviewActivity.class);
         i.putExtra("semester", mSemester);
         i.putExtra("id", mAdapter.getData().get(position).getID());

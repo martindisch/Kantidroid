@@ -174,7 +174,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
     }
 
     @Override
-    public void onItemClick(View v, int position) {
+    public void onItemClick(int position) {
         if (mType == 1) {
             Intent i = new Intent(DetailActivity.this, EditMarkDialog.class);
             i.putExtra("id", mId);
@@ -191,7 +191,7 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
     }
 
     @Override
-    public void onItemLongClick(View v, final int position) {
+    public void onItemLongClick(final int position) {
         if (mType == 1) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.delete_question_mark);

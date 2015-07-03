@@ -73,7 +73,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         mSubjects.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);
+        List<Fach> subjects = db.getAllFaecherSorted(1, 0);
         mAdapter = new SubjectsAdapter(getActivity(), subjects, this);
         mSubjects.setAdapter(mAdapter);
         return rootView;

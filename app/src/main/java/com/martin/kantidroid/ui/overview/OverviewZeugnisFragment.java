@@ -2,7 +2,6 @@ package com.martin.kantidroid.ui.overview;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,7 +43,7 @@ public class OverviewZeugnisFragment extends Fragment {
         mSubjects.setHasFixedSize(true);
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
-        List<Fach> subjects = db.getAllFaecherSorted(getActivity(), 1, 0);
+        List<Fach> subjects = db.getAllFaecherSorted(1, 0);
         mAdapter = new ZeugnisAdapter(subjects);
         mSubjects.setAdapter(mAdapter);
 
@@ -57,7 +56,7 @@ public class OverviewZeugnisFragment extends Fragment {
             public void run() {
                 if (mAdapter != null) {
                     DatabaseHandler db = new DatabaseHandler(c);
-                    List<Fach> subjects = db.getAllFaecherSorted(c, 1, 0);
+                    List<Fach> subjects = db.getAllFaecherSorted(1, 0);
                     mAdapter.setData(subjects);
                     c.runOnUiThread(new Runnable() {
                         @Override

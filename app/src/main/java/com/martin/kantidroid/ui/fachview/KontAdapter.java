@@ -48,13 +48,13 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
         holder.rlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onItemClick(view, holder.getAdapterPosition());
+                mCallback.onItemClick(holder.getAdapterPosition());
             }
         });
         holder.rlRoot.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                mCallback.onItemLongClick(view, holder.getAdapterPosition());
+                mCallback.onItemLongClick(holder.getAdapterPosition());
                 return false;
             }
         });
@@ -62,9 +62,9 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
     }
 
     public interface OnClickListener {
-        void onItemClick(View v, final int position);
+        void onItemClick(final int position);
 
-        void onItemLongClick(View v, final int position);
+        void onItemLongClick(final int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
