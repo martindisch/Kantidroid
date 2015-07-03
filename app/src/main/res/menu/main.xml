@@ -7,7 +7,7 @@
         android:title="@string/sort"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/sort_variant"/>
+        android:icon="@drawable/sort_variant" />
     <item
         android:id="@+id/action_reset"
         android:title="@string/reset"

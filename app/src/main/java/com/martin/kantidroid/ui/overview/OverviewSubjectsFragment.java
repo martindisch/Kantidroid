@@ -99,8 +99,4 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         i.putExtra("id", mAdapter.getData().get(position).getID());
         startActivity(i);
     }
-
-    @Override
-    public void onItemLongClick(View v, int position) {
-    }
 }

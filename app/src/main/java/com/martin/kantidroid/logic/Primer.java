@@ -73,8 +73,7 @@ public class Primer {
             });
             builder.setNegativeButton(R.string.no, null);
             builder.show();
-        }
-        else {
+        } else {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
