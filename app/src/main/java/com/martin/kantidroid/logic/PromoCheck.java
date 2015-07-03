@@ -226,8 +226,7 @@ public class PromoCheck {
             sSchnitt = ("-");
         }
 
-        PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
-        return prResult;
+        return new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
     }
 
     public PromoRes getHMS(int iSemester) {
@@ -308,8 +307,7 @@ public class PromoCheck {
             sSchnitt = ("-");
         }
 
-        PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
-        return prResult;
+        return new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
     }
 
     public PromoRes getFMS(int iSemester) {
@@ -386,8 +384,7 @@ public class PromoCheck {
             sSchnitt = ("-");
         }
 
-        PromoRes prResult = new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
-        return prResult;
+        return new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
     }
 
     private String getKont(List<Fach> subjects, int semester) {

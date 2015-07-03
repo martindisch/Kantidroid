@@ -23,8 +23,7 @@ public class OverviewZeugnisFragment extends Fragment {
     private ZeugnisAdapter mAdapter;
 
     public static OverviewZeugnisFragment newInstance() {
-        OverviewZeugnisFragment fragment = new OverviewZeugnisFragment();
-        return fragment;
+        return new OverviewZeugnisFragment();
     }
 
     public OverviewZeugnisFragment() {
