@@ -33,8 +33,7 @@
         <TextView
             android:id="@+id/tvWeight"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvGrade" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <TextView

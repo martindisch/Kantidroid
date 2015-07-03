@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private int mSelected, mCurrent;
     private NavigationView mNavigationView;
-    private SharedPreferences mSp;
-    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,14 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         Primer.runEveryTime(this);
         Primer.runOnFirstTime(this);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mSp = getSharedPreferences("Kantidroid", MODE_PRIVATE);
-                mEditor = mSp.edit();
-            }
-        }).start();
     }
 
     private void selectDrawerItem(int i) {
