@@ -56,10 +56,6 @@ public class ZeugnisAdapter extends RecyclerView.Adapter<ZeugnisAdapter.ViewHold
         }
     }
 
-    public List<Fach> getData() {
-        return mEntries;
-    }
-
     public void setData(List<Fach> faecher) {
         mEntries = faecher;
     }

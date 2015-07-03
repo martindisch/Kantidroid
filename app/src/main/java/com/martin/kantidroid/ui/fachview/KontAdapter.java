@@ -80,22 +80,6 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
         }
     }
 
-    public void add(String object) {
-        mEntries.add(object);
-        sort();
-        int newPos = mEntries.indexOf(object);
-        notifyItemInserted(newPos);
-    }
-
-    public void update(String object, int oldPos) {
-        sort();
-        int newPos = mEntries.indexOf(object);
-        notifyItemChanged(oldPos);
-        if (oldPos != newPos) {
-            notifyItemMoved(oldPos, newPos);
-        }
-    }
-
     public void remove(int pos) {
         mEntries.remove(pos);
         notifyItemRemoved(pos);

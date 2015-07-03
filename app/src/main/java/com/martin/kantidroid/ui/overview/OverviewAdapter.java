@@ -19,7 +19,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     private List<Fach> mEntries;
     private final OnClickListener mCallback;
-    private String mTempKontString;
     private final int mTempSemester;
     private final Context mContext;
 
@@ -95,8 +94,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     public interface OnClickListener {
         void onItemClick(View v, int position);
-
-        void onItemLongClick(View v, int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
