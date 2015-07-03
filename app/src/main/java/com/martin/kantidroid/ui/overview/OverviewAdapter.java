@@ -19,6 +19,9 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     private final OnClickListener mCallback;
     private final int mTempSemester;
     private final Context mContext;
+    private String mTempGrades, mTempKontUs, mTempKontAv;
+    private boolean mBad;
+    private Fach mTempFach;
 
     public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback, int semester) {
         mContext = context;
@@ -40,11 +43,8 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Fach mTempFach = mEntries.get(position);
-        boolean mBad = false;
-
-        String mTempKontUs;
-        String mTempGrades;
+        mTempFach = mEntries.get(position);
+        mBad = false;
         if (mTempSemester == 1) {
             mTempGrades = mTempFach.getMathAverage1();
             mTempKontUs = mTempFach.getKont1();
@@ -52,7 +52,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             mTempGrades = mTempFach.getMathAverage2();
             mTempKontUs = mTempFach.getKont2();
         }
-        String mTempKontAv = mTempFach.getKontAvailable();
+        mTempKontAv = mTempFach.getKontAvailable();
 
         if (mTempGrades.contentEquals("")) {
             mTempGrades = "-";
