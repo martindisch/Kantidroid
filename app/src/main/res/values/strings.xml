@@ -1,11 +1,6 @@
 <resources>
     <string name="app_name">Kantidroid</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_example">Example action</string>
-
     <string name="action_settings">Settings</string>
     <string name="overview">Übersicht</string>
     <string name="kiss">KISS</string>
@@ -17,11 +12,9 @@
     <string name="name">Name</string>
     <string name="name_short">Abkürzung</string>
     <string name="promotion">Promotionsfach</string>
-    <string name="add">HINZUFÜGEN</string>
     <string name="ask_autosubjects">Du hast im Moment noch keine Fächer.\nSollen automatisch einige häufig benutzte Fächer erstellt werden?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
-    <string name="color">Farbe</string>
     <string name="cancel">Abbrechen</string>
     <string name="enter_name">Gib einen Namen und eine Abkürzung ein</string>
     <string name="too_long">Abkürzung darf nicht länger als 5 Zeichen sein</string>
@@ -159,7 +152,6 @@
         <item>#4e4e4e</item>
     </string-array>
 
-    <string name="hello_world">Hello world!</string>
     <string name="kont">Kontingent</string>
     <string name="n10">10</string>
     <string name="delete">Fach löschen</string>
@@ -218,7 +210,6 @@
 
     <string name="title_activity_calc">Nächste Note</string>
     <string name="preview">Vorschau Zeugnisnote</string>
-    <string name="info_weight">Gewichtung nächste Prüfung</string>
     <string name="no_marks">Noch keine Noten im Semester</string>
     <string name="needed">Benötigte Note</string>
     <string name="actual">Aktuelle Zeugnisnote</string>

@@ -7,24 +7,18 @@
     <color name="highlight_dark">#0a729e</color>
     <color name="highlight_light">#2d8fc5</color>
 
-    <color name="drawer_background">#ffffff</color>
     <color name="divider">#e0e0e0</color>
-    <color name="drawer_text">#212121</color>
 
     <color name="window_background">#FFF5F5F5</color>
 
     <color name="flat_pressed">#66999999</color>
-    <color name="flat_disabled_text">#40000000</color>
-    <color name="flat_normal_text">#000000</color>
 
     <color name="green_dark">#1B5E20</color>
     <color name="green_light">#4CAF50</color>
     <color name="red_dark">#B71C1C</color>
     <color name="red_light">#F44336</color>
 
-    <color name="promo_orange">#FF9800</color>
     <color name="promo_white">@color/primary_text_default_material_dark</color>
-    <color name="promo_red">#F44336</color>
     <color name="promo_black">@color/primary_text_default_material_light</color>
 
     <!-- Don't modify this section the colors -->
