@@ -17,8 +17,8 @@ import java.util.Comparator;
 public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
 
     private ArrayList<String> mEntries;
-    private OnClickListener mCallback;
-    private Context mContext;
+    private final OnClickListener mCallback;
+    private final Context mContext;
     private String[] mTempSplit;
     private String mDiff1, mDiff2;
 
@@ -68,8 +68,9 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvDate, tvPic;
-        public View rlRoot;
+        public final TextView tvDate;
+        public final TextView tvPic;
+        public final View rlRoot;
 
         public ViewHolder(View v) {
             super(v);

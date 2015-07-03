@@ -18,9 +18,9 @@ import java.util.List;
 
 public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHolder> {
 
-    private List<Fach> mEntries;
-    private OnClickListener mCallback;
-    private Context mContext;
+    private final List<Fach> mEntries;
+    private final OnClickListener mCallback;
+    private final Context mContext;
 
     public SubjectsAdapter(Context context, List<Fach> entries, OnClickListener callback) {
         mContext = context;
@@ -67,8 +67,9 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName, tvPic;
-        public View rlRoot;
+        public final TextView tvName;
+        public final TextView tvPic;
+        public final View rlRoot;
 
         public ViewHolder(View v) {
             super(v);

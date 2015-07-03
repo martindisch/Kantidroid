@@ -27,7 +27,7 @@ public class CalcActivity extends AppCompatActivity {
     private CalcAdapter mAdapter;
     private EditText mGoal;
     private TextView mRequired;
-    private String[] mWeights = {"1", "0.5", "2"};
+    private final String[] mWeights = {"1", "0.5", "2"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

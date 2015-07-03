@@ -40,8 +40,11 @@ public class ZeugnisAdapter extends RecyclerView.Adapter<ZeugnisAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName, tvSem1, tvSem2, tvFinal;
-        public View rlRoot;
+        public final TextView tvName;
+        public final TextView tvSem1;
+        public final TextView tvSem2;
+        public final TextView tvFinal;
+        public final View rlRoot;
 
         public ViewHolder(View v) {
             super(v);

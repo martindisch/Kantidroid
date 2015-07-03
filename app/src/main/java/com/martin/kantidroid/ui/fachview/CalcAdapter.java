@@ -15,13 +15,13 @@ import com.martin.kantidroid.logic.Util;
 
 public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
 
-    private Fach mFach;
-    private int mSemester;
-    private String mZeugnis;
+    private final Fach mFach;
+    private final int mSemester;
+    private final String mZeugnis;
     private final String[] mPicGrades = {"6", "5.5", "5", "4.5", "4"};
-    private Context mContext;
+    private final Context mContext;
     private String mWeight = "1";
-    private Resources mRes;
+    private final Resources mRes;
 
     public CalcAdapter(Context context, Fach fach, int semester) {
         mFach = fach;
@@ -75,8 +75,10 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName, tvPic, tvMark;
-        public View rlRoot;
+        public final TextView tvName;
+        public final TextView tvPic;
+        public final TextView tvMark;
+        public final View rlRoot;
 
         public ViewHolder(View v) {
             super(v);

@@ -18,10 +18,10 @@ import java.util.List;
 public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
 
     private List<Fach> mEntries;
-    private OnClickListener mCallback;
+    private final OnClickListener mCallback;
     private String mTempKontString;
-    private int mTempSemester;
-    private Context mContext;
+    private final int mTempSemester;
+    private final Context mContext;
 
     public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback, int semester) {
         mContext = context;
@@ -100,8 +100,12 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName, tvPic, tvGrades, tvKont;
-        public View rlPic, rlItem;
+        public final TextView tvName;
+        public final TextView tvPic;
+        public final TextView tvGrades;
+        public final TextView tvKont;
+        public final View rlPic;
+        public final View rlItem;
 
         public ViewHolder(View v) {
             super(v);

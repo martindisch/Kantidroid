@@ -16,7 +16,7 @@ import java.util.Comparator;
 public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder> {
 
     private ArrayList<String> mEntries;
-    private OnClickListener mCallback;
+    private final OnClickListener mCallback;
     private String[] mTempSplit;
     private String mDiff1, mDiff2;
 
@@ -66,8 +66,10 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvGrade, tvWeight, tvDate;
-        public View rlRoot;
+        public final TextView tvGrade;
+        public final TextView tvWeight;
+        public final TextView tvDate;
+        public final View rlRoot;
 
         public ViewHolder(View v) {
             super(v);

@@ -6,11 +6,11 @@ package com.martin.kantidroid.logic;
  * @author Martin
  */
 public class PromoRes {
-    public String sMessage;
-    public int iColor;
-    public String sPP;
-    public String sSchnitt;
-    public String sKont;
+    public final String sMessage;
+    public final int iColor;
+    public final String sPP;
+    public final String sSchnitt;
+    public final String sKont;
 
     /**
      * The constructor
