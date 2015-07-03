@@ -17,22 +17,26 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
 
     private final Fach mFach;
     private final int mSemester;
-    private final String mZeugnis;
+    private final double mZeugnis;
     private final String[] mPicGrades = {"6", "5.5", "5", "4.5", "4"};
+    private final double[] mDPicGrades = {6, 5.5, 5, 4.5, 4};
     private final Context mContext;
     private String mWeight = "1";
     private final Resources mRes;
+    private double mRequired;
+    String[] mEntries;
 
     public CalcAdapter(Context context, Fach fach, int semester) {
         mFach = fach;
         mSemester = semester;
         mContext = context;
         if (mSemester == 1) {
-            mZeugnis = fach.getRealAverage1();
+            mZeugnis = Double.parseDouble(fach.getRealAverage1());
         } else {
-            mZeugnis = fach.getRealAverage2();
+            mZeugnis = Double.parseDouble(fach.getRealAverage2());
         }
         mRes = context.getResources();
+        mEntries = fach.getNotenEntries(semester);
     }
 
     @Override
@@ -48,11 +52,11 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        if (Double.parseDouble(mZeugnis) < Double.parseDouble(mPicGrades[position])) {
+        if (mZeugnis < mDPicGrades[position]) {
             holder.tvPic.getBackground().setColorFilter(mRes.getColor(R.color.red_dark), PorterDuff.Mode.SRC_ATOP);
             holder.tvName.setText(R.string.needed);
             holder.tvName.setTextColor(mRes.getColor(R.color.secondary_text_default_material_light));
-        } else if (Double.parseDouble(mZeugnis) > Double.parseDouble(mPicGrades[position])) {
+        } else if (mZeugnis > mDPicGrades[position]) {
             holder.tvPic.getBackground().setColorFilter(mRes.getColor(R.color.promo_black), PorterDuff.Mode.SRC_ATOP);
             holder.tvName.setText(R.string.needed);
             holder.tvName.setTextColor(mRes.getColor(R.color.secondary_text_default_material_light));
@@ -62,7 +66,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             holder.tvName.setText(R.string.actual);
         }
         holder.tvPic.setText(mPicGrades[position]);
-        double mRequired = Util.getRequired(mContext, mFach.getID(), mSemester, mWeight, Double.parseDouble(mPicGrades[position]) - 0.25 + "");
+        mRequired = Util.getRequiredPerf(mEntries, mWeight, mDPicGrades[position] - 0.25 + "");
         holder.tvMark.setText(mRequired + "");
         if (mRequired > 6 || mRequired < 1) {
             holder.tvMark.setTextColor(mRes.getColor(R.color.red_dark));

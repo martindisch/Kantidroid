@@ -89,6 +89,28 @@ public class Util {
         return Double.parseDouble(bd.setScale(2, RoundingMode.HALF_UP).toString());
     }
 
+    public static double getRequiredPerf(String[] entries, String relevance, String goal) {
+        double upper_term;
+        double dRelevance = Double.parseDouble(relevance);
+        double dGoal = Double.parseDouble(goal);
+
+        int count = entries.length;
+        double subtraktion = 0;
+        double multiplikatoren = 0;
+
+        for (int i = 0; i < count; i++) {
+            String[] item = entries[i].split(" - ");
+            subtraktion = subtraktion + (Double.parseDouble(item[0].replace(",", ".")) * Double.parseDouble(item[1].replace(",", ".")));
+            multiplikatoren = multiplikatoren + Double.parseDouble(item[1].replace(",", "."));
+        }
+        upper_term = dGoal * (multiplikatoren + dRelevance) - subtraktion;
+
+        double needed = upper_term / dRelevance;
+
+        BigDecimal bd = new BigDecimal(needed);
+        return Double.parseDouble(bd.setScale(2, RoundingMode.HALF_UP).toString());
+    }
+
     public static void setSeen(Context c, String key) {
         c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit().putBoolean(key, true).commit();
     }
