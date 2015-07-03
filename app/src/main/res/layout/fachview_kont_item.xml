@@ -24,6 +24,6 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="32dp"
         android:id="@+id/tvDate"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>
