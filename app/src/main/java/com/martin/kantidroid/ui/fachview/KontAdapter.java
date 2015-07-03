@@ -58,7 +58,6 @@ public class KontAdapter extends RecyclerView.Adapter<KontAdapter.ViewHolder> {
                 return false;
             }
         });
-        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public interface OnClickListener {

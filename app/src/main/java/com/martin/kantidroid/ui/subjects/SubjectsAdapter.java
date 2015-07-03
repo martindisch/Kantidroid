@@ -57,7 +57,6 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                 return false;
             }
         });
-        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public interface OnClickListener {

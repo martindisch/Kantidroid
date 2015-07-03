@@ -1,6 +1,5 @@
 package com.martin.kantidroid.ui.fachview;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,7 +54,6 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
                 return false;
             }
         });
-        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public interface OnClickListener {

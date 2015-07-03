@@ -7,7 +7,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/widget_margin"
     android:focusable="true"
-    android:clickable="true">
+    android:clickable="true"
+    android:background="@drawable/btn_flat_selector">
 
     <TextView
         android:id="@+id/tvPic"

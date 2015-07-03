@@ -5,7 +5,10 @@
     android:paddingTop="@dimen/widget_margin"
     android:paddingBottom="@dimen/widget_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:id="@+id/rlRoot">
+    android:id="@+id/rlRoot"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="@drawable/btn_flat_selector">
 
     <TextView
         android:layout_width="@dimen/subjects_circle"

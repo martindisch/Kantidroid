@@ -73,22 +73,18 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
         } else {
             holder.tvMark.setTextColor(mRes.getColor(R.color.primary_text_default_material_light));
         }
-
-        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView tvName;
         public final TextView tvPic;
         public final TextView tvMark;
-        public final View rlRoot;
 
         public ViewHolder(View v) {
             super(v);
             tvName = (TextView) v.findViewById(R.id.tvName);
             tvPic = (TextView) v.findViewById(R.id.tvPic);
             tvMark = (TextView) v.findViewById(R.id.tvMark);
-            rlRoot = v.findViewById(R.id.rlRoot);
         }
     }
 
