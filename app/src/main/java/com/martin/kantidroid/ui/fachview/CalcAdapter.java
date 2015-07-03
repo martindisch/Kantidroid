@@ -74,8 +74,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             holder.tvMark.setTextColor(mRes.getColor(R.color.primary_text_default_material_light));
         }
 
-        // TODO: Why won't it work inside cards?!
-        //holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
+        holder.rlRoot.setBackgroundResource(R.drawable.btn_flat_selector);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
