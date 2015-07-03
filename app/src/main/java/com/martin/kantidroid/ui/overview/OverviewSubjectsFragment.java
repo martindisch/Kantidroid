@@ -24,7 +24,6 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
     private static final String ARG_PARAM1 = "semester";
     private int mSemester;
 
-    private RecyclerView mSubjects;
     private OverviewAdapter mAdapter;
 
     private SharedPreferences mPrefs;
@@ -55,7 +54,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.overview_subjectsfragment, container, false);
 
-        mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
+        RecyclerView mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
 
         mSubjects.addItemDecoration(new MarginDecoration(getActivity()));
         mSubjects.setHasFixedSize(true);

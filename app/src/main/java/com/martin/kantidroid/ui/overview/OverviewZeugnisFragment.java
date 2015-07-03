@@ -20,7 +20,6 @@ import java.util.List;
 
 public class OverviewZeugnisFragment extends Fragment {
 
-    private RecyclerView mSubjects;
     private ZeugnisAdapter mAdapter;
 
     public static OverviewZeugnisFragment newInstance() {
@@ -37,7 +36,7 @@ public class OverviewZeugnisFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.overview_zeugnisfragment, container, false);
 
-        mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
+        RecyclerView mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

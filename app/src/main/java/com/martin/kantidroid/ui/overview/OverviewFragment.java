@@ -36,7 +36,6 @@ public class OverviewFragment extends Fragment {
 
     private Adapter mAdapter;
     private TextView mPromo, mPP, mKont;
-    private SharedPreferences mPrefs;
     private ViewPager mViewPager;
     private boolean mFirsttime = false;
     private int mSelectedItem;
@@ -74,7 +73,7 @@ public class OverviewFragment extends Fragment {
         mPP = (TextView) rootView.findViewById(R.id.tvPP);
         mKont = (TextView) rootView.findViewById(R.id.tvKont);
 
-        mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        SharedPreferences mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         mEditor = mPrefs.edit();
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.viewpager);

@@ -30,7 +30,6 @@ public class EditKontDialog extends AppCompatActivity {
     private String mEntry;
     private EditText mDate;
     private RadioGroup mAmount;
-    private TextView mSemesterInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class EditKontDialog extends AppCompatActivity {
 
         mAmount = (RadioGroup) findViewById(R.id.rgKont);
         mDate = (EditText) findViewById(R.id.etDate);
-        mSemesterInfo = (TextView) findViewById(R.id.tvSem);
+        TextView mSemesterInfo = (TextView) findViewById(R.id.tvSem);
         mAmount = (RadioGroup) findViewById(R.id.rgKont);
 
         Intent i = getIntent();

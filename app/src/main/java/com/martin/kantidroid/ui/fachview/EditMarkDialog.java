@@ -28,7 +28,6 @@ public class EditMarkDialog extends AppCompatActivity {
     private int mId, mSemester;
     private String mEntry;
     private EditText mMark, mWeight, mDate;
-    private TextView mSemesterInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class EditMarkDialog extends AppCompatActivity {
         mMark = (EditText) findViewById(R.id.etMark);
         mWeight = (EditText) findViewById(R.id.etWeight);
         mDate = (EditText) findViewById(R.id.etDate);
-        mSemesterInfo = (TextView) findViewById(R.id.tvSem);
+        TextView mSemesterInfo = (TextView) findViewById(R.id.tvSem);
 
         Intent i = getIntent();
         mId = i.getIntExtra("id", -1);

@@ -22,13 +22,11 @@ import com.martin.kantidroid.ui.util.LinearLayoutManager;
 
 public class CalcActivity extends AppCompatActivity {
 
-    private Spinner mWeight, mWeight2;
-    private RecyclerView mMarks;
+    private Spinner mWeight2;
     private int mSemester, mId;
     private CalcAdapter mAdapter;
     private EditText mGoal;
     private TextView mRequired;
-    private Button mCalculate;
     private String[] mWeights = {"1", "0.5", "2"};
 
     @Override
@@ -45,9 +43,9 @@ public class CalcActivity extends AppCompatActivity {
         mGoal = (EditText) findViewById(R.id.etGoal);
         mWeight2 = (Spinner) findViewById(R.id.sRelevance2);
         mRequired = (TextView) findViewById(R.id.tvGoalMark);
-        mWeight = (Spinner) findViewById(R.id.sRelevance);
-        mMarks = (RecyclerView) findViewById(R.id.rvMarks);
-        mCalculate = (Button) findViewById(R.id.bCalculate);
+        Spinner mWeight = (Spinner) findViewById(R.id.sRelevance);
+        RecyclerView mMarks = (RecyclerView) findViewById(R.id.rvMarks);
+        Button mCalculate = (Button) findViewById(R.id.bCalculate);
         mCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

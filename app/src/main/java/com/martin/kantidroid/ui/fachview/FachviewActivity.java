@@ -20,21 +20,18 @@ import java.util.List;
 
 public class FachviewActivity extends AppCompatActivity {
 
-    private Adapter mAdapter;
-    private int mSemester;
     private int mId;
-    private Fach mFach;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fachview_activity);
 
-        mSemester = getIntent().getIntExtra("semester", 1);
+        int mSemester = getIntent().getIntExtra("semester", 1);
         mId = getIntent().getIntExtra("id", 0);
 
         DatabaseHandler db = new DatabaseHandler(this);
-        mFach = db.getFach(mId);
+        Fach mFach = db.getFach(mId);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,7 +52,7 @@ public class FachviewActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        mAdapter = new Adapter(getSupportFragmentManager());
+        Adapter mAdapter = new Adapter(getSupportFragmentManager());
         mAdapter.addFragment(FachviewFragment.newInstance(mId, 1), getString(R.string.first_semester));
         mAdapter.addFragment(FachviewFragment.newInstance(mId, 2), getString(R.string.second_semester));
         viewPager.setAdapter(mAdapter);

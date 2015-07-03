@@ -17,12 +17,11 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
 
     private ArrayList<String> mEntries;
     private OnClickListener mCallback;
-    private Context mContext;
     private String[] mTempSplit;
     private String mDiff1, mDiff2;
 
     public GradesAdapter(Context context, ArrayList<String> entries, OnClickListener callback) {
-        mContext = context;
+        Context mContext = context;
         mEntries = entries;
         mCallback = callback;
         sort();

@@ -23,7 +23,6 @@ public class FachviewFragment extends Fragment {
     private int mSemester;
 
     private TextView mPromo, mRealAverage, mMathAverage, mKont;
-    private View mShowMarks, mShowKont, mShowEstimate;
     private Fach mFach;
 
     public static FachviewFragment newInstance(int id, int semester) {
@@ -57,7 +56,7 @@ public class FachviewFragment extends Fragment {
         mMathAverage = (TextView) rootView.findViewById(R.id.tvSchnitt);
         mKont = (TextView) rootView.findViewById(R.id.tvKontUsage);
 
-        mShowMarks = rootView.findViewById(R.id.rlShowMarks);
+        View mShowMarks = rootView.findViewById(R.id.rlShowMarks);
         mShowMarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +67,7 @@ public class FachviewFragment extends Fragment {
                 startActivityForResult(i, 1);
             }
         });
-        mShowKont = rootView.findViewById(R.id.rlShowKont);
+        View mShowKont = rootView.findViewById(R.id.rlShowKont);
         mShowKont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +78,7 @@ public class FachviewFragment extends Fragment {
                 startActivityForResult(i, 1);
             }
         });
-        mShowEstimate = rootView.findViewById(R.id.rlCalculator);
+        View mShowEstimate = rootView.findViewById(R.id.rlCalculator);
         mShowEstimate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,8 +87,7 @@ public class FachviewFragment extends Fragment {
                     i.putExtra("id", mId);
                     i.putExtra("semester", mSemester);
                     startActivity(i);
-                }
-                else {
+                } else {
                     Toast.makeText(getActivity(), R.string.no_marks, Toast.LENGTH_SHORT).show();
                 }
             }

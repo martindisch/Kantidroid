@@ -24,9 +24,7 @@ import java.util.List;
 
 public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClickListener, View.OnClickListener {
 
-    private RecyclerView mSubjects;
     private SubjectsAdapter mAdapter;
-    private FloatingActionButton mFab;
     private int mEditingIndex = -1;
 
     public static SubjectsFragment newInstance() {
@@ -64,8 +62,8 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle(R.string.subjects);
 
-        mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
-        mFab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        RecyclerView mSubjects = (RecyclerView) rootView.findViewById(R.id.rvSubjects);
+        FloatingActionButton mFab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         mFab.setOnClickListener(this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

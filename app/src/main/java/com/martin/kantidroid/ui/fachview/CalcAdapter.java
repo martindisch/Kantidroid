@@ -21,7 +21,6 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
     private final String[] mPicGrades = {"6", "5.5", "5", "4.5", "4"};
     private Context mContext;
     private String mWeight = "1";
-    private double mRequired;
     private Resources mRes;
 
     public CalcAdapter(Context context, Fach fach, int semester) {
@@ -63,7 +62,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             holder.tvName.setText(R.string.actual);
         }
         holder.tvPic.setText(mPicGrades[position]);
-        mRequired = Util.getRequired(mContext, mFach.getID(), mSemester, mWeight, Double.parseDouble(mPicGrades[position]) - 0.25 + "");
+        double mRequired = Util.getRequired(mContext, mFach.getID(), mSemester, mWeight, Double.parseDouble(mPicGrades[position]) - 0.25 + "");
         holder.tvMark.setText(mRequired + "");
         if (mRequired > 6 || mRequired < 1) {
             holder.tvMark.setTextColor(mRes.getColor(R.color.red_dark));
