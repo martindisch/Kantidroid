@@ -87,7 +87,7 @@ public class PromoCheck {
         return new String[]{sMessage, sPP, sSchnitt};
     }
 
-    public PromoRes getGym(int iSemester) {
+    private PromoRes getGym(int iSemester) {
         Fach entry;
         double plus = 0;
         double minus = 0;
@@ -229,7 +229,7 @@ public class PromoCheck {
         return new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
     }
 
-    public PromoRes getHMS(int iSemester) {
+    private PromoRes getHMS(int iSemester) {
         Fach entry;
         double minus = 0;
         int total_minus = 0;
@@ -310,7 +310,7 @@ public class PromoCheck {
         return new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
     }
 
-    public PromoRes getFMS(int iSemester) {
+    private PromoRes getFMS(int iSemester) {
         Fach entry;
         double minus = 0;
         double schn = 0;
