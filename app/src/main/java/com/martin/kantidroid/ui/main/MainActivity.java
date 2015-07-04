@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Primer;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 updateContainer();
             }
         });
+
+        Glide.with(this).load(R.drawable.kanti).into((ImageView) mDrawerLayout.findViewById(R.id.ivHeader));
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         if (mNavigationView != null) {
