@@ -39,6 +39,7 @@ public class PromoCheck {
         String sMessage = "Bestanden";
         String sPP;
         String sSchnitt;
+        String sZeugnis;
 
         DatabaseHandler db = new DatabaseHandler(context);
         int count = db.getFachCount();
@@ -46,8 +47,9 @@ public class PromoCheck {
         for (int i = 0; i < count; i++) {
             entry = faecher.get(i);
             if (entry.getPromotionsrelevant().contentEquals("true")) {
-                if (!entry.getZeugnis().contentEquals("")) {
-                    schn = (Double.parseDouble(entry.getZeugnis()));
+                sZeugnis = entry.getZeugnis();
+                if (!sZeugnis.contentEquals("")) {
+                    schn = (Double.parseDouble(sZeugnis));
                     if (schn > 4) {
                         plus += schn - 4;
                     }
@@ -55,7 +57,7 @@ public class PromoCheck {
                         minus += 4 - schn;
                         total_minus++;
                     }
-                    total += (Double.parseDouble(entry.getZeugnis()));
+                    total += (Double.parseDouble(sZeugnis));
                     fcount++;
                 }
 
@@ -101,6 +103,7 @@ public class PromoCheck {
         int iColor = R.color.promo_white;
         String sPP;
         String sSchnitt;
+        String realAverage1, mathAverage1, realAverage2, mathAverage2;
 
         DatabaseHandler db = new DatabaseHandler(context);
         int count = db.getFachCount();
@@ -111,35 +114,43 @@ public class PromoCheck {
 
                 switch (iSemester) {
                     case 1:
-                        if (!entry.getRealAverage1().contentEquals("")) {
-                            if (Double.parseDouble(entry.getRealAverage1()) > 4) {
-                                plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
+                        realAverage1 = entry.getRealAverage1();
+                        mathAverage1 = entry.getMathAverage1();
+                        if (!realAverage1.contentEquals("")) {
+                            if (Double.parseDouble(realAverage1) > 4) {
+                                plus += (Double.parseDouble(realAverage1) - 4);
                             }
-                            if (Double.parseDouble(entry.getRealAverage1()) < 4) {
-                                minus += (4 - Double.parseDouble(entry.getRealAverage1()));
+                            if (Double.parseDouble(realAverage1) < 4) {
+                                minus += (4 - Double.parseDouble(realAverage1));
                                 total_minus++;
                             }
-                            total += Double.parseDouble(entry.getMathAverage1());
+                            total += Double.parseDouble(mathAverage1);
                             fcount++;
                         }
                         break;
                     case 2:
-                        if (!entry.getRealAverage2().contentEquals("")) {
-                            if (Double.parseDouble(entry.getRealAverage2()) > 4) {
-                                plus += Double.parseDouble(entry.getRealAverage2()) - 4;
+                        realAverage2 = entry.getRealAverage2();
+                        mathAverage2 = entry.getMathAverage2();
+                        if (!realAverage2.contentEquals("")) {
+                            if (Double.parseDouble(realAverage2) > 4) {
+                                plus += Double.parseDouble(realAverage2) - 4;
                             }
-                            if (Double.parseDouble(entry.getRealAverage2()) < 4) {
-                                minus += 4 - Double.parseDouble(entry.getRealAverage2());
+                            if (Double.parseDouble(realAverage2) < 4) {
+                                minus += 4 - Double.parseDouble(realAverage2);
                                 total_minus++;
                             }
-                            total += Double.parseDouble(entry.getMathAverage2());
+                            total += Double.parseDouble(mathAverage2);
                             fcount++;
                         }
                         break;
                     case 3:
                         // Falls beide Semester ausgefüllt
-                        if (!entry.getRealAverage1().contentEquals("") && !entry.getRealAverage2().contentEquals("")) {
-                            schn = (Double.parseDouble(entry.getRealAverage1()) + Double.parseDouble(entry.getRealAverage2())) / 2;
+                        realAverage1 = entry.getRealAverage1();
+                        mathAverage1 = entry.getMathAverage1();
+                        realAverage2 = entry.getRealAverage2();
+                        mathAverage2 = entry.getMathAverage2();
+                        if (!realAverage1.contentEquals("") && !realAverage2.contentEquals("")) {
+                            schn = (Double.parseDouble(realAverage1) + Double.parseDouble(realAverage2)) / 2;
                             if (schn > 4) {
                                 plus += schn - 4;
                             }
@@ -147,33 +158,33 @@ public class PromoCheck {
                                 minus += 4 - schn;
                                 total_minus++;
                             }
-                            total += (Double.parseDouble(entry.getMathAverage1()) + Double.parseDouble(entry.getMathAverage2())) / 2;
+                            total += (Double.parseDouble(mathAverage1) + Double.parseDouble(mathAverage2)) / 2;
                             fcount++;
                         }
 
                         // Falls nur erstes Semester ausgefüllt
-                        if (entry.getRealAverage2().contentEquals("") && !entry.getRealAverage1().contentEquals("")) {
-                            if (Double.parseDouble(entry.getRealAverage1()) > 4) {
-                                plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
+                        if (realAverage2.contentEquals("") && !realAverage1.contentEquals("")) {
+                            if (Double.parseDouble(realAverage1) > 4) {
+                                plus += (Double.parseDouble(realAverage1) - 4);
                             }
-                            if (Double.parseDouble(entry.getRealAverage1()) < 4) {
-                                minus += (4 - Double.parseDouble(entry.getRealAverage1()));
+                            if (Double.parseDouble(realAverage1) < 4) {
+                                minus += (4 - Double.parseDouble(realAverage1));
                                 total_minus++;
                             }
-                            total += Double.parseDouble(entry.getMathAverage1());
+                            total += Double.parseDouble(mathAverage1);
                             fcount++;
                         }
 
                         // Falls nur zweites Semester ausgefüllt
-                        if (!entry.getRealAverage2().contentEquals("") && entry.getRealAverage1().contentEquals("")) {
-                            if (Double.parseDouble(entry.getRealAverage2()) > 4) {
-                                plus += Double.parseDouble(entry.getRealAverage2()) - 4;
+                        if (!realAverage2.contentEquals("") && realAverage1.contentEquals("")) {
+                            if (Double.parseDouble(realAverage2) > 4) {
+                                plus += Double.parseDouble(realAverage2) - 4;
                             }
-                            if (Double.parseDouble(entry.getRealAverage2()) < 4) {
-                                minus += 4 - Double.parseDouble(entry.getRealAverage2());
+                            if (Double.parseDouble(realAverage2) < 4) {
+                                minus += 4 - Double.parseDouble(realAverage2);
                                 total_minus++;
                             }
-                            total += Double.parseDouble(entry.getMathAverage2());
+                            total += Double.parseDouble(mathAverage2);
                             fcount++;
                         }
                         break;

@@ -201,8 +201,9 @@ public class Fach {
 
     public String getRealAverage1() {
         String return_value;
-        if (!this.getMathAverage1().contentEquals("")) {
-            double MathAverage = Double.parseDouble(this.getMathAverage1());
+        String average = getMathAverage1();
+        if (!average.contentEquals("")) {
+            double MathAverage = Double.parseDouble(average);
             /*
              * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
 			 * RealAverage = Double.valueOf(oneDForm.format(MathAverage));
@@ -221,8 +222,9 @@ public class Fach {
 
     public String getRealAverage2() {
         String return_value;
-        if (!this.getMathAverage2().contentEquals("")) {
-            double MathAverage = Double.parseDouble(this.getMathAverage2());
+        String average = getMathAverage2();
+        if (!average.contentEquals("")) {
+            double MathAverage = Double.parseDouble(average);
             /*
              * DecimalFormat oneDForm = new DecimalFormat("#.#"); double
 			 * RealAverage = Double.valueOf(oneDForm.format(MathAverage));
