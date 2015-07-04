@@ -179,8 +179,7 @@ public class OverviewFragment extends Fragment {
         if (mFirsttime) {
             mFirsttime = false;
         } else {
-            mAdapter.loadData(getActivity());
-            showInfo(mViewPager.getCurrentItem() + 1);
+            loadData();
         }
     }
 
@@ -313,7 +312,6 @@ public class OverviewFragment extends Fragment {
             return mFragmentTitles.get(position);
         }
 
-        // TODO: Reconsider loading all data in children off-thread
         public void loadData(Activity c) {
             for (int i = 0; i < 2; i++) {
                 ((OverviewSubjectsFragment) mFragments.get(i)).loadData(c);
