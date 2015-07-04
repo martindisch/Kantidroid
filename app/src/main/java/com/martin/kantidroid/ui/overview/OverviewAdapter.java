@@ -70,7 +70,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             holder.tvName.setTextColor(mContext.getResources().getColor(R.color.promo_black));
             holder.tvKont.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
             holder.tvKont.setTextColor(mContext.getResources().getColor(R.color.promo_black));
-            holder.rlPic.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
+            holder.tvPic.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
             holder.tvPic.setTextColor(mContext.getResources().getColor(R.color.promo_black));
         } else {
             holder.tvGrades.setBackgroundColor(Util.getNormal(mContext, mTempFach.getColor()));
@@ -78,7 +78,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             holder.tvName.setTextColor(mContext.getResources().getColor(R.color.promo_white));
             holder.tvKont.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
             holder.tvKont.setTextColor(mContext.getResources().getColor(R.color.promo_white));
-            holder.rlPic.setBackgroundColor(Util.getLight(mContext, mTempFach.getColor()));
+            holder.tvPic.setBackgroundColor(Util.getLight(mContext, mTempFach.getColor()));
             holder.tvPic.setTextColor(mContext.getResources().getColor(R.color.promo_white));
         }
 
@@ -99,7 +99,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         public final TextView tvPic;
         public final TextView tvGrades;
         public final TextView tvKont;
-        public final View rlPic;
         public final View rlItem;
 
         public ViewHolder(View v) {
@@ -108,7 +107,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             tvPic = (TextView) v.findViewById(R.id.tvPic);
             tvGrades = (TextView) v.findViewById(R.id.tvGrades);
             tvKont = (TextView) v.findViewById(R.id.tvKont);
-            rlPic = v.findViewById(R.id.rlPic);
             rlItem = v.findViewById(R.id.rlItem);
         }
     }

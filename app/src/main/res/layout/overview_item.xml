@@ -10,8 +10,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:gravity="center_horizontal"
-        android:padding="@dimen/widget_margin"
-        android:textColor="@color/primary_text_default_material_dark" />
+        android:padding="@dimen/widget_margin" />
 
     <TextView
         android:id="@+id/tvGrades"
@@ -20,8 +19,8 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/tvKont"
         android:gravity="center_horizontal"
-        android:padding="@dimen/widget_margin"
-        android:textColor="@color/primary_text_default_material_dark" />
+        android:textColor="@color/primary_text_default_material_dark"
+        android:padding="@dimen/widget_margin" />
 
     <TextView
         android:id="@+id/tvName"
@@ -31,22 +30,14 @@
         android:layout_toLeftOf="@id/tvGrades"
         android:ellipsize="end"
         android:padding="@dimen/widget_margin"
-        android:singleLine="true"
-        android:textColor="@color/primary_text_default_material_dark" />
+        android:singleLine="true" />
 
-    <RelativeLayout
-        android:id="@+id/rlPic"
+    <TextView
+        android:id="@+id/tvPic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tvName">
-
-        <TextView
-            android:id="@+id/tvPic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/primary_text_default_material_dark"
-            android:textSize="55sp" />
-    </RelativeLayout>
+        android:layout_above="@id/tvName"
+        android:gravity="center"
+        android:textSize="55sp" />
 
 </RelativeLayout>
