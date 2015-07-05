@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -130,18 +131,19 @@ public class OverviewFragment extends Fragment {
     }
 
     private void showInfo(final int semester) {
+        final Resources res = getResources();
         if (semester != 3) {
             final PromoRes promo = new PromoCheck(getActivity()).getPromo(semester);
             mPromo.setText(promo.sMessage);
-            mPromo.setTextColor(getResources().getColor(promo.iColor));
+            mPromo.setTextColor(res.getColor(promo.iColor));
             if (promo.iColor == R.color.promo_black) {
-                mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
-                mPP.setBackgroundColor(getResources().getColor(R.color.promo_black));
+                mPromo.setBackgroundColor(res.getColor(R.color.promo_white));
+                mPP.setBackgroundColor(res.getColor(R.color.promo_black));
                 // TODO: Test with all possible messages on different devices
                 mPromo.setTextSize(14);
             } else {
-                mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
-                mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
+                mPromo.setBackgroundColor(res.getColor(R.color.highlight_dark));
+                mPP.setBackgroundColor(res.getColor(R.color.highlight_light));
                 mPromo.setTextSize(16);
             }
             mPP.setText(promo.sPP);
@@ -150,18 +152,18 @@ public class OverviewFragment extends Fragment {
             String[] finalResult = new PromoCheck(getActivity()).getPromoFinal();
             if (finalResult[0].contentEquals("Bestanden")) {
                 mPromo.setTextSize(16);
-                mPromo.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
-                mPromo.setTextColor(getResources().getColor(R.color.promo_white));
+                mPromo.setBackgroundColor(res.getColor(R.color.highlight_dark));
+                mPromo.setTextColor(res.getColor(R.color.promo_white));
             } else {
                 mPromo.setTextSize(14);
-                mPromo.setBackgroundColor(getResources().getColor(R.color.promo_white));
-                mPromo.setTextColor(getResources().getColor(R.color.promo_black));
+                mPromo.setBackgroundColor(res.getColor(R.color.promo_white));
+                mPromo.setTextColor(res.getColor(R.color.promo_black));
             }
             mPromo.setText(finalResult[0]);
             mPP.setText(finalResult[1]);
-            mPP.setBackgroundColor(getResources().getColor(R.color.highlight_light));
+            mPP.setBackgroundColor(res.getColor(R.color.highlight_light));
             mKont.setText(finalResult[2]);
-            mKont.setBackgroundColor(getResources().getColor(R.color.highlight_dark));
+            mKont.setBackgroundColor(res.getColor(R.color.highlight_dark));
         }
     }
 
