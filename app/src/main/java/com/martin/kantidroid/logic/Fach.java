@@ -123,20 +123,22 @@ public class Fach {
 
     public String getZeugnis() {
         String schnitt = "";
+        String realAverage1 = getRealAverage1();
+        String realAverage2 = getRealAverage2();
         // In case both semesters have data
-        if (!this.getRealAverage1().contentEquals("") && !this.getRealAverage2().contentEquals("")) {
-            double RealAverage = Math.round((Double.parseDouble(getRealAverage1()) + Double.parseDouble(getRealAverage2())) / 2 * 4) / 4f;
+        if (!realAverage1.contentEquals("") && !realAverage2.contentEquals("")) {
+            double RealAverage = Math.round((Double.parseDouble(realAverage1) + Double.parseDouble(realAverage2)) / 2 * 4) / 4f;
             schnitt = RealAverage + "";
         }
 
         // In case only first semester has data
-        if (this.getRealAverage2().contentEquals("") && !this.getRealAverage1().contentEquals("")) {
-            schnitt = this.getRealAverage1() + "";
+        if (realAverage2.contentEquals("") && !realAverage1.contentEquals("")) {
+            schnitt = realAverage1 + "";
         }
 
         // In case only second semester has data
-        if (!this.getRealAverage2().contentEquals("") && this.getRealAverage1().contentEquals("")) {
-            schnitt = this.getRealAverage2() + "";
+        if (!realAverage2.contentEquals("") && realAverage1.contentEquals("")) {
+            schnitt = realAverage2 + "";
         }
         String result;
         if (schnitt.contentEquals("")) {
