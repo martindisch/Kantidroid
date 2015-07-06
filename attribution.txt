@@ -37,3 +37,9 @@ serso	LinearLayoutManager for RecyclerView wrap_content
 	
 lapastillaroja	DividerItemDecoration with configurable start/end divider
 	https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36
+	
+Dropbox
+	Core library (MIT)
+	
+JSON.simple
+	Apache
