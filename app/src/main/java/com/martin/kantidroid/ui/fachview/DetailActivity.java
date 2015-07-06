@@ -178,6 +178,8 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
                     fach.removeMark(mSemester, mGradesAdapter.getData().get(position));
                     db.updateFach(fach);
                     mGradesAdapter.remove(position);
+                    showInfo();
+                    setResult(1);
                 }
             });
             builder.show();
@@ -192,6 +194,8 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
                     fach.removeKont(mSemester, mKontAdapter.getData().get(position));
                     db.updateFach(fach);
                     mKontAdapter.remove(position);
+                    showInfo();
+                    setResult(1);
                 }
             });
             builder.show();
