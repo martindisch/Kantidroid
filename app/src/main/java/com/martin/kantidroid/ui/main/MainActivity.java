@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Primer;
+import com.martin.kantidroid.ui.backup.BackupFragment;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 
@@ -87,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     fragment = OverviewFragment.newInstance();
                     tag = "overview";
+                    break;
+                case 2:
+                    fragment = BackupFragment.newInstance();
+                    tag = "backup";
                     break;
                 case 3:
                     fragment = SubjectsFragment.newInstance();
