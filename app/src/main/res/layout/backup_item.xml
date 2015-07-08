@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/widget_margin_large"
-    android:paddingTop="@dimen/widget_margin_large"
+    android:padding="@dimen/widget_margin_large"
     android:focusable="true"
     android:clickable="true"
     android:background="@drawable/btn_flat_selector">
