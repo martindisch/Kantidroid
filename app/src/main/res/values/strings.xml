@@ -218,6 +218,11 @@
     <string name="calculator">Rechner</string>
     <string name="goal">Gewünschte Note</string>
     <string name="calculate">Berechnen</string>
+    <string name="backup_local">Lokales Backup</string>
+    <string name="backup_title_1">Backup lokal speichern</string>
+    <string name="backup_title_2">Lokales Backup importieren</string>
+    <string name="backup_msg_1">Speichert die Daten auf dem externen Speicher im Ordner \"Kantidroid\\Backup\"</string>
+    <string name="backup_msg_2">Importiert Daten vom Ordner \"Kantidroid\\Backup\" auf dem externen Speicher</string>
 
     <string-array name="weights">
         <item>1.0 Ganz</item>

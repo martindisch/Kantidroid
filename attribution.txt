@@ -12,6 +12,7 @@ Google
 	https://materialdesignicons.com/icon/weight
 	https://materialdesignicons.com/icon/numeric
 	https://materialdesignicons.com/icon/calendar
+	https://materialdesignicons.com/icon/check
 	Android Open Source Project, Support Library (Apache)
 	iosched 14 SlidingTabs (Apache, included in source)
 	
@@ -19,6 +20,7 @@ Austin Andrews
 	http://materialdesignicons.com/icon/book-open
 	http://materialdesignicons.com/icon/timetable
 	http://materialdesignicons.com/icon/alphabetical
+	https://materialdesignicons.com/icon/import
 	
 Chiu-Ki Chan
 	https://github.com/chiuki/android-recyclerview
