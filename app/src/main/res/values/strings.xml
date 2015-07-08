@@ -194,6 +194,7 @@
     <string name="zeugnis">Zeugnis</string>
     <string name="finish_year">Jahr abschliessen</string>
     <string name="finish_question">Willst du Noten und Kontingent endgültig zurücksetzen?</string>
+    <string name="sImport">Importieren</string>
 
     <string-array name="sorting_entries">
         <item id="@+id/iSortName">Namen</item>

@@ -7,6 +7,8 @@
     <color name="highlight_dark">#0a729e</color>
     <color name="highlight_light">#2d8fc5</color>
 
+    <color name="dropbox">#007EE5</color>
+
     <color name="divider">#e0e0e0</color>
 
     <color name="window_background">#FFF5F5F5</color>

@@ -35,4 +35,14 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="AppCompat.Button.Flat.Black" parent="AppCompat.Button.Flat.Common">
+        <item name="android:textColor">@color/primary_text_default_material_light</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="AppCompat.Button.Flat.Dropbox" parent="AppCompat.Button.Flat.Common">
+        <item name="android:textColor">@color/dropbox</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 </resources>
