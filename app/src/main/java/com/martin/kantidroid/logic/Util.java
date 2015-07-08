@@ -153,6 +153,35 @@ public class Util {
         return 1;
     }
 
+    public static int importLocal(Context context) {
+        if (Environment.getExternalStorageState().contentEquals(Environment.MEDIA_MOUNTED)) {
+            File dbPath = context.getDatabasePath("Kantidroid");
+            if (dbPath.isFile()) {
+                File localBackup = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/local");
+                File dbLocal = new File(localBackup + "/database");
+                File prefsLocal = new File(localBackup + "/shared_prefs");
+                if (dbLocal.isFile()) {
+                    try {
+                        copy(dbLocal, dbPath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return 4;
+                    }
+                    if (prefsLocal.isFile()) {
+                        if (loadSharedPreferencesFromFile(context, prefsLocal)) {
+                            return 0;
+                        }
+                        return 6;
+                    }
+                    return 5;
+                }
+                return 3;
+            }
+            return 2;
+        }
+        return 1;
+    }
+
     private static boolean saveSharedPreferencesToFile(Context context, File dst) {
         boolean res = false;
         ObjectOutputStream output = null;

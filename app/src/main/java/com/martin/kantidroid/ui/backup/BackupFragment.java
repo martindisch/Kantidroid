@@ -78,7 +78,31 @@ public class BackupFragment extends Fragment {
                     Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                 }
                 else {
-
+                    String msg = "";
+                    switch (Util.importLocal(getActivity())) {
+                        case 0:
+                            msg = getString(R.string.import_success);
+                            break;
+                        case 1:
+                            msg = getString(R.string.backup_ext_unavailable);
+                            break;
+                        case 2:
+                            msg = getString(R.string.backup_db_notfile);
+                            break;
+                        case 3:
+                            msg = getString(R.string.import_nodblocal);
+                            break;
+                        case 4:
+                            msg = getString(R.string.import_db_copyfailed);
+                            break;
+                        case 5:
+                            msg = getString(R.string.import_prefs_nolocal);
+                            break;
+                        case 6:
+                            msg = getString(R.string.import_prefs_notcopied);
+                            break;
+                    }
+                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                 }
             }
         });
