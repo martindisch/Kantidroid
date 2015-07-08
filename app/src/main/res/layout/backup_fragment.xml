@@ -44,9 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/widget_margin_large"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/dropbox" />
+                        android:adjustViewBounds="true" />
 
                     <ImageView
                         android:id="@+id/ivCheck"

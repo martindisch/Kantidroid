@@ -9,7 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 import com.martin.kantidroid.ui.util.LinearLayoutManager;
@@ -56,6 +58,8 @@ public class BackupFragment extends Fragment {
             }
         });
         mSelection.setAdapter(adapter);
+
+        Glide.with(this).load(R.drawable.dropbox).fitCenter().into((ImageView) rootView.findViewById(R.id.ivDropboxLogo));
 
         return rootView;
     }
