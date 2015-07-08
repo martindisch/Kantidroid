@@ -1,12 +1,24 @@
 package com.martin.kantidroid.logic;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Environment;
 
 import com.martin.kantidroid.R;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Map;
 
 public class Util {
 
@@ -117,5 +129,110 @@ public class Util {
 
     public static boolean getSeen(Context c, String key) {
         return c.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).contains(key);
+    }
+
+    public static int backupLocal(Context context) {
+        if (Environment.getExternalStorageState().contentEquals(Environment.MEDIA_MOUNTED)) {
+            File dbPath = context.getDatabasePath("Kantidroid");
+            if (dbPath.isFile()) {
+                File localDest = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/local");
+                localDest.mkdirs();
+                try {
+                    copy(dbPath, new File(localDest + "/database"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return 3;
+                }
+                if (saveSharedPreferencesToFile(context, new File(localDest + "/shared_prefs"))) {
+                    return 0;
+                }
+                return 4;
+            }
+            return 2;
+        }
+        return 1;
+    }
+
+    private static boolean saveSharedPreferencesToFile(Context context, File dst) {
+        boolean res = false;
+        ObjectOutputStream output = null;
+        try {
+            output = new ObjectOutputStream(new FileOutputStream(dst));
+            SharedPreferences pref = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+            output.writeObject(pref.getAll());
+
+            res = true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (output != null) {
+                    output.flush();
+                    output.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return res;
+    }
+
+    private static boolean loadSharedPreferencesFromFile(Context context, File src) {
+        boolean res = false;
+        ObjectInputStream input = null;
+        try {
+            input = new ObjectInputStream(new FileInputStream(src));
+            SharedPreferences.Editor prefEdit = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit();
+            prefEdit.clear();
+            Map<String, ?> entries = (Map<String, ?>) input.readObject();
+            for (Map.Entry<String, ?> entry : entries.entrySet()) {
+                Object v = entry.getValue();
+                String key = entry.getKey();
+
+                if (v instanceof Boolean)
+                    prefEdit.putBoolean(key, ((Boolean) v).booleanValue());
+                else if (v instanceof Float)
+                    prefEdit.putFloat(key, ((Float) v).floatValue());
+                else if (v instanceof Integer)
+                    prefEdit.putInt(key, ((Integer) v).intValue());
+                else if (v instanceof Long)
+                    prefEdit.putLong(key, ((Long) v).longValue());
+                else if (v instanceof String)
+                    prefEdit.putString(key, ((String) v));
+            }
+            prefEdit.commit();
+            res = true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (input != null) {
+                    input.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return res;
+    }
+
+    private static void copy(File src, File dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        OutputStream out = new FileOutputStream(dst);
+
+        // Transfer bytes from in to out
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
     }
 }

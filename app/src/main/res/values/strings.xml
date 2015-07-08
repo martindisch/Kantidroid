@@ -223,6 +223,11 @@
     <string name="backup_title_2">Lokales Backup importieren</string>
     <string name="backup_msg_1">Speichert die Daten auf dem externen Speicher im Ordner \"Kantidroid\\Backup\"</string>
     <string name="backup_msg_2">Importiert Daten vom Ordner \"Kantidroid\\Backup\" auf dem externen Speicher</string>
+    <string name="backup_success">Lokales Backup erfolgreich</string>
+    <string name="backup_ext_unavailable">Speichermedium nicht verfügbar</string>
+    <string name="backup_db_notfile">Datenbank nicht verfügbar</string>
+    <string name="backup_db_copyfailed">Datenbank konnte nicht gesichert werden</string>
+    <string name="backup_prefs_notcopied">Einstellungen konnten nicht gesichert werden</string>
 
     <string-array name="weights">
         <item>1.0 Ganz</item>

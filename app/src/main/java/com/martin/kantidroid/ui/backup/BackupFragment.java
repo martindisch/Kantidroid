@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 import com.martin.kantidroid.ui.util.LinearLayoutManager;
 
@@ -54,7 +56,30 @@ public class BackupFragment extends Fragment {
         BackupAdapter adapter = new BackupAdapter(getActivity(), new BackupAdapter.OnClickListener() {
             @Override
             public void onItemClick(View v, int position) {
+                if (position == 0) {
+                    String msg = "";
+                    switch (Util.backupLocal(getActivity())) {
+                        case 0:
+                            msg = getString(R.string.backup_success);
+                            break;
+                        case 1:
+                            msg = getString(R.string.backup_ext_unavailable);
+                            break;
+                        case 2:
+                            msg = getString(R.string.backup_db_notfile);
+                            break;
+                        case 3:
+                            msg = getString(R.string.backup_db_copyfailed);
+                            break;
+                        case 4:
+                            msg = getString(R.string.backup_prefs_notcopied);
+                            break;
+                    }
+                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                }
+                else {
 
+                }
             }
         });
         mSelection.setAdapter(adapter);
