@@ -1,6 +1,8 @@
 package com.martin.kantidroid.ui.fachview;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,10 +12,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
+import com.martin.kantidroid.logic.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +52,14 @@ public class FachviewActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        toolbar.setBackgroundColor(Util.getLight(this, mFach.getColor()));
+        tabLayout.setBackgroundColor(Util.getLight(this, mFach.getColor()));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Util.getDark(this, mFach.getColor()));
+        }
 
         viewPager.setCurrentItem(mSemester - 1);
     }
