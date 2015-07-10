@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.main;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -84,12 +85,14 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment;
         String tag;
         if (mSelected != mCurrent) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
             switch (mSelected) {
                 case 0:
                     fragment = OverviewFragment.newInstance();
                     tag = "overview";
                     break;
                 case 2:
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
                     fragment = BackupFragment.newInstance();
                     tag = "backup";
                     break;

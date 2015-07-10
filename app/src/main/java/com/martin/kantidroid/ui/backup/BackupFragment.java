@@ -131,6 +131,7 @@ public class BackupFragment extends Fragment {
         mProgress = (ProgressBar) rootView.findViewById(R.id.pbDropbox);
         mCheck = (ImageView) rootView.findViewById(R.id.ivCheck);
         mStatus = (TextView) rootView.findViewById(R.id.tvDropbox);
+
         SharedPreferences sp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         if (sp.contains("dropbox_status")) {
             mCheck.setImageResource(R.drawable.ic_check);
@@ -303,6 +304,7 @@ public class BackupFragment extends Fragment {
                             mProgress.setVisibility(View.INVISIBLE);
                             mStatus.setText(endMsg);
                             if (result == 0) {
+                                Toast.makeText(getActivity(), endMsg, Toast.LENGTH_SHORT).show();
                                 mCheck.setImageResource(R.drawable.ic_check);
                                 mCheck.setVisibility(View.VISIBLE);
                                 Calendar c = Calendar.getInstance();
