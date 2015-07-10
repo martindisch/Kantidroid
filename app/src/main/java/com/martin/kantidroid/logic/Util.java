@@ -166,10 +166,14 @@ public class Util {
     }
 
     public static int importLocal(Context context) {
+        File localBackup = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/local");
+        return importLocalWithSrc(context, localBackup);
+    }
+
+    private static int importLocalWithSrc(Context context, File localBackup) {
         if (Environment.getExternalStorageState().contentEquals(Environment.MEDIA_MOUNTED)) {
             File dbPath = context.getDatabasePath("Kantidroid");
             if (dbPath.isFile()) {
-                File localBackup = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/local");
                 File dbLocal = new File(localBackup + "/database");
                 File prefsLocal = new File(localBackup + "/shared_prefs");
                 if (dbLocal.isFile()) {
@@ -212,12 +216,12 @@ public class Util {
                         dbAPI.putFileOverwrite("/shared_prefs", prefsInputStream, prefFile.length(), null);
                         prefsInputStream.close();
                         return 0;
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                        return 5;
                     } catch (DropboxException e) {
                         e.printStackTrace();
                         return 6;
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        return 5;
                     } catch (IOException e) {
                         e.printStackTrace();
                         return 7;
@@ -228,6 +232,47 @@ public class Util {
         };
         Future<Integer> future = executor.submit(callable);
         int returnValue = 8;
+        try {
+            returnValue = future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        executor.shutdown();
+        return returnValue;
+    }
+
+    public static int importDropbox(final Context context, final DropboxAPI<AndroidAuthSession> dbAPI) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Callable<Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() {
+                File localBackup = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/Dropbox");
+                File dbFile = new File(localBackup + "/database");
+                File prefsFile = new File(localBackup + "/shared_prefs");
+                try {
+                    FileOutputStream dbOutputStream = new FileOutputStream(new File(localBackup + "/database"));
+                    dbAPI.getFile("/database", null, dbOutputStream, null);
+                    dbOutputStream.close();
+                    FileOutputStream prefsOutputStream = new FileOutputStream(new File(localBackup + "/shared_prefs"));
+                    dbAPI.getFile("/shared_prefs", null, prefsOutputStream, null);
+                    prefsOutputStream.close();
+                } catch (DropboxException e) {
+                    e.printStackTrace();
+                    return 7;
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    return 8;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return 9;
+                }
+                return importLocalWithSrc(context, localBackup);
+            }
+        };
+        Future<Integer> future = executor.submit(callable);
+        int returnValue = 10;
         try {
             returnValue = future.get();
         } catch (InterruptedException e) {

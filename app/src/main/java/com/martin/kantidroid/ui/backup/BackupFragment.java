@@ -172,8 +172,7 @@ public class BackupFragment extends Fragment {
                 if (session.isLinked()) {
                     linked = true;
                 }
-            }
-            else {
+            } else {
                 mDBApi = new DropboxAPI<AndroidAuthSession>(session);
                 mDBApi.getSession().startOAuth2Authentication(getActivity());
                 return false;
@@ -225,9 +224,9 @@ public class BackupFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getActivity(), endMsg, Toast.LENGTH_SHORT).show();
                             mProgress.setVisibility(View.INVISIBLE);
                             if (result == 0) {
+                                Toast.makeText(getActivity(), endMsg, Toast.LENGTH_SHORT).show();
                                 mCheck.setImageResource(R.drawable.ic_check);
                                 mCheck.setVisibility(View.VISIBLE);
                                 Calendar c = Calendar.getInstance();
@@ -238,11 +237,14 @@ public class BackupFragment extends Fragment {
                                 SharedPreferences.Editor editor = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit();
                                 editor.putString("dropbox_status", message);
                                 editor.commit();
+                            } else {
+                                mCheck.setImageResource(R.drawable.ic_failed);
+                                mCheck.setVisibility(View.VISIBLE);
+                                mStatus.setText(endMsg);
                             }
                         }
                     });
-                }
-                catch (IllegalStateException e) {
+                } catch (IllegalStateException e) {
                     e.printStackTrace();
                 }
             }
@@ -250,7 +252,77 @@ public class BackupFragment extends Fragment {
     }
 
     private void dropboxImport() {
-        Log.e("FFF", "Now I would be importing");
+        mCheck.setVisibility(View.INVISIBLE);
+        mProgress.setVisibility(View.VISIBLE);
+        mStatus.setText(R.string.backup_db_importing);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String msg = "";
+                    final int result = Util.importDropbox(getActivity(), mDBApi);
+                    switch (result) {
+                        case 0:
+                            msg = getString(R.string.import_success);
+                            break;
+                        case 1:
+                            msg = getString(R.string.backup_ext_unavailable);
+                            break;
+                        case 2:
+                            msg = getString(R.string.backup_db_notfile);
+                            break;
+                        case 3:
+                            msg = getString(R.string.import_nodblocal);
+                            break;
+                        case 4:
+                            msg = getString(R.string.import_db_copyfailed);
+                            break;
+                        case 5:
+                            msg = getString(R.string.import_prefs_nolocal);
+                            break;
+                        case 6:
+                            msg = getString(R.string.import_prefs_notcopied);
+                            break;
+                        case 7:
+                            msg = getString(R.string.import_db_fail);
+                            break;
+                        case 8:
+                            msg = getString(R.string.import_db_notfound);
+                            break;
+                        case 9:
+                            msg = getString(R.string.backup_db_inputstream);
+                            break;
+                        case 10:
+                            msg = getString(R.string.backup_db_future);
+                            break;
+                    }
+                    final String endMsg = msg;
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mProgress.setVisibility(View.INVISIBLE);
+                            mStatus.setText(endMsg);
+                            if (result == 0) {
+                                mCheck.setImageResource(R.drawable.ic_check);
+                                mCheck.setVisibility(View.VISIBLE);
+                                Calendar c = Calendar.getInstance();
+                                SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+                                String date = df.format(c.getTime());
+                                String message = getString(R.string.backup_db_msg) + " " + date;
+                                SharedPreferences.Editor editor = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit();
+                                editor.putString("dropbox_status", message);
+                                editor.commit();
+                            } else {
+                                mCheck.setImageResource(R.drawable.ic_failed);
+                                mCheck.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
@@ -270,8 +342,7 @@ public class BackupFragment extends Fragment {
                         linked = true;
                         if (mAction == 1) {
                             dropboxBackup();
-                        }
-                        else if (mAction == 2) {
+                        } else if (mAction == 2) {
                             dropboxImport();
                         }
                     }
