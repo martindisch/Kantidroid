@@ -243,7 +243,7 @@
     <string name="backup_db_msg">Letztes Backup vom</string>
     <string name="backup_db_backingup">Backup läuft…</string>
     <string name="backup_db_importing">Daten werden importiert…</string>
-    <string name="import_db_fail">Datei konnte nicht von Dropbox geladen werden - keine Internetverbindung?</string>
+    <string name="import_db_fail">Backup nicht gefunden - Keine Internetverbindung oder kein Backup auf Dropbox vorhanden</string>
     <string name="import_db_notfound">Zieldatei konnte nicht gefunden werden</string>
 
     <string-array name="weights">
