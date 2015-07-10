@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,9 @@ import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 import com.martin.kantidroid.ui.util.LinearLayoutManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class BackupFragment extends Fragment {
 
     private DropboxAPI<AndroidAuthSession> mDBApi;
@@ -33,6 +37,7 @@ public class BackupFragment extends Fragment {
     private int mAction;
     private ProgressBar mProgress;
     private ImageView mCheck;
+    private TextView mStatus;
 
     public static BackupFragment newInstance() {
         return new BackupFragment();
@@ -123,10 +128,14 @@ public class BackupFragment extends Fragment {
         });
         mSelection.setAdapter(adapter);
 
-        Glide.with(this).load(R.drawable.dropbox).fitCenter().into((ImageView) rootView.findViewById(R.id.ivDropboxLogo));
-
         mProgress = (ProgressBar) rootView.findViewById(R.id.pbDropbox);
         mCheck = (ImageView) rootView.findViewById(R.id.ivCheck);
+        mStatus = (TextView) rootView.findViewById(R.id.tvDropbox);
+        SharedPreferences sp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        if (sp.contains("dropbox_status")) {
+            mCheck.setImageResource(R.drawable.ic_check);
+        }
+        mStatus.setText(sp.getString("dropbox_status", getString(R.string.backup_db_nobackup)));
 
         rootView.findViewById(R.id.bBackupDropbox).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +155,8 @@ public class BackupFragment extends Fragment {
                 }
             }
         });
+
+        Glide.with(this).load(R.drawable.dropbox).fitCenter().into((ImageView) rootView.findViewById(R.id.ivDropboxLogo));
 
         return rootView;
     }
@@ -174,12 +185,14 @@ public class BackupFragment extends Fragment {
     private void dropboxBackup() {
         mCheck.setVisibility(View.INVISIBLE);
         mProgress.setVisibility(View.VISIBLE);
+        mStatus.setText(R.string.backup_db_backingup);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     String msg = "";
-                    switch (Util.backupDropbox(getActivity(), mDBApi)) {
+                    final int result = Util.backupDropbox(getActivity(), mDBApi);
+                    switch (result) {
                         case 0:
                             msg = getString(R.string.backup_db_success);
                             break;
@@ -214,7 +227,18 @@ public class BackupFragment extends Fragment {
                         public void run() {
                             Toast.makeText(getActivity(), endMsg, Toast.LENGTH_SHORT).show();
                             mProgress.setVisibility(View.INVISIBLE);
-                            mCheck.setVisibility(View.VISIBLE);
+                            if (result == 0) {
+                                mCheck.setImageResource(R.drawable.ic_check);
+                                mCheck.setVisibility(View.VISIBLE);
+                                Calendar c = Calendar.getInstance();
+                                SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+                                String date = df.format(c.getTime());
+                                String message = getString(R.string.backup_db_msg) + " " + date;
+                                mStatus.setText(message);
+                                SharedPreferences.Editor editor = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit();
+                                editor.putString("dropbox_status", message);
+                                editor.commit();
+                            }
                         }
                     });
                 }

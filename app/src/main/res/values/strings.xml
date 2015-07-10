@@ -239,6 +239,9 @@
     <string name="backup_db_error">Fehler: Datei konnte nicht in Dropbox gespeichert werden - keine Internetverbindung?</string>
     <string name="backup_db_inputstream">Fehler: InputStream konnte nicht geschlossen werden</string>
     <string name="backup_db_future">Fehler: Rückgabewert nicht erhalten</string>
+    <string name="backup_db_nobackup">Noch kein Dropbox Backup</string>
+    <string name="backup_db_msg">Letztes Backup vom</string>
+    <string name="backup_db_backingup">Backup läuft…</string>
 
     <string-array name="weights">
         <item>1.0 Ganz</item>

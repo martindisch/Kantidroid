@@ -54,8 +54,8 @@
                         android:layout_marginBottom="@dimen/widget_margin_large"
                         android:layout_marginLeft="@dimen/widget_margin_large"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic_check"
-                        android:visibility="invisible" />
+                        android:src="@drawable/ic_failed"
+                        android:visibility="visible" />
 
                     <ProgressBar
                         android:id="@+id/pbDropbox"
@@ -67,6 +67,7 @@
                         android:visibility="invisible" />
 
                     <TextView
+                        android:id="@+id/tvDropbox"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_below="@id/ivDropboxLogo"
