@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Environment;
 
+import com.dropbox.client2.DropboxAPI;
+import com.dropbox.client2.android.AndroidAuthSession;
+import com.dropbox.client2.exception.DropboxException;
 import com.martin.kantidroid.R;
 
 import java.io.File;
@@ -19,6 +22,11 @@ import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Util {
 
@@ -132,10 +140,14 @@ public class Util {
     }
 
     public static int backupLocal(Context context) {
+        File localDest = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/local");
+        return backupLocalWithDest(context, localDest);
+    }
+
+    private static int backupLocalWithDest(Context context, File localDest) {
         if (Environment.getExternalStorageState().contentEquals(Environment.MEDIA_MOUNTED)) {
             File dbPath = context.getDatabasePath("Kantidroid");
             if (dbPath.isFile()) {
-                File localDest = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/local");
                 localDest.mkdirs();
                 try {
                     copy(dbPath, new File(localDest + "/database"));
@@ -180,6 +192,51 @@ public class Util {
             return 2;
         }
         return 1;
+    }
+
+    public static int backupDropbox(final Context context, final DropboxAPI<AndroidAuthSession> dbAPI) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Callable<Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() {
+                File localDest = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/dropbox");
+                int returnValue = backupLocalWithDest(context, localDest);
+                if (returnValue == 0) {
+                    File dbFile = new File(localDest + "/database");
+                    File prefFile = new File(localDest + "/shared_prefs");
+                    try {
+                        FileInputStream dbInputStream = new FileInputStream(dbFile);
+                        dbAPI.putFileOverwrite("/database", dbInputStream, dbFile.length(), null);
+                        dbInputStream.close();
+                        FileInputStream prefsInputStream = new FileInputStream(prefFile);
+                        dbAPI.putFileOverwrite("/shared_prefs", prefsInputStream, prefFile.length(), null);
+                        prefsInputStream.close();
+                        return 0;
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        return 5;
+                    } catch (DropboxException e) {
+                        e.printStackTrace();
+                        return 6;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return 7;
+                    }
+                }
+                return returnValue;
+            }
+        };
+        Future<Integer> future = executor.submit(callable);
+        int returnValue = 8;
+        try {
+            returnValue = future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        executor.shutdown();
+        return returnValue;
     }
 
     private static boolean saveSharedPreferencesToFile(Context context, File dst) {

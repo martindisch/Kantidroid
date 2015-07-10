@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -30,6 +31,8 @@ public class BackupFragment extends Fragment {
     private String APP_KEY, APP_SECRET;
     private boolean linked;
     private int mAction;
+    private ProgressBar mProgress;
+    private ImageView mCheck;
 
     public static BackupFragment newInstance() {
         return new BackupFragment();
@@ -122,6 +125,9 @@ public class BackupFragment extends Fragment {
 
         Glide.with(this).load(R.drawable.dropbox).fitCenter().into((ImageView) rootView.findViewById(R.id.ivDropboxLogo));
 
+        mProgress = (ProgressBar) rootView.findViewById(R.id.pbDropbox);
+        mCheck = (ImageView) rootView.findViewById(R.id.ivCheck);
+
         rootView.findViewById(R.id.bBackupDropbox).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,7 +172,57 @@ public class BackupFragment extends Fragment {
     }
 
     private void dropboxBackup() {
-        Log.e("FFF", "Now I would be backing up");
+        mCheck.setVisibility(View.INVISIBLE);
+        mProgress.setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String msg = "";
+                    switch (Util.backupDropbox(getActivity(), mDBApi)) {
+                        case 0:
+                            msg = getString(R.string.backup_db_success);
+                            break;
+                        case 1:
+                            msg = getString(R.string.backup_ext_unavailable);
+                            break;
+                        case 2:
+                            msg = getString(R.string.backup_db_notfile);
+                            break;
+                        case 3:
+                            msg = getString(R.string.backup_db_copyfailed);
+                            break;
+                        case 4:
+                            msg = getString(R.string.backup_prefs_notcopied);
+                            break;
+                        case 5:
+                            msg = getString(R.string.backup_db_notfound);
+                            break;
+                        case 6:
+                            msg = getString(R.string.backup_db_error);
+                            break;
+                        case 7:
+                            msg = getString(R.string.backup_db_inputstream);
+                            break;
+                        case 8:
+                            msg = getString(R.string.backup_db_future);
+                            break;
+                    }
+                    final String endMsg = msg;
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), endMsg, Toast.LENGTH_SHORT).show();
+                            mProgress.setVisibility(View.INVISIBLE);
+                            mCheck.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
+                catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     private void dropboxImport() {

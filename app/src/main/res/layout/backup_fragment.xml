@@ -52,16 +52,17 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivDropboxLogo"
                         android:layout_marginBottom="@dimen/widget_margin_large"
-                        android:layout_marginLeft="@dimen/widget_margin"
+                        android:layout_marginLeft="@dimen/widget_margin_large"
                         android:scaleType="centerInside"
                         android:src="@drawable/ic_check"
                         android:visibility="invisible" />
 
                     <ProgressBar
+                        android:id="@+id/pbDropbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivDropboxLogo"
-                        android:layout_marginLeft="@dimen/widget_margin"
+                        android:layout_marginLeft="@dimen/widget_margin_large"
                         android:indeterminate="true"
                         android:visibility="invisible" />
 
@@ -113,10 +114,10 @@
                         android:id="@+id/tvTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/widget_margin"
+                        android:paddingTop="@dimen/widget_margin"
                         android:text="@string/backup_local"
                         android:textColor="@color/dropbox"
-                        android:paddingTop="@dimen/widget_margin"
-                        android:paddingLeft="@dimen/widget_margin"
                         android:textSize="16sp" />
 
                     <android.support.v7.widget.RecyclerView
