@@ -79,18 +79,18 @@ public class OverviewFragment extends Fragment {
         mViewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         if (mViewPager != null) {
             setupViewPager(mViewPager);
-            mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                public void onPageScrolled(int i, float v, int i1) {
                 }
 
                 @Override
-                public void onPageSelected(final int position) {
+                public void onPageSelected(int i) {
                 }
 
                 @Override
-                public void onPageScrollStateChanged(int state) {
-                    if (state == ViewPager.SCROLL_STATE_IDLE) {
+                public void onPageScrollStateChanged(int i) {
+                    if (i == ViewPager.SCROLL_STATE_IDLE) {
                         final int position = mViewPager.getCurrentItem();
                         showInfo(position + 1);
                         new Thread(new Runnable() {
@@ -101,7 +101,6 @@ public class OverviewFragment extends Fragment {
                             }
                         }).start();
                     }
-
                 }
             });
         }
