@@ -251,4 +251,9 @@
         <item>0.5 Halb</item>
         <item>2.0 Doppelt</item>
     </string-array>
+    <string name="title_activity_timetable">TimetableActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="timetable">Stundenpläne</string>
 </resources>

@@ -20,9 +20,12 @@
     </group>
 
     <group>
-        <!-- Test without title -->
         <item android:title="@string/extra">
             <menu>
+                <item
+                    android:id="@+id/nav_timetable"
+                    android:icon="@drawable/ic_timetable"
+                    android:title="@string/timetable" />
                 <item
                     android:id="@+id/nav_feedback"
                     android:icon="@drawable/ic_feedback"

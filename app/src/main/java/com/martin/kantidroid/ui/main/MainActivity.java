@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.main;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -20,12 +21,13 @@ import com.martin.kantidroid.logic.Primer;
 import com.martin.kantidroid.ui.backup.BackupFragment;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
+import com.martin.kantidroid.ui.timetable.TimetableActivity;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private int mSelected, mCurrent;
+    private int mSelected, mCurrent, mExtraSelected;
     private NavigationView mNavigationView;
 
     @Override
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             mCurrent = -1;
             mSelected = 0;
         }
+        mExtraSelected = -1;
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -90,25 +93,52 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     fragment = OverviewFragment.newInstance();
                     tag = "overview";
+                    mCurrent = mSelected;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment, tag)
+                            .commit();
                     break;
                 case 2:
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
                     fragment = BackupFragment.newInstance();
                     tag = "backup";
+                    mCurrent = mSelected;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment, tag)
+                            .commit();
                     break;
                 case 3:
                     fragment = SubjectsFragment.newInstance();
                     tag = "subjects";
+                    mCurrent = mSelected;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment, tag)
+                            .commit();
                     break;
                 default:
                     fragment = PlaceholderFragment.newInstance(mSelected);
                     tag = "placeholder";
+                    mCurrent = mSelected;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment, tag)
+                            .commit();
                     break;
             }
-            mCurrent = mSelected;
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment, tag)
-                    .commit();
+        }
+        if (mExtraSelected != -1) {
+            switch (mExtraSelected) {
+                case 4:
+                    Intent i = new Intent(this, TimetableActivity.class);
+                    startActivity(i);
+                    mExtraSelected = -1;
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+            }
         }
     }
 
@@ -130,11 +160,14 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_subjects:
                                 mSelected = 3;
                                 break;
+                            case R.id.nav_timetable:
+                                mExtraSelected = 4;
+                                break;
                             case R.id.nav_feedback:
-                                mSelected = 4;
+                                mExtraSelected = 5;
                                 break;
                             case R.id.nav_about:
-                                mSelected = 5;
+                                mExtraSelected = 6;
                                 break;
                         }
                         menuItem.setChecked(true);

@@ -12,20 +12,19 @@
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-
         <activity
             android:name="com.dropbox.client2.android.AuthActivity"
             android:configChanges="orientation|keyboard"
             android:launchMode="singleTask">
             <intent-filter>
                 <data android:scheme="@string/app_key_db" />
+
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.main.MainActivity"
             android:label="@string/app_name">
@@ -78,6 +77,15 @@
             android:name=".ui.fachview.CalcActivity"
             android:label="@string/title_activity_calc"
             android:theme="@style/AppTheme.Base" />
+        <activity
+            android:name=".ui.timetable.TimetableActivity"
+            android:label="@string/title_activity_timetable"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.Base">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martin.kantidroid.ui.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
