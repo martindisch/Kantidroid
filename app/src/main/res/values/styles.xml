@@ -45,4 +45,9 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="AppCompat.Button.Flat.Timetable" parent="AppCompat.Button.Flat.Common">
+        <item name="android:textColor">@color/timetable</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 </resources>

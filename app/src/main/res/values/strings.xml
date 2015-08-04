@@ -258,4 +258,7 @@
     <string name="timetable">Stundenpläne</string>
     <string name="class_hint">Klasse (Bsp.: 6 Gi)</string>
     <string name="timetable_classselection">Klasse wählen</string>
+    <string name="download">Download</string>
+    <string name="timetable_downloadtitle">Downloads</string>
+    <string name="timetable_nothinghere">Noch keine Downloads</string>
 </resources>

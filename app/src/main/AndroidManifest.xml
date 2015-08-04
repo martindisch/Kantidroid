@@ -79,7 +79,7 @@
             android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".ui.timetable.TimetableActivity"
-            android:label="@string/title_activity_timetable"
+            android:label="@string/timetable"
             android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme.Base">
             <meta-data
