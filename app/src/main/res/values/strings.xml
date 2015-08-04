@@ -257,4 +257,5 @@
     <string name="action_settings">Settings</string>
     <string name="timetable">Stundenpläne</string>
     <string name="class_hint">Klasse (Bsp.: 6 Gi)</string>
+    <string name="timetable_classselection">Klasse wählen</string>
 </resources>
