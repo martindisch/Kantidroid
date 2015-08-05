@@ -23,6 +23,7 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
     private Button mDownload;
     private View mLayoutImage, mLayoutList;
     private RecyclerView mDownloads;
+    private boolean mHasError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,16 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
         mLayoutList = findViewById(R.id.flList);
         mDownloads = (RecyclerView) findViewById(R.id.rvDownloads);
 
+        if (savedInstanceState != null) {
+            mHasError = savedInstanceState.getBoolean("mHasError");
+        }
+        else {
+            mHasError = false;
+        }
+        if (mHasError) {
+            mTilClass.setError(getString(R.string.timetable_error_noclass));
+        }
+
         if (/*!hasDownloads*/ true) {
             mLayoutList.setVisibility(View.INVISIBLE);
         } else {
@@ -58,10 +69,12 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
         String classUrl = Util.getClassUrl(mClass.getText().toString());
         if (!classUrl.contentEquals("error")) {
             mTilClass.setError(null);
+            mHasError = false;
             // Try downloading
         }
         else {
             mTilClass.setError(getString(R.string.timetable_error_noclass));
+            mHasError = true;
         }
     }
 
@@ -70,5 +83,11 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
         // Let's not reload the main activity
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("mHasError", mHasError);
     }
 }
