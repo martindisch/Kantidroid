@@ -77,15 +77,6 @@
             android:name=".ui.fachview.CalcActivity"
             android:label="@string/title_activity_calc"
             android:theme="@style/AppTheme.Base" />
-        <activity
-            android:name=".ui.timetable.TimetableActivity"
-            android:label="@string/timetable"
-            android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.Base">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martin.kantidroid.ui.main.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

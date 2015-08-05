@@ -17,15 +17,15 @@
             android:id="@+id/nav_subjects"
             android:icon="@drawable/ic_subjects"
             android:title="@string/subjects" />
+        <item
+            android:id="@+id/nav_timetable"
+            android:icon="@drawable/ic_timetable"
+            android:title="@string/timetable" />
     </group>
 
     <group>
         <item android:title="@string/extra">
             <menu>
-                <item
-                    android:id="@+id/nav_timetable"
-                    android:icon="@drawable/ic_timetable"
-                    android:title="@string/timetable" />
                 <item
                     android:id="@+id/nav_feedback"
                     android:icon="@drawable/ic_feedback"

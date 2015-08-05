@@ -2,12 +2,14 @@ package com.martin.kantidroid.ui.timetable;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,7 +18,7 @@ import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Util;
 
-public class TimetableActivity extends AppCompatActivity implements View.OnClickListener {
+public class TimetableFragment extends Fragment implements View.OnClickListener {
 
     private TextInputLayout mTilClass;
     private EditText mClass;
@@ -25,29 +27,37 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
     private RecyclerView mDownloads;
     private boolean mHasError;
 
+    public static TimetableFragment newInstance() {
+        return new TimetableFragment();
+    }
+
+    public TimetableFragment() {
+        // Required empty public constructor
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timetable);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.timetable_fragment, container, false);
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        final ActionBar ab = getSupportActionBar();
+        final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(R.string.timetable);
 
-        mTilClass = (TextInputLayout) findViewById(R.id.tilClass);
+        mTilClass = (TextInputLayout) rootView.findViewById(R.id.tilClass);
         mTilClass.setErrorEnabled(true);
-        mClass = (EditText) findViewById(R.id.etClass);
-        mDownload = (Button) findViewById(R.id.bDownload);
-        mLayoutImage = findViewById(R.id.llImage);
-        mLayoutList = findViewById(R.id.flList);
-        mDownloads = (RecyclerView) findViewById(R.id.rvDownloads);
+        mClass = (EditText) rootView.findViewById(R.id.etClass);
+        mDownload = (Button) rootView.findViewById(R.id.bDownload);
+        mLayoutImage = rootView.findViewById(R.id.llImage);
+        mLayoutList = rootView.findViewById(R.id.flList);
+        mDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
 
         if (savedInstanceState != null) {
             mHasError = savedInstanceState.getBoolean("mHasError");
-        }
-        else {
+        } else {
             mHasError = false;
         }
         if (mHasError) {
@@ -59,9 +69,11 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
         } else {
             mLayoutImage.setVisibility(View.INVISIBLE);
         }
-        Glide.with(this).load(R.drawable.kanti).into((ImageView) findViewById(R.id.ivNothing));
+        Glide.with(this).load(R.drawable.kanti).into((ImageView) rootView.findViewById(R.id.ivNothing));
 
         mDownload.setOnClickListener(this);
+
+        return rootView;
     }
 
     @Override
@@ -71,22 +83,14 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
             mTilClass.setError(null);
             mHasError = false;
             // Try downloading
-        }
-        else {
+        } else {
             mTilClass.setError(getString(R.string.timetable_error_noclass));
             mHasError = true;
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Let's not reload the main activity
-        onBackPressed();
-        return true;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean("mHasError", mHasError);
     }

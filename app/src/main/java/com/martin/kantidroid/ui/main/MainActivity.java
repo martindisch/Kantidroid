@@ -1,6 +1,5 @@
 package com.martin.kantidroid.ui.main;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -21,7 +20,7 @@ import com.martin.kantidroid.logic.Primer;
 import com.martin.kantidroid.ui.backup.BackupFragment;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
-import com.martin.kantidroid.ui.timetable.TimetableActivity;
+import com.martin.kantidroid.ui.timetable.TimetableFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -93,45 +92,37 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     fragment = OverviewFragment.newInstance();
                     tag = "overview";
-                    mCurrent = mSelected;
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, fragment, tag)
-                            .commit();
                     break;
                 case 2:
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
                     fragment = BackupFragment.newInstance();
                     tag = "backup";
-                    mCurrent = mSelected;
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, fragment, tag)
-                            .commit();
                     break;
                 case 3:
                     fragment = SubjectsFragment.newInstance();
                     tag = "subjects";
-                    mCurrent = mSelected;
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, fragment, tag)
-                            .commit();
+                    break;
+                case 4:
+                    fragment = TimetableFragment.newInstance();
+                    tag = "timetable";
                     break;
                 default:
                     fragment = PlaceholderFragment.newInstance(mSelected);
                     tag = "placeholder";
-                    mCurrent = mSelected;
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, fragment, tag)
-                            .commit();
                     break;
             }
+            mCurrent = mSelected;
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment, tag)
+                    .commit();
         }
         if (mExtraSelected != -1) {
             switch (mExtraSelected) {
-                case 4:
+                /*case 4:
                     Intent i = new Intent(this, TimetableActivity.class);
                     startActivity(i);
                     mExtraSelected = -1;
-                    break;
+                    break;*/
                 case 5:
 
                     break;
@@ -161,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                                 mSelected = 3;
                                 break;
                             case R.id.nav_timetable:
-                                mExtraSelected = 4;
+                                mSelected = 4;
                                 break;
                             case R.id.nav_feedback:
                                 mExtraSelected = 5;
