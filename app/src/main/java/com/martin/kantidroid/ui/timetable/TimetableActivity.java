@@ -14,8 +14,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.Util;
 
-public class TimetableActivity extends AppCompatActivity {
+public class TimetableActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextInputLayout mTilClass;
     private EditText mClass;
@@ -35,6 +36,7 @@ public class TimetableActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         mTilClass = (TextInputLayout) findViewById(R.id.tilClass);
+        mTilClass.setErrorEnabled(true);
         mClass = (EditText) findViewById(R.id.etClass);
         mDownload = (Button) findViewById(R.id.bDownload);
         mLayoutImage = findViewById(R.id.llImage);
@@ -47,7 +49,22 @@ public class TimetableActivity extends AppCompatActivity {
             mLayoutImage.setVisibility(View.INVISIBLE);
         }
         Glide.with(this).load(R.drawable.kanti).into((ImageView) findViewById(R.id.ivNothing));
+
+        mDownload.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View view) {
+        String classUrl = Util.getClassUrl(mClass.getText().toString());
+        if (!classUrl.contentEquals("error")) {
+            mTilClass.setError(null);
+            // Try downloading
+        }
+        else {
+            mTilClass.setError(getString(R.string.timetable_error_noclass));
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -55,5 +72,4 @@ public class TimetableActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
 }

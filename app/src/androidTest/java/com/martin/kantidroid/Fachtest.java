@@ -52,10 +52,10 @@ public class Fachtest extends AndroidTestCase {
         fach.addMark(1, "5 - 1 - 20150520");
         fach.addMark(1, "4 - 1 - 20150520");
         String result = fach.getMathAverage1();
-        String expected = "4.5000";
+        String expected = "4.50";
         assertEquals("Result not correct", expected, result);
         fach.addMark(1, "6 - 0.5 - 20150513");
-        assertEquals("Result not correct", "4.8000", fach.getMathAverage1());
+        assertEquals("Result not correct", "4.80", fach.getMathAverage1());
     }
 
     private boolean arraysEqual(String[] a1, String[] a2) {
