@@ -6,6 +6,10 @@
             android:icon="@drawable/ic_overview"
             android:title="@string/overview" />
         <item
+            android:id="@+id/nav_subjects"
+            android:icon="@drawable/ic_subjects"
+            android:title="@string/subjects" />
+        <item
             android:id="@+id/nav_kiss"
             android:icon="@drawable/ic_kiss"
             android:title="@string/kiss" />
@@ -13,10 +17,6 @@
             android:id="@+id/nav_backup"
             android:icon="@drawable/ic_backup"
             android:title="@string/backup" />
-        <item
-            android:id="@+id/nav_subjects"
-            android:icon="@drawable/ic_subjects"
-            android:title="@string/subjects" />
         <item
             android:id="@+id/nav_timetable"
             android:icon="@drawable/ic_timetable"
