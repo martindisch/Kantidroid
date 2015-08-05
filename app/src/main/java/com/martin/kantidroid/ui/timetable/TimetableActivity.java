@@ -65,7 +65,6 @@ public class TimetableActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Let's not reload the main activity
