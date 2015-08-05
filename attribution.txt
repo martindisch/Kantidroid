@@ -21,6 +21,7 @@ Austin Andrews
 	http://materialdesignicons.com/icon/timetable
 	http://materialdesignicons.com/icon/alphabetical
 	https://materialdesignicons.com/icon/import
+	https://materialdesignicons.com/icon/calendar-clock
 	
 Chiu-Ki Chan
 	https://github.com/chiuki/android-recyclerview

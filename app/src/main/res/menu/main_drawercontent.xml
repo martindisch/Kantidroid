@@ -19,7 +19,7 @@
             android:title="@string/backup" />
         <item
             android:id="@+id/nav_timetable"
-            android:icon="@drawable/ic_timetable"
+            android:icon="@drawable/ic_calendar_clock"
             android:title="@string/timetable" />
     </group>
 
