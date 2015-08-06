@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Glide.with(this).load(R.drawable.kanti).into((ImageView) mDrawerLayout.findViewById(R.id.ivHeader));
+        Glide.with(this).load(R.drawable.drawer_backdrop).into((ImageView) mDrawerLayout.findViewById(R.id.ivHeader));
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         if (mNavigationView != null) {

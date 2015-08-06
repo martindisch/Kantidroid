@@ -30,12 +30,12 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <android.support.v7.widget.CardView
                 android:id="@+id/cvKont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                card_view:cardCornerRadius="0dp">
+                app:cardCornerRadius="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -91,61 +91,48 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/widget_margin"
                 android:layout_marginTop="@dimen/widget_margin"
-                card_view:cardCornerRadius="0dp">
+                android:background="@color/kantiBackground">
 
-                <RelativeLayout
+                <ImageView
+                    android:id="@+id/ivNothing"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/activity_horizontal_margin">
+                    android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:id="@+id/tvDownloadTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp"
-                        android:text="@string/timetable_downloadtitle"
-                        android:textColor="@color/timetable"
-                        android:textSize="16sp" />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvDownloads"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="0dp">
 
-                    <LinearLayout
-                        android:id="@+id/llImage"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@id/tvDownloadTitle"
-                        android:orientation="vertical">
+                        android:padding="@dimen/activity_horizontal_margin">
 
                         <TextView
+                            android:id="@+id/tvDownloadTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/timetable_nothinghere" />
-
-                        <ImageView
-                            android:id="@+id/ivNothing"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-                    <FrameLayout
-                        android:id="@+id/flList"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/tvDownloadTitle">
+                            android:layout_marginBottom="24dp"
+                            android:text="@string/timetable_downloadtitle"
+                            android:textColor="@color/timetable"
+                            android:textSize="16sp" />
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvDownloads"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-                    </FrameLayout>
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/tvDownloadTitle" />
 
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </FrameLayout>
 
         </LinearLayout>
     </ScrollView>

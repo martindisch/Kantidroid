@@ -23,7 +23,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     private TextInputLayout mTilClass;
     private EditText mClass;
     private Button mDownload;
-    private View mLayoutImage, mLayoutList;
+    private View mNothinImage, mDownloadsCard;
     private RecyclerView mDownloads;
     private boolean mHasError;
 
@@ -51,8 +51,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         mTilClass.setErrorEnabled(true);
         mClass = (EditText) rootView.findViewById(R.id.etClass);
         mDownload = (Button) rootView.findViewById(R.id.bDownload);
-        mLayoutImage = rootView.findViewById(R.id.llImage);
-        mLayoutList = rootView.findViewById(R.id.flList);
+        mNothinImage = rootView.findViewById(R.id.ivNothing);
+        mDownloadsCard = rootView.findViewById(R.id.cvDownloads);
         mDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
 
         if (savedInstanceState != null) {
@@ -65,11 +65,11 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         }
 
         if (/*!hasDownloads*/ true) {
-            mLayoutList.setVisibility(View.INVISIBLE);
+            mDownloadsCard.setVisibility(View.INVISIBLE);
         } else {
-            mLayoutImage.setVisibility(View.INVISIBLE);
+            mNothinImage.setVisibility(View.INVISIBLE);
         }
-        Glide.with(this).load(R.drawable.kanti).into((ImageView) rootView.findViewById(R.id.ivNothing));
+        Glide.with(this).load(R.drawable.timetable_nodownloads).into((ImageView) rootView.findViewById(R.id.ivNothing));
 
         mDownload.setOnClickListener(this);
 
