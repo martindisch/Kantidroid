@@ -28,7 +28,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     private TextInputLayout mTilClass;
     private EditText mClass;
     private Button mDownload;
-    private View mNothinImage, mDownloadsCard;
+    private View mNothingImage, mDownloadsCard;
     private RecyclerView mDownloads;
     private boolean mHasError;
 
@@ -56,7 +56,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         mTilClass.setErrorEnabled(true);
         mClass = (EditText) rootView.findViewById(R.id.etClass);
         mDownload = (Button) rootView.findViewById(R.id.bDownload);
-        mNothinImage = rootView.findViewById(R.id.ivNothing);
+        mNothingImage = rootView.findViewById(R.id.ivNothing);
         mDownloadsCard = rootView.findViewById(R.id.cvDownloads);
         mDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
 
@@ -72,7 +72,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         if (/*!hasDownloads*/ true) {
             mDownloadsCard.setVisibility(View.INVISIBLE);
         } else {
-            mNothinImage.setVisibility(View.INVISIBLE);
+            mNothingImage.setVisibility(View.INVISIBLE);
         }
         Glide.with(this).load(R.drawable.timetable_nodownloads).into((ImageView) rootView.findViewById(R.id.ivNothing));
 
@@ -111,6 +111,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), R.string.timetable_success, Toast.LENGTH_SHORT).show();
+
                                                     }
                                                 });
                                             }

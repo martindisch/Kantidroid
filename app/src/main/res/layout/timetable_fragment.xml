@@ -93,19 +93,20 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_marginTop="@dimen/widget_margin"
-                android:background="@color/kantiBackground">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/widget_margin">
 
                 <ImageView
                     android:id="@+id/ivNothing"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cvDownloads"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="330dp"
                     android:layout_gravity="center"
                     app:cardCornerRadius="0dp">
 
