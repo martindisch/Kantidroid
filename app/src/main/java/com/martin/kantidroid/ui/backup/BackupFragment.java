@@ -134,7 +134,7 @@ public class BackupFragment extends Fragment {
 
         SharedPreferences sp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         if (sp.contains("dropbox_status")) {
-            mCheck.setImageResource(R.drawable.ic_check);
+            mCheck.setImageResource(R.drawable.ic_cloud_success);
         }
         mStatus.setText(sp.getString("dropbox_status", getString(R.string.backup_db_nobackup)));
 
@@ -228,7 +228,7 @@ public class BackupFragment extends Fragment {
                             mProgress.setVisibility(View.INVISIBLE);
                             if (result == 0) {
                                 Toast.makeText(getActivity(), endMsg, Toast.LENGTH_SHORT).show();
-                                mCheck.setImageResource(R.drawable.ic_check);
+                                mCheck.setImageResource(R.drawable.ic_cloud_success);
                                 mCheck.setVisibility(View.VISIBLE);
                                 Calendar c = Calendar.getInstance();
                                 SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
@@ -239,7 +239,7 @@ public class BackupFragment extends Fragment {
                                 editor.putString("dropbox_status", message);
                                 editor.commit();
                             } else {
-                                mCheck.setImageResource(R.drawable.ic_failed);
+                                mCheck.setImageResource(R.drawable.ic_cloud_failed);
                                 mCheck.setVisibility(View.VISIBLE);
                                 mStatus.setText(endMsg);
                             }
@@ -305,7 +305,7 @@ public class BackupFragment extends Fragment {
                             mStatus.setText(endMsg);
                             if (result == 0) {
                                 Toast.makeText(getActivity(), endMsg, Toast.LENGTH_SHORT).show();
-                                mCheck.setImageResource(R.drawable.ic_check);
+                                mCheck.setImageResource(R.drawable.ic_cloud_success);
                                 mCheck.setVisibility(View.VISIBLE);
                                 Calendar c = Calendar.getInstance();
                                 SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
@@ -315,7 +315,7 @@ public class BackupFragment extends Fragment {
                                 editor.putString("dropbox_status", message);
                                 editor.commit();
                             } else {
-                                mCheck.setImageResource(R.drawable.ic_failed);
+                                mCheck.setImageResource(R.drawable.ic_cloud_failed);
                                 mCheck.setVisibility(View.VISIBLE);
                             }
                         }

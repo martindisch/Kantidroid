@@ -55,7 +55,7 @@
                         android:layout_marginBottom="@dimen/widget_margin_large"
                         android:layout_marginLeft="@dimen/widget_margin_large"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic_failed"
+                        android:src="@drawable/ic_cloud_failed"
                         android:visibility="visible" />
 
                     <ProgressBar

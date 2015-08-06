@@ -12,7 +12,8 @@ Google
 	https://materialdesignicons.com/icon/weight
 	https://materialdesignicons.com/icon/numeric
 	https://materialdesignicons.com/icon/calendar
-	https://materialdesignicons.com/icon/check
+	https://materialdesignicons.com/icon/cloud
+	https://materialdesignicons.com/icon/cloud-check
 	Android Open Source Project, Support Library (Apache)
 	iosched 14 SlidingTabs (Apache, included in source)
 	
