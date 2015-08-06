@@ -126,6 +126,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                                        mProgress.setVisibility(View.INVISIBLE);
                                                     }
                                                 });
                                             } else {
@@ -149,6 +150,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                                 @Override
                                 public void run() {
                                     Toast.makeText(getActivity(), R.string.timetable_nosuchclass, Toast.LENGTH_LONG).show();
+                                    mProgress.setVisibility(View.INVISIBLE);
                                 }
                             });
                         }
