@@ -438,35 +438,16 @@ public class Util {
         return classUrl;
     }
 
-    public static boolean urlExists(final String urlName) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Callable<Boolean> callable = new Callable<Boolean>() {
-            @Override
-            public Boolean call() {
-                try {
-                    HttpURLConnection.setFollowRedirects(false);
-                    HttpURLConnection con = (HttpURLConnection) new URL(urlName).openConnection();
-                    con.setRequestMethod("HEAD");
-                    return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return false;
-                }
-            }
-        };
-        Future<Boolean> future = executor.submit(callable);
-        boolean returnValue;
+    public static boolean urlExists(String urlName) {
         try {
-            returnValue = future.get();
-        } catch (InterruptedException e) {
+            HttpURLConnection.setFollowRedirects(false);
+            HttpURLConnection con = (HttpURLConnection) new URL(urlName).openConnection();
+            con.setRequestMethod("HEAD");
+            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+        } catch (Exception e) {
             e.printStackTrace();
-            returnValue = false;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            returnValue = false;
+            return false;
         }
-        executor.shutdown();
-        return returnValue;
     }
 
     public static File getTimetableFile(String classUrl) {
