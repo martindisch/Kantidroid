@@ -77,11 +77,11 @@ public class ClassTest extends AndroidTestCase {
     }
 
     public void testClassUrl() throws Exception {
-        assertEquals("6 Gi", Util.getClassUrl(case1));
+        assertEquals("6%20Gi", Util.getClassUrl(case1));
         assertEquals("error", Util.getClassUrl(case2));
         assertEquals("error", Util.getClassUrl(case3));
-        assertEquals("3 Hb", Util.getClassUrl(case4));
-        assertEquals("5 Fa", Util.getClassUrl(case5));
+        assertEquals("3%20Hb", Util.getClassUrl(case4));
+        assertEquals("5%20Fa", Util.getClassUrl(case5));
         assertEquals("error", Util.getClassUrl(case6));
         assertEquals("error", Util.getClassUrl(case7));
         assertEquals("error", Util.getClassUrl(case8));

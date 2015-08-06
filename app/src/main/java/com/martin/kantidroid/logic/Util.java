@@ -21,6 +21,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -431,8 +433,49 @@ public class Util {
         int departmentIndex = getDepartmentIndex(checkable, numberIndex);
         int levelIndex = getLevelIndex(checkable, departmentIndex);
         if (levelIndex != -1) {
-            classUrl = checkable.charAt(numberIndex) + " " + checkable.toUpperCase().charAt(departmentIndex) + checkable.toLowerCase().charAt(levelIndex);
+            classUrl = checkable.charAt(numberIndex) + "%20" + checkable.toUpperCase().charAt(departmentIndex) + checkable.toLowerCase().charAt(levelIndex);
         }
         return classUrl;
+    }
+
+    public static boolean urlExists(final String urlName) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Callable<Boolean> callable = new Callable<Boolean>() {
+            @Override
+            public Boolean call() {
+                try {
+                    HttpURLConnection.setFollowRedirects(false);
+                    HttpURLConnection con = (HttpURLConnection) new URL(urlName).openConnection();
+                    con.setRequestMethod("HEAD");
+                    return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+        };
+        Future<Boolean> future = executor.submit(callable);
+        boolean returnValue;
+        try {
+            returnValue = future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            returnValue = false;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            returnValue = false;
+        }
+        executor.shutdown();
+        return returnValue;
+    }
+
+    public static File getTimetableFile(String classUrl) {
+        File download = null;
+        if (Environment.getExternalStorageState().contentEquals(Environment.MEDIA_MOUNTED)) {
+            File localDest = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/timetables");
+            localDest.mkdirs();
+            download = new File(localDest + "/" + classUrl + ".pdf");
+        }
+        return download;
     }
 }

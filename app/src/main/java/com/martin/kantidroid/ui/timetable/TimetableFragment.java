@@ -13,10 +13,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Util;
+
+import java.io.File;
 
 public class TimetableFragment extends Fragment implements View.OnClickListener {
 
@@ -78,11 +83,53 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        String classUrl = Util.getClassUrl(mClass.getText().toString());
+        final String classUrl = Util.getClassUrl(mClass.getText().toString());
         if (!classUrl.contentEquals("error")) {
             mTilClass.setError(null);
             mHasError = false;
-            // Try downloading
+            final File downloadFile = Util.getTimetableFile(classUrl);
+            if (downloadFile != null) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Util.urlExists(getString(R.string.url_timetable) + classUrl + ".pdf")) {
+                            Ion.with(getActivity())
+                                    .load(getString(R.string.url_timetable) + classUrl + ".pdf")
+                                    .write(downloadFile)
+                                    .setCallback(new FutureCallback<File>() {
+                                        @Override
+                                        public void onCompleted(final Exception e, File file) {
+                                            if (e != null) {
+                                                mDownload.post(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
+                                            } else {
+                                                mDownload.post(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.timetable_success, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                                // TODO: Add download to list
+                                            }
+                                        }
+                                    });
+                        } else {
+                            mDownload.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity(), R.string.timetable_nosuchclass, Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    }
+                }).start();
+            } else {
+                Toast.makeText(getActivity(), R.string.timetable_error_filesystem, Toast.LENGTH_LONG).show();
+            }
         } else {
             mTilClass.setError(getString(R.string.timetable_error_noclass));
             mHasError = true;

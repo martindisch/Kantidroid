@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Kantidroid</string>
 
+    <string name="url_timetable">http://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/bks/dokumentation/klassen/Documents/</string>
+
     <string name="overview">Übersicht</string>
     <string name="kiss">KISS</string>
     <string name="backup">Backup</string>
@@ -263,4 +265,7 @@
     <string name="timetable_nothinghere">Noch keine Downloads</string>
     <string name="timetable_error_empty">Gib eine Klasse ein</string>
     <string name="timetable_error_noclass">Gib eine korrekte Klasse ein</string>
+    <string name="timetable_success">Stundenplan heruntergeladen</string>
+    <string name="timetable_error_filesystem">Problem mit dem Dateisystem</string>
+    <string name="timetable_nosuchclass">Kein Stundenplan für diese Klasse gefunden oder keine Internetverbindung</string>
 </resources>
