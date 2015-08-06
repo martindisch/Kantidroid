@@ -434,9 +434,9 @@ Apache License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
-**Dropbox Android SDK**
-
+```
+##### Dropbox Android SDK
+```
 Copyright (c) 2009-2011 Dropbox Inc., http://www.dropbox.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
