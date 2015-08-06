@@ -15,7 +15,6 @@ Google
 	https://materialdesignicons.com/icon/cloud
 	https://materialdesignicons.com/icon/cloud-check
 	Android Open Source Project, Support Library (Apache)
-	iosched 14 SlidingTabs (Apache, included in source)
 	
 Austin Andrews
 	http://materialdesignicons.com/icon/book-open
@@ -45,5 +44,5 @@ lapastillaroja	DividerItemDecoration with configurable start/end divider
 Dropbox
 	Core library (MIT)
 	
-JSON.simple
-	Apache
+Koushik Dutta
+	ION https://github.com/koush/ion
