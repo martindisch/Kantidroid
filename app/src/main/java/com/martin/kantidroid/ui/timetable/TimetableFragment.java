@@ -20,6 +20,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +41,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
     private View mNothingImage, mDownloadsCard;
     private RecyclerView mDownloads;
     private TimetableAdapter mAdapter;
+    private ProgressBar mProgress;
     private boolean mHasError;
 
     public static TimetableFragment newInstance() {
@@ -69,6 +71,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         mNothingImage = rootView.findViewById(R.id.ivNothing);
         mDownloadsCard = rootView.findViewById(R.id.cvDownloads);
         mDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
+        mProgress = (ProgressBar) rootView.findViewById(R.id.pbDownload);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mDownloads.hasFixedSize();
@@ -107,6 +110,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
             mHasError = false;
             final File downloadFile = Util.getTimetableFile(classUrl);
             if (downloadFile != null) {
+                mProgress.setVisibility(View.VISIBLE);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -129,6 +133,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), R.string.timetable_success, Toast.LENGTH_SHORT).show();
+                                                        mProgress.setVisibility(View.INVISIBLE);
                                                         mNothingImage.setVisibility(View.GONE);
                                                         mDownloadsCard.setVisibility(View.VISIBLE);
                                                         if (!mAdapter.getData().contains(file)) {
