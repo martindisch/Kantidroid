@@ -1,6 +1,6 @@
 # About
 
-### Contributors
+## Contributors
 
 ##### Development
 Martin Disch
@@ -25,9 +25,9 @@ Luftaufnahme BKS Chur
 ##### lapastillaroja
 [DividerItemDecoration for RecyclerView](https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36)
 
-### Open Source licenses
+## Open Source licenses
 
-#### Android RecyclerView by Chiu-Ki Chan
+##### Android RecyclerView by Chiu-Ki Chan
 ```
 Apache License
                            Version 2.0, January 2004
