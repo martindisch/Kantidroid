@@ -21,7 +21,7 @@
     <color name="red_light">#F44336</color>
 
     <color name="timetable">#9C27B0</color>
-    <color name="kantiBackground">#5CB8EE</color>
+    <color name="blue_grey">#37474F</color>
 
     <color name="promo_white">@color/primary_text_default_material_dark</color>
     <color name="promo_black">@color/primary_text_default_material_light</color>
