@@ -14,13 +14,13 @@
             android:icon="@drawable/ic_kiss"
             android:title="@string/kiss" />
         <item
-            android:id="@+id/nav_backup"
-            android:icon="@drawable/ic_backup"
-            android:title="@string/backup" />
-        <item
             android:id="@+id/nav_timetable"
             android:icon="@drawable/ic_calendar_clock"
             android:title="@string/timetable" />
+        <item
+            android:id="@+id/nav_backup"
+            android:icon="@drawable/ic_backup"
+            android:title="@string/backup" />
     </group>
 
     <group>

@@ -98,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
                     tag = "subjects";
                     break;
                 case 3:
+                    fragment = TimetableFragment.newInstance();
+                    tag = "timetable";
+                    break;
+                case 4:
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
                     fragment = BackupFragment.newInstance();
                     tag = "backup";
-                    break;
-                case 4:
-                    fragment = TimetableFragment.newInstance();
-                    tag = "timetable";
                     break;
                 default:
                     fragment = PlaceholderFragment.newInstance(mSelected);
@@ -148,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_kiss:
                                 mSelected = 2;
                                 break;
-                            case R.id.nav_backup:
+                            case R.id.nav_timetable:
                                 mSelected = 3;
                                 break;
-                            case R.id.nav_timetable:
+                            case R.id.nav_backup:
                                 mSelected = 4;
                                 break;
                             case R.id.nav_feedback:
