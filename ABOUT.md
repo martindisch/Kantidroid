@@ -1,35 +1,34 @@
-About
-=====
+# About
 
-## Development
+### Contributors
+
+##### Development
 Martin Disch
 
-## Design
+##### Design
 Nima Yassini
 
-Thanks
-======
+## Thanks
 
-Chiu-Ki Chan
-Android Development Blog (http://blog.sqisland.com/)
+##### Chiu-Ki Chan
+[Android Development Blog](http://blog.sqisland.com/)
 
-Pirdad Sakhizada
-MarginDecoration für RecyclerView (http://stackoverflow.com/a/29905000)
+##### Pirdad Sakhizada
+[MarginDecoration for RecyclerView](http://stackoverflow.com/a/29905000)
 
-Andrea Ruisi, Hochbauamt Graubünden
+##### Andrea Ruisi, Hochbauamt GraubÃ¼nden
 Luftaufnahme BKS Chur
 
-serso
-LinearLayoutManager für RecyclerView (https://github.com/serso/android-linear-layout-manager)
+##### serso
+[LinearLayoutManager for RecyclerView](https://github.com/serso/android-linear-layout-manager)
 
-lapastillaroja
-DividerItemDecoration für RecyclerView (https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36)
+##### lapastillaroja
+[DividerItemDecoration for RecyclerView](https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36)
 
-OPEN SOURCE LIZENZEN
-====================
+### Open Source licenses
 
-**Android RecyclerView by Chiu-Ki Chan**
-
+#### Android RecyclerView by Chiu-Ki Chan
+```
 Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -231,9 +230,9 @@ Apache License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-**Cheesesquare sample by Chris Banes**
-
+```
+#### Cheesesquare sample by Chris Banes
+```
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -458,9 +457,9 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-**ION by Koushik Dutta**
-
+```
+#### ION by Koushik Dutta
+```
 Copyright 2013 Koushik Dutta (2013)
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -474,9 +473,9 @@ Copyright 2013 Koushik Dutta (2013)
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-**Material Design Icons by Google (unmodified)**
-
+```
+#### Material Design Icons by Google (unmodified)
+```
 Attribution 4.0 International
 
 =======================================================================
@@ -870,9 +869,9 @@ the avoidance of doubt, this paragraph does not form part of the public
 licenses.
 
 Creative Commons may be contacted at creativecommons.org.
-
-**Additional Material Design Icons by Austin Andrews**
-
+```
+#### Additional Material Design Icons by Austin Andrews
+```
 Copyright (c) 2014, Austin Andrews (http://materialdesignicons.com/),
 with Reserved Font Name Material Design Icons.
 Copyright (c) 2014, Google (http://www.google.com/design/)
@@ -969,3 +968,4 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+```
