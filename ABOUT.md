@@ -1,14 +1,14 @@
-BETEILIGTE
-==========
+About
+=====
 
-Idee & Umsetzung
+## Development
 Martin Disch
 
-Design
+## Design
 Nima Yassini
 
-DANKE
-=====
+Thanks
+======
 
 Chiu-Ki Chan
 Android Development Blog (http://blog.sqisland.com/)
