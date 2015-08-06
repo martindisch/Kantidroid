@@ -465,4 +465,24 @@ public class Util {
         f.mkdirs();
         return f.listFiles();
     }
+
+    public static String fileExt(File f) {
+        String name = f.getName();
+        if (name.indexOf("?") > -1) {
+            name = name.substring(0, name.indexOf("?"));
+        }
+        if (name.lastIndexOf(".") == -1) {
+            return null;
+        } else {
+            String ext = name.substring(name.lastIndexOf("."));
+            if (ext.indexOf("%") > -1) {
+                ext = ext.substring(0, ext.indexOf("%"));
+            }
+            if (ext.indexOf("/") > -1) {
+                ext = ext.substring(0, ext.indexOf("/"));
+            }
+            return ext.toLowerCase();
+
+        }
+    }
 }

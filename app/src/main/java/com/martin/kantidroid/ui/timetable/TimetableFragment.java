@@ -1,6 +1,9 @@
 package com.martin.kantidroid.ui.timetable;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -162,7 +166,17 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onItemClick(View v, int position) {
-
+        File f = mAdapter.getData().get(position);
+        MimeTypeMap myMime = MimeTypeMap.getSingleton();
+        Intent newIntent = new Intent(Intent.ACTION_VIEW);
+        String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
+        newIntent.setDataAndType(Uri.fromFile(f),mimeType);
+        newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            getActivity().startActivity(newIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getActivity(), R.string.timetable_noreader, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
