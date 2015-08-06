@@ -113,7 +113,6 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
                                                         Toast.makeText(getActivity(), R.string.timetable_success, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
-                                                // TODO: Add download to list
                                             }
                                         }
                                     });

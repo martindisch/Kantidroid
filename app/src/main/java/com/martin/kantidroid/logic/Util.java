@@ -455,7 +455,7 @@ public class Util {
         if (Environment.getExternalStorageState().contentEquals(Environment.MEDIA_MOUNTED)) {
             File localDest = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/timetables");
             localDest.mkdirs();
-            download = new File(localDest + "/" + classUrl + ".pdf");
+            download = new File(localDest + "/" + classUrl.replace("%20", " ") + ".pdf");
         }
         return download;
     }
