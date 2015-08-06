@@ -231,7 +231,7 @@ Apache License
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
-#### Cheesesquare sample by Chris Banes
+##### Cheesesquare sample by Chris Banes
 ```
                                  Apache License
                            Version 2.0, January 2004
@@ -458,7 +458,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
-#### ION by Koushik Dutta
+##### ION by Koushik Dutta
 ```
 Copyright 2013 Koushik Dutta (2013)
 
@@ -474,7 +474,7 @@ Copyright 2013 Koushik Dutta (2013)
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
-#### Material Design Icons by Google (unmodified)
+##### Material Design Icons by Google (unmodified)
 ```
 Attribution 4.0 International
 
@@ -870,7 +870,7 @@ licenses.
 
 Creative Commons may be contacted at creativecommons.org.
 ```
-#### Additional Material Design Icons by Austin Andrews
+##### Additional Material Design Icons by Austin Andrews
 ```
 Copyright (c) 2014, Austin Andrews (http://materialdesignicons.com/),
 with Reserved Font Name Material Design Icons.
