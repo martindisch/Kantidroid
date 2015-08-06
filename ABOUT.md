@@ -124,7 +124,7 @@ sublicense, and/or sell copies of the Software, and to permit persons who
 receive copies from any such party to do so, with the only requirement being
 that this copyright notice remain intact.
 ```
-##### [ION](https://github.com/koush/ion) by Koushik Dutta
+##### [ion](https://github.com/koush/ion) by Koushik Dutta
 ```
 Copyright 2013 Koushik Dutta (2013)
 
