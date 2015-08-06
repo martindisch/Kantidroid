@@ -100,19 +100,19 @@
                     android:id="@+id/ivNothing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"/>
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cvDownloads"
                     android:layout_width="match_parent"
-                    android:layout_height="330dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     app:cardCornerRadius="0dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:padding="@dimen/activity_horizontal_margin">
 
                         <TextView
@@ -127,8 +127,9 @@
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvDownloads"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_below="@id/tvDownloadTitle" />
+                            android:layout_height="330dp"
+                            android:layout_below="@id/tvDownloadTitle"
+                            android:scrollbars="vertical" />
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>

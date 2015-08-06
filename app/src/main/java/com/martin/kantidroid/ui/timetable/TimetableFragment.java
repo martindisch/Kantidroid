@@ -1,10 +1,13 @@
 package com.martin.kantidroid.ui.timetable;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -19,17 +22,20 @@ import com.bumptech.glide.Glide;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Util;
+import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import java.io.File;
 
-public class TimetableFragment extends Fragment implements View.OnClickListener {
+public class TimetableFragment extends Fragment implements View.OnClickListener, TimetableAdapter.OnClickListener {
 
     private TextInputLayout mTilClass;
     private EditText mClass;
     private Button mDownload;
     private View mNothingImage, mDownloadsCard;
     private RecyclerView mDownloads;
+    private TimetableAdapter mAdapter;
     private boolean mHasError;
 
     public static TimetableFragment newInstance() {
@@ -60,6 +66,11 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         mDownloadsCard = rootView.findViewById(R.id.cvDownloads);
         mDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mDownloads.hasFixedSize();
+        mDownloads.setLayoutManager(layoutManager);
+        mDownloads.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
+
         if (savedInstanceState != null) {
             mHasError = savedInstanceState.getBoolean("mHasError");
         } else {
@@ -69,12 +80,15 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
             mTilClass.setError(getString(R.string.timetable_error_noclass));
         }
 
-        if (/*!hasDownloads*/ true) {
-            mDownloadsCard.setVisibility(View.INVISIBLE);
+        File[] downloads = Util.getDownloadedFiles();
+        if (downloads.length == 0) {
+            mDownloadsCard.setVisibility(View.GONE);
         } else {
-            mNothingImage.setVisibility(View.INVISIBLE);
+            mNothingImage.setVisibility(View.GONE);
         }
         Glide.with(this).load(R.drawable.timetable_nodownloads).into((ImageView) rootView.findViewById(R.id.ivNothing));
+        mAdapter = new TimetableAdapter(getActivity(), downloads, this);
+        mDownloads.setAdapter(mAdapter);
 
         mDownload.setOnClickListener(this);
 
@@ -98,7 +112,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
                                     .write(downloadFile)
                                     .setCallback(new FutureCallback<File>() {
                                         @Override
-                                        public void onCompleted(final Exception e, File file) {
+                                        public void onCompleted(final Exception e, final File file) {
                                             if (e != null) {
                                                 mDownload.post(new Runnable() {
                                                     @Override
@@ -111,7 +125,11 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), R.string.timetable_success, Toast.LENGTH_SHORT).show();
-
+                                                        mNothingImage.setVisibility(View.GONE);
+                                                        mDownloadsCard.setVisibility(View.VISIBLE);
+                                                        if (!mAdapter.getData().contains(file)) {
+                                                            mAdapter.add(file);
+                                                        }
                                                     }
                                                 });
                                             }
@@ -140,5 +158,30 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean("mHasError", mHasError);
+    }
+
+    @Override
+    public void onItemClick(View v, int position) {
+
+    }
+
+    @Override
+    public void onItemLongClick(View v, final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.timetable_deletequestion);
+        builder.setNegativeButton(R.string.no, null);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                File f = mAdapter.getData().get(position).getAbsoluteFile();
+                f.delete();
+                mAdapter.remove(position);
+                if (mAdapter.getData().size() == 0) {
+                    mDownloadsCard.setVisibility(View.GONE);
+                    mNothingImage.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        builder.show();
     }
 }

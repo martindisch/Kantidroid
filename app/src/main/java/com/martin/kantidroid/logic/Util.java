@@ -459,4 +459,10 @@ public class Util {
         }
         return download;
     }
+
+    public static File[] getDownloadedFiles() {
+        File f = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/timetables");
+        f.mkdirs();
+        return f.listFiles();
+    }
 }
