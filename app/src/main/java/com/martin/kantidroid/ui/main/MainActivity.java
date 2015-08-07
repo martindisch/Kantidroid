@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.main;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Primer;
 import com.martin.kantidroid.ui.backup.BackupFragment;
+import com.martin.kantidroid.ui.feedback.FeedbackActivity;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 import com.martin.kantidroid.ui.timetable.TimetableFragment;
@@ -118,13 +120,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (mExtraSelected != -1) {
             switch (mExtraSelected) {
-                /*case 4:
-                    Intent i = new Intent(this, TimetableActivity.class);
+                case 5:
+                    Intent i = new Intent(this, FeedbackActivity.class);
                     startActivity(i);
                     mExtraSelected = -1;
-                    break;*/
-                case 5:
-
                     break;
                 case 6:
 

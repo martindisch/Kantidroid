@@ -23,6 +23,8 @@
     <color name="timetable">#9C27B0</color>
     <color name="blue_grey">#37474F</color>
 
+    <color name="feedback_statusbar">#1a8e7b</color>
+
     <color name="promo_white">@color/primary_text_default_material_dark</color>
     <color name="promo_black">@color/primary_text_default_material_light</color>
 
