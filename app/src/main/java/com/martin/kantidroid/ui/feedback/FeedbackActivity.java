@@ -1,5 +1,7 @@
 package com.martin.kantidroid.ui.feedback;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -46,11 +48,18 @@ public class FeedbackActivity extends AppCompatActivity {
         FeedbackAdapter adapter = new FeedbackAdapter(this, new FeedbackAdapter.OnClickListener() {
             @Override
             public void onItemClick(View v, int position) {
+                String subject;
                 if (position == 0) {
-
+                    subject = getString(R.string.feedback_subject_bug);
                 } else {
-
+                    subject = getString(R.string.feedback_subject_feature);
                 }
+
+                Intent send = new Intent(Intent.ACTION_SENDTO);
+                String uriText = "mailto:" + Uri.encode("martindisch@gmail.com") + "?subject=" + Uri.encode(subject);
+                Uri uri = Uri.parse(uriText);
+                send.setData(uri);
+                startActivity(Intent.createChooser(send, "E-Mail senden"));
             }
         });
         mSelection.setAdapter(adapter);

@@ -273,4 +273,6 @@
     <string name="title_activity_feedback">Feedback</string>
     <string name="feedback_bug">Problem/Fehler melden</string>
     <string name="feedback_feature">Idee für neues Feature</string>
+    <string name="feedback_subject_bug">Fehlermeldung Kantidroid</string>
+    <string name="feedback_subject_feature">Feature-Request Kantidroid</string>
 </resources>
