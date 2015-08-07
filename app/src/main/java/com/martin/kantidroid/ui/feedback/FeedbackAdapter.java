@@ -12,14 +12,13 @@ import com.martin.kantidroid.R;
 
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHolder> {
 
-    private String[] mTitles, mMessages;
+    private String[] mTitles;
     private int[] mDrawables;
     private final OnClickListener mCallback;
 
     public FeedbackAdapter(Context context, OnClickListener callback) {
-        mTitles = new String[]{context.getString(R.string.backup_title_1), context.getString(R.string.backup_title_2)};
-        mMessages = new String[]{context.getString(R.string.backup_msg_1), context.getString(R.string.backup_msg_2)};
-        mDrawables = new int[]{R.drawable.ic_backup, R.drawable.ic_import};
+        mTitles = new String[]{context.getString(R.string.feedback_bug), context.getString(R.string.feedback_feature)};
+        mDrawables = new int[]{R.drawable.ic_bug, R.drawable.ic_cake};
         mCallback = callback;
     }
 
@@ -37,7 +36,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tvTitle.setText(mTitles[position]);
-        holder.tvMessage.setText(mMessages[position]);
         holder.ivIcon.setImageResource(mDrawables[position]);
         holder.rlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,14 +47,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView tvTitle;
-        public final TextView tvMessage;
         public final ImageView ivIcon;
         public final View rlRoot;
 
         public ViewHolder(View v) {
             super(v);
             tvTitle = (TextView) v.findViewById(R.id.tvTitle);
-            tvMessage = (TextView) v.findViewById(R.id.tvMessage);
             ivIcon = (ImageView) v.findViewById(R.id.ivIcon);
             rlRoot = v.findViewById(R.id.rlRoot);
         }

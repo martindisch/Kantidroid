@@ -271,4 +271,6 @@
     <string name="timetable_deletequestion">Willst du diesen Stundenplan löschen?</string>
     <string name="timetable_noreader">Kein PDF Reader installiert</string>
     <string name="title_activity_feedback">Feedback</string>
+    <string name="feedback_bug">Problem/Fehler melden</string>
+    <string name="feedback_feature">Idee für neues Feature</string>
 </resources>
