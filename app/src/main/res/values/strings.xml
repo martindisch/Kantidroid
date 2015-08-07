@@ -270,4 +270,5 @@
     <string name="timetable_nosuchclass">Kein Stundenplan für diese Klasse gefunden oder keine Internetverbindung</string>
     <string name="timetable_deletequestion">Willst du diesen Stundenplan löschen?</string>
     <string name="timetable_noreader">Kein PDF Reader installiert</string>
+    <string name="title_activity_feedback">Feedback</string>
 </resources>
