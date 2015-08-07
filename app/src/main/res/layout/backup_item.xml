@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/widget_margin_large"
-        android:text="Lokales Backup importieren"
         android:textSize="20sp" />
 
     <ImageView
@@ -22,8 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_backup" />
+        android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/tvMessage"
@@ -31,7 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvTitle"
         android:maxEms="15"
-        android:singleLine="false"
-        android:text="Speichert die Daten auf dem externen Speicher im Ordner 'Kantidroid\Backup'" />
+        android:singleLine="false" />
 
 </RelativeLayout>
