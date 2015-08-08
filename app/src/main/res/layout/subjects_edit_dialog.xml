@@ -39,14 +39,15 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_alphabetical" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/et_subj_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/ivName"
+                style="?android:editTextStyle"
                 android:hint="@string/name"
                 android:imeOptions="actionNext"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences"/>
 
             <EditText
                 android:id="@+id/et_subj_short"

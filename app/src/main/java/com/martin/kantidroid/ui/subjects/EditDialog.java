@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -23,7 +25,8 @@ import com.martin.kantidroid.logic.Util;
 
 public class EditDialog extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    private EditText mName, mShort;
+    private EditText mShort;
+    private AutoCompleteTextView mName;
     private CheckBox mCounts;
     private View mColor;
     private SwitchCompat mSwitch;
@@ -42,7 +45,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         ab.setHomeAsUpIndicator(R.drawable.ic_close);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        mName = (EditText) findViewById(R.id.et_subj_name);
+        mName = (AutoCompleteTextView) findViewById(R.id.et_subj_name);
         mShort = (EditText) findViewById(R.id.et_subj_short);
         mCounts = (CheckBox) findViewById(R.id.cbCounts);
         mSwitch = (SwitchCompat) findViewById(R.id.scCounts);
@@ -50,6 +53,8 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         mKontSelection = (RadioGroup) findViewById(R.id.rgKont);
         mColor = findViewById(R.id.vColor);
         mColor.setOnClickListener(this);
+
+        mName.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.subjects_all)));
 
         Intent data = getIntent();
         if (data.hasExtra("name")) {
