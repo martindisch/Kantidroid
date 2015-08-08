@@ -53,12 +53,6 @@ public class FeedbackActivity extends AppCompatActivity {
 
         Glide.with(this).load(R.drawable.feedback).into(ivFeedback);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.feedback_statusbar));
-        }
-
         RecyclerView mSelection = (RecyclerView) findViewById(R.id.rvFeedback);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mSelection.setLayoutManager(layoutManager);
