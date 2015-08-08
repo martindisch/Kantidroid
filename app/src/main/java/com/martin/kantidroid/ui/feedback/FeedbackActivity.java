@@ -1,6 +1,7 @@
 package com.martin.kantidroid.ui.feedback;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,11 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
@@ -32,7 +35,26 @@ public class FeedbackActivity extends AppCompatActivity {
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        Glide.with(this).load(R.drawable.feedback).into((ImageView) findViewById(R.id.ivFeedback));
+        int measuredWidth = 0;
+        int measuredHeight = 0;
+        WindowManager w = getWindowManager();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            Point size = new Point();
+            w.getDefaultDisplay().getSize(size);
+            measuredWidth = size.x;
+            measuredHeight = size.y;
+        } else {
+            Display d = w.getDefaultDisplay();
+            measuredWidth = d.getWidth();
+            measuredHeight = d.getHeight();
+        }
+
+        int calcHeight = (int) Math.round(measuredWidth * 0.7072916666);
+        ImageView ivFeedback = (ImageView) findViewById(R.id.ivFeedback);
+        ivFeedback.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, calcHeight));
+
+        Glide.with(this).load(R.drawable.feedback).into(ivFeedback);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
