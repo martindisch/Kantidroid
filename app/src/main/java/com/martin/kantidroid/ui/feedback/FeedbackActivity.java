@@ -13,14 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
-import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 public class FeedbackActivity extends AppCompatActivity {
 
