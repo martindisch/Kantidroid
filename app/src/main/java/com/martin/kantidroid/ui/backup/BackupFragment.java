@@ -2,6 +2,8 @@ package com.martin.kantidroid.ui.backup;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -9,11 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +74,22 @@ public class BackupFragment extends Fragment {
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle(R.string.backup);
+
+        int measuredWidth = 0;
+        WindowManager w = getActivity().getWindowManager();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            Point size = new Point();
+            w.getDefaultDisplay().getSize(size);
+            measuredWidth = size.x;
+        } else {
+            Display d = w.getDefaultDisplay();
+            measuredWidth = d.getWidth();
+        }
+
+        int calcHeight = (int) Math.round(measuredWidth * 0.381);
+        ImageView ivDropboxLogo = (ImageView) rootView.findViewById(R.id.ivDropboxLogo);
+        ivDropboxLogo.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, calcHeight));
 
         RecyclerView mSelection = (RecyclerView) rootView.findViewById(R.id.rvLocal);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -157,7 +179,7 @@ public class BackupFragment extends Fragment {
             }
         });
 
-        Glide.with(this).load(R.drawable.dropbox).fitCenter().into((ImageView) rootView.findViewById(R.id.ivDropboxLogo));
+        Glide.with(this).load(R.drawable.dropbox).into(ivDropboxLogo);
 
         return rootView;
     }

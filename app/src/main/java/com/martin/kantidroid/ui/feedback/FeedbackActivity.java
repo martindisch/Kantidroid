@@ -36,18 +36,15 @@ public class FeedbackActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         int measuredWidth = 0;
-        int measuredHeight = 0;
         WindowManager w = getWindowManager();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             Point size = new Point();
             w.getDefaultDisplay().getSize(size);
             measuredWidth = size.x;
-            measuredHeight = size.y;
         } else {
             Display d = w.getDefaultDisplay();
             measuredWidth = d.getWidth();
-            measuredHeight = d.getHeight();
         }
 
         int calcHeight = (int) Math.round(measuredWidth * 0.7072916666);
