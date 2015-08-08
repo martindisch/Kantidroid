@@ -271,6 +271,7 @@ public class BackupFragment extends Fragment {
                 }
             }
         }).start();
+        mAction = 0;
     }
 
     private void dropboxImport() {
@@ -346,6 +347,7 @@ public class BackupFragment extends Fragment {
                 }
             }
         }).start();
+        mAction = 0;
     }
 
     @Override
