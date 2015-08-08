@@ -3,31 +3,35 @@
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/widget_margin_large"
-    android:focusable="true"
+    android:background="@drawable/btn_flat_selector"
     android:clickable="true"
-    android:background="@drawable/btn_flat_selector">
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="@dimen/widget_margin_large">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/widget_margin_large"
+        android:tint="@color/dropbox" />
 
     <TextView
         android:id="@id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/widget_margin_large"
-        android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/ivIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
+        android:layout_toRightOf="@id/ivIcon"
+        android:textColor="@color/primary_text_default_material_light"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvTitle"
+        android:layout_toRightOf="@id/ivIcon"
         android:maxEms="15"
         android:singleLine="false" />
 
