@@ -23,6 +23,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -484,5 +486,16 @@ public class Util {
             return ext.toLowerCase();
 
         }
+    }
+
+    public static double[] convertDoubles(List<Double> doubles)
+    {
+        double[] ret = new double[doubles.size()];
+        Iterator<Double> iterator = doubles.iterator();
+        for (int i = 0; i < ret.length; i++)
+        {
+            ret[i] = iterator.next().doubleValue();
+        }
+        return ret;
     }
 }

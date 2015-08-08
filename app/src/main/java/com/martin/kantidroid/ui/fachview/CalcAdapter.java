@@ -13,14 +13,14 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
 
+import java.util.ArrayList;
+
 public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
 
     private final Fach mFach;
     private final int mSemester;
     private final double mZeugnis;
-    private final String[] mPicGrades = {"6", "5.5", "5", "4.5", "4"};
-    private final double[] mDPicGrades = {6, 5.5, 5, 4.5, 4};
-    private final Context mContext;
+    private double[] mDPicGrades;
     private String mWeight = "1";
     private final Resources mRes;
     private double mRequired;
@@ -29,7 +29,6 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
     public CalcAdapter(Context context, Fach fach, int semester) {
         mFach = fach;
         mSemester = semester;
-        mContext = context;
         if (mSemester == 1) {
             mZeugnis = Double.parseDouble(fach.getRealAverage1());
         } else {
@@ -37,11 +36,29 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
         }
         mRes = context.getResources();
         mEntries = fach.getNotenEntries(semester);
+        mDPicGrades = getPicGrades();
+    }
+
+    private double[] getPicGrades() {
+        ArrayList<Double> lPicGrades = new ArrayList<>();
+        final double[] allGrades = {1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6};
+        double[] requiredGrades = new double[11];
+        double goal = 0.75;
+        for (int i = 0; i < 11; i++) {
+            requiredGrades[i] = Util.getRequiredPerf(mEntries, mWeight, goal + "");
+            goal += .5;
+        }
+        for (int i = 10; i >= 0; i--) {
+            if (requiredGrades[i] >= 1 && requiredGrades[i] <= 6) {
+                lPicGrades.add(allGrades[i]);
+            }
+        }
+        return Util.convertDoubles(lPicGrades);
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return mDPicGrades.length;
     }
 
     @Override
@@ -65,7 +82,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             holder.tvName.setTextColor(mRes.getColor(R.color.highlight_light));
             holder.tvName.setText(R.string.actual);
         }
-        holder.tvPic.setText(mPicGrades[position]);
+        holder.tvPic.setText(mDPicGrades[position] + "");
         mRequired = Util.getRequiredPerf(mEntries, mWeight, mDPicGrades[position] - 0.25 + "");
         holder.tvMark.setText(mRequired + "");
         if (mRequired > 6 || mRequired < 1) {
@@ -90,5 +107,6 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
 
     public void changeWeight(String weight) {
         mWeight = weight;
+        mDPicGrades = getPicGrades();
     }
 }
