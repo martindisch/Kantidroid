@@ -57,7 +57,6 @@ public class FeedbackActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mSelection.setLayoutManager(layoutManager);
         mSelection.setHasFixedSize(true);
-        mSelection.addItemDecoration(new DividerItemDecoration(this, null, true));
         FeedbackAdapter adapter = new FeedbackAdapter(this, new FeedbackAdapter.OnClickListener() {
             @Override
             public void onItemClick(View v, int position) {
