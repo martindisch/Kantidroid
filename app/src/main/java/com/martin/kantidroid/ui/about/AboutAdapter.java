@@ -90,7 +90,9 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         mContext.startActivity(browserIntent);
                     }
                     else {
-                        // Show license activity
+                        Intent i = new Intent(mContext, LicenseActivity.class);
+                        i.putExtra("license", mLinks[position]);
+                        mContext.startActivity(i);
                     }
                 }
             }

@@ -53,15 +53,15 @@
         <item>https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36</item>
         <item>https://github.com/serso/android-linear-layout-manager</item>
         <item>null</item>
-        <item>Glide</item>
-        <item>ion</item>
-        <item>Core API</item>
-        <item>Android RecyclerView</item>
-        <item>Cheesesquare sample</item>
-        <item>Material Design Icons</item>
-        <item>Additional Icons</item>
-        <item>Android Support library</item>
-        <item>Android Open Source Project</item>
+        <item>license_glide</item>
+        <item>license_ion</item>
+        <item>license_dropbox</item>
+        <item>license_androidrecyclerview</item>
+        <item>license_cheesesquaresample</item>
+        <item>license_materialdesignicons</item>
+        <item>license_additionalicons</item>
+        <item>license_androidsupportlibrary</item>
+        <item>license_androidopensourceproject</item>
     </string-array>
     <array name="about_drawables">
         <item>@integer/about_header</item>
