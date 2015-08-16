@@ -92,24 +92,24 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public static class ViewHolderIcon extends ViewHolderBase {
         public TextView tvTitle, tvSubTitle;
-        public ImageView ivIcon;
+        public ImageView ivPic;
 
         public ViewHolderIcon(View v) {
             super(v);
             tvTitle = (TextView) v.findViewById(R.id.tvTitle);
             tvSubTitle = (TextView) v.findViewById(R.id.tvSubtitle);
-            ivIcon = (ImageView) v.findViewById(R.id.ivIcon);
+            ivPic = (ImageView) v.findViewById(R.id.ivPic);
         }
     }
 
     public static class ViewHolderLetter extends ViewHolderBase {
-        public final TextView tvTitle, tvSubTitle, tvLetter;
+        public final TextView tvTitle, tvSubTitle, tvPic;
 
         public ViewHolderLetter(View v) {
             super(v);
             tvTitle = (TextView) v.findViewById(R.id.tvTitle);
             tvSubTitle = (TextView) v.findViewById(R.id.tvSubtitle);
-            tvLetter = (TextView) v.findViewById(R.id.tvLetter);
+            tvPic = (TextView) v.findViewById(R.id.tvPic);
         }
     }
 

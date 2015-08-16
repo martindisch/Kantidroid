@@ -26,6 +26,9 @@
     <color name="promo_white">@color/primary_text_default_material_dark</color>
     <color name="promo_black">@color/primary_text_default_material_light</color>
 
+    <color name="about_header_background">#EEEEEE</color>
+    <color name="about_header_text">#696969</color>
+
     <!-- Don't modify this section the colors -->
     <color name="c1">#d50000</color>
     <color name="c2">#c51162</color>
