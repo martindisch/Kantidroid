@@ -3,10 +3,10 @@
 ## Contributors
 
 ##### Development
-Martin Disch
+[Martin Disch](https://github.com/martindisch)
 
 ##### Design
-Nima Yassini
+[Nima Yasini](https://plus.google.com/104712908004426299903/posts)
 
 ## Thanks
 
