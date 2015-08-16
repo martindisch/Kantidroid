@@ -301,7 +301,7 @@
         <item>null</item>
         <item>http://blog.sqisland.com/</item>
     </string-array>
-    <!-- This int array is in the wrong place (*strings*.xml), but it's here because it belongs with the others -->
+    <!-- This int array is in the wrong place (strings.xml), but it's here because it belongs with the others -->
     <integer-array name="about_drawables">
         <item>0</item>
         <item>@drawable/android</item>
