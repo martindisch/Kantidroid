@@ -60,7 +60,8 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
+        final int position = holder.getAdapterPosition();
         switch (holder.getItemViewType()) {
             case 0:
                 ViewHolderHeader vh0 = (ViewHolderHeader) holder;

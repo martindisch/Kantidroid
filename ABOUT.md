@@ -13,7 +13,7 @@ Nima Yassini
 ##### Chiu-Ki Chan
 [Android Development Blog](http://blog.sqisland.com/)
 
-##### Andrea Ruisi, Hochbauamt Graubünden
+##### Andrea Ruisi, [Hochbauamt Graubünden](http://www.gr.ch/DE/institutionen/verwaltung/bvfd/hba/ueberuns/Seiten/default.aspx)
 Luftaufnahme BKS Chur
 
 ##### Pirdad Sakhizada
