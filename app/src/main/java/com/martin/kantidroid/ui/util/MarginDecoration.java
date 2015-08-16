@@ -1,4 +1,4 @@
-package com.martin.kantidroid.ui.overview;
+package com.martin.kantidroid.ui.util;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -21,16 +21,15 @@ public class MarginDecoration extends RecyclerView.ItemDecoration {
         int spacing = margin;
         int halfSpacing = spacing / 2;
 
-        int childCount = parent.getChildCount();
         int childIndex = parent.getChildAdapterPosition(view);
-        int spanCount = getTotalSpan(view, parent);
+        int spanCount = getTotalSpan(parent);
         int spanIndex = childIndex % spanCount;
 
         /* INVALID SPAN */
         if (spanCount < 1) return;
 
         outRect.top = spacing;
-        outRect.bottom = spacing;
+        outRect.bottom = 0;
         outRect.left = halfSpacing;
         outRect.right = halfSpacing;
 
@@ -39,48 +38,34 @@ public class MarginDecoration extends RecyclerView.ItemDecoration {
             outRect.bottom = 0;
         }
 
-        if (isLeftEdge(spanIndex, spanCount)) {
+        if (isLeftEdge(spanIndex)) {
             outRect.left = 0;
         }
 
         if (isRightEdge(spanIndex, spanCount)) {
             outRect.right = 0;
         }
-
-        if (isBottomEdge(childIndex, childCount, spanCount)) {
-            outRect.bottom = 0;
-        }
     }
 
-    protected int getTotalSpan(View view, RecyclerView parent) {
-
+    protected int getTotalSpan(RecyclerView parent) {
         RecyclerView.LayoutManager mgr = parent.getLayoutManager();
         if (mgr instanceof GridLayoutManager) {
             return ((GridLayoutManager) mgr).getSpanCount();
         } else if (mgr instanceof StaggeredGridLayoutManager) {
             return ((StaggeredGridLayoutManager) mgr).getSpanCount();
         }
-
         return -1;
     }
 
-    protected boolean isLeftEdge(int spanIndex, int spanCount) {
-
+    protected boolean isLeftEdge(int spanIndex) {
         return spanIndex == 0;
     }
 
     protected boolean isRightEdge(int spanIndex, int spanCount) {
-
         return spanIndex == spanCount - 1;
     }
 
     protected boolean isTopEdge(int childIndex, int spanCount) {
-
         return childIndex < spanCount;
-    }
-
-    protected boolean isBottomEdge(int childIndex, int childCount, int spanCount) {
-
-        return childIndex >= childCount - spanCount;
     }
 }

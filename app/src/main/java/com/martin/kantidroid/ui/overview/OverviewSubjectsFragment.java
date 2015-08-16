@@ -16,6 +16,7 @@ import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.ui.fachview.FachviewActivity;
+import com.martin.kantidroid.ui.util.MarginDecoration;
 
 import java.util.List;
 

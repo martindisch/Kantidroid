@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.martin.kantidroid.ui.overview.AutofitRecyclerView
+    <com.martin.kantidroid.ui.util.AutofitRecyclerView
         android:id="@+id/rvSubjects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
