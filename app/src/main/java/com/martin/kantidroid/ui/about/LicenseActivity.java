@@ -1,5 +1,6 @@
 package com.martin.kantidroid.ui.about;
 
+import android.content.res.AssetManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.martin.kantidroid.R;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class LicenseActivity extends AppCompatActivity {
 
@@ -22,9 +28,22 @@ public class LicenseActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         TextView tvLicense = (TextView) findViewById(R.id.tvLicense);
-        int licenseName = getIntent().getIntExtra("license", -1);
-        String licenseText = getString(licenseName);
-        tvLicense.setError(licenseText);
+        String licenseName = getIntent().getStringExtra("license");
+        AssetManager am = getAssets();
+        try {
+            InputStream is = am.open(licenseName + ".txt");
+            BufferedReader r = new BufferedReader(new InputStreamReader(is));
+            StringBuilder total = new StringBuilder();
+            String line;
+            while ((line = r.readLine()) != null) {
+                total.append(line + "\n");
+            }
+            tvLicense.setText(total);
+            r.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -279,5 +279,5 @@
     <string name="feedback_subject_bug">Fehlermeldung Kantidroid</string>
     <string name="feedback_subject_feature">Feature-Request Kantidroid</string>
     <string name="title_activity_about">Über</string>
-    <string name="title_activity_license">LicenseActivity</string>
+    <string name="title_activity_license">Lizenz</string>
 </resources>

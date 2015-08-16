@@ -19,10 +19,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvLicense"
-        android:padding="@dimen/activity_horizontal_margin" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvLicense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:textSize="10sp" />
+    </ScrollView>
 
 </LinearLayout>
