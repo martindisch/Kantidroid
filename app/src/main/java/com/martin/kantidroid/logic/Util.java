@@ -499,10 +499,12 @@ public class Util {
         return ret;
     }
 
-    public static int getRandomColor(Resources res) {
+    public static int getSomeColor(Resources res, int index) {
         int[] colors = {R.color.c1, R.color.c2, R.color.c3, R.color.c4, R.color.c5, R.color.c6, R.color.c7, R.color.c8, R.color.c9, R.color.c10, R.color.c11,
                 R.color.c12, R.color.c13, R.color.c14, R.color.c15, R.color.c16};
-        Random r = new Random();
-        return res.getColor(colors[r.nextInt(colors.length)]);
+        while (index >= colors.length) {
+            index -= colors.length;
+        }
+        return res.getColor(colors[index]);
     }
 }

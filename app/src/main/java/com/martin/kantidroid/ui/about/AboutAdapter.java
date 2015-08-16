@@ -71,7 +71,7 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 ViewHolderLetter vh1 = (ViewHolderLetter) holder;
                 vh1.tvTitle.setText(mTitles[position]);
                 vh1.tvSubTitle.setText(mSubTitles[position]);
-                vh1.tvPic.getBackground().setColorFilter(Util.getRandomColor(mRes), PorterDuff.Mode.SRC_ATOP);
+                vh1.tvPic.getBackground().setColorFilter(Util.getSomeColor(mRes, position), PorterDuff.Mode.SRC_ATOP);
                 vh1.tvPic.setText(mTitles[position].charAt(0) + "");
                 break;
             default:
