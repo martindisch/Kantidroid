@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Primer;
+import com.martin.kantidroid.ui.about.AboutActivity;
 import com.martin.kantidroid.ui.backup.BackupFragment;
 import com.martin.kantidroid.ui.feedback.FeedbackActivity;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
@@ -126,7 +127,9 @@ public class MainActivity extends AppCompatActivity {
                     mExtraSelected = -1;
                     break;
                 case 6:
-
+                    Intent y = new Intent(this, AboutActivity.class);
+                    startActivity(y);
+                    mExtraSelected = -1;
                     break;
             }
         }

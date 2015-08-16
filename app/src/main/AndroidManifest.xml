@@ -86,6 +86,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martin.kantidroid.ui.main.MainActivity" />
         </activity>
+        <activity
+            android:name=".ui.about.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme.Base"
+            android:parentActivityName=".ui.main.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martin.kantidroid.ui.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

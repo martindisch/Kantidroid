@@ -1,4 +1,7 @@
 <resources>
+
+    <!-- TODO: Sort out this mess -->
+
     <string name="app_name">Kantidroid</string>
 
     <string name="url_timetable">http://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/bks/dokumentation/klassen/Documents/</string>
@@ -275,4 +278,35 @@
     <string name="feedback_feature">Idee für neues Feature</string>
     <string name="feedback_subject_bug">Fehlermeldung Kantidroid</string>
     <string name="feedback_subject_feature">Feature-Request Kantidroid</string>
+    <string name="title_activity_about">Über</string>
+
+    <string-array name="about_titles">
+        <item>Contributors</item>
+        <item>Martin Disch</item>
+        <item>Nima Yasini</item>
+        <item>Thanks</item>
+        <item>Chiu-Ki Chan</item>
+    </string-array>
+    <string-array name="about_subtitles">
+        <item>null</item>
+        <item>Development</item>
+        <item>Design</item>
+        <item>null</item>
+        <item>Android Development Blog</item>
+    </string-array>
+    <string-array name="about_links">
+        <item>null</item>
+        <item>https://github.com/martindisch</item>
+        <item>https://plus.google.com/104712908004426299903/posts</item>
+        <item>null</item>
+        <item>http://blog.sqisland.com/</item>
+    </string-array>
+    <!-- This int array is in the wrong place (*strings*.xml), but it's here because it belongs with the others -->
+    <integer-array name="about_drawables">
+        <item>0</item>
+        <item>Martin Disch</item>
+        <item>Nima Yasini</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
 </resources>
