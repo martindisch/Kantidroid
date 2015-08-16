@@ -84,8 +84,15 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ((ViewHolderBase) holder).rlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mLinks[position]));
-                mContext.startActivity(browserIntent);
+                if (!mLinks[position].contentEquals("null")) {
+                    if (mLinks[position].contains("http")) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mLinks[position]));
+                        mContext.startActivity(browserIntent);
+                    }
+                    else {
+                        // Show license activity
+                    }
+                }
             }
         });
     }
