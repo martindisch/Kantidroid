@@ -16,7 +16,6 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
     private int[] mDrawables;
 
     public AboutAdapter(Context context) {
-
     }
 
     @Override

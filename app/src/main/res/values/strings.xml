@@ -304,8 +304,8 @@
     <!-- This int array is in the wrong place (*strings*.xml), but it's here because it belongs with the others -->
     <integer-array name="about_drawables">
         <item>0</item>
-        <item>Martin Disch</item>
-        <item>Nima Yasini</item>
+        <item>@drawable/android</item>
+        <item>@drawable/brush</item>
         <item>0</item>
         <item>1</item>
     </integer-array>
