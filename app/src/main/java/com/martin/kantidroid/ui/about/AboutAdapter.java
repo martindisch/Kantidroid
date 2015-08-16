@@ -2,6 +2,8 @@ package com.martin.kantidroid.ui.about;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.Util;
 
 public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private String[] mTitles, mSubTitles, mLinks;
-    private int[] mDrawables;
+    private TypedArray mDrawables;
     private Resources mRes;
 
     public AboutAdapter(Context context) {
@@ -22,7 +26,7 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         mTitles = mRes.getStringArray(R.array.about_titles);
         mSubTitles = mRes.getStringArray(R.array.about_subtitles);
         mLinks = mRes.getStringArray(R.array.about_links);
-        mDrawables = mRes.getIntArray(R.array.about_drawables);
+        mDrawables = mRes.obtainTypedArray(R.array.about_drawables);
     }
 
     @Override
@@ -56,12 +60,20 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         switch (holder.getItemViewType()) {
             case 0:
                 ViewHolderHeader vh0 = (ViewHolderHeader) holder;
+                vh0.tvTitle.setText(mTitles[position]);
                 break;
             case 1:
                 ViewHolderLetter vh1 = (ViewHolderLetter) holder;
+                vh1.tvTitle.setText(mTitles[position]);
+                vh1.tvSubTitle.setText(mSubTitles[position]);
+                vh1.tvPic.getBackground().setColorFilter(Util.getRandomColor(mRes), PorterDuff.Mode.SRC_ATOP);
+                vh1.tvPic.setText(mTitles[position].charAt(0) + "");
                 break;
             default:
                 ViewHolderIcon vh2 = (ViewHolderIcon) holder;
+                vh2.tvTitle.setText(mTitles[position]);
+                vh2.tvSubTitle.setText(mSubTitles[position]);
+                vh2.ivPic.setImageDrawable(mDrawables.getDrawable(position));
                 break;
         }
         ((ViewHolderBase) holder).rlRoot.setOnClickListener(new View.OnClickListener() {
@@ -116,11 +128,12 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public int getItemViewType(int position) {
         int viewType;
-        switch (mDrawables[position]) {
-            case 0:
+        int d = mDrawables.getResourceId(position, -1);
+        switch (d) {
+            case R.integer.about_header:
                 viewType = 0;
                 break;
-            case 1:
+            case R.integer.about_letter:
                 viewType = 1;
                 break;
             default:

@@ -2,6 +2,7 @@ package com.martin.kantidroid.logic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Environment;
 
@@ -26,6 +27,7 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -488,14 +490,19 @@ public class Util {
         }
     }
 
-    public static double[] convertDoubles(List<Double> doubles)
-    {
+    public static double[] convertDoubles(List<Double> doubles) {
         double[] ret = new double[doubles.size()];
         Iterator<Double> iterator = doubles.iterator();
-        for (int i = 0; i < ret.length; i++)
-        {
+        for (int i = 0; i < ret.length; i++) {
             ret[i] = iterator.next().doubleValue();
         }
         return ret;
+    }
+
+    public static int getRandomColor(Resources res) {
+        int[] colors = {R.color.c1, R.color.c2, R.color.c3, R.color.c4, R.color.c5, R.color.c6, R.color.c7, R.color.c8, R.color.c9, R.color.c10, R.color.c11,
+                R.color.c12, R.color.c13, R.color.c14, R.color.c15, R.color.c16};
+        Random r = new Random();
+        return res.getColor(colors[r.nextInt(colors.length)]);
     }
 }

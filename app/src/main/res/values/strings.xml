@@ -302,11 +302,13 @@
         <item>http://blog.sqisland.com/</item>
     </string-array>
     <!-- This int array is in the wrong place (strings.xml), but it's here because it belongs with the others -->
-    <integer-array name="about_drawables">
-        <item>0</item>
+    <array name="about_drawables">
+        <item>@integer/about_header</item>
         <item>@drawable/android</item>
         <item>@drawable/brush</item>
-        <item>0</item>
-        <item>1</item>
-    </integer-array>
+        <item>@integer/about_header</item>
+        <item>@integer/about_letter</item>
+    </array>
+    <integer name="about_header">0</integer>
+    <integer name="about_letter">1</integer>
 </resources>
