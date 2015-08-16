@@ -1,9 +1,11 @@
 package com.martin.kantidroid.ui.about;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +22,10 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private String[] mTitles, mSubTitles, mLinks;
     private TypedArray mDrawables;
     private Resources mRes;
+    private Context mContext;
 
     public AboutAdapter(Context context) {
+        mContext = context;
         mRes = context.getResources();
         mTitles = mRes.getStringArray(R.array.about_titles);
         mSubTitles = mRes.getStringArray(R.array.about_subtitles);
@@ -56,7 +60,7 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         switch (holder.getItemViewType()) {
             case 0:
                 ViewHolderHeader vh0 = (ViewHolderHeader) holder;
@@ -79,7 +83,8 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ((ViewHolderBase) holder).rlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Open link
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mLinks[position]));
+                mContext.startActivity(browserIntent);
             }
         });
     }
