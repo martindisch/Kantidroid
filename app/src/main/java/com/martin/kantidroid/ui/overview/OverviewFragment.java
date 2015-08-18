@@ -10,7 +10,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -105,21 +104,8 @@ public class OverviewFragment extends Fragment {
                 }
             });
         }
-
-        // TODO: Remove the temporary fix with onLayoutChange once it's been fixed in the Support lib
-        // https://code.google.com/p/android/issues/detail?id=180462
         final TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
-        if (ViewCompat.isLaidOut(tabLayout)) {
-            tabLayout.setupWithViewPager(mViewPager);
-        } else {
-            tabLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-                    tabLayout.setupWithViewPager(mViewPager);
-                    tabLayout.removeOnLayoutChangeListener(this);
-                }
-            });
-        }
+        tabLayout.setupWithViewPager(mViewPager);
 
         mViewPager.setCurrentItem(mPrefs.getInt("semester", 0));
         showInfo(mPrefs.getInt("semester", 0) + 1);
