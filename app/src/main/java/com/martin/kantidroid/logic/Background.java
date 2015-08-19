@@ -97,7 +97,7 @@ public class Background extends IntentService {
     }
 
     private void scheduleNextUpdate() {
-        Intent intent = new Intent(this, this.getClass());
+        Intent intent = new Intent(this, Background.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
