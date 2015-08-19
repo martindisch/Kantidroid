@@ -69,7 +69,7 @@ public class Background extends IntentService {
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
             mBuilder.setSmallIcon(R.drawable.ic_comment);
             mBuilder.setContentTitle(lines[0]);
-            mBuilder.setContentText(lines[1]);
+            mBuilder.setContentText(lines[1].replace("*", " "));
             mBuilder.setAutoCancel(true);
             long[] pattern = {0, 300, 200, 300};
             mBuilder.setVibrate(pattern);
