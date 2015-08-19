@@ -63,10 +63,11 @@ public class Background extends IntentService {
     private void checkMOTD(String motd) {
         String[] lines = motd.split("/");
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        Log.e("FFF", "Line 0: " + lines[0]);
         if (!Util.getSeen(getApplicationContext(), lines[0]) && !lines[0].contains("html") && !lines[1].contains("html")) {
             int idCounter = prefs.getInt("idCounter", 0);
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-            mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+            mBuilder.setSmallIcon(R.drawable.ic_comment);
             mBuilder.setContentTitle(lines[0]);
             mBuilder.setContentText(lines[1]);
             mBuilder.setAutoCancel(true);
