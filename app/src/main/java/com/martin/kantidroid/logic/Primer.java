@@ -1,11 +1,15 @@
 package com.martin.kantidroid.logic;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
@@ -90,5 +94,17 @@ public class Primer {
                 }
             }).start();
         }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("FFF", "MainActivity starting service");
+                Intent newIntent = new Intent(context.getApplicationContext(), Background.class);
+                PendingIntent pendingIntent = PendingIntent.getService(context.getApplicationContext(), 0, newIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+            }
+        }).start();
     }
 }

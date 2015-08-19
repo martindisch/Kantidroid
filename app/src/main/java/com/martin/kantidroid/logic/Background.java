@@ -13,6 +13,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
@@ -33,7 +34,9 @@ public class Background extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.e("FFF", "Handling intent");
         if (isNetworkAvailable()) {
+            Log.e("FFF", "Network available");
             String motd = "";
             try {
                 URL urlmotd = new URL(getString(R.string.motd_url));
@@ -54,7 +57,6 @@ public class Background extends IntentService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            scheduleNextUpdate();
         }
     }
 
@@ -93,15 +95,6 @@ public class Background extends IntentService {
             editor.commit();
             Util.setSeen(getApplicationContext(), lines[0]);
         }
-
-    }
-
-    private void scheduleNextUpdate() {
-        Intent intent = new Intent(this, Background.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, AlarmManager.INTERVAL_DAY, AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     private boolean isNetworkAvailable() {
