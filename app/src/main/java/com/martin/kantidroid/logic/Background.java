@@ -13,8 +13,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
-import android.text.format.DateUtils;
-import android.text.format.Time;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
@@ -29,8 +27,8 @@ import java.net.URL;
 
 public class Background extends IntentService {
 
-    public Background(String name) {
-        super(name);
+    public Background() {
+        super(Background.class.getSimpleName());
     }
 
     @Override
