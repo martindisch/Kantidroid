@@ -280,6 +280,6 @@
     <string name="feedback_subject_feature">Feature-Request Kantidroid</string>
     <string name="title_activity_about">Über</string>
     <string name="title_activity_license">Lizenz</string>
-    <string name="title_activity_motd">MOTD</string>
+    <string name="title_activity_motd">Information</string>
     <string name="motd_questions">Bei Fragen stehe ich zur Verfügung</string>
 </resources>

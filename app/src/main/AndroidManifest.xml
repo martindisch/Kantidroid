@@ -120,7 +120,8 @@
         </activity>
         <activity
             android:name=".ui.motd.MOTD"
-            android:label="@string/title_activity_motd"></activity>
+            android:label="@string/title_activity_motd"
+            android:theme="@style/AppTheme.Base"/>
     </application>
 
 </manifest>
