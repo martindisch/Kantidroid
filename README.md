@@ -1,6 +1,6 @@
 # Kantidroid
 
-The app for students of the [Bündner Kantonsschule Chur](http://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/bks/uberuns/Seiten/default.aspx).
+The unofficial app for students of the [Bündner Kantonsschule Chur](http://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/bks/uberuns/Seiten/default.aspx).
 
 **Features:**
 * Extensive mark management, calculations & predictions
