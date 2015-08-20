@@ -27,7 +27,7 @@ import com.martin.kantidroid.ui.timetable.TimetableFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout mDrawerLayout;
+    public DrawerLayout mDrawerLayout;
     private int mSelected, mCurrent, mExtraSelected;
     private NavigationView mNavigationView;
 

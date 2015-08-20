@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentManager;
+import android.view.Gravity;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
@@ -22,6 +23,8 @@ public class Primer {
                 if (!sp.getBoolean("opened", false)) {
                     // Do stuff on first startup
                     // removePrefsDB(context);
+
+                    ((MainActivity) context).mDrawerLayout.openDrawer(Gravity.LEFT);
 
                     // Remember first startup
                     SharedPreferences.Editor editor = sp.edit();
