@@ -27,6 +27,12 @@ public class MOTD extends AppCompatActivity {
         tvMessage.setText(unescape(list[1]));
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
     String unescape(String s) {
         return s.replace("*", "\n");
     }
