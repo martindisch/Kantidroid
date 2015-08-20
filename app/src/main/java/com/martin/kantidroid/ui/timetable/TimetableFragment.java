@@ -38,7 +38,6 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
     private EditText mClass;
     private Button mDownload;
     private View mNothingImage, mDownloadsCard;
-    private RecyclerView mDownloads;
     private TimetableAdapter mAdapter;
     private ProgressBar mProgress;
     private boolean mHasError;
@@ -69,13 +68,13 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         mDownload = (Button) rootView.findViewById(R.id.bDownload);
         mNothingImage = rootView.findViewById(R.id.ivNothing);
         mDownloadsCard = rootView.findViewById(R.id.cvDownloads);
-        mDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
+        RecyclerView rvDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
         mProgress = (ProgressBar) rootView.findViewById(R.id.pbDownload);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        mDownloads.hasFixedSize();
-        mDownloads.setLayoutManager(layoutManager);
-        mDownloads.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
+        rvDownloads.hasFixedSize();
+        rvDownloads.setLayoutManager(layoutManager);
+        rvDownloads.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
 
         if (savedInstanceState != null) {
             mHasError = savedInstanceState.getBoolean("mHasError");
@@ -94,7 +93,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         }
         Glide.with(this).load(R.drawable.timetable_nodownloads).into((ImageView) rootView.findViewById(R.id.ivNothing));
         mAdapter = new TimetableAdapter(getActivity(), downloads, this);
-        mDownloads.setAdapter(mAdapter);
+        rvDownloads.setAdapter(mAdapter);
 
         mDownload.setOnClickListener(this);
 

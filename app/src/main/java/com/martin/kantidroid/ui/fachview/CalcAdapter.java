@@ -17,19 +17,14 @@ import java.util.ArrayList;
 
 public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
 
-    private final Fach mFach;
-    private final int mSemester;
     private final double mZeugnis;
     private double[] mDPicGrades;
     private String mWeight = "1";
     private final Resources mRes;
-    private double mRequired;
     String[] mEntries;
 
     public CalcAdapter(Context context, Fach fach, int semester) {
-        mFach = fach;
-        mSemester = semester;
-        if (mSemester == 1) {
+        if (semester == 1) {
             mZeugnis = Double.parseDouble(fach.getRealAverage1());
         } else {
             mZeugnis = Double.parseDouble(fach.getRealAverage2());
@@ -83,7 +78,7 @@ public class CalcAdapter extends RecyclerView.Adapter<CalcAdapter.ViewHolder> {
             holder.tvName.setText(R.string.actual);
         }
         holder.tvPic.setText(mDPicGrades[position] + "");
-        mRequired = Util.getRequiredPerf(mEntries, mWeight, mDPicGrades[position] - 0.25 + "");
+        double mRequired = Util.getRequiredPerf(mEntries, mWeight, mDPicGrades[position] - 0.25 + "");
         holder.tvMark.setText(mRequired + "");
         if (mRequired > 6 || mRequired < 1) {
             holder.tvMark.setTextColor(mRes.getColor(R.color.red_dark));
