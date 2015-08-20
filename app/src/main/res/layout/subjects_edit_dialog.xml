@@ -47,7 +47,7 @@
                 style="?android:editTextStyle"
                 android:hint="@string/name"
                 android:imeOptions="actionNext"
-                android:inputType="textCapSentences"/>
+                android:inputType="textCapSentences" />
 
             <EditText
                 android:id="@+id/et_subj_short"
