@@ -59,6 +59,7 @@ public class EditDialog extends AppCompatActivity implements View.OnClickListene
         Intent data = getIntent();
         if (data.hasExtra("name")) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+            mShort.requestFocus();
             mName.setText(data.getStringExtra("name"));
             mShort.setText(data.getStringExtra("short"));
             boolean counts = false;
