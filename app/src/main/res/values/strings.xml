@@ -180,7 +180,6 @@
     <string name="subject_edit">Fach bearbeiten</string>
     <string name="first_semester">1. Semester</string>
     <string name="second_semester">2. Semester</string>
-    <string name="title_activity_fachview">FachviewActivity</string>
     <string name="extra">Extra</string>
     <string name="usage">Nutzung</string>
     <string name="next_mark">Nächste Note</string>
@@ -189,7 +188,6 @@
     <string name="grades">Noten</string>
     <string name="no_promotion">Kein Promotionsfach</string>
     <string name="n_semester">. Semester</string>
-    <string name="title_activity_edit_mark_dialog">EditMarkDialog</string>
     <string name="delete_mark">Note löschen</string>
     <string name="mark">Note</string>
     <string name="weighting">Gewichtung</string>
@@ -197,7 +195,6 @@
     <string name="new_mark">Neue Note</string>
     <string name="edit_mark">Note bearbeiten</string>
     <string name="input_sucks">Fülle alle Felder richtig aus</string>
-    <string name="title_activity_edit_kont_dialog">EditKontDialog</string>
     <string name="edit_kont">Kontingent bearbeiten</string>
     <string name="new_kont">Neues Kontingent</string>
     <string name="delete_kont">Kontingent löschen</string>
