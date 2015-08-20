@@ -21,6 +21,7 @@ import com.martin.kantidroid.logic.Primer;
 import com.martin.kantidroid.ui.about.AboutActivity;
 import com.martin.kantidroid.ui.backup.BackupFragment;
 import com.martin.kantidroid.ui.feedback.FeedbackActivity;
+import com.martin.kantidroid.ui.kiss.KissFragment;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 import com.martin.kantidroid.ui.timetable.TimetableFragment;
@@ -99,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     fragment = SubjectsFragment.newInstance();
                     tag = "subjects";
+                    break;
+                case 2:
+                    fragment = KissFragment.newInstance();
+                    tag = "kiss";
                     break;
                 case 3:
                     fragment = TimetableFragment.newInstance();
