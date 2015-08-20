@@ -1,6 +1,5 @@
 package com.martin.kantidroid.logic;
 
-import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,7 +12,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
@@ -34,9 +32,7 @@ public class Background extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.e("FFF", "Handling intent");
         if (isNetworkAvailable()) {
-            Log.e("FFF", "Network available");
             String motd = "";
             try {
                 URL urlmotd = new URL(getString(R.string.motd_url));
@@ -63,7 +59,6 @@ public class Background extends IntentService {
     private void checkMOTD(String motd) {
         String[] lines = motd.split("/");
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-        Log.e("FFF", "Line 0: " + lines[0]);
         if (!Util.getSeen(getApplicationContext(), lines[0]) && !lines[0].contains("html") && !lines[1].contains("html")) {
             int idCounter = prefs.getInt("idCounter", 0);
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
@@ -71,8 +66,7 @@ public class Background extends IntentService {
             mBuilder.setContentTitle(lines[0]);
             mBuilder.setContentText(lines[1].replace("*", " "));
             mBuilder.setAutoCancel(true);
-            long[] pattern = {0, 300, 200, 300};
-            mBuilder.setVibrate(pattern);
+            mBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
             mBuilder.setDefaults(Notification.DEFAULT_LIGHTS);
             mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 
