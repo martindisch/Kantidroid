@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Util;
 
@@ -88,8 +87,7 @@ public class AboutAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     if (mLinks[position].contains("http")) {
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mLinks[position]));
                         mContext.startActivity(browserIntent);
-                    }
-                    else {
+                    } else {
                         Intent i = new Intent(mContext, LicenseActivity.class);
                         i.putExtra("license", mLinks[position]);
                         mContext.startActivity(i);
