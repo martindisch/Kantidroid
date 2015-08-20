@@ -27,7 +27,6 @@ import com.bumptech.glide.Glide;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.martin.kantidroid.R;
-import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
@@ -114,42 +113,52 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (Util.urlExists(getString(R.string.url_timetable) + classUrl + ".pdf")) {
-                            Ion.with(getActivity())
-                                    .load(getString(R.string.url_timetable) + classUrl + ".pdf")
-                                    .write(downloadFile)
-                                    .setCallback(new FutureCallback<File>() {
-                                        @Override
-                                        public void onCompleted(final Exception e, final File file) {
-                                            if (e != null) {
-                                                mDownload.post(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                                                        mProgress.setVisibility(View.INVISIBLE);
-                                                    }
-                                                });
-                                            } else {
-                                                mDownload.post(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        Toast.makeText(getActivity(), R.string.timetable_success, Toast.LENGTH_SHORT).show();
-                                                        mProgress.setVisibility(View.INVISIBLE);
-                                                        mNothingImage.setVisibility(View.GONE);
-                                                        mDownloadsCard.setVisibility(View.VISIBLE);
-                                                        if (!mAdapter.getData().contains(file)) {
-                                                            mAdapter.add(file);
+                        if (Util.isNetworkAvailable(getActivity())) {
+                            if (Util.urlExists(getString(R.string.url_timetable) + classUrl + ".pdf")) {
+                                Ion.with(getActivity())
+                                        .load(getString(R.string.url_timetable) + classUrl + ".pdf")
+                                        .write(downloadFile)
+                                        .setCallback(new FutureCallback<File>() {
+                                            @Override
+                                            public void onCompleted(final Exception e, final File file) {
+                                                if (e != null) {
+                                                    mDownload.post(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                                            mProgress.setVisibility(View.INVISIBLE);
                                                         }
-                                                    }
-                                                });
+                                                    });
+                                                } else {
+                                                    mDownload.post(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            Toast.makeText(getActivity(), R.string.timetable_success, Toast.LENGTH_SHORT).show();
+                                                            mProgress.setVisibility(View.INVISIBLE);
+                                                            mNothingImage.setVisibility(View.GONE);
+                                                            mDownloadsCard.setVisibility(View.VISIBLE);
+                                                            if (!mAdapter.getData().contains(file)) {
+                                                                mAdapter.add(file);
+                                                            }
+                                                        }
+                                                    });
+                                                }
                                             }
-                                        }
-                                    });
+                                        });
+                            } else {
+                                mDownload.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), R.string.timetable_nosuchclass, Toast.LENGTH_SHORT).show();
+                                        mProgress.setVisibility(View.INVISIBLE);
+                                    }
+                                });
+                            }
                         } else {
                             mDownload.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(getActivity(), R.string.timetable_nosuchclass, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), R.string.timetable_noconnection, Toast.LENGTH_SHORT).show();
                                     mProgress.setVisibility(View.INVISIBLE);
                                 }
                             });
@@ -177,7 +186,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         MimeTypeMap myMime = MimeTypeMap.getSingleton();
         Intent newIntent = new Intent(Intent.ACTION_VIEW);
         String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
-        newIntent.setDataAndType(Uri.fromFile(f),mimeType);
+        newIntent.setDataAndType(Uri.fromFile(f), mimeType);
         newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             getActivity().startActivity(newIntent);

@@ -7,8 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
@@ -32,7 +30,7 @@ public class Background extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (isNetworkAvailable()) {
+        if (Util.isNetworkAvailable(getApplicationContext())) {
             String motd = "";
             try {
                 URL urlmotd = new URL(getString(R.string.motd_url));
@@ -90,11 +88,5 @@ public class Background extends IntentService {
             editor.commit();
             Util.setSeen(getApplicationContext(), lines[0]);
         }
-    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
