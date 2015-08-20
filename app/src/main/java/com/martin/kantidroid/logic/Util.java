@@ -507,7 +507,7 @@ public class Util {
         while (index >= colors.length) {
             index -= colors.length;
         }
-        return res.getColor(colors[index], null);
+        return res.getColor(colors[index]);
     }
 
     public static void timeMOTD(Context context) {
