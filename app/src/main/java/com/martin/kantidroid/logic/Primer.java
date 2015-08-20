@@ -23,13 +23,36 @@ public class Primer {
                 if (!sp.getBoolean("opened", false)) {
                     // Do stuff on first startup
                     // removePrefsDB(context);
-
                     ((MainActivity) context).mDrawerLayout.openDrawer(Gravity.LEFT);
 
                     // Remember first startup
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putBoolean("opened", true);
                     editor.commit();
+
+                    // Create some subjects
+                    DatabaseHandler db = new DatabaseHandler(context);
+                    if (db.getFachCount() == 0) {
+                        Fach subject;
+                        String[] subjects = context.getResources().getStringArray(R.array.subjects_standard);
+                        String[] subjects_short = context.getResources().getStringArray(R.array.subjects_standard_short);
+                        for (int y = 0; y < subjects.length; y++) {
+                            subject = new Fach(subjects[y], "true");
+                            subject.setShort(subjects_short[y]);
+                            subject.setColor(y + "");
+                            subject.setKontAvailable("4");
+                            db.addFach(subject);
+                        }
+                        // Let MainActivity reload the data after we've created new subjects
+                        final FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
+                        ((MainActivity) context).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
+
+                            }
+                        });
+                    }
                 }
 
             }
@@ -50,30 +73,6 @@ public class Primer {
                     }
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
-                }
-
-                // Create some subjects
-                DatabaseHandler db = new DatabaseHandler(context);
-                if (db.getFachCount() == 0) {
-                    Fach subject;
-                    String[] subjects = context.getResources().getStringArray(R.array.subjects_standard);
-                    String[] subjects_short = context.getResources().getStringArray(R.array.subjects_standard_short);
-                    for (int y = 0; y < subjects.length; y++) {
-                        subject = new Fach(subjects[y], "true");
-                        subject.setShort(subjects_short[y]);
-                        subject.setColor(y + "");
-                        subject.setKontAvailable("4");
-                        db.addFach(subject);
-                    }
-                    // Let MainActivity reload the data after we've created new subjects
-                    final FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
-                    ((MainActivity) context).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((OverviewFragment) fragmentManager.findFragmentByTag("overview")).loadData();
-
-                        }
-                    });
                 }
             }
         }).start();
