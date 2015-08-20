@@ -1,34 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- TODO: Sort out this mess -->
-
-    <string name="app_name">Kantidroid</string>
-
-    <string name="url_timetable">http://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/bks/dokumentation/klassen/Documents/</string>
-
-    <string name="overview">Übersicht</string>
-    <string name="kiss">KISS</string>
-    <string name="backup">Backup</string>
-    <string name="subjects">Fächer</string>
-    <string name="feedback">Feedback</string>
-    <string name="about">Über</string>
-
-    <string name="name">Name</string>
-    <string name="name_short">Abkürzung</string>
-    <string name="promotion">Promotionsfach</string>
-    <string name="ask_autosubjects">Du hast im Moment noch keine Fächer.\nSollen automatisch einige häufig benutzte Fächer erstellt werden?</string>
-    <string name="yes">Ja</string>
-    <string name="no">Nein</string>
-    <string name="cancel">Abbrechen</string>
-    <string name="enter_name">Gib einen Namen und eine Abkürzung ein</string>
-    <string name="too_long">Abkürzung darf nicht länger als 5 Zeichen sein</string>
-    <string name="save">SPEICHERN</string>
-    <string name="n2">2</string>
-    <string name="n4">4</string>
-    <string name="n6">6</string>
-    <string name="n8">8</string>
-
+    <!-- Subjects data -->
     <string-array name="subjects_standard">
         <item>Deutsch</item>
         <item>Französisch</item>
@@ -53,7 +26,6 @@
         <item>G</item>
         <item>T</item>
     </string-array>
-
     <string-array name="subjects_all">
         <item>Deutsch</item>
         <item>Romanisch</item>
@@ -88,20 +60,7 @@
         <item>Philosophie</item>
     </string-array>
 
-    <string-array name="old_prefs">
-        <item>check</item>
-        <item>MarkSettings</item>
-        <item>KISS</item>
-        <item>Kantidroid</item>
-        <item>Rem</item>
-        <item>mysettings</item>
-    </string-array>
-    <string-array name="old_db">
-        <item>kontManager</item>
-        <item>markManager</item>
-        <item>Kantidroid</item>
-    </string-array>
-
+    <!-- Colors for subjects -->
     <string-array name="colors">
         <item>#d50000</item>
         <item>#c51162</item>
@@ -157,6 +116,60 @@
         <item>#4e4e4e</item>
     </string-array>
 
+    <!-- Sorting, department & weight data -->
+    <string-array name="sorting_entries">
+        <item id="@+id/iSortName">Namen</item>
+        <item id="@+id/iSortMarkDesc">Noten absteigend</item>
+        <item id="@+id/iSortMarkAsc">Noten aufsteigend</item>
+    </string-array>
+    <string-array name="departments">
+        <item id="@+id/iAbtGym">Gymnasium</item>
+        <item id="@+id/iAbtHMS">Handelsmittelschule</item>
+        <item id="@+id/iAbtFMS">Fachmittelschule</item>
+    </string-array>
+    <string-array name="weights">
+        <item>1.0 Ganz</item>
+        <item>0.5 Halb</item>
+        <item>2.0 Doppelt</item>
+    </string-array>
+
+    <!-- Migration data -->
+    <string-array name="old_prefs">
+        <item>check</item>
+        <item>MarkSettings</item>
+        <item>KISS</item>
+        <item>Kantidroid</item>
+        <item>Rem</item>
+        <item>mysettings</item>
+    </string-array>
+    <string-array name="old_db">
+        <item>kontManager</item>
+        <item>markManager</item>
+        <item>Kantidroid</item>
+    </string-array>
+
+    <!-- Tons of unsorted strings -->
+    <string name="app_name">Kantidroid</string>
+    <string name="overview">Übersicht</string>
+    <string name="kiss">KISS</string>
+    <string name="backup">Backup</string>
+    <string name="subjects">Fächer</string>
+    <string name="feedback">Feedback</string>
+    <string name="about">Über</string>
+    <string name="name">Name</string>
+    <string name="name_short">Abkürzung</string>
+    <string name="promotion">Promotionsfach</string>
+    <string name="ask_autosubjects">Du hast im Moment noch keine Fächer.\nSollen automatisch einige häufig benutzte Fächer erstellt werden?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="enter_name">Gib einen Namen und eine Abkürzung ein</string>
+    <string name="too_long">Abkürzung darf nicht länger als 5 Zeichen sein</string>
+    <string name="save">SPEICHERN</string>
+    <string name="n2">2</string>
+    <string name="n4">4</string>
+    <string name="n6">6</string>
+    <string name="n8">8</string>
     <string name="kont">Kontingent</string>
     <string name="n10">10</string>
     <string name="delete">Fach löschen</string>
@@ -168,7 +181,6 @@
     <string name="first_semester">1. Semester</string>
     <string name="second_semester">2. Semester</string>
     <string name="title_activity_fachview">FachviewActivity</string>
-
     <string name="extra">Extra</string>
     <string name="usage">Nutzung</string>
     <string name="next_mark">Nächste Note</string>
@@ -201,19 +213,6 @@
     <string name="finish_year">Jahr abschliessen</string>
     <string name="finish_question">Willst du Noten und Kontingent endgültig zurücksetzen?</string>
     <string name="sImport">Importieren</string>
-
-    <string-array name="sorting_entries">
-        <item id="@+id/iSortName">Namen</item>
-        <item id="@+id/iSortMarkDesc">Noten absteigend</item>
-        <item id="@+id/iSortMarkAsc">Noten aufsteigend</item>
-    </string-array>
-
-    <string-array name="departments">
-        <item id="@+id/iAbtGym">Gymnasium</item>
-        <item id="@+id/iAbtHMS">Handelsmittelschule</item>
-        <item id="@+id/iAbtFMS">Fachmittelschule</item>
-    </string-array>
-
     <string name="title_activity_calc">Nächste Note</string>
     <string name="preview">Vorschau Zeugnisnote</string>
     <string name="no_marks">Noch keine Noten im Semester</string>
@@ -251,16 +250,6 @@
     <string name="backup_db_importing">Daten werden importiert…</string>
     <string name="import_db_fail">Backup nicht gefunden - Keine Internetverbindung oder kein Backup auf Dropbox vorhanden</string>
     <string name="import_db_notfound">Zieldatei konnte nicht gefunden werden</string>
-
-    <string-array name="weights">
-        <item>1.0 Ganz</item>
-        <item>0.5 Halb</item>
-        <item>2.0 Doppelt</item>
-    </string-array>
-    <string name="title_activity_timetable">TimetableActivity</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="timetable">Stundenpläne</string>
     <string name="class_hint">Klasse (Bsp.: 6 Gi)</string>
     <string name="timetable_classselection">Klasse wählen</string>
@@ -285,4 +274,5 @@
     <string name="motd_questions">Bei Fragen stehe ich zur Verfügung</string>
     <string name="kiss_notavailable">Aus Datenschutzgründen wird das KISS nicht mehr öffentlich publiziert. Die Schulleitung prüft in Zusammenarbeit mit dem IT-Dienst, ob die Integration in Kantidroid möglich ist.</string>
     <string name="timetable_noconnection">Keine Internetverbindung</string>
+
 </resources>
