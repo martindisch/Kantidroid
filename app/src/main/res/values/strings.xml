@@ -159,7 +159,6 @@
     <string name="name">Name</string>
     <string name="name_short">Abkürzung</string>
     <string name="promotion">Promotionsfach</string>
-    <string name="ask_autosubjects">Du hast im Moment noch keine Fächer.\nSollen automatisch einige häufig benutzte Fächer erstellt werden?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="cancel">Abbrechen</string>
