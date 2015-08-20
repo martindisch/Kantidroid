@@ -73,23 +73,22 @@ public class Primer {
             });
             builder.setNegativeButton(R.string.no, null);
             builder.show();
-        } else {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        int versionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-                        if (!Util.getSeen(context, versionCode + "")) {
-                            ChangelogFragment changelog = new ChangelogFragment();
-                            changelog.show(((MainActivity) context).getSupportFragmentManager(), "changelog");
-                            Util.setSeen(context, versionCode + "");
-                        }
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
         }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    int versionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+                    if (!Util.getSeen(context, versionCode + "")) {
+                        ChangelogFragment changelog = new ChangelogFragment();
+                        changelog.show(((MainActivity) context).getSupportFragmentManager(), "changelog");
+                        Util.setSeen(context, versionCode + "");
+                    }
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
         new Thread(new Runnable() {
             @Override
