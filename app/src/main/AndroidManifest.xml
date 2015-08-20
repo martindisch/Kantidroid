@@ -93,7 +93,9 @@
         <activity
             android:name=".ui.motd.MOTD"
             android:label="@string/title_activity_motd"
-            android:theme="@style/AppTheme.Base" />
+            android:theme="@style/AppTheme.Base"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
     </application>
 
 </manifest>
