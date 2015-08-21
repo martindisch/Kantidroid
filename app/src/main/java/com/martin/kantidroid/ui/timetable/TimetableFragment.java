@@ -86,10 +86,14 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         }
 
         File[] downloads = Util.getDownloadedFiles();
-        if (downloads.length == 0) {
-            mDownloadsCard.setVisibility(View.GONE);
+        if (downloads != null) {
+            if (downloads.length == 0) {
+                mDownloadsCard.setVisibility(View.GONE);
+            } else {
+                mNothingImage.setVisibility(View.GONE);
+            }
         } else {
-            mNothingImage.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), R.string.timetable_error_filesystem, Toast.LENGTH_SHORT).show();
         }
         Glide.with(this).load(R.drawable.timetable_nodownloads).into((ImageView) rootView.findViewById(R.id.ivNothing));
         mAdapter = new TimetableAdapter(getActivity(), downloads, this);
