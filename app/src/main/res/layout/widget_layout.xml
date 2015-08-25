@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/appwidget_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/widget_margin"
+        android:id="@+id/llTop">
+
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_kantidroid"/>
+            android:id="@+id/ivPic"
+            android:layout_width="@dimen/subjects_circle"
+            android:layout_height="@dimen/subjects_circle"
+            android:src="@drawable/ic_kantidroid" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/widget_overview"
+            android:layout_marginLeft="@dimen/widget_margin"
+            android:textColor="@color/primary_text_default_material_dark"
+            android:textSize="24sp"/>
     </LinearLayout>
 
 </RelativeLayout>

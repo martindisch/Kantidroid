@@ -20,4 +20,6 @@
     <dimen name="btn_flat_margin">4dp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="appwidget_margin">8dp</dimen>
 </resources>
