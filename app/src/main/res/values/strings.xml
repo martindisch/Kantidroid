@@ -269,5 +269,6 @@
     <string name="kiss_notavailable">Aus Datenschutzgründen wird das KISS nicht mehr öffentlich publiziert. Die Schulleitung prüft in Zusammenarbeit mit dem IT-Dienst, ob die Integration in Kantidroid möglich ist.</string>
     <string name="timetable_noconnection">Keine Internetverbindung</string>
     <string name="widget_overview">Übersicht</string>
+    <string name="down_arrow">▾</string>
 
 </resources>
