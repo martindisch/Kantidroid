@@ -35,6 +35,7 @@
             android:layout_marginRight="@dimen/widget_margin"
             android:gravity="right"
             android:text="1. Semester"
+            android:id="@+id/widget_semester"
             android:textColor="@color/primary_text_default_material_dark" />
     </LinearLayout>
 

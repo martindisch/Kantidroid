@@ -23,4 +23,5 @@
 
     <dimen name="appwidget_margin">8dp</dimen>
     <dimen name="appwidget_corners">2dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

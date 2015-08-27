@@ -28,12 +28,15 @@ public class WidgetProvider extends AppWidgetProvider {
             // Create an Intent to launch MainActivity
             Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            Intent settingIntent = new Intent(context, SemesterSelector.class);
+            PendingIntent pendingSettings = PendingIntent.getActivity(context, 0, settingIntent, 0);
 
             // Get the layout for the App Widget and attach on-click listeners
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
             views.setOnClickPendingIntent(R.id.llTop, pendingIntent);
             views.setOnClickPendingIntent(R.id.widget_pp, pendingIntent);
             views.setOnClickPendingIntent(R.id.widget_kont, pendingIntent);
+            views.setOnClickPendingIntent(R.id.widget_semester, pendingIntent);
 
             SharedPreferences prefs = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
             File f = new File(prefs.getString("last_timetable", "nope"));
