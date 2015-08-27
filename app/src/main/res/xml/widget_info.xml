@@ -1,4 +1,3 @@
-<!-- TODO: Real preview image -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:minWidth="180dp"
     android:minHeight="40dp"

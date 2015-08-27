@@ -11,6 +11,8 @@ import android.webkit.MimeTypeMap;
 import android.widget.RemoteViews;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.PromoCheck;
+import com.martin.kantidroid.logic.PromoRes;
 import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.main.MainActivity;
 
@@ -60,6 +62,9 @@ public class WidgetProvider extends AppWidgetProvider {
             } else {
                 views.setTextViewText(R.id.widget_semester, context.getString(R.string.second_semester) + " " + context.getString(R.string.down_arrow));
             }
+            final PromoRes promo = new PromoCheck(context).getPromo(prefs.getInt("widget_semester", 1));
+            views.setTextViewText(R.id.widget_pp, promo.sPP);
+            views.setTextViewText(R.id.widget_kont, promo.sKont);
 
             // Tell the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
