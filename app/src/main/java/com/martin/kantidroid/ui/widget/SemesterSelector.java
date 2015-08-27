@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
-import android.widget.RemoteViews;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Util;
@@ -28,6 +27,13 @@ public class SemesterSelector extends AppCompatActivity implements View.OnClickL
         bSave.setOnClickListener(this);
 
         setResult(RESULT_CANCELED);
+
+        SharedPreferences prefs = getSharedPreferences("Kantidroid", MODE_PRIVATE);
+        if (prefs.getInt("widget_semester", 1) == 1) {
+            mRadios.check(R.id.widget_radio1);
+        } else {
+            mRadios.check(R.id.widget_radio2);
+        }
     }
 
     @Override
@@ -49,8 +55,7 @@ public class SemesterSelector extends AppCompatActivity implements View.OnClickL
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
             setResult(RESULT_OK, resultValue);
             finish();
-        }
-        else {
+        } else {
             Util.updateWidget(this);
             finish();
         }

@@ -27,6 +27,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
             // Create an Intent to launch MainActivity
             Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             Intent settingIntent = new Intent(context, SemesterSelector.class);
             PendingIntent pendingSettings = PendingIntent.getActivity(context, 0, settingIntent, PendingIntent.FLAG_UPDATE_CURRENT);
