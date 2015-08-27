@@ -63,7 +63,7 @@ public class WidgetProvider extends AppWidgetProvider {
                 views.setTextViewText(R.id.widget_semester, context.getString(R.string.second_semester) + " " + context.getString(R.string.down_arrow));
             }
             final PromoRes promo = new PromoCheck(context).getPromo(prefs.getInt("widget_semester", 1));
-            views.setTextViewText(R.id.widget_pp, promo.sPP.split("/")[0]);
+            views.setTextViewText(R.id.widget_pp, promo.sPP);
             views.setTextViewText(R.id.widget_kont, promo.sKont);
 
             // Tell the AppWidgetManager to perform an update on the current app widget
