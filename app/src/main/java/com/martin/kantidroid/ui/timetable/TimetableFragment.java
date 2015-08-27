@@ -151,7 +151,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                                                                 mAdapter.add(file);
 
                                                                 SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-                                                                if (!prefs.contains("last_timetable")) {
+                                                                File f = new File(prefs.getString("last_timetable", "nope"));
+                                                                if (!prefs.contains("last_timetable") || !f.exists()) {
                                                                     SharedPreferences.Editor editor = prefs.edit();
                                                                     editor.putString("last_timetable", file.getAbsolutePath());
                                                                     editor.commit();
