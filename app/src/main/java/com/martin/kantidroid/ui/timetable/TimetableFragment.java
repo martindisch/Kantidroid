@@ -119,9 +119,13 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                     @Override
                     public void run() {
                         if (Util.isNetworkAvailable(getActivity())) {
-                            if (Util.urlExists(getString(R.string.url_timetable) + classUrl + ".pdf")) {
+                            String downloadUrl = getString(R.string.url_timetable) + classUrl + ".pdf";
+                            if (!Util.urlExists(downloadUrl)) {
+                                downloadUrl = getString(R.string.url_timetable) + classUrl.replace("%20", "") + ".pdf";
+                            }
+                            if (Util.urlExists(downloadUrl)) {
                                 Ion.with(getActivity())
-                                        .load(getString(R.string.url_timetable) + classUrl + ".pdf")
+                                        .load(downloadUrl)
                                         .write(downloadFile)
                                         .setCallback(new FutureCallback<File>() {
                                             @Override
