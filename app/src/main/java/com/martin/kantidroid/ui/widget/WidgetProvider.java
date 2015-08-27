@@ -52,6 +52,7 @@ public class WidgetProvider extends AppWidgetProvider {
                 views.setOnClickPendingIntent(R.id.widget_timetable, pdfIntent);
             } else {
                 views.setTextViewText(R.id.widget_timetable, "-");
+                views.setOnClickPendingIntent(R.id.widget_timetable, null);
             }
 
             if (prefs.getInt("widget_semester", 1) == 1) {
