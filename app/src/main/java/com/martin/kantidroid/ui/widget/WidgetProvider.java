@@ -38,6 +38,8 @@ public class WidgetProvider extends AppWidgetProvider {
             SharedPreferences prefs = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
             File f = new File(prefs.getString("last_timetable", "nope"));
             if (f.exists()) {
+                String className = f.getName().replace(".pdf", "");
+                views.setTextViewText(R.id.widget_timetable, className);
                 MimeTypeMap myMime = MimeTypeMap.getSingleton();
                 Intent newIntent = new Intent(Intent.ACTION_VIEW);
                 String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
