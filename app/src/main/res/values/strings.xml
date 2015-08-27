@@ -58,6 +58,9 @@
         <item>PPP</item>
         <item>PP</item>
         <item>Philosophie</item>
+        <item>Psychologie und Pädagogik</item>
+        <item>Schwerpunktfach</item>
+        <item>Ergänzungsfach</item>
     </string-array>
 
     <!-- Colors for subjects -->
