@@ -17,17 +17,21 @@
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/widget_margin_large">
+        android:layout_marginTop="@dimen/widget_margin_large"
+        android:id="@+id/widget_radios">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/first_semester" />
+            android:text="@string/first_semester"
+            android:id="@+id/widget_radio1"
+            android:checked="true"/>
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/second_semester" />
+            android:text="@string/second_semester"
+            android:id="@+id/widget_radio2"/>
     </RadioGroup>
 
     <Button
@@ -36,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/widget_margin_large"
-        android:text="@string/widget_save" />
+        android:text="@string/widget_save"
+        android:id="@+id/widget_save"/>
 
 </LinearLayout>

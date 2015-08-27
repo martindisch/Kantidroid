@@ -107,7 +107,10 @@
         <activity
             android:name=".ui.widget.SemesterSelector"
             android:label="@string/title_activity_semester_selector"
-            android:theme="@style/AppDialog">
+            android:theme="@style/AppDialog"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>

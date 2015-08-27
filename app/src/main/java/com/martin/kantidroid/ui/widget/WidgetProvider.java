@@ -29,14 +29,13 @@ public class WidgetProvider extends AppWidgetProvider {
             Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             Intent settingIntent = new Intent(context, SemesterSelector.class);
-            PendingIntent pendingSettings = PendingIntent.getActivity(context, 0, settingIntent, 0);
+            PendingIntent pendingSettings = PendingIntent.getActivity(context, 0, settingIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             // Get the layout for the App Widget and attach on-click listeners
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-            views.setOnClickPendingIntent(R.id.llTop, pendingIntent);
             views.setOnClickPendingIntent(R.id.widget_pp, pendingIntent);
             views.setOnClickPendingIntent(R.id.widget_kont, pendingIntent);
-            views.setOnClickPendingIntent(R.id.widget_semester, pendingIntent);
+            views.setOnClickPendingIntent(R.id.widget_semester, pendingSettings);
 
             SharedPreferences prefs = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
             File f = new File(prefs.getString("last_timetable", "nope"));
@@ -52,6 +51,12 @@ public class WidgetProvider extends AppWidgetProvider {
                 views.setOnClickPendingIntent(R.id.widget_timetable, pdfIntent);
             } else {
                 views.setTextViewText(R.id.widget_timetable, "-");
+            }
+
+            if (prefs.getInt("widget_semester", 1) == 1) {
+                views.setTextViewText(R.id.widget_semester, context.getString(R.string.first_semester) + " " + context.getString(R.string.down_arrow));
+            } else {
+                views.setTextViewText(R.id.widget_semester, context.getString(R.string.second_semester) + " " + context.getString(R.string.down_arrow));
             }
 
             // Tell the AppWidgetManager to perform an update on the current app widget
