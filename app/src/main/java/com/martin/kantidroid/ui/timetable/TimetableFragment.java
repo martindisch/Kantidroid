@@ -1,8 +1,10 @@
 package com.martin.kantidroid.ui.timetable;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -141,7 +143,15 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                                                             mNothingImage.setVisibility(View.GONE);
                                                             mDownloadsCard.setVisibility(View.VISIBLE);
                                                             if (!mAdapter.getData().contains(file)) {
+
                                                                 mAdapter.add(file);
+
+                                                                SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+                                                                if (!prefs.contains("last_timetable")) {
+                                                                    SharedPreferences.Editor editor = prefs.edit();
+                                                                    editor.putString("last_timetable", Uri.fromFile(file).toString());
+                                                                    editor.commit();
+                                                                }
                                                             }
                                                         }
                                                     });
@@ -191,6 +201,12 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
         newIntent.setDataAndType(Uri.fromFile(f), mimeType);
         newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("last_timetable", Uri.fromFile(f).toString());
+        editor.commit();
+
         try {
             getActivity().startActivity(newIntent);
         } catch (ActivityNotFoundException e) {
