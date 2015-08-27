@@ -149,7 +149,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
                                                                 SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
                                                                 if (!prefs.contains("last_timetable")) {
                                                                     SharedPreferences.Editor editor = prefs.edit();
-                                                                    editor.putString("last_timetable", Uri.fromFile(file).toString());
+                                                                    editor.putString("last_timetable", file.getAbsolutePath());
                                                                     editor.commit();
                                                                 }
                                                             }
@@ -204,7 +204,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
 
         SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("last_timetable", Uri.fromFile(f).toString());
+        editor.putString("last_timetable", f.getAbsolutePath());
         editor.commit();
 
         try {
