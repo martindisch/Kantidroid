@@ -22,6 +22,7 @@
             android:src="@drawable/ic_kantidroid" />
 
         <TextView
+            android:id="@+id/widget_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -31,23 +32,23 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/widget_semester"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/widget_margin"
             android:gravity="right"
             android:text="1. Semester"
-            android:id="@+id/widget_semester"
             android:textColor="@color/primary_text_default_material_dark" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="3"
         android:divider="@drawable/appwidget_divider"
-        android:showDividers="middle">
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:weightSum="3">
 
         <TextView
             android:id="@+id/widget_pp"

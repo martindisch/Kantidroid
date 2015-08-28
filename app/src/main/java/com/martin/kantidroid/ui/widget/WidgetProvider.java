@@ -38,6 +38,7 @@ public class WidgetProvider extends AppWidgetProvider {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
             views.setOnClickPendingIntent(R.id.widget_pp, pendingIntent);
             views.setOnClickPendingIntent(R.id.widget_kont, pendingIntent);
+            views.setOnClickPendingIntent(R.id.widget_title, pendingIntent);
             views.setOnClickPendingIntent(R.id.widget_semester, pendingSettings);
 
             SharedPreferences prefs = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
