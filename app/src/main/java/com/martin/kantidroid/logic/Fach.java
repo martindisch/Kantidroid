@@ -127,7 +127,7 @@ public class Fach {
         String realAverage2 = getRealAverage2();
         // In case both semesters have data
         if (!realAverage1.contentEquals("") && !realAverage2.contentEquals("")) {
-            double RealAverage = Math.round((Double.parseDouble(realAverage1) + Double.parseDouble(realAverage2)) / 2 * 4) / 4f;
+            double RealAverage = (Double.parseDouble(realAverage1) + Double.parseDouble(realAverage2)) / 2;
             schnitt = RealAverage + "";
         }
 
