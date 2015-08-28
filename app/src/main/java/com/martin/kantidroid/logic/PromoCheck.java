@@ -112,7 +112,7 @@ public class PromoCheck {
         int iColor = R.color.promo_white;
         String sPP;
         String sSchnitt;
-        String realAverage1, mathAverage1, realAverage2, mathAverage2;
+        String realAverage1, realAverage2;
 
         DatabaseHandler db = new DatabaseHandler(context);
         int count = db.getFachCount();
@@ -124,7 +124,6 @@ public class PromoCheck {
                 switch (iSemester) {
                     case 1:
                         realAverage1 = entry.getRealAverage1();
-                        mathAverage1 = entry.getMathAverage1();
                         if (!realAverage1.contentEquals("")) {
                             if (Double.parseDouble(realAverage1) > 4) {
                                 plus += (Double.parseDouble(realAverage1) - 4);
@@ -133,13 +132,12 @@ public class PromoCheck {
                                 minus += (4 - Double.parseDouble(realAverage1));
                                 total_minus++;
                             }
-                            total += Double.parseDouble(mathAverage1);
+                            total += Double.parseDouble(realAverage1);
                             fcount++;
                         }
                         break;
                     case 2:
                         realAverage2 = entry.getRealAverage2();
-                        mathAverage2 = entry.getMathAverage2();
                         if (!realAverage2.contentEquals("")) {
                             if (Double.parseDouble(realAverage2) > 4) {
                                 plus += Double.parseDouble(realAverage2) - 4;
@@ -148,16 +146,14 @@ public class PromoCheck {
                                 minus += 4 - Double.parseDouble(realAverage2);
                                 total_minus++;
                             }
-                            total += Double.parseDouble(mathAverage2);
+                            total += Double.parseDouble(realAverage2);
                             fcount++;
                         }
                         break;
                     case 3:
                         // Falls beide Semester ausgefüllt
                         realAverage1 = entry.getRealAverage1();
-                        mathAverage1 = entry.getMathAverage1();
                         realAverage2 = entry.getRealAverage2();
-                        mathAverage2 = entry.getMathAverage2();
                         if (!realAverage1.contentEquals("") && !realAverage2.contentEquals("")) {
                             schn = (Double.parseDouble(realAverage1) + Double.parseDouble(realAverage2)) / 2;
                             if (schn > 4) {
@@ -167,7 +163,7 @@ public class PromoCheck {
                                 minus += 4 - schn;
                                 total_minus++;
                             }
-                            total += (Double.parseDouble(mathAverage1) + Double.parseDouble(mathAverage2)) / 2;
+                            total += (Double.parseDouble(realAverage1) + Double.parseDouble(realAverage2)) / 2;
                             fcount++;
                         }
 
@@ -180,7 +176,7 @@ public class PromoCheck {
                                 minus += (4 - Double.parseDouble(realAverage1));
                                 total_minus++;
                             }
-                            total += Double.parseDouble(mathAverage1);
+                            total += Double.parseDouble(realAverage1);
                             fcount++;
                         }
 
@@ -193,7 +189,7 @@ public class PromoCheck {
                                 minus += 4 - Double.parseDouble(realAverage2);
                                 total_minus++;
                             }
-                            total += Double.parseDouble(mathAverage2);
+                            total += Double.parseDouble(realAverage2);
                             fcount++;
                         }
                         break;
@@ -277,7 +273,7 @@ public class PromoCheck {
                                 minus += (4 - Double.parseDouble(entry.getRealAverage1()));
                                 total_minus++;
                             }
-                            total += Double.parseDouble(entry.getMathAverage1());
+                            total += Double.parseDouble(entry.getRealAverage1());
                             fcount++;
                         }
                         break;
@@ -288,7 +284,7 @@ public class PromoCheck {
                                 minus += 4 - Double.parseDouble(entry.getRealAverage2());
                                 total_minus++;
                             }
-                            total += Double.parseDouble(entry.getMathAverage2());
+                            total += Double.parseDouble(entry.getRealAverage2());
                             fcount++;
                         }
                         break;
@@ -343,9 +339,7 @@ public class PromoCheck {
         double minus = 0;
         double schn;
         double total = 0;
-        double plus = 0;
         int fcount = 0;
-        int mppcount = 0;
 
         String sMessage;
         int iColor;
@@ -365,8 +359,6 @@ public class PromoCheck {
                         if (!entry.getRealAverage1().contentEquals("")) {
                             if (Double.parseDouble(entry.getRealAverage1()) < 4) {
                                 minus += (4 - Double.parseDouble(entry.getRealAverage1()));
-                            } else {
-                                plus += (Double.parseDouble(entry.getRealAverage1()) - 4);
                             }
                             total += Double.parseDouble(entry.getRealAverage1());
                             fcount++;
@@ -377,8 +369,6 @@ public class PromoCheck {
                         if (!entry.getRealAverage2().contentEquals("")) {
                             if (Double.parseDouble(entry.getRealAverage2()) < 4) {
                                 minus += 4 - Double.parseDouble(entry.getRealAverage2());
-                            } else {
-                                plus += (Double.parseDouble(entry.getRealAverage2()) - 4);
                             }
                             total += Double.parseDouble(entry.getRealAverage2());
                             fcount++;
@@ -389,15 +379,12 @@ public class PromoCheck {
                             schn = Double.parseDouble(entry.getZeugnis());
                             if (schn < 4) {
                                 minus += 4 - schn;
-                            } else {
-                                plus += schn - 4;
                             }
                             total += schn;
                             fcount++;
                         }
                         break;
                 }
-                mppcount++;
             }
         }
         if (!(minus > 2.5)) {
@@ -413,15 +400,17 @@ public class PromoCheck {
             iColor = R.color.promo_black;
         }
 
-        double PP_result = plus - (2 * minus);
-        sPP = PP_result + "/" + (mppcount * 2);
-
         if (fcount > 0) {
             sSchnitt = (String.format(Locale.getDefault(), "%.4f", total / fcount));
         } else {
             sSchnitt = ("-");
         }
 
+        // FMS, also keine Pluspunkte anzeigen
+        sPP = sSchnitt;
+        if (iSemester == 3) {
+            sPP = "-";
+        }
         return new PromoRes(sMessage, iColor, sPP, sSchnitt, getKont(faecher, iSemester));
     }
 
