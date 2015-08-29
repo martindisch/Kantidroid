@@ -202,4 +202,10 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
         }
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Util.updateWidget(this);
+    }
 }
