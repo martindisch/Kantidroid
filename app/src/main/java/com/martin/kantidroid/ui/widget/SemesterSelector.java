@@ -41,7 +41,6 @@ public class SemesterSelector extends AppCompatActivity implements View.OnClickL
         editor.putInt("widget_semester", idx + 1);
         editor.commit();
         Util.updateWidget(this);
-        setResult(RESULT_OK);
         finish();
     }
 }
