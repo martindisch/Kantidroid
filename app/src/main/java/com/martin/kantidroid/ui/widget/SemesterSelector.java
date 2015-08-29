@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.Util;
 
 public class SemesterSelector extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +40,7 @@ public class SemesterSelector extends AppCompatActivity implements View.OnClickL
         int idx = mRadios.indexOfChild(radioButton);
         editor.putInt("widget_semester", idx + 1);
         editor.commit();
+        Util.updateWidget(this);
         setResult(RESULT_OK);
         finish();
     }
