@@ -1,7 +1,5 @@
 package com.martin.kantidroid.ui.main;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -26,7 +24,6 @@ import com.martin.kantidroid.ui.kiss.KissFragment;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 import com.martin.kantidroid.ui.timetable.TimetableFragment;
-import com.martin.kantidroid.ui.widget.WidgetProvider;
 
 
 public class MainActivity extends AppCompatActivity {

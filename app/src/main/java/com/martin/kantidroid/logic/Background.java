@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
