@@ -254,7 +254,7 @@
     <string name="timetable_classselection">Klasse wählen</string>
     <string name="download">Download</string>
     <string name="timetable_downloadtitle">Downloads</string>
-    <string name="timetable_error_noclass">Gib eine korrekte Klasse ein</string>
+    <string name="timetable_error_noclass">Keine korrekte Klasse</string>
     <string name="timetable_success">Stundenplan heruntergeladen</string>
     <string name="timetable_error_filesystem">Problem mit dem Dateisystem</string>
     <string name="timetable_nosuchclass">Kein Stundenplan für diese Klasse gefunden</string>
