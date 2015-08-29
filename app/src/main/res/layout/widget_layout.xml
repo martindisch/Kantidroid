@@ -38,7 +38,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/widget_margin"
             android:gravity="right"
-            android:text="1. Semester"
             android:textColor="@color/primary_text_default_material_dark" />
     </LinearLayout>
 
@@ -57,7 +56,6 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="11.5"
             android:textColor="@color/red_dark"
             android:textSize="24sp" />
 
@@ -68,7 +66,6 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="22/64"
             android:textColor="@color/green_dark"
             android:textSize="24sp" />
 
@@ -79,7 +76,6 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="6 Gi"
             android:textColor="@color/timetable"
             android:textSize="24sp" />
 
