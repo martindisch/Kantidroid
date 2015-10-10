@@ -1,11 +1,14 @@
 package com.martin.kantidroid.ui.backup;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -99,51 +102,17 @@ public class BackupFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 if (position == 0) {
-                    String msg = "";
-                    switch (Util.backupLocal(getActivity())) {
-                        case 0:
-                            msg = getString(R.string.backup_success);
-                            break;
-                        case 1:
-                            msg = getString(R.string.backup_ext_unavailable);
-                            break;
-                        case 2:
-                            msg = getString(R.string.backup_db_notfile);
-                            break;
-                        case 3:
-                            msg = getString(R.string.backup_db_copyfailed);
-                            break;
-                        case 4:
-                            msg = getString(R.string.backup_prefs_notcopied);
-                            break;
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                    } else {
+                        doLocalBackup();
                     }
-                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                 } else {
-                    String msg = "";
-                    switch (Util.importLocal(getActivity())) {
-                        case 0:
-                            msg = getString(R.string.import_success);
-                            break;
-                        case 1:
-                            msg = getString(R.string.backup_ext_unavailable);
-                            break;
-                        case 2:
-                            msg = getString(R.string.backup_db_notfile);
-                            break;
-                        case 3:
-                            msg = getString(R.string.import_nodblocal);
-                            break;
-                        case 4:
-                            msg = getString(R.string.import_db_copyfailed);
-                            break;
-                        case 5:
-                            msg = getString(R.string.import_prefs_nolocal);
-                            break;
-                        case 6:
-                            msg = getString(R.string.import_prefs_notcopied);
-                            break;
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    } else {
+                        doLocalImport();
                     }
-                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -162,18 +131,20 @@ public class BackupFragment extends Fragment {
         rootView.findViewById(R.id.bBackupDropbox).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAction = 1;
-                if (authenticated()) {
-                    dropboxBackup();
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+                } else {
+                    doDropboxBackup();
                 }
             }
         });
         rootView.findViewById(R.id.bImportDropbox).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAction = 2;
-                if (authenticated()) {
-                    dropboxImport();
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+                } else {
+                    doDropboxImport();
                 }
             }
         });
@@ -377,6 +348,105 @@ public class BackupFragment extends Fragment {
                     Toast.makeText(getActivity(), R.string.backup_nologin, Toast.LENGTH_SHORT).show();
                 }
             }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 0:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    doLocalBackup();
+                } else {
+                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    doLocalImport();
+                } else {
+                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 2:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    doDropboxBackup();
+                } else {
+                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 3:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    doDropboxImport();
+                } else {
+                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
+    private void doLocalBackup() {
+        String msg = "";
+        switch (Util.backupLocal(getActivity())) {
+            case 0:
+                msg = getString(R.string.backup_success);
+                break;
+            case 1:
+                msg = getString(R.string.backup_ext_unavailable);
+                break;
+            case 2:
+                msg = getString(R.string.backup_db_notfile);
+                break;
+            case 3:
+                msg = getString(R.string.backup_db_copyfailed);
+                break;
+            case 4:
+                msg = getString(R.string.backup_prefs_notcopied);
+                break;
+        }
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void doLocalImport() {
+        String msg = "";
+        switch (Util.importLocal(getActivity())) {
+            case 0:
+                msg = getString(R.string.import_success);
+                break;
+            case 1:
+                msg = getString(R.string.backup_ext_unavailable);
+                break;
+            case 2:
+                msg = getString(R.string.backup_db_notfile);
+                break;
+            case 3:
+                msg = getString(R.string.import_nodblocal);
+                break;
+            case 4:
+                msg = getString(R.string.import_db_copyfailed);
+                break;
+            case 5:
+                msg = getString(R.string.import_prefs_nolocal);
+                break;
+            case 6:
+                msg = getString(R.string.import_prefs_notcopied);
+                break;
+        }
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void doDropboxBackup() {
+        mAction = 1;
+        if (authenticated()) {
+            dropboxBackup();
+        }
+    }
+
+    private void doDropboxImport() {
+        mAction = 2;
+        if (authenticated()) {
+            dropboxImport();
         }
     }
 }
