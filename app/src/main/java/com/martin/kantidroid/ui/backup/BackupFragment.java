@@ -102,17 +102,9 @@ public class BackupFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 if (position == 0) {
-                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-                    } else {
-                        doLocalBackup();
-                    }
+                    checkPermissionAndDo(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
                 } else {
-                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                    } else {
-                        doLocalImport();
-                    }
+                    checkPermissionAndDo(Manifest.permission.READ_EXTERNAL_STORAGE, 1);
                 }
             }
         });
@@ -131,21 +123,13 @@ public class BackupFragment extends Fragment {
         rootView.findViewById(R.id.bBackupDropbox).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-                } else {
-                    doDropboxBackup();
-                }
+                checkPermissionAndDo(Manifest.permission.WRITE_EXTERNAL_STORAGE, 2);
             }
         });
         rootView.findViewById(R.id.bImportDropbox).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
-                } else {
-                    doDropboxImport();
-                }
+                checkPermissionAndDo(Manifest.permission.READ_EXTERNAL_STORAGE, 3);
             }
         });
 
@@ -351,38 +335,47 @@ public class BackupFragment extends Fragment {
         }
     }
 
+    private void checkPermissionAndDo(String permission, int action) {
+        if (ContextCompat.checkSelfPermission(getActivity(), permission) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{permission}, action);
+        } else {
+            switch (action) {
+                case 0:
+                    doLocalBackup();
+                    break;
+                case 1:
+                    doLocalImport();
+                    break;
+                case 2:
+                    doDropboxBackup();
+                    break;
+                case 3:
+                    doDropboxImport();
+                    break;
+            }
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 0:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            switch (requestCode) {
+                case 0:
                     doLocalBackup();
-                } else {
-                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    break;
+                case 1:
                     doLocalImport();
-                } else {
-                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 2:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    break;
+                case 2:
                     doDropboxBackup();
-                } else {
-                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 3:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    break;
+                case 3:
                     doDropboxImport();
-                } else {
-                    Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
-                }
-                break;
+                    break;
+            }
+        } else {
+            Toast.makeText(getActivity(), R.string.backup_nopermission, Toast.LENGTH_SHORT).show();
         }
     }
 
