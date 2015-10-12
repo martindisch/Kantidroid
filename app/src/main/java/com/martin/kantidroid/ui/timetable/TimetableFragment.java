@@ -107,6 +107,96 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+            downloadTimetable();
+        }
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("mHasError", mHasError);
+    }
+
+    @Override
+    public void onItemClick(View v, int position) {
+        File f = mAdapter.getData().get(position);
+        MimeTypeMap myMime = MimeTypeMap.getSingleton();
+        Intent newIntent = new Intent(Intent.ACTION_VIEW);
+        String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
+        newIntent.setDataAndType(Uri.fromFile(f), mimeType);
+        newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("last_timetable", f.getAbsolutePath());
+        editor.commit();
+
+        try {
+            getActivity().startActivity(newIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getActivity(), R.string.timetable_noreader, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onItemLongClick(View v, final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.timetable_deletequestion);
+        builder.setNegativeButton(R.string.no, null);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                File f = mAdapter.getData().get(position).getAbsoluteFile();
+                f.delete();
+                mAdapter.remove(position);
+                if (mAdapter.getData().size() == 0) {
+                    mDownloadsCard.setVisibility(View.GONE);
+                    mNothingImage.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            switch (requestCode) {
+                case 0:
+                    showTimetables();
+                    break;
+                case 1:
+                    showTimetables();
+                    downloadTimetable();
+                    break;
+            }
+        }
+    }
+
+    private void showTimetables() {
+        File[] downloads = Util.getDownloadedFiles();
+        if (downloads != null) {
+            if (downloads.length == 0) {
+                mDownloadsCard.setVisibility(View.GONE);
+                mNothingImage.setVisibility(View.VISIBLE);
+            } else {
+                mNothingImage.setVisibility(View.GONE);
+                mDownloadsCard.setVisibility(View.VISIBLE);
+            }
+            mAdapter = new TimetableAdapter(getActivity(), downloads, this);
+            rvDownloads.setAdapter(mAdapter);
+        } else {
+            mDownloadsCard.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), R.string.timetable_error_filesystem, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void downloadTimetable() {
         final String classUrl = Util.getClassUrl(mClass.getText().toString());
         if (!classUrl.contentEquals("error")) {
             mTilClass.setError(null);
@@ -188,86 +278,6 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         } else {
             mTilClass.setError(getString(R.string.timetable_error_noclass));
             mHasError = true;
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("mHasError", mHasError);
-    }
-
-    @Override
-    public void onItemClick(View v, int position) {
-        File f = mAdapter.getData().get(position);
-        MimeTypeMap myMime = MimeTypeMap.getSingleton();
-        Intent newIntent = new Intent(Intent.ACTION_VIEW);
-        String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
-        newIntent.setDataAndType(Uri.fromFile(f), mimeType);
-        newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("last_timetable", f.getAbsolutePath());
-        editor.commit();
-
-        try {
-            getActivity().startActivity(newIntent);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(getActivity(), R.string.timetable_noreader, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void onItemLongClick(View v, final int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.timetable_deletequestion);
-        builder.setNegativeButton(R.string.no, null);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                File f = mAdapter.getData().get(position).getAbsoluteFile();
-                f.delete();
-                mAdapter.remove(position);
-                if (mAdapter.getData().size() == 0) {
-                    mDownloadsCard.setVisibility(View.GONE);
-                    mNothingImage.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        builder.show();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            switch (requestCode) {
-                case 0:
-                    showTimetables();
-                    break;
-                case 1:
-
-                    break;
-            }
-        }
-    }
-
-    private void showTimetables() {
-        File[] downloads = Util.getDownloadedFiles();
-        if (downloads != null) {
-            if (downloads.length == 0) {
-                mDownloadsCard.setVisibility(View.GONE);
-                mNothingImage.setVisibility(View.VISIBLE);
-            } else {
-                mNothingImage.setVisibility(View.GONE);
-                mDownloadsCard.setVisibility(View.VISIBLE);
-            }
-            mAdapter = new TimetableAdapter(getActivity(), downloads, this);
-            rvDownloads.setAdapter(mAdapter);
-        } else {
-            mDownloadsCard.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), R.string.timetable_error_filesystem, Toast.LENGTH_SHORT).show();
         }
     }
 }
