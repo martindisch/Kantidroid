@@ -1,14 +1,17 @@
 package com.martin.kantidroid.ui.timetable;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +46,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
     private TimetableAdapter mAdapter;
     private ProgressBar mProgress;
     private boolean mHasError;
+    private RecyclerView rvDownloads;
 
     public static TimetableFragment newInstance() {
         return new TimetableFragment();
@@ -70,7 +74,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         mDownload = (Button) rootView.findViewById(R.id.bDownload);
         mNothingImage = rootView.findViewById(R.id.ivNothing);
         mDownloadsCard = rootView.findViewById(R.id.cvDownloads);
-        RecyclerView rvDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
+        rvDownloads = (RecyclerView) rootView.findViewById(R.id.rvDownloads);
         mProgress = (ProgressBar) rootView.findViewById(R.id.pbDownload);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -87,19 +91,13 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
             mTilClass.setError(getString(R.string.timetable_error_noclass));
         }
 
-        File[] downloads = Util.getDownloadedFiles();
-        if (downloads != null) {
-            if (downloads.length == 0) {
-                mDownloadsCard.setVisibility(View.GONE);
-            } else {
-                mNothingImage.setVisibility(View.GONE);
-            }
-            mAdapter = new TimetableAdapter(getActivity(), downloads, this);
-            rvDownloads.setAdapter(mAdapter);
-        } else {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             mDownloadsCard.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), R.string.timetable_error_filesystem, Toast.LENGTH_SHORT).show();
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+        } else {
+            showTimetables();
         }
+
         Glide.with(this).load(R.drawable.timetable_nodownloads).into((ImageView) rootView.findViewById(R.id.ivNothing));
 
         mDownload.setOnClickListener(this);
@@ -238,5 +236,38 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
             }
         });
         builder.show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            switch (requestCode) {
+                case 0:
+                    showTimetables();
+                    break;
+                case 1:
+
+                    break;
+            }
+        }
+    }
+
+    private void showTimetables() {
+        File[] downloads = Util.getDownloadedFiles();
+        if (downloads != null) {
+            if (downloads.length == 0) {
+                mDownloadsCard.setVisibility(View.GONE);
+                mNothingImage.setVisibility(View.VISIBLE);
+            } else {
+                mNothingImage.setVisibility(View.GONE);
+                mDownloadsCard.setVisibility(View.VISIBLE);
+            }
+            mAdapter = new TimetableAdapter(getActivity(), downloads, this);
+            rvDownloads.setAdapter(mAdapter);
+        } else {
+            mDownloadsCard.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), R.string.timetable_error_filesystem, Toast.LENGTH_SHORT).show();
+        }
     }
 }
