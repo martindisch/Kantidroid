@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -68,9 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Glide.with(this).load(R.drawable.drawer_backdrop).into((ImageView) mDrawerLayout.findViewById(R.id.ivHeader));
-
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = mNavigationView.inflateHeaderView(R.layout.main_nav_header);
+        Glide.with(this).load(R.drawable.drawer_backdrop).into((ImageView) header.findViewById(R.id.ivHeader));
+
         if (mNavigationView != null) {
             setupDrawerContent(mNavigationView);
         }
