@@ -6,8 +6,6 @@
     android:orientation="vertical"
     android:padding="@dimen/appwidget_margin">
 
-    <!-- TODO: Remove texts -->
-
     <LinearLayout
         android:id="@+id/llTop"
         android:layout_width="match_parent"
