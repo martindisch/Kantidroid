@@ -21,7 +21,6 @@ import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.about.AboutActivity;
 import com.martin.kantidroid.ui.backup.BackupFragment;
 import com.martin.kantidroid.ui.feedback.FeedbackActivity;
-import com.martin.kantidroid.ui.kiss.KissFragment;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 import com.martin.kantidroid.ui.timetable.TimetableFragment;
@@ -112,10 +111,6 @@ public class MainActivity extends AppCompatActivity {
                     fragment = BackupFragment.newInstance();
                     tag = "backup";
                     break;
-                case 4:
-                    fragment = KissFragment.newInstance();
-                    tag = "kiss";
-                    break;
             }
             mCurrent = mSelected;
             fragmentManager.beginTransaction()
@@ -124,12 +119,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (mExtraSelected != -1) {
             switch (mExtraSelected) {
-                case 5:
+                case 4:
                     Intent i = new Intent(this, FeedbackActivity.class);
                     startActivity(i);
                     mExtraSelected = -1;
                     break;
-                case 6:
+                case 5:
                     Intent y = new Intent(this, AboutActivity.class);
                     startActivity(y);
                     mExtraSelected = -1;
@@ -156,14 +151,11 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_backup:
                                 mSelected = 3;
                                 break;
-                            case R.id.nav_kiss:
-                                mSelected = 4;
-                                break;
                             case R.id.nav_feedback:
-                                mExtraSelected = 5;
+                                mExtraSelected = 4;
                                 break;
                             case R.id.nav_about:
-                                mExtraSelected = 6;
+                                mExtraSelected = 5;
                                 break;
                         }
                         if (mExtraSelected == -1) {

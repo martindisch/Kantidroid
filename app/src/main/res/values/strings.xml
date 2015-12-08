@@ -154,7 +154,6 @@
     <!-- Tons of unsorted strings -->
     <string name="app_name">Kantidroid</string>
     <string name="overview">Übersicht</string>
-    <string name="kiss">KISS</string>
     <string name="backup">Backup</string>
     <string name="subjects">Fächer</string>
     <string name="feedback">Feedback</string>
@@ -269,7 +268,6 @@
     <string name="title_activity_license">Lizenz</string>
     <string name="title_activity_motd">Information</string>
     <string name="motd_questions">Bei Fragen stehe ich zur Verfügung</string>
-    <string name="kiss_notavailable">Aus Datenschutzgründen wird das KISS nicht mehr öffentlich publiziert. Die Schulleitung prüft in Zusammenarbeit mit dem IT-Dienst, ob die Integration in Kantidroid möglich ist.</string>
     <string name="timetable_noconnection">Keine Internetverbindung</string>
     <string name="widget_overview">Übersicht</string>
     <string name="down_arrow">▾</string>
