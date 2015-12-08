@@ -166,7 +166,9 @@ public class MainActivity extends AppCompatActivity {
                                 mExtraSelected = 6;
                                 break;
                         }
-                        menuItem.setChecked(true);
+                        if (mExtraSelected == -1) {
+                            menuItem.setChecked(true);
+                        }
                         mDrawerLayout.closeDrawers();
                         return true;
                     }
