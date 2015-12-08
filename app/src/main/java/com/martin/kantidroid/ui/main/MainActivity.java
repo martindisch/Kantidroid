@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        View header = mNavigationView.inflateHeaderView(R.layout.main_nav_header);
+        View header = mNavigationView.getHeaderView(0);
         Glide.with(this).load(R.drawable.drawer_backdrop).into((ImageView) header.findViewById(R.id.ivHeader));
 
         if (mNavigationView != null) {
