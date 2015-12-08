@@ -136,21 +136,6 @@
         <item>2.0 Doppelt</item>
     </string-array>
 
-    <!-- Migration data -->
-    <string-array name="old_prefs">
-        <item>check</item>
-        <item>MarkSettings</item>
-        <item>KISS</item>
-        <item>Kantidroid</item>
-        <item>Rem</item>
-        <item>mysettings</item>
-    </string-array>
-    <string-array name="old_db">
-        <item>kontManager</item>
-        <item>markManager</item>
-        <item>Kantidroid</item>
-    </string-array>
-
     <!-- Tons of unsorted strings -->
     <string name="app_name">Kantidroid</string>
     <string name="overview">Übersicht</string>
