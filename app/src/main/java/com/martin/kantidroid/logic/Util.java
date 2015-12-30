@@ -262,8 +262,7 @@ public class Util {
             @Override
             public Integer call() {
                 File localBackup = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/backup/Dropbox");
-                File dbFile = new File(localBackup + "/database");
-                File prefsFile = new File(localBackup + "/shared_prefs");
+                localBackup.mkdirs();
                 try {
                     FileOutputStream dbOutputStream = new FileOutputStream(new File(localBackup + "/database"));
                     dbAPI.getFile("/database", null, dbOutputStream, null);
