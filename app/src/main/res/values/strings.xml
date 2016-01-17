@@ -261,5 +261,7 @@
     <string name="widget_save">Speichern</string>
     <string name="backup_nopermission">Berechtigung benötigt</string>
     <string name="kont_shortage">Gekürztes Kontingent</string>
+    <string name="subjects_kont_shortage_off">Kontingentskürzung deaktiviert</string>
+    <string name="subjects_kont_shortage_on">Kontingentskürzung aktiviert</string>
 
 </resources>

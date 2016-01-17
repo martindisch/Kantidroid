@@ -1,7 +1,10 @@
 package com.martin.kantidroid.ui.subjects;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,8 +17,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
@@ -156,5 +161,36 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.subjects_overview_menu, menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        if (prefs.getBoolean("kontShortage", false)) {
+            menu.getItem(0).setIcon(R.drawable.ic_flash_on);
+        } else {
+            menu.getItem(0).setIcon(R.drawable.ic_flash_off);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String msg;
+        if (prefs.getBoolean("kontShortage", false)) {
+            editor.putBoolean("kontShortage", false);
+            msg = getString(R.string.subjects_kont_shortage_off);
+        } else {
+            editor.putBoolean("kontShortage", true);
+            msg = getString(R.string.subjects_kont_shortage_on);
+        }
+        editor.commit();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            getActivity().invalidateOptionsMenu();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
