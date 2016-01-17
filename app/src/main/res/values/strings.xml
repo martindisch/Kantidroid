@@ -260,5 +260,6 @@
     <string name="widget_selector">Welches Semester soll angezeigt werden?</string>
     <string name="widget_save">Speichern</string>
     <string name="backup_nopermission">Berechtigung benötigt</string>
+    <string name="kont_shortage">Gekürztes Kontingent</string>
 
 </resources>

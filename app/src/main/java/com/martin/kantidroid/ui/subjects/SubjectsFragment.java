@@ -12,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -38,6 +40,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (savedInstanceState != null) {
             mEditingIndex = savedInstanceState.getInt("mEditingIndex");
         }
@@ -147,5 +150,11 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
             }
             mEditingIndex = -1;
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.subjects_overview_menu, menu);
     }
 }
