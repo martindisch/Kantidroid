@@ -216,10 +216,48 @@ public class OverviewFragment extends Fragment {
                 dee.show();
                 break;
             case R.id.action_reset:
-                AlertDialog.Builder dg = new AlertDialog.Builder(getActivity());
-                dg.setTitle(getString(R.string.finish_year));
-                dg.setMessage(getString(R.string.finish_question));
-                dg.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                final AlertDialog.Builder shortageDialog = new AlertDialog.Builder(getActivity());
+                shortageDialog.setTitle(getString(R.string.kont_shortage));
+                shortageDialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                SharedPreferences sp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                if (mSelectedItem == 0) {
+                                    editor.putBoolean("kontShortage", false);
+                                } else {
+                                    editor.putBoolean("kontShortage", true);
+                                }
+                                editor.commit();
+
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        loadData();
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
+                });
+                shortageDialog.setMultiChoiceItems(R.array.kont_shortage_choices, new boolean[]{false}, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if (isChecked) {
+                            mSelectedItem = 1;
+                        } else {
+                            mSelectedItem = 0;
+                        }
+                    }
+                });
+
+                AlertDialog.Builder resetDialog = new AlertDialog.Builder(getActivity());
+                resetDialog.setTitle(getString(R.string.finish_year));
+                resetDialog.setMessage(getString(R.string.finish_question));
+                resetDialog.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         new Thread(new Runnable() {
@@ -241,18 +279,19 @@ public class OverviewFragment extends Fragment {
                                     db.updateFach(selected);
                                 }
 
-                                getActivity().runOnUiThread(new Runnable() {
+                                mPromo.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        loadData();
+                                        mSelectedItem = 0;
+                                        shortageDialog.show();
                                     }
                                 });
                             }
                         }).start();
                     }
                 });
-                dg.setNegativeButton("Nein", null);
-                dg.show();
+                resetDialog.setNegativeButton("Nein", null);
+                resetDialog.show();
                 break;
             case R.id.action_department:
                 mSelectedItem = mSp.getInt("department", 0);

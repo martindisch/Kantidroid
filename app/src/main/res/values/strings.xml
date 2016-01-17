@@ -135,6 +135,9 @@
         <item>0.5 Halb</item>
         <item>2.0 Doppelt</item>
     </string-array>
+    <string-array name="kont_shortage_choices">
+        <item>Kontingentskürzung im nächsten Semester</item>
+    </string-array>
 
     <!-- Tons of unsorted strings -->
     <string name="app_name">Kantidroid</string>
