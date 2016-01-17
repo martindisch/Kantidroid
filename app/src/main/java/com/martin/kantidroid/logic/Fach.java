@@ -1,5 +1,8 @@
 package com.martin.kantidroid.logic;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -275,7 +278,13 @@ public class Fach {
         this._kont2 = _kont2;
     }
 
-    public String getKontAvailable() {
+    public String getKontAvailable(Context context, boolean isDisplay) {
+        SharedPreferences sp = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        if (!_kont.contentEquals("") && isDisplay && sp.getBoolean("kontShortage", false)) {
+            int kont = Integer.parseInt(_kont);
+            kont = (int) Math.ceil(kont * 0.75);
+            return kont + "";
+        }
         return _kont;
     }
 

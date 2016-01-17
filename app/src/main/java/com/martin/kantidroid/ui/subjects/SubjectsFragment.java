@@ -96,7 +96,7 @@ public class SubjectsFragment extends Fragment implements SubjectsAdapter.OnClic
         i.putExtra("short", current.getShort());
         i.putExtra("color", current.getColor());
         i.putExtra("counts", current.getPromotionsrelevant());
-        i.putExtra("kontAv", current.getKontAvailable());
+        i.putExtra("kontAv", current.getKontAvailable(getActivity(), false));
         startActivityForResult(i, 1);
     }
 

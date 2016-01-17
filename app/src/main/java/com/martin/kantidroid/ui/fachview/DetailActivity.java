@@ -122,9 +122,9 @@ public class DetailActivity extends AppCompatActivity implements GradesAdapter.O
             mItems.setAdapter(mGradesAdapter);
         } else {
             if (mSemester == 1) {
-                mData.setText(Util.formatKont(fach.getKont1(), fach.getKontAvailable()));
+                mData.setText(Util.formatKont(fach.getKont1(), fach.getKontAvailable(this, true)));
             } else {
-                mData.setText(Util.formatKont(fach.getKont2(), fach.getKontAvailable()));
+                mData.setText(Util.formatKont(fach.getKont2(), fach.getKontAvailable(this, true)));
             }
             mKontAdapter = new KontAdapter(this, new ArrayList<>(Arrays.asList(fach.getKontEntries(mSemester))), this);
             mItems.setAdapter(mKontAdapter);

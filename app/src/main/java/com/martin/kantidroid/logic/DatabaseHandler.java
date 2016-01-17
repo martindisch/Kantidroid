@@ -15,6 +15,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Kantidroid";
     private static final String TABLE_SUBJECTS = "subjects";
+    private Context mContext;
 
     // Columns
     private static final String KEY_ID = "id";
@@ -35,6 +36,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // constructor
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        mContext = context;
     }
 
     // creating db
@@ -75,7 +77,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
         values.put(KEY_KONT1, "");
         values.put(KEY_KONT2, "");
-        values.put(KEY_KONT, fach.getKontAvailable());
+        values.put(KEY_KONT, fach.getKontAvailable(mContext, false));
 
         // inserting
         int id = (int) db.insert(TABLE_SUBJECTS, null, values);
@@ -300,7 +302,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PROMOTIONSRELEVANT, fach.getPromotionsrelevant());
         values.put(KEY_KONT1, fach.getKont1());
         values.put(KEY_KONT2, fach.getKont2());
-        values.put(KEY_KONT, fach.getKontAvailable());
+        values.put(KEY_KONT, fach.getKontAvailable(mContext, false));
 
         db.update(TABLE_SUBJECTS, values, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
         db.close();

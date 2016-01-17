@@ -429,8 +429,8 @@ public class PromoCheck {
             } else {
                 kontUsed = entry.getKont2();
             }
-            if (!entry.getKontAvailable().contentEquals("")) {
-                totalK = totalK + Integer.parseInt(entry.getKontAvailable());
+            if (!entry.getKontAvailable(context, true).contentEquals("")) {
+                totalK = totalK + Integer.parseInt(entry.getKontAvailable(context, true));
             }
             if (!kontUsed.contentEquals("")) {
                 used += Util.getAmoutUsed(kontUsed);
