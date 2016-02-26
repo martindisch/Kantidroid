@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
 import com.martin.kantidroid.logic.Fach;
+import com.martin.kantidroid.ui.fachview.EditMarkDialog;
 import com.martin.kantidroid.ui.fachview.FachviewActivity;
 import com.martin.kantidroid.ui.util.MarginDecoration;
 
@@ -99,5 +100,13 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         i.putExtra("semester", mSemester);
         i.putExtra("id", mAdapter.getData().get(position).getID());
         startActivity(i);
+    }
+
+    @Override
+    public void onLongItemClick(int position) {
+        Intent i = new Intent(getActivity(), EditMarkDialog.class);
+        i.putExtra("id", mAdapter.getData().get(position).getID());
+        i.putExtra("semester", mSemester);
+        startActivityForResult(i, 1);
     }
 }

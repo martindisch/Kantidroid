@@ -88,10 +88,18 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
                 mCallback.onItemClick(holder.getAdapterPosition());
             }
         });
+        holder.rlItem.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mCallback.onLongItemClick(holder.getAdapterPosition());
+                return true;
+            }
+        });
     }
 
     public interface OnClickListener {
         void onItemClick(int position);
+        void onLongItemClick(int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
