@@ -140,18 +140,6 @@ public class EditKontDialog extends AppCompatActivity {
             return false;
         }
 
-        Fach fach = new DatabaseHandler(this).getFach(mId);
-        if (mSemester == 1) {
-            if (fach.getKont1().contains(mDate.getText().toString() + " - " + (mAmount.indexOfChild(findViewById(mAmount.getCheckedRadioButtonId())) + 1))) {
-                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        } else {
-            if (fach.getKont2().contains(mDate.getText().toString() + " - " + (mAmount.indexOfChild(findViewById(mAmount.getCheckedRadioButtonId())) + 1))) {
-                Toast.makeText(this, R.string.duplicate, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
         return true;
     }
 }
