@@ -75,7 +75,7 @@ public class EditMarkDialog extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.action_save:
-                if (saveToSave()) {
+                if (safeToSave()) {
                     DatabaseHandler db = new DatabaseHandler(this);
                     Fach fach = db.getFach(mId);
                     if (!newItem) {
@@ -118,7 +118,7 @@ public class EditMarkDialog extends AppCompatActivity {
         return true;
     }
 
-    private boolean saveToSave() {
+    private boolean safeToSave() {
         String mark = mMark.getText().toString();
         String weight = mWeight.getText().toString();
         String date = mDate.getText().toString();
