@@ -266,5 +266,6 @@
     <string name="kont_shortage">Gekürztes Kontingent</string>
     <string name="subjects_kont_shortage_off">Kontingentskürzung deaktiviert</string>
     <string name="subjects_kont_shortage_on">Kontingentskürzung aktiviert</string>
+    <string name="custom_sort">Fächer sortieren</string>
 
 </resources>

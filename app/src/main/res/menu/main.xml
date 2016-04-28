@@ -18,4 +18,9 @@
         android:title="@string/department"
         android:orderInCategory="300"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_custom_sort"
+        android:title="@string/custom_sort"
+        android:orderInCategory="400"
+        app:showAsAction="never" />
 </menu>
