@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,11 @@ import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.ui.fachview.EditMarkDialog;
 import com.martin.kantidroid.ui.fachview.FachviewActivity;
 import com.martin.kantidroid.ui.util.MarginDecoration;
+import com.martin.kantidroid.ui.util.OnStartDragListener;
 
 import java.util.List;
 
-public class OverviewSubjectsFragment extends Fragment implements OverviewAdapter.OnClickListener {
+public class OverviewSubjectsFragment extends Fragment implements OverviewAdapter.OnClickListener, OnStartDragListener {
 
     private static final String ARG_PARAM1 = "semester";
     private int mSemester;
@@ -29,6 +31,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
     private OverviewAdapter mAdapter;
 
     private SharedPreferences mPrefs;
+    private ItemTouchHelper mTouchHelper;
 
     public static OverviewSubjectsFragment newInstance(int semester) {
         OverviewSubjectsFragment fragment = new OverviewSubjectsFragment();
@@ -66,8 +69,21 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
             mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         }
         List<Fach> subjects = db.getAllFaecherSorted(mSemester, mPrefs.getInt("sorting", 0));
-        mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, mSemester);
+        mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, OverviewSubjectsFragment.this, mSemester);
         mSubjects.setAdapter(mAdapter);
+
+        ItemTouchHelper.Callback callback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP   | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, 0) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                // TODO: Implement
+                return true;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {}
+        };
+        mTouchHelper = new ItemTouchHelper(callback);
+        mTouchHelper.attachToRecyclerView(mSubjects);
 
         return rootView;
     }
@@ -108,5 +124,10 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         i.putExtra("id", mAdapter.getData().get(position).getID());
         i.putExtra("semester", mSemester);
         startActivityForResult(i, 1);
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mTouchHelper.startDrag(viewHolder);
     }
 }

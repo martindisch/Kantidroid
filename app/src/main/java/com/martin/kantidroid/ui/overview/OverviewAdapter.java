@@ -1,8 +1,10 @@
 package com.martin.kantidroid.ui.overview;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
+import com.martin.kantidroid.ui.util.OnStartDragListener;
 
 import java.util.List;
 
@@ -17,16 +20,18 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     private List<Fach> mEntries;
     private final OnClickListener mCallback;
+    private final OnStartDragListener mDragCallback;
     private final int mTempSemester;
     private final Context mContext;
     private String mTempGrades, mTempKontUs, mTempKontAv;
     private boolean mBad;
     private Fach mTempFach;
 
-    public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback, int semester) {
+    public OverviewAdapter(Context context, List<Fach> entries, OnClickListener callback, OnStartDragListener dragCallback, int semester) {
         mContext = context;
         mEntries = entries;
         mCallback = callback;
+        mDragCallback = dragCallback;
         mTempSemester = semester;
     }
 
@@ -93,6 +98,15 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             public boolean onLongClick(View v) {
                 mCallback.onLongItemClick(holder.getAdapterPosition());
                 return true;
+            }
+        });
+        holder.rlItem.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mDragCallback.onStartDrag(holder);
+                }
+                return false;
             }
         });
     }
