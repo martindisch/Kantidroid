@@ -75,8 +75,13 @@ public class OverviewFragment extends Fragment {
         mPP = (TextView) rootView.findViewById(R.id.tvPP);
         mKont = (TextView) rootView.findViewById(R.id.tvKont);
 
-        SharedPreferences mPrefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-        mEditor = mPrefs.edit();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mSp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+                mEditor = mSp.edit();
+            }
+        }).start();
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         if (mViewPager != null) {
@@ -109,18 +114,10 @@ public class OverviewFragment extends Fragment {
         final TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        mViewPager.setCurrentItem(mPrefs.getInt("semester", 0));
-        showInfo(mPrefs.getInt("semester", 0) + 1);
+        mViewPager.setCurrentItem(mSp.getInt("semester", 0));
+        showInfo(mSp.getInt("semester", 0) + 1);
 
         mFirsttime = true;
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mSp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-                mEditor = mSp.edit();
-            }
-        }).start();
 
         return rootView;
     }
