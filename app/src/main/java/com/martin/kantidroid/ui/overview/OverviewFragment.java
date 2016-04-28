@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -15,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -321,7 +323,13 @@ public class OverviewFragment extends Fragment {
             case R.id.action_custom_sort:
                 mSorting = !mSorting;
                 mAdapter.notifySorting(mSorting);
-                item.setTitle(mSorting ? R.string.custom_sort_off : R.string.custom_sort);
+                if (mSorting) {
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+                    item.setTitle(R.string.custom_sort_off);
+                } else {
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+                    item.setTitle(R.string.custom_sort);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
