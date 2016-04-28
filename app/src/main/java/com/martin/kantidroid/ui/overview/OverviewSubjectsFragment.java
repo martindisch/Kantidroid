@@ -33,6 +33,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
 
     private SharedPreferences mPrefs;
     private ItemTouchHelper mTouchHelper;
+    private boolean mSorting = false;
 
     public static OverviewSubjectsFragment newInstance(int semester) {
         OverviewSubjectsFragment fragment = new OverviewSubjectsFragment();
@@ -102,6 +103,10 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         }).start();
     }
 
+    public void notifySorting(boolean sorting) {
+        mSorting = sorting;
+    }
+
     @Override
     public void onItemClick(int position) {
         Intent i = new Intent(getActivity(), FachviewActivity.class);
@@ -112,14 +117,18 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
 
     @Override
     public void onLongItemClick(int position) {
-        Intent i = new Intent(getActivity(), EditMarkDialog.class);
-        i.putExtra("id", mAdapter.getData().get(position).getID());
-        i.putExtra("semester", mSemester);
-        startActivityForResult(i, 1);
+        if (!mSorting) {
+            Intent i = new Intent(getActivity(), EditMarkDialog.class);
+            i.putExtra("id", mAdapter.getData().get(position).getID());
+            i.putExtra("semester", mSemester);
+            startActivityForResult(i, 1);
+        }
     }
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mTouchHelper.startDrag(viewHolder);
+        if (mSorting) {
+            mTouchHelper.startDrag(viewHolder);
+        }
     }
 }

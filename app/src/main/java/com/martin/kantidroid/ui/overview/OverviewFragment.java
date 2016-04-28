@@ -37,7 +37,7 @@ public class OverviewFragment extends Fragment {
     private Adapter mAdapter;
     private TextView mPromo, mPP, mKont;
     private ViewPager mViewPager;
-    private boolean mFirsttime = false;
+    private boolean mFirsttime = false, mSorting = false;
     private int mSelectedItem;
     private SharedPreferences mSp;
     private SharedPreferences.Editor mEditor;
@@ -319,7 +319,9 @@ public class OverviewFragment extends Fragment {
                 fee.show();
                 break;
             case R.id.action_custom_sort:
-
+                mSorting = !mSorting;
+                mAdapter.notifySorting(mSorting);
+                item.setTitle(mSorting ? R.string.custom_sort_off : R.string.custom_sort);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -358,6 +360,12 @@ public class OverviewFragment extends Fragment {
                 ((OverviewSubjectsFragment) mFragments.get(i)).loadData(c);
             }
             ((OverviewZeugnisFragment) mFragments.get(2)).loadData(c);
+        }
+
+        public void notifySorting(boolean sorting) {
+            for (int i = 0; i < 2; i++) {
+                ((OverviewSubjectsFragment) mFragments.get(i)).notifySorting(sorting);
+            }
         }
     }
 }
