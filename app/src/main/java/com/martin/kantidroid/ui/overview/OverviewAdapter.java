@@ -12,11 +12,13 @@ import android.widget.TextView;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.Util;
+import com.martin.kantidroid.ui.util.ItemTouchHelperAdapter;
 import com.martin.kantidroid.ui.util.OnStartDragListener;
 
+import java.util.Collections;
 import java.util.List;
 
-public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
+public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> implements ItemTouchHelperAdapter {
 
     private List<Fach> mEntries;
     private final OnClickListener mCallback;
@@ -109,6 +111,13 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        Collections.swap(mEntries, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
     }
 
     public interface OnClickListener {

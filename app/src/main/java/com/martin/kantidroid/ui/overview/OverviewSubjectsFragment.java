@@ -20,6 +20,7 @@ import com.martin.kantidroid.ui.fachview.EditMarkDialog;
 import com.martin.kantidroid.ui.fachview.FachviewActivity;
 import com.martin.kantidroid.ui.util.MarginDecoration;
 import com.martin.kantidroid.ui.util.OnStartDragListener;
+import com.martin.kantidroid.ui.util.SimpleItemTouchHelperCallback;
 
 import java.util.List;
 
@@ -72,16 +73,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         mAdapter = new OverviewAdapter(getActivity(), subjects, OverviewSubjectsFragment.this, OverviewSubjectsFragment.this, mSemester);
         mSubjects.setAdapter(mAdapter);
 
-        ItemTouchHelper.Callback callback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP   | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, 0) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                // TODO: Implement
-                return true;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {}
-        };
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mTouchHelper = new ItemTouchHelper(callback);
         mTouchHelper.attachToRecyclerView(mSubjects);
 
