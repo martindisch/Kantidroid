@@ -268,5 +268,6 @@
     <string name="subjects_kont_shortage_on">Kontingentskürzung aktiviert</string>
     <string name="custom_sort">Fächer sortieren</string>
     <string name="custom_sort_off">Sortieren beenden</string>
+    <string name="custom_sort_impossible">Diese Ansicht kann nicht sortiert werden</string>
 
 </resources>

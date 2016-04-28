@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.DatabaseHandler;
@@ -40,7 +41,7 @@ public class OverviewFragment extends Fragment {
     private TextView mPromo, mPP, mKont;
     private ViewPager mViewPager;
     private boolean mFirsttime = false, mSorting = false;
-    private int mSelectedItem;
+    private int mSelectedItem, mSemesterSorting = -1;
     private SharedPreferences mSp;
     private SharedPreferences.Editor mEditor;
 
@@ -319,13 +320,23 @@ public class OverviewFragment extends Fragment {
                 break;
             case R.id.action_custom_sort:
                 mSorting = !mSorting;
-                mAdapter.notifySorting(mSorting);
                 if (mSorting) {
-                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-                    item.setTitle(R.string.custom_sort_off);
+                    mSemesterSorting = mSp.getInt("semester", -1);
+                    if (mSemesterSorting != 2) {
+                        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+                        item.setTitle(R.string.custom_sort_off);
+                        mAdapter.notifySorting(mSemesterSorting, mSorting);
+                    } else {
+                        Toast.makeText(getActivity(), R.string.custom_sort_impossible, Toast.LENGTH_SHORT).show();
+                        mSorting = false;
+                    }
                 } else {
+                    mAdapter.notifySorting(mSemesterSorting, mSorting);
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                     item.setTitle(R.string.custom_sort);
+                    // TODO: Save order for sorted semester
+                    Log.e("FFF", "Saving order for semester " + mSemesterSorting);
+                    mSemesterSorting = -1;
                 }
                 break;
         }
@@ -367,10 +378,8 @@ public class OverviewFragment extends Fragment {
             ((OverviewZeugnisFragment) mFragments.get(2)).loadData(c);
         }
 
-        public void notifySorting(boolean sorting) {
-            for (int i = 0; i < 2; i++) {
-                ((OverviewSubjectsFragment) mFragments.get(i)).notifySorting(sorting);
-            }
+        public void notifySorting(int semester, boolean sorting) {
+            ((OverviewSubjectsFragment) mFragments.get(semester)).notifySorting(sorting);
         }
     }
 }
