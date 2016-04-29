@@ -125,6 +125,12 @@
         <item id="@+id/iSortMarkDesc">Noten absteigend</item>
         <item id="@+id/iSortMarkAsc">Noten aufsteigend</item>
     </string-array>
+    <string-array name="sorting_entries_extended">
+        <item id="@+id/iSortName">Namen</item>
+        <item id="@+id/iSortMarkDesc">Noten absteigend</item>
+        <item id="@+id/iSortMarkAsc">Noten aufsteigend</item>
+        <item id="@+id/iSortCustom">Eigene Sortierung</item>
+    </string-array>
     <string-array name="departments">
         <item id="@+id/iAbtGym">Gymnasium</item>
         <item id="@+id/iAbtHMS">Handelsmittelschule</item>

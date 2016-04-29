@@ -202,7 +202,11 @@ public class OverviewFragment extends Fragment {
                         loadData();
                     }
                 });
-                dee.setSingleChoiceItems(R.array.sorting_entries, mSelectedItem, new DialogInterface.OnClickListener() {
+                int options = R.array.sorting_entries;
+                if (!mSp.getString("custom_sorting_order", "none").contentEquals("none")) {
+                    options = R.array.sorting_entries_extended;
+                }
+                dee.setSingleChoiceItems(options, mSelectedItem, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
