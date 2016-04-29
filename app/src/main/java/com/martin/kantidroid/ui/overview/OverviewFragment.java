@@ -165,10 +165,8 @@ public class OverviewFragment extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        mAdapter = new Adapter(getChildFragmentManager());
-        mAdapter.addFragment(OverviewSubjectsFragment.newInstance(1), getString(R.string.first_semester));
-        mAdapter.addFragment(OverviewSubjectsFragment.newInstance(2), getString(R.string.second_semester));
-        mAdapter.addFragment(OverviewZeugnisFragment.newInstance(), getString(R.string.zeugnis));
+        String[] titles = {getString(R.string.first_semester), getString(R.string.second_semester), getString(R.string.zeugnis)};
+        mAdapter = new Adapter(getChildFragmentManager(), titles);
         viewPager.setAdapter(mAdapter);
     }
 
@@ -344,42 +342,61 @@ public class OverviewFragment extends Fragment {
     }
 
     static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
+        private Fragment[] mFragments;
+        private String[] mFragmentTitles;
 
-        public Adapter(FragmentManager fm) {
+        public Adapter(FragmentManager fm, String[] titles) {
             super(fm);
+            mFragmentTitles = titles;
+            mFragments = new Fragment[3];
         }
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Object ret = super.instantiateItem(container, position);
+            mFragments[position] = (Fragment) ret;
+            return ret;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return mFragments.get(position);
+            Fragment frag = mFragments[position];
+            if (frag == null) {
+                switch (position) {
+                    case 0:
+                        frag = OverviewSubjectsFragment.newInstance(1);
+                        break;
+                    case 1:
+                        frag = OverviewSubjectsFragment.newInstance(2);
+                        break;
+                    case 2:
+                        frag = OverviewZeugnisFragment.newInstance();
+                        break;
+                }
+                mFragments[position] = frag;
+            }
+            return frag;
         }
 
         @Override
         public int getCount() {
-            return mFragments.size();
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
+            return mFragmentTitles[position];
         }
 
         public void loadData(Activity c) {
             for (int i = 0; i < 2; i++) {
-                ((OverviewSubjectsFragment) mFragments.get(i)).loadData(c);
+                ((OverviewSubjectsFragment) mFragments[i]).loadData(c);
             }
-            ((OverviewZeugnisFragment) mFragments.get(2)).loadData(c);
+            ((OverviewZeugnisFragment) mFragments[2]).loadData(c);
         }
 
         public void notifySorting(int semester, boolean sorting) {
-            ((OverviewSubjectsFragment) mFragments.get(semester)).notifySorting(sorting);
+            ((OverviewSubjectsFragment) mFragments[semester]).notifySorting(sorting);
         }
     }
 }
