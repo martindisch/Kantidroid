@@ -107,6 +107,18 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         mSorting = sorting;
     }
 
+    public void saveSortingOrder() {
+        List<Fach> subjects = mAdapter.getData();
+        String order = "";
+        for (int i = 0; i < subjects.size(); i++) {
+            order += subjects.get(i).getID() + ",";
+        }
+        order = order.substring(0, order.length() - 1);
+        SharedPreferences.Editor editor = mPrefs.edit();
+        editor.putString("custom_sorting_order", order);
+        editor.commit();
+    }
+
     @Override
     public void onItemClick(int position) {
         Intent i = new Intent(getActivity(), FachviewActivity.class);

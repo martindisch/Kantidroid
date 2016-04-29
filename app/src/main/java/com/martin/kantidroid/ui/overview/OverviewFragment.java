@@ -16,7 +16,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +31,6 @@ import com.martin.kantidroid.logic.Fach;
 import com.martin.kantidroid.logic.PromoCheck;
 import com.martin.kantidroid.logic.PromoRes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OverviewFragment extends Fragment {
@@ -332,8 +330,7 @@ public class OverviewFragment extends Fragment {
                     mAdapter.notifySorting(mSemesterSorting, mSorting);
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                     item.setTitle(R.string.custom_sort);
-                    // TODO: Save order for sorted semester
-                    Log.e("FFF", "Saving order for semester " + mSemesterSorting);
+                    mAdapter.saveSortingOrder(mSemesterSorting);
                     mSemesterSorting = -1;
                 }
                 break;
@@ -397,6 +394,10 @@ public class OverviewFragment extends Fragment {
 
         public void notifySorting(int semester, boolean sorting) {
             ((OverviewSubjectsFragment) mFragments[semester]).notifySorting(sorting);
+        }
+
+        public void saveSortingOrder(int semester) {
+            ((OverviewSubjectsFragment) mFragments[semester]).saveSortingOrder();
         }
     }
 }
