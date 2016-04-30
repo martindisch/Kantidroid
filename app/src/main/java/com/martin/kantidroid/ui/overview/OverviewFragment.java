@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -323,7 +325,14 @@ public class OverviewFragment extends Fragment {
                 if (mSorting) {
                     mSemesterSorting = mSp.getInt("semester", -1);
                     if (mSemesterSorting != 2) {
-                        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_0)
+                            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_90)
+                            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_270)
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                            }
                         item.setTitle(R.string.custom_sort_off);
                         mAdapter.notifySorting(mSemesterSorting, mSorting);
                     } else {
@@ -332,7 +341,7 @@ public class OverviewFragment extends Fragment {
                     }
                 } else {
                     mAdapter.notifySorting(mSemesterSorting, mSorting);
-                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                     item.setTitle(R.string.custom_sort);
                     mAdapter.saveSortingOrder(mSemesterSorting);
                     SharedPreferences.Editor editor = mSp.edit();

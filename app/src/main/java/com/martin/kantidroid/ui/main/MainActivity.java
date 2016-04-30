@@ -2,6 +2,7 @@ package com.martin.kantidroid.ui.main;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         String tag = null;
         if (mSelected != mCurrent) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             switch (mSelected) {
                 case 0:
                     fragment = OverviewFragment.newInstance();
@@ -106,7 +108,14 @@ public class MainActivity extends AppCompatActivity {
                     tag = "timetable";
                     break;
                 case 3:
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+                    if (getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_0)
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    if (getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_90)
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    if (getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_270)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                        }
                     fragment = BackupFragment.newInstance();
                     tag = "backup";
                     break;
