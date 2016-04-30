@@ -108,7 +108,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Fach> getAllFaecher(Context context, int iSemester) {
         SharedPreferences settings = context.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
 
-        String sorting = null;
+        String sorting = "";
 
         if (iSemester == 1) {
             switch (settings.getInt("sorting", 1)) {
@@ -191,7 +191,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Get all faecher sorted by parameter
     public List<Fach> getAllFaecherSorted(int iSemester, int iSorting) {
 
-        String sorting = null;
+        String sorting = "";
 
         if (iSemester == 1) {
             switch (iSorting) {
@@ -267,6 +267,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         cursor.close();
         db.close();
+
+        if (iSorting == 3) {
+            SharedPreferences prefs = mContext.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+            String sorting_order = prefs.getString("custom_sorting_order", "none");
+            if (!sorting_order.contentEquals("none")) {
+                String[] order = sorting_order.split(",");
+                List<Fach> sortedFachList = new ArrayList<>(order.length);
+                // Inefficient sorting
+                for (int i = 0; i < order.length; i++) {
+                    for (int y = 0; y < order.length; y++) {
+                        if (fachList.get(y).getID() == Integer.parseInt(order[i])) {
+                            sortedFachList.add(fachList.get(y));
+                            break;
+                        }
+                    }
+                }
+                fachList = sortedFachList;
+            }
+        }
 
         return fachList;
     }

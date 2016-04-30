@@ -3,6 +3,7 @@ package com.martin.kantidroid.ui.overview;
 import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -115,7 +116,11 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        Collections.swap(mEntries, fromPosition, toPosition);
+        int max = Math.max(fromPosition, toPosition);
+        int min = Math.min(fromPosition, toPosition);
+        for (int i = max; i > min; i--) {
+            Collections.swap(mEntries, i, i - 1);
+        }
         notifyItemMoved(fromPosition, toPosition);
         return true;
     }
