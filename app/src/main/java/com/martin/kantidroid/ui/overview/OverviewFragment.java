@@ -405,9 +405,9 @@ public class OverviewFragment extends Fragment {
 
         public void loadData(Activity c) {
             for (int i = 0; i < 2; i++) {
-                ((OverviewSubjectsFragment) mFragments[i]).loadData(c);
+                if (mFragments[i] != null) ((OverviewSubjectsFragment) mFragments[i]).loadData(c);
             }
-            ((OverviewZeugnisFragment) mFragments[2]).loadData(c);
+            if (mFragments[2] != null) ((OverviewZeugnisFragment) mFragments[2]).loadData(c);
         }
 
         public void loadOtherFragment(Activity c, int semester) {
