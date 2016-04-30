@@ -338,6 +338,7 @@ public class OverviewFragment extends Fragment {
                     SharedPreferences.Editor editor = mSp.edit();
                     editor.putInt("sorting", 3);
                     editor.commit();
+                    mAdapter.loadOtherFragment(getActivity(), mSemesterSorting);
                     mSemesterSorting = -1;
                 }
                 break;
@@ -397,6 +398,10 @@ public class OverviewFragment extends Fragment {
                 ((OverviewSubjectsFragment) mFragments[i]).loadData(c);
             }
             ((OverviewZeugnisFragment) mFragments[2]).loadData(c);
+        }
+
+        public void loadOtherFragment(Activity c, int semester) {
+            ((OverviewSubjectsFragment) mFragments[semester == 0 ? 1 : 0]).loadData(c);
         }
 
         public void notifySorting(int semester, boolean sorting) {
