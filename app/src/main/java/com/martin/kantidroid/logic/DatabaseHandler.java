@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -270,8 +271,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if (iSorting == 3) {
             SharedPreferences prefs = mContext.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-            String sorting_order = prefs.getString("custom_sorting_order", "none");
-            if (!sorting_order.contentEquals("none")) {
+            String sorting_order = prefs.getString("custom_sorting_order", "");
+            if (!sorting_order.contentEquals("")) {
                 String[] order = sorting_order.split(",");
                 List<Fach> sortedFachList = new ArrayList<>(order.length);
                 // Inefficient sorting
@@ -333,6 +334,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.delete(TABLE_SUBJECTS, KEY_ID + " = ?", new String[]{String.valueOf(fach.getID())});
         db.close();
+
+        SharedPreferences sharedPrefs = mContext.getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        String order = sharedPrefs.getString("custom_sorting_order", "");
+        if (!order.contentEquals("")) {
+            String id = fach.getID() + "";
+            String[] tokens = order.split(",");
+            String newOrder = "";
+            for (int i = 0; i < tokens.length; i++) {
+                if (!tokens[i].contentEquals(id)) newOrder += tokens[i] + ",";
+            }
+            if (newOrder.length() > 1) newOrder = newOrder.substring(0, newOrder.length() - 1);
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+            editor.putString("custom_sorting_order", newOrder);
+            editor.commit();
+        }
     }
 
 }

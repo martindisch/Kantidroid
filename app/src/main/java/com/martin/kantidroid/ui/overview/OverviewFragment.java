@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -205,7 +206,7 @@ public class OverviewFragment extends Fragment {
                     }
                 });
                 int options = R.array.sorting_entries;
-                if (!mSp.getString("custom_sorting_order", "none").contentEquals("none")) {
+                if (!mSp.getString("custom_sorting_order", "").contentEquals("")) {
                     options = R.array.sorting_entries_extended;
                 }
                 dee.setSingleChoiceItems(options, mSelectedItem, new DialogInterface.OnClickListener() {

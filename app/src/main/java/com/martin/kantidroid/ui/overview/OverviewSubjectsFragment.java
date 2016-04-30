@@ -113,7 +113,7 @@ public class OverviewSubjectsFragment extends Fragment implements OverviewAdapte
         for (int i = 0; i < subjects.size(); i++) {
             order += subjects.get(i).getID() + ",";
         }
-        order = order.substring(0, order.length() - 1);
+        if (order.length() > 1) order = order.substring(0, order.length() - 1);
         SharedPreferences.Editor editor = mPrefs.edit();
         editor.putString("custom_sorting_order", order);
         editor.commit();
