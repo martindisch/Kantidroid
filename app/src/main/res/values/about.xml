@@ -10,6 +10,8 @@
         <item>Pirdad Sakhizada</item>
         <item>lapastillaroja</item>
         <item>serso</item>
+        <item>Paul Burke</item>
+        <item>Kaushik Saurabh</item>
         <item>Open Source licenses</item>
         <item>Glide</item>
         <item>ion</item>
@@ -31,6 +33,8 @@
         <item>MarginDecoration for RecyclerView</item>
         <item>DividerItemDecoration for RecyclerView</item>
         <item>LinearLayoutManager for RecyclerView</item>
+        <item>Drag and Swipe with RecyclerView</item>
+        <item>ViewPager orientation changes</item>
         <item>null</item>
         <item>by bumptech</item>
         <item>by Koushik Dutta</item>
@@ -52,6 +56,8 @@
         <item>http://stackoverflow.com/a/29905000</item>
         <item>https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36</item>
         <item>https://github.com/serso/android-linear-layout-manager</item>
+        <item>https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf#.492wyjsdy</item>
+        <item>https://medium.com/@roideuniverse/android-viewpager-fragmentpageradapter-and-orientation-changes-256c23bee035#.wkdsu5rxo</item>
         <item>null</item>
         <item>license_glide</item>
         <item>license_ion</item>
@@ -68,6 +74,8 @@
         <item>@drawable/android</item>
         <item>@drawable/brush</item>
         <item>@integer/about_header</item>
+        <item>@integer/about_letter</item>
+        <item>@integer/about_letter</item>
         <item>@integer/about_letter</item>
         <item>@integer/about_letter</item>
         <item>@integer/about_letter</item>
