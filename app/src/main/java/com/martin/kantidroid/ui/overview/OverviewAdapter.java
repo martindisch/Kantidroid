@@ -116,11 +116,16 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        int max = Math.max(fromPosition, toPosition);
-        int min = Math.min(fromPosition, toPosition);
-        for (int i = max; i > min; i--) {
-            Collections.swap(mEntries, i, i - 1);
+        if (fromPosition > toPosition) {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mEntries, i, i - 1);
+            }
+        } else {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mEntries, i, i + 1);
+            }
         }
+
         notifyItemMoved(fromPosition, toPosition);
         return true;
     }
