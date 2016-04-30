@@ -335,6 +335,9 @@ public class OverviewFragment extends Fragment {
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                     item.setTitle(R.string.custom_sort);
                     mAdapter.saveSortingOrder(mSemesterSorting);
+                    SharedPreferences.Editor editor = mSp.edit();
+                    editor.putInt("sorting", 3);
+                    editor.commit();
                     mSemesterSorting = -1;
                 }
                 break;
