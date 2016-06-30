@@ -40,7 +40,7 @@ public class BackupFragment extends Fragment {
 
     private DbxClientV2 mClient;
     private DbxRequestConfig mConfig = new DbxRequestConfig("kantidroid");
-    private String APP_KEY, APP_SECRET;
+    private String APP_KEY;
     private boolean linked;
     private int mAction;
     private ProgressBar mProgress;
@@ -59,7 +59,6 @@ public class BackupFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         APP_KEY = getString(R.string.app_key);
-        APP_SECRET = getString(R.string.app_secret);
         linked = false;
         mAction = 0;
     }

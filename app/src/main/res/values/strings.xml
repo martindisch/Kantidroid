@@ -194,7 +194,6 @@
     <string name="new_kont">Neues Kontingent</string>
     <string name="delete_kont">Kontingent löschen</string>
     <string name="delete_question_kont">Willst du dieses Kontingent löschen?</string>
-    <string name="duplicate">Eintrag existiert bereits</string>
     <string name="impossible">Diese Note sollte es nicht geben</string>
     <string name="sort">Sortieren nach</string>
     <string name="reset">Jahr abschliessen</string>
@@ -230,7 +229,6 @@
     <string name="import_db_copyfailed">Datenbank konnte nicht wiederhergestellt werden</string>
     <string name="import_prefs_nolocal">Kein Backup der Einstellungen im Ordner \"Kantidroid/backup/local\"</string>
     <string name="import_prefs_notcopied">Einstellungen konnten nicht wiederhergestellt werden</string>
-    <string name="backup_nologin">Dropbox Login fehlgeschlagen</string>
     <string name="backup_db_success">Dropbox Backup erfolgreich</string>
     <string name="backup_db_notfound">Datei nicht mehr im Zwischenverzeichnis</string>
     <string name="backup_db_error">Datei konnte nicht in Dropbox gespeichert werden - keine Internetverbindung?</string>
