@@ -324,7 +324,7 @@ public class OverviewFragment extends Fragment {
             case R.id.action_custom_sort:
                 mSorting = !mSorting;
                 if (mSorting) {
-                    mSemesterSorting = mSp.getInt("semester", -1);
+                    mSemesterSorting = mSp.getInt("semester", 0);
                     if (mSemesterSorting != 2) {
                         if (getActivity().getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_0)
                             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
