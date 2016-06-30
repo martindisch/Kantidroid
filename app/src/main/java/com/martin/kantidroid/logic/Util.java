@@ -13,9 +13,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.client2.exception.DropboxException;
+import com.dropbox.core.DbxException;
+import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.WriteMode;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.widget.WidgetProvider;
 
@@ -211,7 +211,7 @@ public class Util {
         return 1;
     }
 
-    public static int backupDropbox(final Context context, final DropboxAPI<AndroidAuthSession> dbAPI) {
+    public static int backupDropbox(final Context context, final DbxClientV2 client) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Callable<Integer> callable = new Callable<Integer>() {
             @Override
@@ -223,13 +223,13 @@ public class Util {
                     File prefFile = new File(localDest + "/shared_prefs");
                     try {
                         FileInputStream dbInputStream = new FileInputStream(dbFile);
-                        dbAPI.putFileOverwrite("/database", dbInputStream, dbFile.length(), null);
+                        client.files().uploadBuilder("/database").withMode(WriteMode.OVERWRITE).uploadAndFinish(dbInputStream);
                         dbInputStream.close();
                         FileInputStream prefsInputStream = new FileInputStream(prefFile);
-                        dbAPI.putFileOverwrite("/shared_prefs", prefsInputStream, prefFile.length(), null);
+                        client.files().uploadBuilder("/shared_prefs").withMode(WriteMode.OVERWRITE).uploadAndFinish(prefsInputStream);
                         prefsInputStream.close();
                         return 0;
-                    } catch (DropboxException e) {
+                    } catch (DbxException e) {
                         e.printStackTrace();
                         return 6;
                     } catch (FileNotFoundException e) {
@@ -256,7 +256,7 @@ public class Util {
         return returnValue;
     }
 
-    public static int importDropbox(final Context context, final DropboxAPI<AndroidAuthSession> dbAPI) {
+    public static int importDropbox(final Context context, final DbxClientV2 client) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Callable<Integer> callable = new Callable<Integer>() {
             @Override
@@ -265,12 +265,12 @@ public class Util {
                 localBackup.mkdirs();
                 try {
                     FileOutputStream dbOutputStream = new FileOutputStream(new File(localBackup + "/database"));
-                    dbAPI.getFile("/database", null, dbOutputStream, null);
+                    client.files().downloadBuilder("/database").download(dbOutputStream);
                     dbOutputStream.close();
                     FileOutputStream prefsOutputStream = new FileOutputStream(new File(localBackup + "/shared_prefs"));
-                    dbAPI.getFile("/shared_prefs", null, prefsOutputStream, null);
+                    client.files().downloadBuilder("/shared_prefs").download(prefsOutputStream);
                     prefsOutputStream.close();
-                } catch (DropboxException e) {
+                } catch (DbxException e) {
                     e.printStackTrace();
                     return 7;
                 } catch (FileNotFoundException e) {

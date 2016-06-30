@@ -26,9 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.client2.session.AppKeyPair;
+import com.dropbox.core.v2.DbxClientV2;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
@@ -39,7 +37,7 @@ import java.util.Calendar;
 
 public class BackupFragment extends Fragment {
 
-    private DropboxAPI<AndroidAuthSession> mDBApi;
+    private DbxClientV2 mClient;
     private String APP_KEY, APP_SECRET;
     private boolean linked;
     private int mAction;
@@ -333,6 +331,7 @@ public class BackupFragment extends Fragment {
                 }
             }
         }
+
     }
 
     private void checkPermissionAndDo(String permission, int action) {
