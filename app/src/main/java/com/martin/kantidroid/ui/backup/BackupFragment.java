@@ -13,7 +13,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dropbox.core.DbxRequestConfig;
+import com.dropbox.core.android.Auth;
 import com.dropbox.core.v2.DbxClientV2;
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.logic.Util;
@@ -38,6 +39,7 @@ import java.util.Calendar;
 public class BackupFragment extends Fragment {
 
     private DbxClientV2 mClient;
+    private DbxRequestConfig mConfig = new DbxRequestConfig("kantidroid");
     private String APP_KEY, APP_SECRET;
     private boolean linked;
     private int mAction;
@@ -138,18 +140,12 @@ public class BackupFragment extends Fragment {
 
     private boolean authenticated() {
         if (!linked) {
-            AppKeyPair appKeys = new AppKeyPair(APP_KEY, APP_SECRET);
-            AndroidAuthSession session = new AndroidAuthSession(appKeys);
             SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
             if (prefs.contains("accessToken")) {
-                session.setOAuth2AccessToken(prefs.getString("accessToken", "thisisneverhappening"));
-                mDBApi = new DropboxAPI<AndroidAuthSession>(session);
-                if (session.isLinked()) {
-                    linked = true;
-                }
+                mClient = new DbxClientV2(mConfig, prefs.getString("accessToken", "thiswillneverhappenright?"));
+                linked = true;
             } else {
-                mDBApi = new DropboxAPI<AndroidAuthSession>(session);
-                mDBApi.getSession().startOAuth2Authentication(getActivity());
+                Auth.startOAuth2Authentication(getActivity(), APP_KEY);
                 return false;
             }
         }
@@ -165,7 +161,7 @@ public class BackupFragment extends Fragment {
             public void run() {
                 try {
                     String msg = "";
-                    final int result = Util.backupDropbox(getActivity(), mDBApi);
+                    final int result = Util.backupDropbox(getActivity(), mClient);
                     switch (result) {
                         case 0:
                             msg = getString(R.string.backup_db_success);
@@ -236,7 +232,7 @@ public class BackupFragment extends Fragment {
             public void run() {
                 try {
                     String msg = "";
-                    final int result = Util.importDropbox(getActivity(), mDBApi);
+                    final int result = Util.importDropbox(getActivity(), mClient);
                     switch (result) {
                         case 0:
                             msg = getString(R.string.import_success);
@@ -306,29 +302,21 @@ public class BackupFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        String accessToken = Auth.getOAuth2Token(); //generate Access Token
+        if (accessToken != null) {
+            //Store accessToken in SharedPreferences
+            SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("accessToken", accessToken);
+            editor.commit();
 
-        if (mDBApi != null) {
-            if (mDBApi.getSession().authenticationSuccessful()) {
-                try {
-                    // Required to complete auth, sets the access token on the session
-                    mDBApi.getSession().finishAuthentication();
-                    String accessToken = mDBApi.getSession().getOAuth2AccessToken();
-                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE).edit();
-                    editor.putString("accessToken", accessToken);
-                    editor.commit();
-                    if (mDBApi.getSession().isLinked()) {
-                        linked = true;
-                        if (mAction == 1) {
-                            dropboxBackup();
-                        } else if (mAction == 2) {
-                            dropboxImport();
-                        }
-                    }
-                } catch (IllegalStateException e) {
-                    Log.i("DbAuthLog", "Error authenticating", e);
-                    mAction = 0;
-                    Toast.makeText(getActivity(), R.string.backup_nologin, Toast.LENGTH_SHORT).show();
-                }
+            mClient = new DbxClientV2(mConfig, accessToken);
+
+            linked = true;
+            if (mAction == 1) {
+                dropboxBackup();
+            } else if (mAction == 2) {
+                dropboxImport();
             }
         }
 
