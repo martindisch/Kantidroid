@@ -535,4 +535,20 @@ public class Util {
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         context.sendBroadcast(intent);
     }
+
+    /**
+     * Returns the Fach with the specified ID from a List of Fach or null if it was not found
+     *
+     * @param faecher The list of Fach to search in
+     * @param id      The ID of the Fach to be returned
+     * @return The Fach with the specified ID
+     */
+    public static Fach getFachWithId(List<Fach> faecher, int id) {
+        for (Fach fach : faecher) {
+            if (fach.getID() == id) {
+                return fach;
+            }
+        }
+        return null;
+    }
 }

@@ -274,15 +274,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             if (!sorting_order.contentEquals("")) {
                 String[] order = sorting_order.split(",");
                 List<Fach> sortedFachList = new ArrayList<>(order.length);
-                // Inefficient sorting
+                // Add subjects with sorting information to sortedFachList and remove them from fachList
                 for (int i = 0; i < order.length; i++) {
-                    for (int y = 0; y < order.length; y++) {
-                        if (fachList.get(y).getID() == Integer.parseInt(order[i])) {
-                            sortedFachList.add(fachList.get(y));
-                            break;
-                        }
-                    }
+                    Fach temp = Util.getFachWithId(fachList, Integer.parseInt(order[i]));
+                    sortedFachList.add(temp);
+                    fachList.remove(temp);
                 }
+                // Add the remaining subjects without sorting information to the end of the list
+                sortedFachList.addAll(fachList);
                 fachList = sortedFachList;
             }
         }
