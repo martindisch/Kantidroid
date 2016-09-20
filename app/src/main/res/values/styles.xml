@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base" />
+    <style name="AppTheme" parent="AppTheme.Base"/>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
@@ -41,7 +41,9 @@
     </style>
 
     <style name="AppCompat.Button.Flat.Black" parent="AppCompat.Button.Flat.Common">
-        <item name="android:textColor">@color/primary_text_default_material_light</item>
+        <item name="android:textColor">
+            @color/primary_text_default_material_light
+        </item>
         <item name="android:textStyle">normal</item>
     </style>
 

@@ -1,12 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlRoot"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/btn_flat_selector"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical"
-    android:padding="@dimen/widget_margin_large">
+                android:id="@+id/rlRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_flat_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="@dimen/widget_margin_large">
 
     <ImageView
         android:id="@+id/ivPic"
@@ -14,7 +14,7 @@
         android:layout_height="@dimen/subjects_circle"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/widget_margin"
-        android:layout_marginRight="@dimen/widget_margin" />
+        android:layout_marginRight="@dimen/widget_margin"/>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -23,7 +23,7 @@
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/ivPic"
         android:textColor="@color/primary_text_default_material_light"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/tvSubtitle"
@@ -31,6 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvTitle"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/ivPic" />
+        android:layout_toRightOf="@id/ivPic"/>
 
 </RelativeLayout>

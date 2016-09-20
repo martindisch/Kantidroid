@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlItem"
-    android:layout_width="match_parent"
-    android:layout_height="160dp">
+                android:id="@+id/rlItem"
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
 
     <TextView
         android:id="@+id/tvKont"
@@ -10,7 +10,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:gravity="center_horizontal"
-        android:padding="@dimen/widget_margin" />
+        android:padding="@dimen/widget_margin"/>
 
     <TextView
         android:id="@+id/tvGrades"
@@ -20,7 +20,7 @@
         android:layout_toLeftOf="@id/tvKont"
         android:gravity="center_horizontal"
         android:textColor="@color/primary_text_default_material_dark"
-        android:padding="@dimen/widget_margin" />
+        android:padding="@dimen/widget_margin"/>
 
     <TextView
         android:id="@+id/tvName"
@@ -30,7 +30,7 @@
         android:layout_toLeftOf="@id/tvGrades"
         android:ellipsize="end"
         android:padding="@dimen/widget_margin"
-        android:singleLine="true" />
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/tvPic"
@@ -38,6 +38,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/tvName"
         android:gravity="center"
-        android:textSize="55sp" />
+        android:textSize="55sp"/>
 
 </RelativeLayout>

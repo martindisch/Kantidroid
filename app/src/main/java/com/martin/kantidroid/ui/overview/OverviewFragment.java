@@ -325,11 +325,11 @@ public class OverviewFragment extends Fragment {
                 if (mSorting) {
                     mSemesterSorting = mSp.getInt("semester", 0);
                     if (mSemesterSorting != 2) {
-                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_0)
+                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0)
                             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_90)
+                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90)
                             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_270)
+                        if (getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270)
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
                                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
                             }
@@ -404,9 +404,11 @@ public class OverviewFragment extends Fragment {
 
         public void loadData(Activity c) {
             for (int i = 0; i < 2; i++) {
-                if (mFragments[i] != null) ((OverviewSubjectsFragment) mFragments[i]).loadData(c);
+                if (mFragments[i] != null)
+                    ((OverviewSubjectsFragment) mFragments[i]).loadData(c);
             }
-            if (mFragments[2] != null) ((OverviewZeugnisFragment) mFragments[2]).loadData(c);
+            if (mFragments[2] != null)
+                ((OverviewZeugnisFragment) mFragments[2]).loadData(c);
         }
 
         public void loadOtherFragment(Activity c, int semester) {

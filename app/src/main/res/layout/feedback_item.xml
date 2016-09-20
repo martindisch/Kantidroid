@@ -1,19 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlRoot"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@drawable/btn_flat_selector"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/widget_margin_large">
+                android:id="@+id/rlRoot"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_flat_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/widget_margin_large">
 
     <ImageView
         android:id="@+id/ivIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"
-        android:tint="@color/primary" />
+        android:tint="@color/primary"/>
 
     <TextView
         android:id="@id/tvTitle"
@@ -23,6 +23,6 @@
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/ivIcon"
         android:textColor="@color/primary_text_default_material_light"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
 </RelativeLayout>

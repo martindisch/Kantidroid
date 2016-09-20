@@ -342,7 +342,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             for (int i = 0; i < tokens.length; i++) {
                 if (!tokens[i].contentEquals(id)) newOrder += tokens[i] + ",";
             }
-            if (newOrder.length() > 1) newOrder = newOrder.substring(0, newOrder.length() - 1);
+            if (newOrder.length() > 1)
+                newOrder = newOrder.substring(0, newOrder.length() - 1);
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putString("custom_sorting_order", newOrder);
             editor.commit();

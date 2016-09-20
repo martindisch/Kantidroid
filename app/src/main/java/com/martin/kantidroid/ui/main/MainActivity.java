@@ -108,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
                     tag = "timetable";
                     break;
                 case 3:
-                    if (getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_0)
+                    if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0)
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                    if (getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_90)
+                    if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90)
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    if (getWindowManager().getDefaultDisplay().getRotation()== Surface.ROTATION_270)
+                    if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270)
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
                             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
                         }

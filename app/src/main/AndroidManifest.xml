@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.martin.kantidroid" >
+<manifest package="com.martin.kantidroid"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -14,38 +14,39 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <service
             android:name=".logic.Background"
-            android:exported="false" />
+            android:exported="false"/>
+
         <receiver
             android:name=".logic.BootReceiver"
-            android:enabled="true" >
+            android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-        <receiver android:name=".ui.widget.WidgetProvider" >
+        <receiver android:name=".ui.widget.WidgetProvider">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_info" />
+                android:resource="@xml/widget_info"/>
         </receiver>
 
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
             android:configChanges="orientation|keyboard"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask">
             <intent-filter>
-                <data android:scheme="@string/app_key_db" />
+                <data android:scheme="@string/app_key_db"/>
 
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity
@@ -53,65 +54,65 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.subjects.ColorPickerDialog"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
             android:name=".ui.subjects.EditDialog"
             android:label="@string/subject_edit"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
         </activity>
         <activity
             android:name=".ui.fachview.DetailActivity"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
         </activity>
         <activity
             android:name=".ui.fachview.FachviewActivity"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
         </activity>
         <activity
             android:name=".ui.fachview.EditMarkDialog"
-            android:theme="@style/AppTheme.Base" />
+            android:theme="@style/AppTheme.Base"/>
         <activity
             android:name=".ui.fachview.EditKontDialog"
-            android:theme="@style/AppTheme.Base" />
+            android:theme="@style/AppTheme.Base"/>
         <activity
             android:name=".ui.fachview.CalcActivity"
             android:label="@string/title_activity_calc"
-            android:theme="@style/AppTheme.Base" />
+            android:theme="@style/AppTheme.Base"/>
         <activity
             android:name=".ui.feedback.FeedbackActivity"
             android:label="@string/title_activity_feedback"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
         </activity>
         <activity
             android:name=".ui.about.AboutActivity"
             android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
         </activity>
         <activity
             android:name=".ui.about.LicenseActivity"
             android:label="@string/title_activity_license"
-            android:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base">
         </activity>
         <activity
             android:name=".ui.motd.MOTD"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_motd"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base" />
+            android:theme="@style/AppTheme.Base"/>
         <activity
             android:name=".ui.widget.SemesterSelector"
-            android:label="@string/title_activity_semester_selector"
-            android:theme="@style/AppDialog"
-            android:noHistory="true"
             android:excludeFromRecents="true"
-            android:launchMode="singleInstance">
+            android:label="@string/title_activity_semester_selector"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:theme="@style/AppDialog">
         </activity>
     </application>
 

@@ -131,6 +131,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
     public interface OnClickListener {
         void onItemClick(int position);
+
         void onLongItemClick(int position);
     }
 

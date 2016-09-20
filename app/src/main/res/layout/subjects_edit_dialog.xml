@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -37,7 +37,7 @@
                 android:layout_marginTop="7dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_alphabetical" />
+                android:src="@drawable/ic_alphabetical"/>
 
             <AutoCompleteTextView
                 android:id="@+id/et_subj_name"
@@ -47,7 +47,7 @@
                 style="?android:editTextStyle"
                 android:hint="@string/name"
                 android:imeOptions="actionNext"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences"/>
 
             <EditText
                 android:id="@+id/et_subj_short"
@@ -57,7 +57,7 @@
                 android:layout_toRightOf="@id/ivName"
                 android:hint="@string/name_short"
                 android:imeOptions="actionDone"
-                android:inputType="textCapWords" />
+                android:inputType="textCapWords"/>
 
             <ImageView
                 android:id="@+id/ivCounts"
@@ -68,7 +68,7 @@
                 android:layout_marginTop="@dimen/widget_margin_large"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_alert" />
+                android:src="@drawable/ic_alert"/>
 
             <CheckBox
                 android:id="@+id/cbCounts"
@@ -78,7 +78,7 @@
                 android:layout_marginTop="@dimen/widget_margin_large"
                 android:layout_toRightOf="@id/ivCounts"
                 android:checked="true"
-                android:text="@string/promotion" />
+                android:text="@string/promotion"/>
 
             <ImageView
                 android:id="@+id/ivColor"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="@dimen/widget_margin_large"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_palette" />
+                android:src="@drawable/ic_palette"/>
 
             <View
                 android:id="@+id/vColor"
@@ -101,7 +101,7 @@
                 android:layout_marginTop="22dp"
                 android:layout_toRightOf="@id/ivColor"
                 android:background="@color/c1"
-                android:tag="0" />
+                android:tag="0"/>
 
             <ImageView
                 android:id="@+id/ivKont"
@@ -112,7 +112,7 @@
                 android:layout_marginTop="@dimen/widget_margin_large"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_timetable" />
+                android:src="@drawable/ic_timetable"/>
 
             <TextView
                 android:id="@+id/tvKont"
@@ -121,7 +121,7 @@
                 android:layout_below="@id/vColor"
                 android:layout_marginTop="@dimen/widget_margin_large"
                 android:layout_toRightOf="@id/ivKont"
-                android:text="@string/kont" />
+                android:text="@string/kont"/>
 
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/scCounts"
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/tvKont"
                 android:layout_alignParentRight="true"
-                android:checked="true" />
+                android:checked="true"/>
 
             <RadioGroup
                 android:id="@+id/rgKont"
@@ -146,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/n2" />
+                    android:text="@string/n2"/>
 
                 <RadioButton
                     android:id="@+id/rb4"
@@ -154,28 +154,28 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:text="@string/n4" />
+                    android:text="@string/n4"/>
 
                 <RadioButton
                     android:id="@+id/rb6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/n6" />
+                    android:text="@string/n6"/>
 
                 <RadioButton
                     android:id="@+id/rb8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/n8" />
+                    android:text="@string/n8"/>
 
                 <RadioButton
                     android:id="@+id/rb10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/n10" />
+                    android:text="@string/n10"/>
 
             </RadioGroup>
 

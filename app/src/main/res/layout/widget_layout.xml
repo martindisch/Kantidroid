@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/appwidget_corners_white"
-    android:orientation="vertical"
-    android:padding="@dimen/appwidget_margin">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/appwidget_corners_white"
+              android:orientation="vertical"
+              android:padding="@dimen/appwidget_margin">
 
     <LinearLayout
         android:id="@+id/llTop"
@@ -17,7 +17,7 @@
             android:id="@+id/ivPic"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_kantidroid" />
+            android:src="@drawable/ic_kantidroid"/>
 
         <TextView
             android:id="@+id/widget_title"
@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/widget_margin"
             android:text="@string/widget_overview"
             android:textColor="@color/primary_text_default_material_dark"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/widget_semester"
@@ -36,7 +36,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/widget_margin"
             android:gravity="right"
-            android:textColor="@color/primary_text_default_material_dark" />
+            android:textColor="@color/primary_text_default_material_dark"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="@color/red_dark"
-            android:textSize="24sp" />
+            android:textSize="24sp"/>
 
         <TextView
             android:id="@+id/widget_kont"
@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="@color/green_dark"
-            android:textSize="24sp" />
+            android:textSize="24sp"/>
 
         <TextView
             android:id="@+id/widget_timetable"
@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="@color/timetable"
-            android:textSize="24sp" />
+            android:textSize="24sp"/>
 
     </LinearLayout>
 

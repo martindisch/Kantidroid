@@ -1,14 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlRoot"
-    android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:paddingBottom="@dimen/widget_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/widget_margin"
-    android:focusable="true"
-    android:clickable="true"
-    android:background="@drawable/btn_flat_selector">
+                android:id="@+id/rlRoot"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:paddingBottom="@dimen/widget_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/widget_margin"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/btn_flat_selector">
 
     <TextView
         android:id="@+id/tvPic"
@@ -18,7 +18,7 @@
         android:background="@drawable/subjects_circle"
         android:gravity="center"
         android:textColor="@color/primary_text_default_material_dark"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/tvName"
@@ -27,7 +27,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/widget_margin_large"
         android:layout_toRightOf="@id/tvPic"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/tvMark"
@@ -36,6 +36,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
 </RelativeLayout>

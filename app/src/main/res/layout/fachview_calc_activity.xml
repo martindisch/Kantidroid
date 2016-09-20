@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -30,10 +30,10 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                card_view:cardCornerRadius="0dp">
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                card_view:cardCornerRadius="0dp">
 
                 <RelativeLayout
                     android:id="@+id/rlShowMarks"
@@ -48,7 +48,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="@string/preview"
                         android:textColor="@color/red_dark"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
                     <Spinner
                         android:id="@+id/sRelevance"
@@ -56,25 +56,25 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvGrades"
                         android:layout_marginLeft="65dp"
-                        android:entries="@array/weights" />
+                        android:entries="@array/weights"/>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvMarks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/sRelevance"
-                        android:layout_marginTop="@dimen/widget_margin" />
+                        android:layout_marginTop="@dimen/widget_margin"/>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/cvKont"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/widget_margin"
-                card_view:cardCornerRadius="0dp">
+                                                android:id="@+id/cvKont"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="@dimen/widget_margin"
+                                                card_view:cardCornerRadius="0dp">
 
                 <RelativeLayout
                     android:id="@+id/rlShowKont"
@@ -89,7 +89,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="@string/calculator"
                         android:textColor="@color/red_dark"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
                     <ImageView
                         android:id="@+id/ivTimetable"
@@ -101,7 +101,7 @@
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_calculator"
-                        android:tint="@color/red_dark" />
+                        android:tint="@color/red_dark"/>
 
                     <EditText
                         android:id="@+id/etGoal"
@@ -110,7 +110,7 @@
                         android:layout_below="@id/tvKont"
                         android:layout_toRightOf="@id/ivTimetable"
                         android:hint="@string/goal"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"/>
 
                     <Spinner
                         android:id="@+id/sRelevance2"
@@ -119,7 +119,7 @@
                         android:layout_below="@id/etGoal"
                         android:layout_marginTop="@dimen/widget_margin_large"
                         android:layout_toRightOf="@id/ivTimetable"
-                        android:entries="@array/weights" />
+                        android:entries="@array/weights"/>
 
                     <Button
                         android:id="@+id/bCalculate"
@@ -129,7 +129,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@id/sRelevance2"
                         android:layout_marginTop="@dimen/widget_margin_large"
-                        android:text="@string/calculate" />
+                        android:text="@string/calculate"/>
 
                     <TextView
                         android:id="@+id/tvGoalMark"
@@ -138,7 +138,7 @@
                         android:layout_alignBaseline="@id/sRelevance2"
                         android:layout_alignLeft="@id/bCalculate"
                         android:gravity="center_horizontal"
-                        android:textSize="28sp" />
+                        android:textSize="28sp"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>

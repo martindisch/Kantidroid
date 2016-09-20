@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -36,7 +36,7 @@
                 android:hint="@string/mark"
                 android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
-                android:selectAllOnFocus="true" />
+                android:selectAllOnFocus="true"/>
 
             <View
                 android:id="@+id/vDivider"
@@ -45,7 +45,7 @@
                 android:layout_below="@id/etMark"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:background="@color/divider" />
+                android:background="@color/divider"/>
 
             <ImageView
                 android:id="@+id/ivWeight"
@@ -57,7 +57,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_weight"
-                android:tint="@color/red_dark" />
+                android:tint="@color/red_dark"/>
 
             <EditText
                 android:id="@+id/etWeight"
@@ -69,7 +69,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="true"
-                android:text="1.0" />
+                android:text="1.0"/>
 
             <View
                 android:id="@+id/vDivider2"
@@ -79,7 +79,7 @@
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_toRightOf="@id/ivWeight"
-                android:background="@color/divider" />
+                android:background="@color/divider"/>
 
             <ImageView
                 android:id="@+id/ivDate"
@@ -91,7 +91,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_calendar"
-                android:tint="@color/red_dark" />
+                android:tint="@color/red_dark"/>
 
             <EditText
                 android:id="@+id/etDate"
@@ -101,7 +101,7 @@
                 android:layout_toRightOf="@id/ivDate"
                 android:hint="@string/date"
                 android:imeOptions="actionDone"
-                android:inputType="date" />
+                android:inputType="date"/>
 
             <TextView
                 android:id="@+id/tvSem"
@@ -110,7 +110,7 @@
                 android:layout_below="@id/etDate"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="@dimen/widget_margin"
-                android:layout_toRightOf="@id/ivDate" />
+                android:layout_toRightOf="@id/ivDate"/>
 
         </RelativeLayout>
     </ScrollView>

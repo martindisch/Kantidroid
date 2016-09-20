@@ -1,12 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlRoot"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/btn_flat_selector"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical"
-    android:padding="@dimen/widget_margin_large">
+                android:id="@+id/rlRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_flat_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="@dimen/widget_margin_large">
 
     <TextView
         android:id="@+id/tvPic"
@@ -18,7 +18,7 @@
         android:background="@drawable/subjects_circle"
         android:gravity="center"
         android:textColor="@color/primary_text_default_material_dark"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -27,7 +27,7 @@
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/tvPic"
         android:textColor="@color/primary_text_default_material_light"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/tvSubtitle"
@@ -35,6 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvTitle"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/tvPic" />
+        android:layout_toRightOf="@id/tvPic"/>
 
 </RelativeLayout>

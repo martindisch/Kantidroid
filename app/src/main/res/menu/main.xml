@@ -1,26 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
     <item
         android:id="@+id/action_sort"
         android:title="@string/sort"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/sort_variant" />
+        android:icon="@drawable/sort_variant"/>
     <item
         android:id="@+id/action_reset"
         android:title="@string/reset"
         android:orderInCategory="200"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
     <item
         android:id="@+id/action_department"
         android:title="@string/department"
         android:orderInCategory="300"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
     <item
         android:id="@+id/action_custom_sort"
         android:title="@string/custom_sort"
         android:orderInCategory="400"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
 </menu>
