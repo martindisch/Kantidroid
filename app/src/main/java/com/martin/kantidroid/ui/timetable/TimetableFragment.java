@@ -7,11 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -127,8 +127,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
         MimeTypeMap myMime = MimeTypeMap.getSingleton();
         Intent newIntent = new Intent(Intent.ACTION_VIEW);
         String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
-        newIntent.setDataAndType(Uri.fromFile(f), mimeType);
-        newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        newIntent.setDataAndType(FileProvider.getUriForFile(getContext(), "com.martin.fileprovider", f), mimeType);
+        newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         SharedPreferences prefs = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
