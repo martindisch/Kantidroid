@@ -76,13 +76,8 @@ public class OverviewFragment extends Fragment {
         mPP = (TextView) rootView.findViewById(R.id.tvPP);
         mKont = (TextView) rootView.findViewById(R.id.tvKont);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mSp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
-                mEditor = mSp.edit();
-            }
-        }).start();
+        mSp = getActivity().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
+        mEditor = mSp.edit();
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         if (mViewPager != null) {
