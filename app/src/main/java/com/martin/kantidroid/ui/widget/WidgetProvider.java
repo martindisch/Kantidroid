@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.support.v4.content.FileProvider;
 import android.webkit.MimeTypeMap;
 import android.widget.RemoteViews;
 
@@ -46,11 +47,13 @@ public class WidgetProvider extends AppWidgetProvider {
             if (f.exists()) {
                 String className = f.getName().replace(".pdf", "");
                 views.setTextViewText(R.id.widget_timetable, className);
+
                 MimeTypeMap myMime = MimeTypeMap.getSingleton();
                 Intent newIntent = new Intent(Intent.ACTION_VIEW);
                 String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(f).substring(1));
-                newIntent.setDataAndType(Uri.fromFile(f), mimeType);
-                newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                newIntent.setDataAndType(FileProvider.getUriForFile(context, "com.martin.fileprovider", f), mimeType);
+                newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
                 PendingIntent pdfIntent = PendingIntent.getActivity(context, 0, newIntent, 0);
                 views.setOnClickPendingIntent(R.id.widget_timetable, pdfIntent);
             } else {
