@@ -77,9 +77,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivDropboxLogo"
                         android:layout_marginLeft="@dimen/widget_margin_large"
-                        android:layout_marginTop="@dimen/widget_margin_large"
-                        android:layout_toRightOf="@id/ivCheck"
-                        android:gravity="center_vertical"/>
+                        android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@id/ivCheck"/>
 
                     <Button
                         android:id="@+id/bImportDropbox"

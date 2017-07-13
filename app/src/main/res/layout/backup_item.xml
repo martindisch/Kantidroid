@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvTitle"
         android:layout_toRightOf="@id/ivIcon"
-        android:maxEms="15"
-        android:singleLine="false"/>
+        android:maxEms="15"/>
 
 </RelativeLayout>
