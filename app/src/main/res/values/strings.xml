@@ -274,5 +274,8 @@
     <string name="custom_sort_off">Sortieren beenden</string>
     <string name="custom_sort_impossible">Diese Ansicht kann nicht sortiert werden</string>
     <string name="url_timetable">https://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/bks/dokumentation/klassen/Documents/</string>
+    <string name="noti_channel_id">kantidroid_notification</string>
+    <string name="noti_channel_name">Information</string>
+    <string name="noti_channel_description">Wichtige Benachrichtigungen von Kantidroid</string>
 
 </resources>

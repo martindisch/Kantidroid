@@ -2,14 +2,16 @@ package com.martin.kantidroid.logic;
 
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.NotificationCompat;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.main.MainActivity;
@@ -59,7 +61,13 @@ public class Background extends IntentService {
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("Kantidroid", Context.MODE_PRIVATE);
         if (!Util.getSeen(getApplicationContext(), lines[0]) && !lines[0].contains("html") && !lines[1].contains("html") && !lines[0].contains("HTML") && !lines[1].contains("HTML")) {
             int idCounter = prefs.getInt("idCounter", 0);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+            NotificationCompat.Builder mBuilder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                createNotificationChannel();
+                mBuilder = new NotificationCompat.Builder(this, getString(R.string.noti_channel_id));
+            } else {
+                mBuilder = new NotificationCompat.Builder(this);
+            }
             mBuilder.setSmallIcon(R.drawable.ic_comment);
             mBuilder.setContentTitle(lines[0]);
             mBuilder.setContentText(lines[1].replace("*", " "));
@@ -87,6 +95,25 @@ public class Background extends IntentService {
             editor.putInt("idCounter", idCounter);
             editor.commit();
             Util.setSeen(getApplicationContext(), lines[0]);
+        }
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            // The id of the channel.
+            String id = getString(R.string.noti_channel_id);
+            // The user-visible name of the channel.
+            CharSequence name = getString(R.string.noti_channel_name);
+            // The user-visible description of the channel.
+            String description = getString(R.string.noti_channel_description);
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+            // Configure the notification channel.
+            mChannel.setDescription(description);
+            mChannel.enableLights(true);
+            mChannel.enableVibration(true);
+            mNotificationManager.createNotificationChannel(mChannel);
         }
     }
 }
