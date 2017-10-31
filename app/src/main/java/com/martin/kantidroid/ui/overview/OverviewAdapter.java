@@ -73,6 +73,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         holder.tvPic.setText(mTempFach.getShort());
         if (mBad) {
             holder.tvGrades.setBackgroundColor(mContext.getResources().getColor(R.color.red_dark));
+            holder.tvGrades.setTextColor(mContext.getResources().getColor(R.color.promo_white));
             holder.tvName.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
             holder.tvName.setTextColor(mContext.getResources().getColor(R.color.promo_black));
             holder.tvKont.setBackgroundColor(mContext.getResources().getColor(R.color.promo_white));
@@ -81,6 +82,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             holder.tvPic.setTextColor(mContext.getResources().getColor(R.color.promo_black));
         } else {
             holder.tvGrades.setBackgroundColor(Util.getNormal(mContext, mTempFach.getColor()));
+            holder.tvGrades.setTextColor(mContext.getResources().getColor(R.color.promo_white));
             holder.tvName.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
             holder.tvName.setTextColor(mContext.getResources().getColor(R.color.promo_white));
             holder.tvKont.setBackgroundColor(Util.getDark(mContext, mTempFach.getColor()));
