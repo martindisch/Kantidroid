@@ -16,6 +16,7 @@
         <item>Glide</item>
         <item>ion</item>
         <item>Core API</item>
+        <item>jsoup</item>
         <item>Android RecyclerView</item>
         <item>Cheesesquare sample</item>
         <item>Material Design Icons</item>
@@ -39,6 +40,7 @@
         <item>by bumptech</item>
         <item>by Koushik Dutta</item>
         <item>by Dropbox</item>
+        <item>by Jonathan Hedley</item>
         <item>by Chiu-Ki Chan</item>
         <item>by Chris Banes</item>
         <item>by Google (unmodified)</item>
@@ -62,6 +64,7 @@
         <item>license_glide</item>
         <item>license_ion</item>
         <item>license_dropbox</item>
+        <item>license_jsoup</item>
         <item>license_androidrecyclerview</item>
         <item>license_cheesesquaresample</item>
         <item>license_materialdesignicons</item>
@@ -74,6 +77,7 @@
         <item>@drawable/android</item>
         <item>@drawable/brush</item>
         <item>@integer/about_header</item>
+        <item>@integer/about_letter</item>
         <item>@integer/about_letter</item>
         <item>@integer/about_letter</item>
         <item>@integer/about_letter</item>

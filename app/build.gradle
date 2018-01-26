@@ -29,4 +29,5 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.koushikdutta.ion:ion:2.1.6'
     compile 'com.dropbox.core:dropbox-core-sdk:3.0.3'
+    compile 'org.jsoup:jsoup:1.11.2'
 }

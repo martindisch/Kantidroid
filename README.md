@@ -14,7 +14,7 @@ The unofficial app for students of the [Bündner Kantonsschule Chur](http://www.
 
 Using Gradle for dependency management, this project makes use of the [Support Library](http://developer.android.com/tools/support-library/index.html), using AppCompat, CardView, RecyclerView, Design Support Library and so on.
 
-[Glide](https://github.com/bumptech/glide) is for the graceful loading of images and [ion](https://github.com/koush/ion) for simple downloads.
+[Glide](https://github.com/bumptech/glide) is for the graceful loading of images, [ion](https://github.com/koush/ion) for simple downloads, [Dropbox Core API](https://github.com/dropbox/dropbox-sdk-java) for user data backups and [jsoup](https://jsoup.org/) for parsing HTML.
 
 For a complete list of contributors, attributions, and licenses of the projects used, refer to [ABOUT.md](ABOUT.md).
 
