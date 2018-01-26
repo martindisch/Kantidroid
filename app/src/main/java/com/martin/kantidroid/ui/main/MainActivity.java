@@ -22,6 +22,7 @@ import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.about.AboutActivity;
 import com.martin.kantidroid.ui.backup.BackupFragment;
 import com.martin.kantidroid.ui.feedback.FeedbackActivity;
+import com.martin.kantidroid.ui.food.FoodFragment;
 import com.martin.kantidroid.ui.overview.OverviewFragment;
 import com.martin.kantidroid.ui.subjects.SubjectsFragment;
 import com.martin.kantidroid.ui.timetable.TimetableFragment;
@@ -108,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
                     tag = "timetable";
                     break;
                 case 3:
+                    fragment = FoodFragment.newInstance();
+                    tag = "food";
+                    break;
+                case 4:
                     if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0)
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                     if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90)
@@ -127,12 +132,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (mExtraSelected != -1) {
             switch (mExtraSelected) {
-                case 4:
+                case 5:
                     Intent i = new Intent(this, FeedbackActivity.class);
                     startActivity(i);
                     mExtraSelected = -1;
                     break;
-                case 5:
+                case 6:
                     Intent y = new Intent(this, AboutActivity.class);
                     startActivity(y);
                     mExtraSelected = -1;
@@ -156,14 +161,17 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_timetable:
                                 mSelected = 2;
                                 break;
-                            case R.id.nav_backup:
+                            case R.id.nav_food:
                                 mSelected = 3;
                                 break;
+                            case R.id.nav_backup:
+                                mSelected = 4;
+                                break;
                             case R.id.nav_feedback:
-                                mExtraSelected = 4;
+                                mExtraSelected = 5;
                                 break;
                             case R.id.nav_about:
-                                mExtraSelected = 5;
+                                mExtraSelected = 6;
                                 break;
                         }
                         if (mExtraSelected == -1) {
