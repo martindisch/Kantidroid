@@ -4,6 +4,9 @@ package com.martin.kantidroid.ui.food;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,8 +54,16 @@ public class FoodFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.food_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.food_fragment, container, false);
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(R.string.food);
+
+        return rootView;
     }
 
 }

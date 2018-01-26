@@ -279,5 +279,7 @@
     <string name="noti_channel_description">Wichtige Benachrichtigungen von Kantidroid</string>
     <string name="food">Menüpläne</string>
     <string name="url_food">https://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/wvb/Menueplaene/Seiten/default.aspx</string>
+    <string name="mensa">Mensa Münzmühle</string>
+    <string name="konvikt">Konvikt</string>
 
 </resources>
