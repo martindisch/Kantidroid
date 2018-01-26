@@ -54,7 +54,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvMensa"
                         android:layout_width="match_parent"
-                        android:layout_height="330dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/tvMensa"
                         android:scrollbars="vertical" />
 
@@ -66,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/widget_margin"
                 android:layout_marginTop="@dimen/widget_margin"
                 app:cardCornerRadius="0dp">
 
@@ -86,7 +87,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvKonvikt"
                         android:layout_width="match_parent"
-                        android:layout_height="330dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/tvKonvikt"
                         android:scrollbars="vertical" />
 

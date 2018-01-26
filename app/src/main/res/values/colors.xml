@@ -29,6 +29,9 @@
     <color name="about_header_background">#EEEEEE</color>
     <color name="about_header_text">#696969</color>
 
+    <color name="mensa">#70AD47</color>
+    <color name="konvikt">#FFC000</color>
+
     <!-- Don't modify this section the colors -->
     <color name="c1">#d50000</color>
     <color name="c2">#c51162</color>
