@@ -2,8 +2,9 @@ package com.martin.kantidroid.ui.food;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
@@ -28,19 +30,48 @@ import java.util.ArrayList;
 public class FoodFragment extends Fragment implements FoodAdapter.OnClickListener {
 
     private RecyclerView mMensa, mKonvikt;
+    private SwipeRefreshLayout mSwipeContainer;
+    private ScrollView mFoodContainer;
 
     public FoodFragment() {
         // Required empty public constructor
     }
 
     public static FoodFragment newInstance() {
-        FoodFragment fragment = new FoodFragment();
-        return fragment;
+        return new FoodFragment();
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.food_fragment, container, false);
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(R.string.food);
+
+        mMensa = rootView.findViewById(R.id.rvMensa);
+        mKonvikt = rootView.findViewById(R.id.rvKonvikt);
+        mSwipeContainer = rootView.findViewById(R.id.swipeContainer);
+        mFoodContainer = rootView.findViewById(R.id.svFoodContainer);
+
+        mMensa.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mMensa.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
+        mKonvikt.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mKonvikt.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
+        mSwipeContainer.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.accent));
+        mSwipeContainer.setEnabled(false);
+
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mSwipeContainer.setRefreshing(true);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -71,32 +102,17 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
                     });
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    mSwipeContainer.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mSwipeContainer.setRefreshing(false);
+                            mFoodContainer.setVisibility(View.VISIBLE);
+                        }
+                    });
                 }
             }
         }).start();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.food_fragment, container, false);
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
-        final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(R.string.food);
-
-        mMensa = rootView.findViewById(R.id.rvMensa);
-        mKonvikt = rootView.findViewById(R.id.rvKonvikt);
-
-        mMensa.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mMensa.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
-        mKonvikt.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mKonvikt.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
-
-        return rootView;
     }
 
     @Override

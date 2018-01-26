@@ -19,84 +19,93 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/svFoodContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:visibility="invisible">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cvMensa"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:cardCornerRadius="0dp">
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
 
-                <RelativeLayout
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvMensa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin">
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="0dp">
 
-                    <TextView
-                        android:id="@+id/tvMensa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp"
-                        android:text="@string/mensa"
-                        android:textColor="@color/timetable"
-                        android:textSize="16sp" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvMensa"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvMensa"
-                        android:scrollbars="vertical" />
+                        android:padding="@dimen/activity_horizontal_margin">
 
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                        <TextView
+                            android:id="@+id/tvMensa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="24dp"
+                            android:text="@string/mensa"
+                            android:textColor="@color/timetable"
+                            android:textSize="16sp" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cvKonvikt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/widget_margin"
-                android:layout_marginTop="@dimen/widget_margin"
-                app:cardCornerRadius="0dp">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvMensa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvMensa"
+                            android:scrollbars="vertical" />
 
-                <RelativeLayout
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvKonvikt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin">
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/widget_margin"
+                    android:layout_marginTop="@dimen/widget_margin"
+                    app:cardCornerRadius="0dp">
 
-                    <TextView
-                        android:id="@+id/tvKonvikt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp"
-                        android:text="@string/konvikt"
-                        android:textColor="@color/timetable"
-                        android:textSize="16sp" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvKonvikt"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvKonvikt"
-                        android:scrollbars="vertical" />
+                        android:padding="@dimen/activity_horizontal_margin">
 
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/tvKonvikt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="24dp"
+                            android:text="@string/konvikt"
+                            android:textColor="@color/timetable"
+                            android:textSize="16sp" />
 
-            </android.support.v7.widget.CardView>
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvKonvikt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvKonvikt"
+                            android:scrollbars="vertical" />
 
-        </LinearLayout>
+                    </RelativeLayout>
 
-    </ScrollView>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
