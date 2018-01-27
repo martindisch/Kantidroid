@@ -59,7 +59,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="24dp"
                                 android:text="@string/mensa"
-                                android:textColor="@color/timetable"
+                                android:textColor="@color/food"
                                 android:textSize="16sp" />
 
                             <android.support.v7.widget.RecyclerView
@@ -92,7 +92,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="24dp"
                                 android:text="@string/konvikt"
-                                android:textColor="@color/timetable"
+                                android:textColor="@color/food"
                                 android:textSize="16sp" />
 
                             <android.support.v7.widget.RecyclerView
