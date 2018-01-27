@@ -27,7 +27,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class FoodFragment extends Fragment implements FoodAdapter.OnClickListener {
+public class FoodFragment extends Fragment implements FoodAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mMensa, mKonvikt;
     private SwipeRefreshLayout mSwipeContainer;
@@ -63,7 +63,7 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
         mKonvikt.setLayoutManager(new LinearLayoutManager(getActivity()));
         mKonvikt.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
         mSwipeContainer.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.accent));
-        mSwipeContainer.setEnabled(false);
+        mSwipeContainer.setOnRefreshListener(this);
 
         return rootView;
     }
@@ -71,6 +71,10 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
+        updateMenus();
+    }
+
+    private void updateMenus() {
         mSwipeContainer.setRefreshing(true);
         new Thread(new Runnable() {
             @Override
@@ -118,5 +122,10 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
     @Override
     public void onItemClick(View v, final String URL) {
         Log.e("FFF", "Clicked on URL " + URL);
+    }
+
+    @Override
+    public void onRefresh() {
+        updateMenus();
     }
 }
