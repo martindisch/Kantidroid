@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.martin.kantidroid.R;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
@@ -33,6 +34,7 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
     private RecyclerView mMensa, mKonvikt;
     private SwipeRefreshLayout mSwipeContainer;
     private ScrollView mFoodContainer;
+    private TextView mErrorText;
 
     private ArrayList<String[]> mMensaItems, mKonviktItems;
 
@@ -60,6 +62,7 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
         mKonvikt = rootView.findViewById(R.id.rvKonvikt);
         mSwipeContainer = rootView.findViewById(R.id.swipeContainer);
         mFoodContainer = rootView.findViewById(R.id.svFoodContainer);
+        mErrorText = rootView.findViewById(R.id.tvError);
 
         mMensa.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMensa.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
@@ -122,16 +125,23 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
                         public void run() {
                             mMensa.setAdapter(adMensa);
                             mKonvikt.setAdapter(adKonvikt);
+                            mErrorText.setVisibility(View.GONE);
+                            mFoodContainer.setVisibility(View.VISIBLE);
                         }
                     });
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    mErrorText.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mFoodContainer.setVisibility(View.GONE);
+                            mErrorText.setVisibility(View.VISIBLE);
+                        }
+                    });
                 } finally {
                     mSwipeContainer.post(new Runnable() {
                         @Override
                         public void run() {
                             mSwipeContainer.setRefreshing(false);
-                            mFoodContainer.setVisibility(View.VISIBLE);
                         }
                     });
                 }
