@@ -2,6 +2,7 @@ package com.martin.kantidroid.ui.food;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,6 +33,8 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
     private RecyclerView mMensa, mKonvikt;
     private SwipeRefreshLayout mSwipeContainer;
     private ScrollView mFoodContainer;
+
+    private ArrayList<String[]> mMensaItems, mKonviktItems;
 
     public FoodFragment() {
         // Required empty public constructor
@@ -65,37 +68,54 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
         mSwipeContainer.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.accent));
         mSwipeContainer.setOnRefreshListener(this);
 
+        if (savedInstanceState != null) {
+            mMensaItems = (ArrayList<String[]>) savedInstanceState.getSerializable("mensa");
+            mKonviktItems = (ArrayList<String[]>) savedInstanceState.getSerializable("konvikt");
+        }
+
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateMenus();
+        if (mMensaItems != null && mKonviktItems != null) {
+            updateMenus(false);
+        } else {
+            updateMenus(true);
+        }
     }
 
-    private void updateMenus() {
-        mSwipeContainer.setRefreshing(true);
+    private void updateMenus(final boolean fetch) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Document doc = Jsoup.connect(getString(R.string.url_food)).get();
+                    if (fetch) {
+                        mSwipeContainer.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mSwipeContainer.setRefreshing(true);
+                            }
+                        });
+                        Document doc = Jsoup.connect(getString(R.string.url_food)).get();
 
-                    ArrayList<String[]> mensaItems = new ArrayList<>();
-                    Elements mensEl = doc.select(".WebPart1 a");
-                    for (Element el : mensEl) {
-                        mensaItems.add(new String[]{el.text(), el.attr("href")});
+                        mMensaItems = new ArrayList<>();
+                        mKonviktItems = new ArrayList<>();
+
+                        Elements mensEl = doc.select(".WebPart1 a");
+                        for (Element el : mensEl) {
+                            mMensaItems.add(new String[]{el.text(), el.attr("href")});
+                        }
+
+                        Elements konvEl = doc.select(".WebPart2 a");
+                        for (Element el : konvEl) {
+                            mKonviktItems.add(new String[]{el.text(), el.attr("href")});
+                        }
                     }
 
-                    ArrayList<String[]> konviktItems = new ArrayList<>();
-                    Elements konvEl = doc.select(".WebPart2 a");
-                    for (Element el : konvEl) {
-                        konviktItems.add(new String[]{el.text(), el.attr("href")});
-                    }
-
-                    final FoodAdapter adMensa = new FoodAdapter(getActivity(), mensaItems, FoodFragment.this, FoodAdapter.TYPE_MENSA);
-                    final FoodAdapter adKonvikt = new FoodAdapter(getActivity(), konviktItems, FoodFragment.this, FoodAdapter.TYPE_KONVIKT);
+                    final FoodAdapter adMensa = new FoodAdapter(getActivity(), mMensaItems, FoodFragment.this, FoodAdapter.TYPE_MENSA);
+                    final FoodAdapter adKonvikt = new FoodAdapter(getActivity(), mKonviktItems, FoodFragment.this, FoodAdapter.TYPE_KONVIKT);
 
                     mMensa.post(new Runnable() {
                         @Override
@@ -120,12 +140,19 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable("mensa", mMensaItems);
+        outState.putSerializable("konvikt", mKonviktItems);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onItemClick(View v, final String URL) {
         Log.e("FFF", "Clicked on URL " + URL);
     }
 
     @Override
     public void onRefresh() {
-        updateMenus();
+        updateMenus(true);
     }
 }
