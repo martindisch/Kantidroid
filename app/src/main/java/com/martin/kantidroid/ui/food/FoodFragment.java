@@ -108,12 +108,12 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
 
                         Elements mensEl = doc.select(".WebPart1 a");
                         for (Element el : mensEl) {
-                            mMensaItems.add(new String[]{el.text(), el.attr("href")});
+                            mMensaItems.add(new String[]{el.text().replace(".pdf", ""), el.attr("href")});
                         }
 
                         Elements konvEl = doc.select(".WebPart2 a");
                         for (Element el : konvEl) {
-                            mKonviktItems.add(new String[]{el.text(), el.attr("href")});
+                            mKonviktItems.add(new String[]{el.text().replace(".pdf", ""), el.attr("href")});
                         }
                     }
 
