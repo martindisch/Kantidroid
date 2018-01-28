@@ -2,6 +2,7 @@
 /*/build/
 /build/
 *.apk
+app/release
 
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
