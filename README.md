@@ -8,6 +8,7 @@ The unofficial app for students of the [Bündner Kantonsschule Chur](http://www.
 * Extensive mark management, calculations & predictions
 * Absences management
 * Class schedules
+* Menus for campus cafeterias
 * Dropbox backup of important information
 
 ## Dependencies
