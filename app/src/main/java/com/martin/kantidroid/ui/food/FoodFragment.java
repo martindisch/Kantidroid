@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FoodFragment extends Fragment implements FoodAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class FoodFragment extends Fragment implements FoodAdapter.OnClickListener {
 
     private RecyclerView mMensa, mKonvikt;
     private SwipeRefreshLayout mSwipeContainer;
@@ -83,7 +83,7 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
         mKonvikt.setLayoutManager(new LinearLayoutManager(getActivity()));
         mKonvikt.addItemDecoration(new DividerItemDecoration(getActivity(), null, false));
         mSwipeContainer.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.accent));
-        mSwipeContainer.setOnRefreshListener(this);
+        mSwipeContainer.setEnabled(false);
 
         if (savedInstanceState != null) {
             mMensaItems = (ArrayList<String[]>) savedInstanceState.getSerializable("mensa");
@@ -269,10 +269,5 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
         } else {
             Toast.makeText(getActivity(), R.string.food_no_such_file, Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onRefresh() {
-        updateMenus(true);
     }
 }
