@@ -281,5 +281,6 @@
     <string name="url_food">https://www.gr.ch/DE/institutionen/verwaltung/ekud/ahb/wvb/Menueplaene/Seiten/default.aspx</string>
     <string name="mensa">Mensa Münzmühle</string>
     <string name="konvikt">Konvikt</string>
+    <string name="food_no_such_file">Datei nicht gefunden</string>
 
 </resources>

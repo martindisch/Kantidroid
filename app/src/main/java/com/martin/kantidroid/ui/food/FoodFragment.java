@@ -1,24 +1,33 @@
 package com.martin.kantidroid.ui.food;
 
-
+import android.Manifest;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.martin.kantidroid.R;
+import com.martin.kantidroid.logic.Util;
 import com.martin.kantidroid.ui.util.DividerItemDecoration;
 
 import org.jsoup.Jsoup;
@@ -26,8 +35,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FoodFragment extends Fragment implements FoodAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -37,6 +50,7 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
     private TextView mErrorText;
 
     private ArrayList<String[]> mMensaItems, mKonviktItems;
+    private String mPendingURL;
 
     public FoodFragment() {
         // Required empty public constructor
@@ -157,8 +171,104 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
     }
 
     @Override
-    public void onItemClick(View v, final String URL) {
-        Log.e("FFF", "Clicked on URL " + URL);
+    public void onItemClick(View v, final String url) {
+        mPendingURL = url;
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+            downloadMenu(url);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            downloadMenu(mPendingURL);
+        }
+    }
+
+    private void downloadMenu(String rawUrl) {
+        // Matcher to split filename from rest of URL
+        Pattern pattern = Pattern.compile("(.*/)(.*)");
+        Matcher matcher = pattern.matcher(rawUrl);
+        if (matcher.find()) {
+            String path = matcher.group(1);
+            String filename = matcher.group(2);
+            // Encode the filename to convert illegal characters (e.g. ä, ü, etc.)
+            final String url = path + URLEncoder.encode(filename).replace("+", "%20");
+            if (Environment.getExternalStorageState().contentEquals(Environment.MEDIA_MOUNTED)) {
+                File localDest = new File(Environment.getExternalStorageDirectory(), "/Kantidroid/menus");
+                localDest.mkdirs();
+                final File downloadFile = new File(localDest + "/" + "Menu.pdf");
+                mSwipeContainer.setRefreshing(true);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Util.isNetworkAvailable(getActivity())) {
+                            if (Util.urlExists(url)) {
+                                Ion.with(getActivity())
+                                        .load(url)
+                                        .write(downloadFile)
+                                        .setCallback(new FutureCallback<File>() {
+                                            @Override
+                                            public void onCompleted(final Exception e, final File file) {
+                                                if (e != null) {
+                                                    mSwipeContainer.post(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                                            mSwipeContainer.setRefreshing(false);
+                                                        }
+                                                    });
+                                                } else {
+                                                    mSwipeContainer.post(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            mSwipeContainer.setRefreshing(false);
+
+                                                            MimeTypeMap myMime = MimeTypeMap.getSingleton();
+                                                            Intent newIntent = new Intent(Intent.ACTION_VIEW);
+                                                            String mimeType = myMime.getMimeTypeFromExtension(Util.fileExt(downloadFile).substring(1));
+                                                            newIntent.setDataAndType(FileProvider.getUriForFile(getContext(), "com.martin.fileprovider", downloadFile), mimeType);
+                                                            newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                                                            try {
+                                                                getActivity().startActivity(newIntent);
+                                                            } catch (ActivityNotFoundException e) {
+                                                                Toast.makeText(getActivity(), R.string.timetable_noreader, Toast.LENGTH_LONG).show();
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        });
+                            } else {
+                                mSwipeContainer.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), R.string.food_no_such_file, Toast.LENGTH_SHORT).show();
+                                        mSwipeContainer.setRefreshing(false);
+                                    }
+                                });
+                            }
+                        } else {
+                            mSwipeContainer.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity(), R.string.timetable_noconnection, Toast.LENGTH_SHORT).show();
+                                    mSwipeContainer.setRefreshing(false);
+                                }
+                            });
+                        }
+                    }
+                }).start();
+            } else {
+                Toast.makeText(getActivity(), R.string.timetable_error_filesystem, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getActivity(), R.string.food_no_such_file, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
