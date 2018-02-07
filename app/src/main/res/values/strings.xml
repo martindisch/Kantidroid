@@ -282,5 +282,6 @@
     <string name="mensa">Mensa Münzmühle</string>
     <string name="konvikt">Konvikt</string>
     <string name="food_no_such_file">Datei nicht gefunden</string>
+    <string name="food_no_menus">Keine Menüpläne gefunden</string>
 
 </resources>

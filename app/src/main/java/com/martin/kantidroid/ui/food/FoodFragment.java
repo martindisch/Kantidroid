@@ -131,23 +131,35 @@ public class FoodFragment extends Fragment implements FoodAdapter.OnClickListene
                         }
                     }
 
-                    final FoodAdapter adMensa = new FoodAdapter(getActivity(), mMensaItems, FoodFragment.this, FoodAdapter.TYPE_MENSA);
-                    final FoodAdapter adKonvikt = new FoodAdapter(getActivity(), mKonviktItems, FoodFragment.this, FoodAdapter.TYPE_KONVIKT);
+                    if (mMensaItems.size() == 0 || mKonviktItems.size() == 0) {
+                        mMensa.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mFoodContainer.setVisibility(View.GONE);
+                                mErrorText.setText(R.string.food_no_menus);
+                                mErrorText.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    } else {
+                        final FoodAdapter adMensa = new FoodAdapter(getActivity(), mMensaItems, FoodFragment.this, FoodAdapter.TYPE_MENSA);
+                        final FoodAdapter adKonvikt = new FoodAdapter(getActivity(), mKonviktItems, FoodFragment.this, FoodAdapter.TYPE_KONVIKT);
 
-                    mMensa.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mMensa.setAdapter(adMensa);
-                            mKonvikt.setAdapter(adKonvikt);
-                            mErrorText.setVisibility(View.GONE);
-                            mFoodContainer.setVisibility(View.VISIBLE);
-                        }
-                    });
+                        mMensa.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mMensa.setAdapter(adMensa);
+                                mKonvikt.setAdapter(adKonvikt);
+                                mErrorText.setVisibility(View.GONE);
+                                mFoodContainer.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
                 } catch (IOException e) {
                     mErrorText.post(new Runnable() {
                         @Override
                         public void run() {
                             mFoodContainer.setVisibility(View.GONE);
+                            mErrorText.setText(R.string.timetable_noconnection);
                             mErrorText.setVisibility(View.VISIBLE);
                         }
                     });
