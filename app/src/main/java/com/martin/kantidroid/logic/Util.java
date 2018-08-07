@@ -443,7 +443,7 @@ public class Util {
         int departmentIndex = getDepartmentIndex(checkable, numberIndex);
         int levelIndex = getLevelIndex(checkable, departmentIndex);
         if (levelIndex != -1) {
-            classUrl = checkable.charAt(numberIndex) + "%20" + checkable.toUpperCase().charAt(departmentIndex) + checkable.toLowerCase().charAt(levelIndex);
+            classUrl = "Klasse_" + checkable.charAt(numberIndex) + checkable.toUpperCase().charAt(departmentIndex) + checkable.toLowerCase().charAt(levelIndex);
         }
         return classUrl;
     }
