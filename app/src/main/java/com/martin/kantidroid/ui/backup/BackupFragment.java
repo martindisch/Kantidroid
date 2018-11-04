@@ -103,7 +103,7 @@ public class BackupFragment extends Fragment {
                 if (position == 0) {
                     checkPermissionAndDo(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
                 } else {
-                    checkPermissionAndDo(Manifest.permission.READ_EXTERNAL_STORAGE, 1);
+                    checkPermissionAndDo(Manifest.permission.WRITE_EXTERNAL_STORAGE, 1);
                 }
             }
         });
