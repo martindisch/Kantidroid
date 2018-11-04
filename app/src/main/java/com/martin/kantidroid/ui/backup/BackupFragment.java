@@ -128,7 +128,7 @@ public class BackupFragment extends Fragment {
         rootView.findViewById(R.id.bImportDropbox).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkPermissionAndDo(Manifest.permission.READ_EXTERNAL_STORAGE, 3);
+                checkPermissionAndDo(Manifest.permission.WRITE_EXTERNAL_STORAGE, 3);
             }
         });
 
