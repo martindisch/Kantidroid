@@ -124,7 +124,7 @@ public class EditMarkDialog extends AppCompatActivity {
             Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (mark.contentEquals("0") || weight.contentEquals("0") || date.contentEquals("0")) {
+        if (Double.parseDouble(mark) == 0 || Double.parseDouble(weight) == 0) {
             Toast.makeText(this, R.string.input_sucks, Toast.LENGTH_SHORT).show();
             return false;
         }
