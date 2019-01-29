@@ -93,7 +93,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener,
 
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             mDownloadsCard.setVisibility(View.GONE);
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         } else {
             showTimetables();
         }
