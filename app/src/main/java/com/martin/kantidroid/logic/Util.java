@@ -40,6 +40,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Util {
 
@@ -379,72 +381,20 @@ public class Util {
         out.close();
     }
 
-    public static int getNumberIndex(String checkable) {
-        int index = -1;
-        boolean indexFound = false;
-        if (checkable.length() >= 3) {
-            for (int i = 0; i < checkable.length(); i++) {
-                for (int y = 1; y <= 6; y++) {
-                    if (checkable.charAt(i) == (y + "").charAt(0)) {
-                        if (indexFound) {
-                            index = -1;
-                        } else {
-                            index = i;
-                            indexFound = true;
-                        }
-                    }
-                }
-            }
-        }
-        return index;
-    }
-
-    public static int getDepartmentIndex(String checkable, int numberIndex) {
-        int index = -1;
-        if (numberIndex != -1) {
-            char[] characters = {'G', 'H', 'F'};
-            if (checkable.charAt(1) == ' ') {
-                if (checkable.length() == 4) {
-                    for (int i = 0; i < characters.length; i++) {
-                        if (checkable.toUpperCase().charAt(2) == characters[i]) {
-                            index = 2;
-                        }
-                    }
-                }
-            } else {
-                if (checkable.length() == 3) {
-                    for (int i = 0; i < characters.length; i++) {
-                        if (checkable.toUpperCase().charAt(1) == characters[i]) {
-                            index = 1;
-                        }
-                    }
-                }
-            }
-        }
-        return index;
-    }
-
-    public static int getLevelIndex(String checkable, int departmentIndex) {
-        int index = -1;
-        if (departmentIndex != -1) {
-            char[] characters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'};
-            for (int i = 0; i < characters.length; i++) {
-                if (checkable.toLowerCase().charAt(departmentIndex + 1) == characters[i]) {
-                    index = departmentIndex + 1;
-                }
-            }
-        }
-        return index;
-    }
-
     public static String getClassUrl(String checkable) {
         String classUrl = "error";
-        int numberIndex = getNumberIndex(checkable);
-        int departmentIndex = getDepartmentIndex(checkable, numberIndex);
-        int levelIndex = getLevelIndex(checkable, departmentIndex);
-        if (levelIndex != -1) {
-            classUrl = "Klasse_" + checkable.charAt(numberIndex) + checkable.toUpperCase().charAt(departmentIndex) + checkable.toLowerCase().charAt(levelIndex);
+
+        Pattern p = Pattern.compile("^([1-6])\\s?([uU]?[GHFghf])([a-zA-Z])");
+        Matcher m = p.matcher(checkable);
+        if (m.find()) {
+            String numberIndex = m.group(1);
+            String departmentIndex = m.group(2);
+            String levelIndex = m.group(3);
+            if (numberIndex != null && departmentIndex != null && levelIndex != null) {
+                classUrl = "Klasse_" + numberIndex + departmentIndex.toUpperCase() + levelIndex.toLowerCase();
+            }
         }
+
         return classUrl;
     }
 
